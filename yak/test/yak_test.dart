@@ -4,7 +4,6 @@ import 'package:yak/yak.dart';
 
 void main() {
  
-
   group('[Yak] imports succesfully [yak_runner] packages', () {
     test('Yak.function shoul return YakFunction class',() async {
       final YakFunction<int,int> _function = Yak.function<int,int>(function: (data) => data*2);
