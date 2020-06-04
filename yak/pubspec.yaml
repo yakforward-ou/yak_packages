@@ -5,7 +5,10 @@ homepage: https://github.com/iapicca/yak_packages
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
   yak_runner: ^0.0.1
+  meta: ^1.1.8
 
 dev_dependencies:
   flutter_test:
