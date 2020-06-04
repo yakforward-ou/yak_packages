@@ -2,16 +2,17 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yak_runner/yak_runner.dart';
-import 'yak_async_yield_mock.dart';
+
+import 'yak_async_gen_mock.dart';
 
 void main() {
   
   final int _testInt = 1;
   YakAsyncGenerator<int> _logic;
-  YakAsyncYieldInterfaceMock<int> _yield;
+  YakAsyncGeneratorInterfaceMock<int> _yield;
 
   setUp(() {
-    _yield = YakAsyncYieldInterfaceMock<int>();
+    _yield = YakAsyncGeneratorInterfaceMock<int>();
     _logic = YakAsyncGenerator<int>(function: _yield);
   });
 

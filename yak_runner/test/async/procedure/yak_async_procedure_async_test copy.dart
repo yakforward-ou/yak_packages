@@ -10,12 +10,12 @@ void main() {
   final Duration _duration300  = Duration(milliseconds: 300);
   final int _testInt = 1;
   
-  YakAsyncProcedure<String,int> _logic;
+  YakAsyncFunction<String,int> _logic;
   YakAsyncFunctionInterfaceMock<String,int> _function;
 
   setUp(() {
     _function = YakAsyncFunctionInterfaceMock<String,int>();
-    _logic = YakAsyncProcedure<String,int>(
+    _logic = YakAsyncFunction<String,int>(
       function: _function,
       timeout: _duration300,
     );

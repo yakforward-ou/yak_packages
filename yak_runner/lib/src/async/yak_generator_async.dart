@@ -3,6 +3,10 @@ import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import 'package:yak_runner/src/utils/failure.dart';
 
+abstract class YakAsyncGeneratorInterface<T> {
+  FutureOr<T> call();
+}
+
 class YakAsyncGenerator<T> {
   final FutureOr<T> Function() function;
   final Duration timeout;

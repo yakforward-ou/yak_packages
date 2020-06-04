@@ -7,12 +7,12 @@ import 'yak_async_function_mock.dart';
 void main() {
   
   final int _testInt = 1;
-  YakAsyncProcedure<String,int> _logic;
+  YakAsyncFunction<String,int> _logic;
   YakAsyncFunctionInterfaceMock<String,int> _function;
 
   setUp(() {
     _function = YakAsyncFunctionInterfaceMock<String,int>();
-    _logic = YakAsyncProcedure<String,int>(function: _function);
+    _logic = YakAsyncFunction<String,int>(function: _function);
   });
 
   group('[YakAsyncProcedure] Test with synchronous labdas', () {

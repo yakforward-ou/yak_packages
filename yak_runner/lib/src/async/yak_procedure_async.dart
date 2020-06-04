@@ -3,10 +3,14 @@ import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import '../../yak_runner.dart';
 
-class YakAsyncProcedure<T,S> {
+abstract class YakAsyncFunctionInterface<T,S> {
+  FutureOr<T> call(FutureOr<S> argument);
+}
+
+class YakAsyncFunction<T,S> {
   final FutureOr<T> Function(FutureOr<S> argument) function;
   final Duration timeout;
-  const YakAsyncProcedure({
+  const YakAsyncFunction({
     @required this.function,
     this.timeout,
   }) : assert(function != null);

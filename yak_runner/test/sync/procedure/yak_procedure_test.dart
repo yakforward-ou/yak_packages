@@ -6,12 +6,12 @@ import 'yak_function_mock.dart';
 
 void main() {
   final int _testInt = 1;
-  YakProcedure<String,int> _logic;
+  YakFunction<String,int> _logic;
   YakFunctionInterface<String,int> _function;
 
   setUp(() {
     _function = YakFunctionInterfaceMock<String,int>();
-    _logic = YakProcedure<String,int>(function: _function);
+    _logic = YakFunction<String,int>(function: _function);
   });
 
   group('[YakProcedure] Synchronous Test', () {

@@ -2,6 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import '../../yak_runner.dart';
 
+abstract class YakGeneratorInterface<T> {
+  T call();
+}
 
 class YakGenerator<T> {
   final T Function() function;
