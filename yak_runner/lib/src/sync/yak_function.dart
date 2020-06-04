@@ -6,7 +6,7 @@ abstract class YakFunctionInterface<T,S> {
   T call(S argument);
 }
 
-class YakFunction<T, S> {
+class YakFunction<T,S> {
   const YakFunction({
     @required this.function,
   }) : assert(function != null);

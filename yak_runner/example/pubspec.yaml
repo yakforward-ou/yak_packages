@@ -8,7 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  yak_runner: ^0.0.1
+  yak: ^0.0.1
   http: ^0.12.1
 
 
