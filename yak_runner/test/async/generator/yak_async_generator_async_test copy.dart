@@ -2,8 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yak_runner/yak_runner.dart';
-
-import 'yak_async_gen_mock.dart';
+import 'yak_async_generator_mock.dart';
 
 
 void main() {

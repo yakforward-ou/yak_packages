@@ -22,11 +22,6 @@ class YakAsyncFunction<T,S> {
       });
     }
     T _result;
-    if(timeout != null) {
-      Future.delayed(timeout, () {
-        return Left( TimeOutFailure(), );
-      });
-    }
     try {
       _result = await function(await argument);
     } catch (_) {
