@@ -1,0 +1,19 @@
+name: yak_runner
+description: A new Flutter package project.
+version: 0.0.1
+author: iapicca@gmail.com
+homepage: https://github.com/yakforward
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dartz: ^0.9.1
+  equatable: ^1.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^4.1.1
