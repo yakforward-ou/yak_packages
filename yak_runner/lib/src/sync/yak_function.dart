@@ -7,10 +7,10 @@ abstract class YakFunctionInterface<T,S> {
 }
 
 class YakFunction<T, S> {
-  final T Function(S argument) function;
   const YakFunction({
     @required this.function,
   }) : assert(function != null);
+  final T Function(S argument) function;
 
   Either<Failure,T> call(S argument) {
      T _result;

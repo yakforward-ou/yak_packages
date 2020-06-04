@@ -8,12 +8,12 @@ abstract class YakAsyncGeneratorInterface<T> {
 }
 
 class YakAsyncGenerator<T> {
-  final FutureOr<T> Function() function;
-  final Duration timeout;
   const YakAsyncGenerator({
     @required this.function,
     this.timeout,
   }) : assert(function != null);
+  final FutureOr<T> Function() function;
+  final Duration timeout;
 
   FutureOr<Either<Failure,T>> call() async {
     if(timeout != null) {

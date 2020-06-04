@@ -1,3 +1,11 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 4th June 2020
 
-* TODO: Describe initial release.
+* this release is pre-alpha
+
+
+| TO DO LIST |  |
+|--------|-----|
+| remove flutter from dependencies |  |
+| refactor and rename |  |
+| implement streems |  |
+

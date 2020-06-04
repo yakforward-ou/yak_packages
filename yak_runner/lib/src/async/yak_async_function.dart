@@ -8,12 +8,12 @@ abstract class YakAsyncFunctionInterface<T,S> {
 }
 
 class YakAsyncFunction<T,S> {
-  final FutureOr<T> Function(FutureOr<S> argument) function;
-  final Duration timeout;
   const YakAsyncFunction({
     @required this.function,
     this.timeout,
   }) : assert(function != null);
+  final FutureOr<T> Function(FutureOr<S> argument) function;
+  final Duration timeout;
 
   FutureOr<Either<Failure,T>> call(FutureOr<S> argument) async {
     if(timeout != null) {

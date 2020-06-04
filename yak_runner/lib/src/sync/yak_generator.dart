@@ -7,10 +7,10 @@ abstract class YakGeneratorInterface<T> {
 }
 
 class YakGenerator<T> {
-  final T Function() function;
   const YakGenerator({
     @required this.function,
   }) : assert(function != null);
+  final T Function() function;
 
   Either<Failure,T> call() {
     T _result;
