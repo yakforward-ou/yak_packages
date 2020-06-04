@@ -15,20 +15,26 @@ class YakAsyncGenerator<T> {
   final FutureOr<T> Function() function;
   final Duration timeout;
 
-  FutureOr<Either<Failure,T>> call() async {
-    if(timeout != null) {
+  FutureOr<Either<Failure, T>> call() async {
+    if (timeout != null) {
       Future.delayed(timeout, () {
-        return Left( TimeOutFailure(), );
+        return Left(
+          TimeOutFailure(),
+        );
       });
     }
     T _result;
     try {
       _result = await function();
     } catch (_) {
-      return Left( FunctionFailure(), );
+      return Left(
+        FunctionFailure(),
+      );
     }
     if (_result == null) {
-      return Left( NullFailure(), ); 
+      return Left(
+        NullFailure(),
+      );
     } else {
       return Right(_result);
     }

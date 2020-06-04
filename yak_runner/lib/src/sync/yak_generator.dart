@@ -12,15 +12,19 @@ class YakGenerator<T> {
   }) : assert(function != null);
   final T Function() function;
 
-  Either<Failure,T> call() {
+  Either<Failure, T> call() {
     T _result;
     try {
       _result = function();
     } catch (_) {
-      return Left( FunctionFailure(), );
+      return Left(
+        FunctionFailure(),
+      );
     }
     if (_result == null) {
-      return Left( NullFailure(), ); 
+      return Left(
+        NullFailure(),
+      );
     } else {
       return Right(_result);
     }

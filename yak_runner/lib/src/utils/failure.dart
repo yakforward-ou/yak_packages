@@ -5,6 +5,9 @@ abstract class Failure extends Equatable {
 }
 
 class NullFailure extends Failure {}
+
 class FunctionFailure extends Failure {}
+
 class TimeOutFailure extends Failure {}
+
 class HttpFailure extends Failure {}
