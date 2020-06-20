@@ -8,6 +8,8 @@ class NullFailure extends Failure {}
 
 class FunctionFailure extends Failure {}
 
-class TimeOutFailure extends Failure {}
+class TimeoutFailure extends Failure {}
 
 class HttpFailure extends Failure {}
+
+class ValidationFailure extends Failure {}
