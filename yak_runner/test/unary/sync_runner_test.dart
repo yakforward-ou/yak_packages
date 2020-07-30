@@ -14,11 +14,11 @@ void main() {
       bool _valid = true;
       final YakUnaryRunner _run = YakUnaryRunner<int,int>(
         function: (int i) => i * 2,
-        onFailure: () => _failed = true,
+        onFunctionFailure: () => _failed = true,
         conditions: [
           YakCondition<int>(
             condition: (int i) => i > 0,
-            onFailure: () => _valid = false,
+            onValidationFailure: () => _valid = false,
           ),
         ],
       );
@@ -34,11 +34,11 @@ void main() {
       bool _valid = true;
       final YakUnaryRunner _run = YakUnaryRunner<int,int>(
         function: (int i) =>  throw("some arbitrary error"),
-        onFailure: () => _failed = true,
+        onFunctionFailure: () => _failed = true,
         conditions: [
           YakCondition(
             condition: (int i) => i > 0,
-            onFailure: () => _valid = false,
+            onValidationFailure: () => _valid = false,
           ),
         ],
       );
@@ -56,11 +56,11 @@ void main() {
       bool _valid = true;
       final YakUnaryRunner _run = YakUnaryRunner<int,int>(
         function: (int i) =>  i * 2,
-        onFailure: () => _failed = true,
+        onFunctionFailure: () => _failed = true,
         conditions: [
           YakCondition(
             condition: (int i) => i < _testInt,
-            onFailure: () => _valid = false,
+            onValidationFailure: () => _valid = false,
           ),
         ],
       );
@@ -78,11 +78,11 @@ void main() {
       bool _valid = true;
       final YakUnaryRunner _run = YakUnaryRunner<int,int>(
         function: (int i) =>  null,
-        onFailure: () => _failed = true,
+        onFunctionFailure: () => _failed = true,
         conditions: [
           YakCondition(
             condition: (int i) => i < _testInt,
-            onFailure: () => _valid = false,
+            onValidationFailure: () => _valid = false,
           ),
         ],
       );

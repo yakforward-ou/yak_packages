@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import 'package:yak_runner/src/utils/failure.dart';
-import 'conditions.dart';
 import 'interfaces.dart';
 
 /// [YakValidatorMixin] folds, see [dartz] package, the subject
@@ -15,19 +14,26 @@ mixin YakValidatorMixin<T> implements YakValidatorInterface<T> {
   @override
   Either<Failure, T> validate({
     @required Either<Failure, T> subject,
-    List<YakCondition<T>> conditions,
+    List<MapEntry<bool Function(T argument), Failure>> conditions,
+    void Function(String condition) onValidationFailure,
   }) =>
-      subject.fold<Either<Failure, T>>((Failure l) => Left(l), (T r) {
-        final NullCheck _nullCheck = NullCheck();
-        Either<Failure, T> _r =
-            _nullCheck(r) ? Right(r) : Left(_nullCheck.fail);
-        if (conditions != null) {
+      subject.fold<Either<Failure, T>>(
+        (Failure l) => Left(l),
+        (T r) {
+          Either<Failure, T> _r = Right(r);
+          (conditions ?? []).insert(
+            0,
+            MapEntry((dynamic arg) => arg != null, NullFailure()),
+          );
           for (int i = 0; i < conditions.length && _r.isRight(); ++i) {
-            if (!conditions[i](r)) {
-              _r = Left(conditions[i].fail);
+            if (!conditions[i].key(r)) {
+              if (onValidationFailure != null) {
+                onValidationFailure('${conditions[i].key}');
+              }
+              _r = Left(conditions[i].value ?? ValidationFailure());
             }
           }
-        }
-        return _r;
-      });
+          return _r;
+        },
+      );
 }

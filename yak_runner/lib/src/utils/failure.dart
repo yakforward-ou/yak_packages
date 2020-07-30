@@ -1,15 +1,26 @@
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
+  const Failure();
   List<Object> get props => <Object>[];
 }
 
-class NullFailure extends Failure {}
+class NullFailure extends Failure {
+  const NullFailure();
+}
 
-class FunctionFailure extends Failure {}
+class FunctionFailure extends Failure {
+  const FunctionFailure();
+}
 
-class TimeoutFailure extends Failure {}
+class TimeoutFailure extends Failure {
+  const TimeoutFailure();
+}
 
-class HttpFailure extends Failure {}
+class HttpFailure extends Failure {
+  const HttpFailure();
+}
 
-class ValidationFailure extends Failure {}
+class ValidationFailure extends Failure {
+  const ValidationFailure();
+}

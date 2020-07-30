@@ -20,13 +20,13 @@ void main() {
       bool _timeout = false;
       final YakNullaryAsyncRunner _run = YakNullaryAsyncRunner<int>(
         function: () => _testInt(),
-        onFailure: () => _failed = true,
+        onFunctionFailure: () => _failed = true,
         timeout: _duration * 2,
         onTimeout: () => _timeout = true,
         conditions: [
           YakCondition<int>(
             condition: (int i) => i > 0,
-            onFailure: () => _valid = false,
+            onValidationFailure: () => _valid = false,
           ),
         ],
       );
@@ -45,13 +45,13 @@ void main() {
       bool _timeout = false;
       final YakNullaryAsyncRunner _run = YakNullaryAsyncRunner<int>(
         function: () => throw("some arbitrary error"),
-        onFailure: () => _failed = true,
+        onFunctionFailure: () => _failed = true,
         timeout: _duration * 2,
         onTimeout: () => _timeout = true,
         conditions: [
           YakCondition(
             condition: (int i) => i > 0,
-            onFailure: () => _valid = false,
+            onValidationFailure: () => _valid = false,
           ),
         ],
       );
@@ -72,13 +72,13 @@ void main() {
       bool _timeout = false;
       final YakNullaryAsyncRunner _run = YakNullaryAsyncRunner<int>(
         function: () =>  _testInt(),
-        onFailure: () => _failed = true,
+        onFunctionFailure: () => _failed = true,
         timeout: _duration * 2,
         onTimeout: () => _timeout = true,
         conditions: [
           YakCondition(
             condition: (int i) => i < 0,
-            onFailure: () => _valid = false,
+            onValidationFailure: () => _valid = false,
           ),
         ],
       );
@@ -99,13 +99,13 @@ void main() {
       bool _timeout = false;
       final YakNullaryAsyncRunner _run = YakNullaryAsyncRunner<int>(
         function: () =>  null,
-        onFailure: () => _failed = true,
+        onFunctionFailure: () => _failed = true,
         timeout: _duration * 2,
         onTimeout: () => _timeout = true,
         conditions: [
           YakCondition(
             condition: (int i) => i < 0,
-            onFailure: () => _valid = false,
+            onValidationFailure: () => _valid = false,
           ),
         ],
       );
@@ -131,13 +131,13 @@ void main() {
       bool _timeout = false;
       final YakNullaryAsyncRunner _run = YakNullaryAsyncRunner<int>(
         function: () =>  _longTestInt(),
-        onFailure: () => _failed = true,
+        onFunctionFailure: () => _failed = true,
         timeout: _duration,
         onTimeout: () => _timeout = true,
         conditions: [
           YakCondition(
             condition: (int i) => i < 0,
-            onFailure: () => _valid = false,
+            onValidationFailure: () => _valid = false,
           ),
         ],
       );
