@@ -5,8 +5,8 @@ import 'package:yak_runner/src/utils/failure.dart';
 /// [YakUnaryRunnerInterface] is extended in [YakUnaryAsyncRunner]
 /// this class is created for abstraction and mockability
 
-abstract class YakUnaryRunnerInterface<T, S> {
-  const YakUnaryRunnerInterface();
+abstract class YakUnaryInterface<T, S> {
+  const YakUnaryInterface();
   Either<Failure, T> call(S arg);
 }
 

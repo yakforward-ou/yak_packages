@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:yak_runner/src/async/nullary/implementation.dart';
 import 'package:yak_runner/src/async/unary/implementation.dart';
 import 'package:yak_runner/src/utils/failure.dart';
 import '../../mock/yak_async_function_mock.dart';

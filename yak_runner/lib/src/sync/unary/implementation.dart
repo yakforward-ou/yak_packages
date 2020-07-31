@@ -9,9 +9,9 @@ import 'mixin.dart';
 /// combining [YakUnarySafetyMixin] and [YakValidatorMixin]; it returns [Either<Failure, T>]
 /// and triggers [onFailure] callbacks from both [YakCondition]s and [YakUnarySafetyMixin]
 
-class YakUnaryRunner<S, T> extends YakUnaryRunnerInterface<S, T>
+class YakUnary<S, T> extends YakUnaryInterface<S, T>
     with YakUnarySafetyMixin<S, T>, YakValidatorMixin<S> {
-  const YakUnaryRunner({
+  const YakUnary({
     this.conditions,
     this.onFunctionFailure,
     this.onValidationFailure,
