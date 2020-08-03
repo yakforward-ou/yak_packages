@@ -1,4 +1,4 @@
-## [0.0.3] - xx August 2020
+## [0.0.3] - 3rd August 2020
 * breaking changes in the validation
 * more elegant tests with mockito
 * streams are implemented
