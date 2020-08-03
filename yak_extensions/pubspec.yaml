@@ -1,15 +1,14 @@
-name: yak
-description: A Flutter package to collect all ["Yak"] packages
-version: 0.0.1+1
+name: yak_extensions
+description: A collection of useful extension for Dart and Flutter
+version: 0.1.0
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  yak_runner: ^0.0.3
-  yak_extensions: ^0.1.0
-  meta: ^1.1.8
+  flutter:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

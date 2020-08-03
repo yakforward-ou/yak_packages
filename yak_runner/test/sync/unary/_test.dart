@@ -7,8 +7,6 @@ import 'package:yak_runner/src/utils/failure.dart';
 import '../../mock/yak_function_mock.dart';
 
 void main() {
-  final Duration _duration200 = Duration(milliseconds: 200);
-  final Duration _duration300 = Duration(milliseconds: 300);
   final int _testInt = 1;
 
   YakFunctionInterfaceMock<String, int> _function;

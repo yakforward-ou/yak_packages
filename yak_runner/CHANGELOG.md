@@ -1,3 +1,13 @@
+## [0.0.3] - xx August 2020
+* breaking changes in the validation
+* more elegant tests with mockito
+* streams are implemented
+
+| TO DO LIST | STATUS |
+|--------|-----|
+| implement streems | done |
+| example app | TO DO  |
+
 ## [0.0.2] - 21st June 2020
 * full re-design with mixin based classes
 * async and sync test pass
