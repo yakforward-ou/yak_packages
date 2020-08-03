@@ -1,4 +1,4 @@
-## [0.0.2] - 3rd August 2020
+## [0.0.3] - 3rd August 2020
 
 * this release is STILL a pre-alpha
 
