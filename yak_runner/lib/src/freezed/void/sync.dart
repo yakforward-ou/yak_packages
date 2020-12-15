@@ -5,6 +5,6 @@ part 'sync.freezed.dart';
 
 @freezed
 abstract class Try with _$Try {
-  const factory Try.success() = _Success;
-  const factory Try.failure(Object e, StackTrace s) = _Failure;
+  const factory Try.success() = Success;
+  const factory Try.failure(Object e, StackTrace s) = Failure;
 }

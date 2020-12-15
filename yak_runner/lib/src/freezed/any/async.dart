@@ -7,8 +7,8 @@ part 'async.freezed.dart';
 
 @freezed
 abstract class TryAnyAsync<T> with _$TryAnyAsync<T> {
-  const factory TryAnyAsync.empty() = _Empty;
-  const factory TryAnyAsync.loading() = _Loading;
-  const factory TryAnyAsync.success(T result) = _Success;
-  const factory TryAnyAsync.failure(Object e, StackTrace s) = _Failure;
+  const factory TryAnyAsync.empty() = Empty;
+  const factory TryAnyAsync.loading() = Loading;
+  const factory TryAnyAsync.success(T result) = Success;
+  const factory TryAnyAsync.failure(Object e, StackTrace s) = Failure;
 }
