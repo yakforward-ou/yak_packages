@@ -10,7 +10,7 @@ class TryAnyRun<T> implements Delegate<TryAny<T>> {
   @override
   TryAny<T> call() {
     try {
-      return TryAny<T>.success(fun());
+      return TryAny<T>.result(fun());
     } catch (e, s) {
       return TryAny<T>.failure(e, s);
     }

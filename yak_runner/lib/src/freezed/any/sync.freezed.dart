@@ -14,15 +14,15 @@ class _$TryAnyTearOff {
   const _$TryAnyTearOff();
 
 // ignore: unused_element
-  Success<T> success<T>(T result) {
-    return Success<T>(
+  _TryAnyResult<T> result<T>(T result) {
+    return _TryAnyResult<T>(
       result,
     );
   }
 
 // ignore: unused_element
-  Failure<T> failure<T>(Object e, StackTrace s) {
-    return Failure<T>(
+  _TryAnyFailure<T> failure<T>(Object e, StackTrace s) {
+    return _TryAnyFailure<T>(
       e,
       s,
     );
@@ -37,24 +37,24 @@ const $TryAny = _$TryAnyTearOff();
 mixin _$TryAny<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult success(T result),
+    @required TResult result(T result),
     @required TResult failure(Object e, StackTrace s),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult success(T result),
+    TResult result(T result),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult success(Success<T> value),
-    @required TResult failure(Failure<T> value),
+    @required TResult result(_TryAnyResult<T> value),
+    @required TResult failure(_TryAnyFailure<T> value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult success(Success<T> value),
-    TResult failure(Failure<T> value),
+    TResult result(_TryAnyResult<T> value),
+    TResult failure(_TryAnyFailure<T> value),
     @required TResult orElse(),
   });
 }
@@ -75,47 +75,51 @@ class _$TryAnyCopyWithImpl<T, $Res> implements $TryAnyCopyWith<T, $Res> {
 }
 
 /// @nodoc
-abstract class $SuccessCopyWith<T, $Res> {
-  factory $SuccessCopyWith(Success<T> value, $Res Function(Success<T>) then) =
-      _$SuccessCopyWithImpl<T, $Res>;
+abstract class _$TryAnyResultCopyWith<T, $Res> {
+  factory _$TryAnyResultCopyWith(
+          _TryAnyResult<T> value, $Res Function(_TryAnyResult<T>) then) =
+      __$TryAnyResultCopyWithImpl<T, $Res>;
   $Res call({T result});
 }
 
 /// @nodoc
-class _$SuccessCopyWithImpl<T, $Res> extends _$TryAnyCopyWithImpl<T, $Res>
-    implements $SuccessCopyWith<T, $Res> {
-  _$SuccessCopyWithImpl(Success<T> _value, $Res Function(Success<T>) _then)
-      : super(_value, (v) => _then(v as Success<T>));
+class __$TryAnyResultCopyWithImpl<T, $Res> extends _$TryAnyCopyWithImpl<T, $Res>
+    implements _$TryAnyResultCopyWith<T, $Res> {
+  __$TryAnyResultCopyWithImpl(
+      _TryAnyResult<T> _value, $Res Function(_TryAnyResult<T>) _then)
+      : super(_value, (v) => _then(v as _TryAnyResult<T>));
 
   @override
-  Success<T> get _value => super._value as Success<T>;
+  _TryAnyResult<T> get _value => super._value as _TryAnyResult<T>;
 
   @override
   $Res call({
     Object result = freezed,
   }) {
-    return _then(Success<T>(
+    return _then(_TryAnyResult<T>(
       result == freezed ? _value.result : result as T,
     ));
   }
 }
 
+@Implements(Result)
+
 /// @nodoc
-class _$Success<T> implements Success<T> {
-  const _$Success(this.result) : assert(result != null);
+class _$_TryAnyResult<T> implements _TryAnyResult<T> {
+  const _$_TryAnyResult(this.result) : assert(result != null);
 
   @override
   final T result;
 
   @override
   String toString() {
-    return 'TryAny<$T>.success(result: $result)';
+    return 'TryAny<$T>.result(result: $result)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Success<T> &&
+        (other is _TryAnyResult<T> &&
             (identical(other.result, result) ||
                 const DeepCollectionEquality().equals(other.result, result)));
   }
@@ -125,30 +129,30 @@ class _$Success<T> implements Success<T> {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(result);
 
   @override
-  $SuccessCopyWith<T, Success<T>> get copyWith =>
-      _$SuccessCopyWithImpl<T, Success<T>>(this, _$identity);
+  _$TryAnyResultCopyWith<T, _TryAnyResult<T>> get copyWith =>
+      __$TryAnyResultCopyWithImpl<T, _TryAnyResult<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult success(T result),
+    @required TResult result(T result),
     @required TResult failure(Object e, StackTrace s),
   }) {
-    assert(success != null);
+    assert(result != null);
     assert(failure != null);
-    return success(result);
+    return result(this.result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult success(T result),
+    TResult result(T result),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (success != null) {
-      return success(result);
+    if (result != null) {
+      return result(this.result);
     }
     return orElse();
   }
@@ -156,67 +160,72 @@ class _$Success<T> implements Success<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult success(Success<T> value),
-    @required TResult failure(Failure<T> value),
+    @required TResult result(_TryAnyResult<T> value),
+    @required TResult failure(_TryAnyFailure<T> value),
   }) {
-    assert(success != null);
+    assert(result != null);
     assert(failure != null);
-    return success(this);
+    return result(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult success(Success<T> value),
-    TResult failure(Failure<T> value),
+    TResult result(_TryAnyResult<T> value),
+    TResult failure(_TryAnyFailure<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (success != null) {
-      return success(this);
+    if (result != null) {
+      return result(this);
     }
     return orElse();
   }
 }
 
-abstract class Success<T> implements TryAny<T> {
-  const factory Success(T result) = _$Success<T>;
+abstract class _TryAnyResult<T> implements TryAny<T>, Result<dynamic> {
+  const factory _TryAnyResult(T result) = _$_TryAnyResult<T>;
 
   T get result;
-  $SuccessCopyWith<T, Success<T>> get copyWith;
+  _$TryAnyResultCopyWith<T, _TryAnyResult<T>> get copyWith;
 }
 
 /// @nodoc
-abstract class $FailureCopyWith<T, $Res> {
-  factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) then) =
-      _$FailureCopyWithImpl<T, $Res>;
+abstract class _$TryAnyFailureCopyWith<T, $Res> {
+  factory _$TryAnyFailureCopyWith(
+          _TryAnyFailure<T> value, $Res Function(_TryAnyFailure<T>) then) =
+      __$TryAnyFailureCopyWithImpl<T, $Res>;
   $Res call({Object e, StackTrace s});
 }
 
 /// @nodoc
-class _$FailureCopyWithImpl<T, $Res> extends _$TryAnyCopyWithImpl<T, $Res>
-    implements $FailureCopyWith<T, $Res> {
-  _$FailureCopyWithImpl(Failure<T> _value, $Res Function(Failure<T>) _then)
-      : super(_value, (v) => _then(v as Failure<T>));
+class __$TryAnyFailureCopyWithImpl<T, $Res>
+    extends _$TryAnyCopyWithImpl<T, $Res>
+    implements _$TryAnyFailureCopyWith<T, $Res> {
+  __$TryAnyFailureCopyWithImpl(
+      _TryAnyFailure<T> _value, $Res Function(_TryAnyFailure<T>) _then)
+      : super(_value, (v) => _then(v as _TryAnyFailure<T>));
 
   @override
-  Failure<T> get _value => super._value as Failure<T>;
+  _TryAnyFailure<T> get _value => super._value as _TryAnyFailure<T>;
 
   @override
   $Res call({
     Object e = freezed,
     Object s = freezed,
   }) {
-    return _then(Failure<T>(
+    return _then(_TryAnyFailure<T>(
       e == freezed ? _value.e : e,
       s == freezed ? _value.s : s as StackTrace,
     ));
   }
 }
 
+@Implements(Failure)
+
 /// @nodoc
-class _$Failure<T> implements Failure<T> {
-  const _$Failure(this.e, this.s)
+class _$_TryAnyFailure<T> implements _TryAnyFailure<T> {
+  const _$_TryAnyFailure(this.e, this.s)
       : assert(e != null),
         assert(s != null);
 
@@ -233,7 +242,7 @@ class _$Failure<T> implements Failure<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Failure<T> &&
+        (other is _TryAnyFailure<T> &&
             (identical(other.e, e) ||
                 const DeepCollectionEquality().equals(other.e, e)) &&
             (identical(other.s, s) ||
@@ -247,16 +256,16 @@ class _$Failure<T> implements Failure<T> {
       const DeepCollectionEquality().hash(s);
 
   @override
-  $FailureCopyWith<T, Failure<T>> get copyWith =>
-      _$FailureCopyWithImpl<T, Failure<T>>(this, _$identity);
+  _$TryAnyFailureCopyWith<T, _TryAnyFailure<T>> get copyWith =>
+      __$TryAnyFailureCopyWithImpl<T, _TryAnyFailure<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult success(T result),
+    @required TResult result(T result),
     @required TResult failure(Object e, StackTrace s),
   }) {
-    assert(success != null);
+    assert(result != null);
     assert(failure != null);
     return failure(e, s);
   }
@@ -264,7 +273,7 @@ class _$Failure<T> implements Failure<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult success(T result),
+    TResult result(T result),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   }) {
@@ -278,10 +287,10 @@ class _$Failure<T> implements Failure<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult success(Success<T> value),
-    @required TResult failure(Failure<T> value),
+    @required TResult result(_TryAnyResult<T> value),
+    @required TResult failure(_TryAnyFailure<T> value),
   }) {
-    assert(success != null);
+    assert(result != null);
     assert(failure != null);
     return failure(this);
   }
@@ -289,8 +298,8 @@ class _$Failure<T> implements Failure<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult success(Success<T> value),
-    TResult failure(Failure<T> value),
+    TResult result(_TryAnyResult<T> value),
+    TResult failure(_TryAnyFailure<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -301,10 +310,10 @@ class _$Failure<T> implements Failure<T> {
   }
 }
 
-abstract class Failure<T> implements TryAny<T> {
-  const factory Failure(Object e, StackTrace s) = _$Failure<T>;
+abstract class _TryAnyFailure<T> implements TryAny<T>, Failure {
+  const factory _TryAnyFailure(Object e, StackTrace s) = _$_TryAnyFailure<T>;
 
   Object get e;
   StackTrace get s;
-  $FailureCopyWith<T, Failure<T>> get copyWith;
+  _$TryAnyFailureCopyWith<T, _TryAnyFailure<T>> get copyWith;
 }

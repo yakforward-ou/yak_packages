@@ -16,9 +16,9 @@ class TryAnyRunArg<T, S> implements Delegate<TryAny<T>> {
   @override
   TryAny<T> call() {
     TryAny<T> res;
-    arg().when(success: (S s) {
+    arg().when(result: (S s) {
       try {
-        res = TryAny<T>.success(fun(s));
+        res = TryAny<T>.result(fun(s));
       } catch (e, s) {
         res = TryAny<T>.failure(e, s);
       }

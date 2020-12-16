@@ -17,7 +17,7 @@ class TryRunArg<T> implements Delegate<Try> {
   @override
   Try call() {
     Try res;
-    arg().when(success: (T t) {
+    arg().when(result: (T t) {
       try {
         fun(t);
         res = Try.success();

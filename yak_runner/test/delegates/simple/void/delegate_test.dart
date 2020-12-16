@@ -1,4 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:yak_runner/src/delegates/results/failure.dart';
+import 'package:yak_runner/src/delegates/results/success.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {

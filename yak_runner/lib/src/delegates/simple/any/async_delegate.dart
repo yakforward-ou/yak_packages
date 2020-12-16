@@ -12,7 +12,7 @@ class TryAnyRunAsync<T> implements Delegate<Future<TryAny<T>>> {
   @override
   Future<TryAny<T>> call() async {
     try {
-      return TryAny<T>.success(await fun());
+      return TryAny<T>.result(await fun());
     } catch (e, s) {
       return TryAny<T>.failure(e, s);
     }
