@@ -1,3 +1,5 @@
+import 'dart:async';
+
 mixin FutureDelegate<T> {
-  Future<T> call();
+  FutureOr<T> call();
 }

@@ -16,7 +16,7 @@ class TryRunAsyncArg<T> implements Delegate<Future<Try>> {
   final FutureOr<void> Function(T) fun;
 
   /// you can pass a `TryAnyRunAsync` ot `TryAnyRun` as `arg`
-  final Future<TryAny<T>> Function() arg;
+  final FutureOr<TryAny<T>> Function() arg;
   @override
   Future<Try> call() async {
     Try res;

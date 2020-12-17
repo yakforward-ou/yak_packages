@@ -1,10 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yak_runner/yak_runner.dart';
+import 'package:mockito/mockito.dart';
+import '../../base/mock_delegate.dart';
 
 void main() {
-  group('`TryRun`', () {
-    test('WHEN `void Function()` throws THEN `Try` is `Failure`', () {
-      final _tryRun = TryRun(() => throw 'ops');
+  group('`TryRunArg`', () {
+    final _delegate = MockDelegate<TryAny<String>>();
+
+    test('WHEN `arg`is `Failure` THEN `Try` is `Failure`', () {
+      final _tryRun = TryRunArg<String>((s) {}, _delegate);
+
+      when(_delegate.call())
+          .thenReturn(TryAny.failure('', StackTrace.fromString('')));
+
       final _result = _tryRun();
       expect(_result is Success, false);
       expect(_result is Failure, true);
@@ -17,8 +25,12 @@ void main() {
       expect(_resultFail != null, true);
     });
 
-    test('WHEN `void Function()` does not fail `Try` is `Success`', () {
-      final _tryRun = TryRun(() {});
+    test('WHEN `arg`is `Result` && fun() does not fail THEN `Try` is `Success`',
+        () {
+      final _tryRun = TryRunArg<String>((s) {}, _delegate);
+
+      when(_delegate.call()).thenReturn(TryAny.result('hello'));
+
       final _result = _tryRun();
       expect(_result is Success, true);
       expect(_result is Failure, false);
