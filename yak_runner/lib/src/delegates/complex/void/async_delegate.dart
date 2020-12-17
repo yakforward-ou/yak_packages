@@ -20,11 +20,13 @@ class TryRunAsyncArg<T> implements FutureDelegate<Try> {
   @override
   Future<Try> call() async {
     Try res;
-    final _arg = await arg();
-    _arg.when(result: (T t) async {
+    final TryAny<T> _arg = await arg();
+    _arg.when(result: (T t) {
       try {
-        await fun(t);
-        res = Try.success();
+        () async {
+          await fun(t);
+          res = Try.success();
+        }();
       } catch (e, s) {
         res = Try.failure(e, s);
       }
