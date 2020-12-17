@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../delegates/results/loading.dart';
-import '../../delegates/results/failure.dart';
 import '../../delegates/results/success.dart';
+import '../../delegates/results/failure.dart';
+import '../../delegates/results/loading.dart';
+
 part 'async.freezed.dart';
 
 /// an union class created w/ `freezed` package, see `pubspec.yaml`

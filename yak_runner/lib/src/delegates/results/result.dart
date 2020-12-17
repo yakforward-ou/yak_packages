@@ -1,5 +1,6 @@
-import 'package:yak_runner/src/delegates/results/success.dart';
+import 'success.dart';
 
 abstract class Result<T> extends Success {
-  T get result;
+  const Result(this.data);
+  final T data;
 }

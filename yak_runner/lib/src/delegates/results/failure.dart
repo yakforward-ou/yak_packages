@@ -1,4 +1,5 @@
 abstract class Failure {
-  Object get e;
-  StackTrace get s;
+  const Failure(this.e, this.s);
+  final Object e;
+  final StackTrace s;
 }

@@ -14,9 +14,9 @@ class _$TryAnyTearOff {
   const _$TryAnyTearOff();
 
 // ignore: unused_element
-  _TryAnyResult<T> result<T>(T result) {
+  _TryAnyResult<T> result<T>(T data) {
     return _TryAnyResult<T>(
-      result,
+      data,
     );
   }
 
@@ -37,12 +37,12 @@ const $TryAny = _$TryAnyTearOff();
 mixin _$TryAny<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult result(T result),
+    @required TResult result(T data),
     @required TResult failure(Object e, StackTrace s),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult result(T result),
+    TResult result(T data),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   });
@@ -79,7 +79,7 @@ abstract class _$TryAnyResultCopyWith<T, $Res> {
   factory _$TryAnyResultCopyWith(
           _TryAnyResult<T> value, $Res Function(_TryAnyResult<T>) then) =
       __$TryAnyResultCopyWithImpl<T, $Res>;
-  $Res call({T result});
+  $Res call({T data});
 }
 
 /// @nodoc
@@ -94,10 +94,10 @@ class __$TryAnyResultCopyWithImpl<T, $Res> extends _$TryAnyCopyWithImpl<T, $Res>
 
   @override
   $Res call({
-    Object result = freezed,
+    Object data = freezed,
   }) {
     return _then(_TryAnyResult<T>(
-      result == freezed ? _value.result : result as T,
+      data == freezed ? _value.data : data as T,
     ));
   }
 }
@@ -106,27 +106,27 @@ class __$TryAnyResultCopyWithImpl<T, $Res> extends _$TryAnyCopyWithImpl<T, $Res>
 
 /// @nodoc
 class _$_TryAnyResult<T> implements _TryAnyResult<T> {
-  const _$_TryAnyResult(this.result) : assert(result != null);
+  const _$_TryAnyResult(this.data) : assert(data != null);
 
   @override
-  final T result;
+  final T data;
 
   @override
   String toString() {
-    return 'TryAny<$T>.result(result: $result)';
+    return 'TryAny<$T>.result(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _TryAnyResult<T> &&
-            (identical(other.result, result) ||
-                const DeepCollectionEquality().equals(other.result, result)));
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(result);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
   @override
   _$TryAnyResultCopyWith<T, _TryAnyResult<T>> get copyWith =>
@@ -135,24 +135,24 @@ class _$_TryAnyResult<T> implements _TryAnyResult<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult result(T result),
+    @required TResult result(T data),
     @required TResult failure(Object e, StackTrace s),
   }) {
     assert(result != null);
     assert(failure != null);
-    return result(this.result);
+    return result(data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult result(T result),
+    TResult result(T data),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (result != null) {
-      return result(this.result);
+      return result(data);
     }
     return orElse();
   }
@@ -184,9 +184,9 @@ class _$_TryAnyResult<T> implements _TryAnyResult<T> {
 }
 
 abstract class _TryAnyResult<T> implements TryAny<T>, Result<dynamic> {
-  const factory _TryAnyResult(T result) = _$_TryAnyResult<T>;
+  const factory _TryAnyResult(T data) = _$_TryAnyResult<T>;
 
-  T get result;
+  T get data;
   _$TryAnyResultCopyWith<T, _TryAnyResult<T>> get copyWith;
 }
 
@@ -262,7 +262,7 @@ class _$_TryAnyFailure<T> implements _TryAnyFailure<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult result(T result),
+    @required TResult result(T data),
     @required TResult failure(Object e, StackTrace s),
   }) {
     assert(result != null);
@@ -273,7 +273,7 @@ class _$_TryAnyFailure<T> implements _TryAnyFailure<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult result(T result),
+    TResult result(T data),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   }) {

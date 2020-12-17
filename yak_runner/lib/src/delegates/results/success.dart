@@ -1,1 +1,3 @@
-abstract class Success {}
+abstract class Success {
+  const Success();
+}

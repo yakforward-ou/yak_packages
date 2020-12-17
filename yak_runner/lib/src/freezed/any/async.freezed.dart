@@ -19,9 +19,9 @@ class _$TryAnyAsyncTearOff {
   }
 
 // ignore: unused_element
-  _TryAnyAsyncResult<T> result<T>(T result) {
+  _TryAnyAsyncResult<T> result<T>(T data) {
     return _TryAnyAsyncResult<T>(
-      result,
+      data,
     );
   }
 
@@ -43,13 +43,13 @@ mixin _$TryAnyAsync<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loading(),
-    @required TResult result(T result),
+    @required TResult result(T data),
     @required TResult failure(Object e, StackTrace s),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loading(),
-    TResult result(T result),
+    TResult result(T data),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   });
@@ -127,7 +127,7 @@ class _$_TryAnyAsyncLoading<T> implements _TryAnyAsyncLoading<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loading(),
-    @required TResult result(T result),
+    @required TResult result(T data),
     @required TResult failure(Object e, StackTrace s),
   }) {
     assert(loading != null);
@@ -140,7 +140,7 @@ class _$_TryAnyAsyncLoading<T> implements _TryAnyAsyncLoading<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loading(),
-    TResult result(T result),
+    TResult result(T data),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   }) {
@@ -189,7 +189,7 @@ abstract class _$TryAnyAsyncResultCopyWith<T, $Res> {
   factory _$TryAnyAsyncResultCopyWith(_TryAnyAsyncResult<T> value,
           $Res Function(_TryAnyAsyncResult<T>) then) =
       __$TryAnyAsyncResultCopyWithImpl<T, $Res>;
-  $Res call({T result});
+  $Res call({T data});
 }
 
 /// @nodoc
@@ -205,10 +205,10 @@ class __$TryAnyAsyncResultCopyWithImpl<T, $Res>
 
   @override
   $Res call({
-    Object result = freezed,
+    Object data = freezed,
   }) {
     return _then(_TryAnyAsyncResult<T>(
-      result == freezed ? _value.result : result as T,
+      data == freezed ? _value.data : data as T,
     ));
   }
 }
@@ -217,27 +217,27 @@ class __$TryAnyAsyncResultCopyWithImpl<T, $Res>
 
 /// @nodoc
 class _$_TryAnyAsyncResult<T> implements _TryAnyAsyncResult<T> {
-  const _$_TryAnyAsyncResult(this.result) : assert(result != null);
+  const _$_TryAnyAsyncResult(this.data) : assert(data != null);
 
   @override
-  final T result;
+  final T data;
 
   @override
   String toString() {
-    return 'TryAnyAsync<$T>.result(result: $result)';
+    return 'TryAnyAsync<$T>.result(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _TryAnyAsyncResult<T> &&
-            (identical(other.result, result) ||
-                const DeepCollectionEquality().equals(other.result, result)));
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(result);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
   @override
   _$TryAnyAsyncResultCopyWith<T, _TryAnyAsyncResult<T>> get copyWith =>
@@ -248,26 +248,26 @@ class _$_TryAnyAsyncResult<T> implements _TryAnyAsyncResult<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loading(),
-    @required TResult result(T result),
+    @required TResult result(T data),
     @required TResult failure(Object e, StackTrace s),
   }) {
     assert(loading != null);
     assert(result != null);
     assert(failure != null);
-    return result(this.result);
+    return result(data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loading(),
-    TResult result(T result),
+    TResult result(T data),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (result != null) {
-      return result(this.result);
+      return result(data);
     }
     return orElse();
   }
@@ -303,9 +303,9 @@ class _$_TryAnyAsyncResult<T> implements _TryAnyAsyncResult<T> {
 
 abstract class _TryAnyAsyncResult<T>
     implements TryAnyAsync<T>, Result<dynamic> {
-  const factory _TryAnyAsyncResult(T result) = _$_TryAnyAsyncResult<T>;
+  const factory _TryAnyAsyncResult(T data) = _$_TryAnyAsyncResult<T>;
 
-  T get result;
+  T get data;
   _$TryAnyAsyncResultCopyWith<T, _TryAnyAsyncResult<T>> get copyWith;
 }
 
@@ -383,7 +383,7 @@ class _$_TryAnyAsyncFailure<T> implements _TryAnyAsyncFailure<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loading(),
-    @required TResult result(T result),
+    @required TResult result(T data),
     @required TResult failure(Object e, StackTrace s),
   }) {
     assert(loading != null);
@@ -396,7 +396,7 @@ class _$_TryAnyAsyncFailure<T> implements _TryAnyAsyncFailure<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loading(),
-    TResult result(T result),
+    TResult result(T data),
     TResult failure(Object e, StackTrace s),
     @required TResult orElse(),
   }) {

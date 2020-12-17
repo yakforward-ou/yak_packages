@@ -1,1 +1,3 @@
-abstract class Loading {}
+abstract class Loading {
+  const Loading();
+}
