@@ -1,7 +1,8 @@
 import 'dart:async';
 
+import '../../../delegates/base/future_delegate.dart';
+
 import '../../../freezed/any/sync.dart';
-import '../../base/delegate.dart';
 
 /// `TryRunAsyncArg` takes a `T Function(S) || Future<T> Function(S)`
 /// and a `TryAnyRunAsync` (or equivalent)
@@ -9,7 +10,7 @@ import '../../base/delegate.dart';
 ///
 /// this allows to concate `Delegate<Future<TryAny<s>>` to a `Delegate<Future<TryAny<T>>`
 
-class TryAnyRunAsyncArg<T, S> implements Delegate<Future<TryAny<T>>> {
+class TryAnyRunAsyncArg<T, S> implements FutureDelegate<TryAny<T>> {
   const TryAnyRunAsyncArg(this.fun, this.arg);
   final FutureOr<T> Function(S) fun;
 

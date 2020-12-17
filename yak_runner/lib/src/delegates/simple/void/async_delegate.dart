@@ -1,14 +1,14 @@
 import 'dart:async';
 
 import '../../../freezed/void/sync.dart';
-import '../../base/delegate.dart';
+import '../../base/future_delegate.dart';
 
 /// `TryRun` takes a `Future<void> Function()` as a parameter
 /// and effectively turns it into a `Future<Try> Function()`
 
 /// [ATTENTION] it returns `Try` ***NOT*** `TryAsync`
 
-class TryRunAsync implements Delegate<Future<Try>> {
+class TryRunAsync implements FutureDelegate<Try> {
   const TryRunAsync(this.fun);
   final FutureOr<void> Function() fun;
   @override

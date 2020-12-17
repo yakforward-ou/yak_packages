@@ -26,7 +26,7 @@ void main() {
 
     test('WHEN `arg`is `Result` && fun() does not fail THEN `Try` is `Success`',
         () {
-      when(_delegate.call()).thenReturn(TryAny.result('hello'));
+      when(_delegate.call()).thenAnswer((_) => TryAny.result('hello'));
 
       final _result = _tryRun();
       expect(_result is Success, true);
