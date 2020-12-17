@@ -21,12 +21,10 @@ class TryRunAsyncArg<T> implements FutureDelegate<Try> {
   Future<Try> call() async {
     Try res;
     final TryAny<T> _arg = await arg();
-    _arg.when(result: (T t) {
+    await _arg.when(result: (T t) async {
       try {
-        () async {
-          await fun(t);
-          res = Try.success();
-        }();
+        await fun(t);
+        res = Try.success();
       } catch (e, s) {
         res = Try.failure(e, s);
       }

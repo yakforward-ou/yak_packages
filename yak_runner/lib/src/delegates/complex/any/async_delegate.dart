@@ -20,7 +20,7 @@ class TryAnyRunAsyncArg<T, S> implements FutureDelegate<TryAny<T>> {
   Future<TryAny<T>> call() async {
     TryAny<T> res;
     final _arg = await arg();
-    _arg.when(result: (S s) async {
+    await _arg.when(result: (S s) async {
       try {
         res = TryAny<T>.result(await fun(s));
       } catch (e, s) {
