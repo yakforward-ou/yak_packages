@@ -6,10 +6,9 @@ import '../../base/mock_delegate.dart';
 void main() {
   group('`TryRunArg`', () {
     final _delegate = MockDelegate<TryAny<String>>();
+    final _tryRun = TryRunArg<String>((s) {}, _delegate);
 
     test('WHEN `arg`is `Failure` THEN `Try` is `Failure`', () {
-      final _tryRun = TryRunArg<String>((s) {}, _delegate);
-
       when(_delegate.call())
           .thenReturn(TryAny.failure('', StackTrace.fromString('')));
 
@@ -27,8 +26,6 @@ void main() {
 
     test('WHEN `arg`is `Result` && fun() does not fail THEN `Try` is `Success`',
         () {
-      final _tryRun = TryRunArg<String>((s) {}, _delegate);
-
       when(_delegate.call()).thenReturn(TryAny.result('hello'));
 
       final _result = _tryRun();

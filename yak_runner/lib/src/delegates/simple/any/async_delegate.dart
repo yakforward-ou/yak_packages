@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
 
@@ -8,7 +10,7 @@ import '../../base/delegate.dart';
 
 class TryAnyRunAsync<T> implements Delegate<Future<TryAny<T>>> {
   const TryAnyRunAsync(this.fun);
-  final Future<T> Function() fun;
+  final FutureOr<T> Function() fun;
   @override
   Future<TryAny<T>> call() async {
     try {

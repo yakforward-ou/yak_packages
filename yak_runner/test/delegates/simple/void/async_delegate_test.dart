@@ -1,10 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:yak_runner/yak_runner.dart';
+import '../../base/mock_future_delegate.dart';
 
 void main() {
   group('`TryRunAsync`', () {
+    final _delegate = MockFutureDelegate<void>();
+    final _tryRun = TryRunAsync(_delegate);
     test('WHEN `void Function()` throws THEN `Try` is `Failure`', () async {
-      final _tryRun = TryRunAsync(() async => throw 'ops');
+      when(_delegate.call()).thenThrow('ops');
       final _result = await _tryRun();
       expect(_result is Success, false);
       expect(_result is Failure, true);
@@ -18,7 +22,7 @@ void main() {
     });
 
     test('WHEN `void Function()` does not fail `Try` is `Success`', () async {
-      final _tryRun = TryRunAsync(() async {});
+      when(_delegate.call()).thenAnswer((_) async {});
       final _result = await _tryRun();
       expect(_result is Success, true);
       expect(_result is Failure, false);
