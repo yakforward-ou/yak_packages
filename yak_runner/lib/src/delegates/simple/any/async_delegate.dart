@@ -3,7 +3,7 @@ import 'dart:async';
 import '../../base/future_delegate.dart';
 import '../../../freezed/any/sync.dart';
 
-/// `TryRunAny` takes a `Future<T> Function()` as a parameter
+/// `TryAnyRunAsync` takes a `Future<T> Function()` as a parameter
 /// and effectively turns it into a `Future<TryAny<T>> Function()`
 
 /// [ATTENTION] it returns `TryAny` ***NOT*** `TryAnyAsync`

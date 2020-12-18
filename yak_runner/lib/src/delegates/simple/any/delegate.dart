@@ -1,8 +1,8 @@
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
 
-/// `TryRun` takes a `void Function()` as a parameter
-/// and effectively turns it into a `Try Function()`
+/// `TryAnyRun` takes a `T Function()` as a parameter
+/// and effectively turns it into a `TryAny Function()`
 
 class TryAnyRun<T> implements Delegate<TryAny<T>> {
   const TryAnyRun(this.fun);

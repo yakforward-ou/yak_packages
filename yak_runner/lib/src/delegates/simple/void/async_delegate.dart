@@ -3,7 +3,7 @@ import 'dart:async';
 import '../../../freezed/void/sync.dart';
 import '../../base/future_delegate.dart';
 
-/// `TryRun` takes a `Future<void> Function()` as a parameter
+/// `TryRunAsync` takes a `Future<void> Function()` as a parameter
 /// and effectively turns it into a `Future<Try> Function()`
 
 /// [ATTENTION] it returns `Try` ***NOT*** `TryAsync`
