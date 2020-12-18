@@ -8,6 +8,7 @@ import '../../../../yak_runner.dart';
 /// and effectively turns it into a `TryAny Function(FutureOr<S>)`
 
 /// [ATTENTION] it returns `TryAny` ***NOT*** `TryAnyAsync`
+/// [ATTENTION] it ***DOES NOT*** catch error in the argument!
 
 class TryAnyRunArgAsync<T, S> implements FutureArgDelegate<TryAny<T>, S> {
   const TryAnyRunArgAsync(this.fun);

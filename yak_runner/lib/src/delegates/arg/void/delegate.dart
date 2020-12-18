@@ -4,6 +4,8 @@ import '../../base/arg_delegate.dart';
 /// `TryRunArg` takes a `void Function(T)` as a parameter
 /// and effectively turns it into a `Try Function()`
 
+/// [ATTENTION] it ***DOES NOT*** catch error in the argument!
+
 class TryRunArg<T> implements ArgDelegate<Try, T> {
   const TryRunArg(this.fun);
   final void Function(T) fun;

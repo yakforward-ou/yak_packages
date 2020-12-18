@@ -7,6 +7,7 @@ import '../../../freezed/void/sync.dart';
 /// and effectively turns it into a `Future<Try> Function(FutureOr<T>)`
 
 /// [ATTENTION] it returns `Try` ***NOT*** `TryAsync`
+/// [ATTENTION] it ***DOES NOT*** catch error in the argument!
 
 class TryRunArgAsync<T> implements FutureArgDelegate<Try, T> {
   const TryRunArgAsync(this.fun);

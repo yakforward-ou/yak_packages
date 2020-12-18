@@ -44,6 +44,9 @@ void main() {
       expect(_resultData != null, true);
       expect(_resultData, _data);
       expect(_resultFail != null, false);
+
+      verify(_delegate.call());
+      verifyNoMoreInteractions(_delegate);
     });
   });
 }

@@ -4,15 +4,15 @@ import '../../../delegates/base/future_delegate.dart';
 import '../../../freezed/void/sync.dart';
 import '../../../freezed/any/sync.dart';
 
-/// `TryRunAsyncArg` takes a `void Function(T) || Future<void> Function(T)`
+/// `TryRunAsyncTryArg` takes a `void Function(T) || Future<void> Function(T)`
 /// and a `TryAnyRunAsync` (or equivalent)
 /// as a parameter and effectively turns it into a `TryRunAsync`
 
 ///  it is not meant to be used directly in frontend
 /// prefer using a `state_notifier` and `TryAsync` for that
 
-class TryRunAsyncArg<T> implements FutureDelegate<Try> {
-  const TryRunAsyncArg(this.fun, this.arg);
+class TryRunTryArgAsync<T> implements FutureDelegate<Try> {
+  const TryRunTryArgAsync(this.fun, this.arg);
   final FutureOr<void> Function(T) fun;
 
   /// you can pass a `TryAnyRunAsync` ot `TryAnyRun` as `arg`

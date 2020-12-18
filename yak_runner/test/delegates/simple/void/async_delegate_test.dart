@@ -22,6 +22,9 @@ void main() {
 
       expect(_resultData != null, false);
       expect(_resultFail != null, true);
+
+      verify(_delegate.call());
+      verifyNoMoreInteractions(_delegate);
     });
 
     test('WHEN `void Function()` does not fail `Try` is `Success`', () async {
@@ -40,6 +43,9 @@ void main() {
 
       expect(_resultData != null, true);
       expect(_resultFail != null, false);
+
+      verify(_delegate.call());
+      verifyNoMoreInteractions(_delegate);
     });
   });
 }

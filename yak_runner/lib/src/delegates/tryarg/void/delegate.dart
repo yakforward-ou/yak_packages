@@ -2,14 +2,18 @@ import '../../../freezed/void/sync.dart';
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
 
-/// `TryRunArg` takes a `void Function(T)` and a `TryAnyRun` (or equivalent)
+/// `TryRunTryArg` takes a `void Function(T)` and a `TryAnyRun` (or equivalent)
 /// as a parameter and effectively turns it into a `TryRun`
 
 ///  it is not meant to be used directly in frontend
 /// prefer using a `state_notifier` and `TryAsync` for that
 
-class TryRunArg<T> implements Delegate<Try> {
-  const TryRunArg(this.fun, this.arg);
+/// this is recommended in the need of handling a non safe argument
+/// and is needed to wrap it into a `TryAny`,
+/// ***if the argument is safe use `TryAnyRunArg` instead ***
+
+class TryRunTryArg<T> implements Delegate<Try> {
+  const TryRunTryArg(this.fun, this.arg);
   final void Function(T) fun;
 
   /// you can pass a `TryAnyRun` as `arg`
