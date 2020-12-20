@@ -3,15 +3,24 @@ import 'package:yak_runner/yak_runner.dart';
 import 'package:mockito/mockito.dart';
 import '../../base/mock_arg_delegate.dart';
 import '../../base/mock_delegate.dart';
+import '../../base/mock_error_handler.dart';
 
 void main() {
   group('`TryRunTryArg`', () {
     final _data = 'hello';
+    final _errorHandler = MockErrorHandler();
     final _argDelegate = MockDelegate<TryAny<String>>();
     final _funDelegate = MockArgDelegate<void, String>();
-    final _tryRun = TryRunTryArg<String>(_funDelegate, _argDelegate);
+    final _tryRun =
+        TryRunTryArg<String>(_funDelegate, _argDelegate, _errorHandler);
+
+    when(_errorHandler.call(any, any)).thenAnswer((_) {});
 
     test('WHEN `arg`is `Failure` THEN `Try` is `Failure`', () {
+      clearInteractions(_errorHandler);
+      clearInteractions(_argDelegate);
+      clearInteractions(_funDelegate);
+
       when(_funDelegate.call(_data)).thenAnswer((s) {});
       when(_argDelegate.call())
           .thenAnswer((_) => TryAny.failure('', StackTrace.fromString('')));
@@ -31,13 +40,18 @@ void main() {
       expect(_resultData != null, false);
       expect(_resultFail != null, true);
 
-      verify(_argDelegate.call());
+      verify(_argDelegate.call()).called(1);
       verifyNoMoreInteractions(_argDelegate);
       verifyZeroInteractions(_funDelegate);
+      verifyZeroInteractions(_errorHandler);
     });
 
     test('WHEN `arg`is `Result` && fun() does not fail THEN `Try` is `Success`',
         () {
+      clearInteractions(_errorHandler);
+      clearInteractions(_argDelegate);
+      clearInteractions(_funDelegate);
+
       when(_argDelegate.call()).thenAnswer((_) => TryAny.result(_data));
       when(_funDelegate.call(_data)).thenAnswer((s) {});
 
@@ -56,13 +70,18 @@ void main() {
       expect(_resultData != null, true);
       expect(_resultFail != null, false);
 
-      verify(_argDelegate.call());
+      verify(_argDelegate.call()).called(1);
       verifyNoMoreInteractions(_argDelegate);
-      verify(_funDelegate.call(_data));
+      verify(_funDelegate.call(any)).called(1);
       verifyNoMoreInteractions(_funDelegate);
+      verifyZeroInteractions(_errorHandler);
     });
 
     test('WHEN `arg`is `Result` but `fun()` throw THEN `Try` is `Failure`', () {
+      clearInteractions(_errorHandler);
+      clearInteractions(_argDelegate);
+      clearInteractions(_funDelegate);
+
       when(_argDelegate.call()).thenAnswer((_) => TryAny.result(_data));
       when(_funDelegate.call(_data)).thenThrow('ops');
 
@@ -81,10 +100,12 @@ void main() {
       expect(_resultData != null, false);
       expect(_resultFail != null, true);
 
-      verify(_argDelegate.call());
+      verify(_argDelegate.call()).called(1);
       verifyNoMoreInteractions(_argDelegate);
-      verify(_funDelegate.call(_data));
+      verify(_funDelegate.call(any)).called(1);
       verifyNoMoreInteractions(_funDelegate);
+      verify(_errorHandler.call(any, any)).called(1);
+      verifyNoMoreInteractions(_errorHandler);
     });
   });
 }

@@ -3,6 +3,7 @@ import 'dart:async';
 import '../../../delegates/base/future_delegate.dart';
 import '../../../freezed/void/sync.dart';
 import '../../../freezed/any/sync.dart';
+import '../../base/error_handler.dart';
 
 /// `TryRunAsyncTryArg` takes a `void Function(T) || Future<void> Function(T)`
 /// and a `TryAnyRunAsync` (or equivalent)
@@ -12,8 +13,9 @@ import '../../../freezed/any/sync.dart';
 /// prefer using a `state_notifier` and `TryAsync` for that
 
 class TryRunTryArgAsync<T> implements FutureDelegate<Try> {
-  const TryRunTryArgAsync(this.fun, this.arg);
+  const TryRunTryArgAsync(this.fun, this.arg, [this.errorHandler]);
   final FutureOr<void> Function(T) fun;
+  final ErrorHandler errorHandler;
 
   /// you can pass a `TryAnyRunAsync` ot `TryAnyRun` as `arg`
   final FutureOr<TryAny<T>> Function() arg;
@@ -26,9 +28,11 @@ class TryRunTryArgAsync<T> implements FutureDelegate<Try> {
         await fun(t);
         res = Try.success();
       } catch (e, s) {
+        errorHandler?.call(e, s);
         res = Try.failure(e, s);
       }
     }, failure: (e, s) {
+      /// the error should be handled by `TryAny` returned by the `arg` function
       res = Try.failure(e, s);
     });
     return res;

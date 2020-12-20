@@ -1,14 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yak_runner/yak_runner.dart';
+import '../../base/mock_error_handler.dart';
 import '../../base/mock_future_delegate.dart';
 
 void main() {
   group('`TryAnyRunAsync`', () {
     final _data = 1;
+    final _errorHandler = MockErrorHandler();
     final _delegate = MockFutureDelegate<int>();
-    final _tryRun = TryAnyRunAsync(_delegate);
+    final _tryRun = TryAnyRunAsync(_delegate, _errorHandler);
     test('WHEN `void Function()` throws THEN `Try` is `Failure`', () async {
+      clearInteractions(_errorHandler);
+      clearInteractions(_delegate);
+
       when(_delegate.call()).thenThrow('ops');
       final _result = await _tryRun();
 
@@ -25,11 +30,16 @@ void main() {
       expect(_resultData != null, false);
       expect(_resultFail != null, true);
 
-      verify(_delegate.call());
+      verify(_delegate.call()).called(1);
       verifyNoMoreInteractions(_delegate);
+      verify(_errorHandler.call(any, any)).called(1);
+      verifyNoMoreInteractions(_errorHandler);
     });
 
     test('WHEN `void Function()` does not fail `Try` is `Success`', () async {
+      clearInteractions(_errorHandler);
+      clearInteractions(_delegate);
+
       when(_delegate.call()).thenAnswer((_) async => _data);
       final _result = await _tryRun();
 
@@ -47,8 +57,9 @@ void main() {
       expect(_resultData, _data);
       expect(_resultFail != null, false);
 
-      verify(_delegate.call());
+      verify(_delegate.call()).called(1);
       verifyNoMoreInteractions(_delegate);
+      verifyZeroInteractions(_errorHandler);
     });
   });
 }

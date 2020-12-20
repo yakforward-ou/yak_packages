@@ -3,12 +3,20 @@ import 'package:mockito/mockito.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 import '../../base/mock_delegate.dart';
+import '../../base/mock_error_handler.dart';
 
 void main() {
   group('`TryRun`', () {
     final _delegate = MockDelegate<void>();
-    final _tryRun = TryRun(_delegate);
+    final _errorHandler = MockErrorHandler();
+    final _tryRun = TryRun(_delegate, _errorHandler);
+
+    when(_errorHandler.call(any, any)).thenAnswer((_) {});
+
     test('WHEN `void Function()` throws THEN `Try` is `Failure`', () {
+      clearInteractions(_errorHandler);
+      clearInteractions(_delegate);
+
       when(_delegate.call()).thenThrow('ops');
       final _result = _tryRun();
 
@@ -25,11 +33,16 @@ void main() {
       expect(_resultData != null, false);
       expect(_resultFail != null, true);
 
-      verify(_delegate.call());
+      verify(_delegate.call()).called(1);
       verifyNoMoreInteractions(_delegate);
+      verify(_errorHandler.call(any, any)).called(1);
+      verifyNoMoreInteractions(_errorHandler);
     });
 
     test('WHEN `void Function()` does not fail `Try` is `Success`', () {
+      clearInteractions(_errorHandler);
+      clearInteractions(_delegate);
+
       when(_delegate.call()).thenAnswer((_) {});
 
       final _result = _tryRun();
@@ -47,8 +60,9 @@ void main() {
       expect(_resultData != null, true);
       expect(_resultFail != null, false);
 
-      verify(_delegate.call());
+      verify(_delegate.call()).called(1);
       verifyNoMoreInteractions(_delegate);
+      verifyZeroInteractions(_errorHandler);
     });
   });
 }

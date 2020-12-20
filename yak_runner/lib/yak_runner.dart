@@ -11,6 +11,7 @@ export 'src/delegates/base/arg_delegate.dart';
 export 'src/delegates/base/future_arg_delegate.dart';
 export 'src/delegates/base/delegate.dart';
 export 'src/delegates/base/future_delegate.dart';
+export 'src/delegates/base/error_handler.dart';
 
 export 'src/delegates/tryarg/any/async_delegate.dart';
 export 'src/delegates/tryarg/any/delegate.dart';

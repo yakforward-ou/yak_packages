@@ -1,5 +1,6 @@
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
+import '../../base/error_handler.dart';
 
 /// `TryAnyRunTryArg` takes a `T Function(S)` and a `TryAnyRun` (or equivalent)
 /// as a parameter and effectively turns it into a `TryRun`
@@ -12,8 +13,9 @@ import '../../base/delegate.dart';
 /// ***if the argument is safe use `TryAnyRunArg` instead ***
 
 class TryAnyRunTryArg<T, S> implements Delegate<TryAny<T>> {
-  const TryAnyRunTryArg(this.fun, this.arg);
+  const TryAnyRunTryArg(this.fun, this.arg, [this.errorHandler]);
   final T Function(S) fun;
+  final ErrorHandler errorHandler;
 
   /// you can pass a `TryAnyRun` as `arg`
   final TryAny<S> Function() arg;
@@ -24,9 +26,11 @@ class TryAnyRunTryArg<T, S> implements Delegate<TryAny<T>> {
       try {
         res = TryAny<T>.result(fun(s));
       } catch (e, s) {
+        errorHandler?.call(e, s);
         res = TryAny<T>.failure(e, s);
       }
     }, failure: (e, s) {
+      /// the error should be handled by `TryAny` returned by the `arg` function
       res = TryAny<T>.failure(e, s);
     });
     return res;
