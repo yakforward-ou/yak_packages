@@ -1,3 +1,10 @@
+## [0.1.0+1] - 20th December 2020
+* example app
+
+| TO DO LIST | STATUS |
+|--------|-----|
+| example app | done  |
+
 ## [0.1.0+0] - 20th December 2020
 * complete rework based on freezed [https://pub.dev/packages/freezed]
 
