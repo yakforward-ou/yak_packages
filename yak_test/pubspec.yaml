@@ -1,0 +1,12 @@
+name: yak_test
+description: A Flutter package to help testing when using `yak_packages`
+version: 0.1.0+2
+homepage: https://github.com/iapicca/yak_packages
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies: 
+  flutter_test:
+    sdk: flutter
+  mockito: ^4.1.3

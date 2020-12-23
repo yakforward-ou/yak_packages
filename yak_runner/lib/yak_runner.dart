@@ -23,6 +23,9 @@ export 'src/delegates/simple/any/delegate.dart';
 export 'src/delegates/simple/void/async_delegate.dart';
 export 'src/delegates/simple/void/delegate.dart';
 
+export 'src/delegates/trytry/delegate.dart';
+export 'src/delegates/trytry/async_delegate.dart';
+
 /// [mixin]
 
 export 'src/delegates/results/result.dart';

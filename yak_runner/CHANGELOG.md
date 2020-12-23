@@ -1,3 +1,6 @@
+## [0.1.0+2] - 22th December 2020
+* implemented `FutureDelegate<Try>` [TryRunTry]
+
 ## [0.1.0+1] - 20th December 2020
 * example app
 
