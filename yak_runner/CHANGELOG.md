@@ -1,4 +1,7 @@
-## [0.1.0+2] - 22th December 2020
+## [0.1.0+3] - 23rd December 2020
+* updated `readme.md` and grammar fixes
+
+## [0.1.0+2] - 22nd December 2020
 * implemented `FutureDelegate<Try>` [TryRunTry]
 
 ## [0.1.0+1] - 20th December 2020
