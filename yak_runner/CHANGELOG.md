@@ -1,3 +1,6 @@
+## [0.1.0+4] - 27th December 2020
+* added type mixin for integrationo with upcoming `yak_test` package
+
 ## [0.1.0+3] - 23rd December 2020
 * updated `readme.md` and grammar fixes
 

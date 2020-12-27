@@ -2,6 +2,7 @@ import '../../../freezed/void/sync.dart';
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
 import '../../base/error_handler.dart';
+import '../../mixin/arg_type_mixin.dart';
 
 /// `TryRunTryArg` takes a `void Function(T)` and a `TryAnyRun` (or equivalent)
 /// as a parameter and effectively turns it into a `TryRun`
@@ -13,7 +14,7 @@ import '../../base/error_handler.dart';
 /// and is needed to wrap it into a `TryAny`,
 /// ***if the argument is safe use `TryAnyRunArg` instead ***
 
-class TryRunTryArg<T> implements Delegate<Try> {
+class TryRunTryArg<T> with ArgypeMixin<T> implements Delegate<Try> {
   const TryRunTryArg(this.fun, this.arg, [this.errorHandler]);
   final void Function(T) fun;
   final ErrorHandler errorHandler;

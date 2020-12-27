@@ -1,6 +1,7 @@
 import '../../../../yak_runner.dart';
 import '../../base/arg_delegate.dart';
 import '../../base/error_handler.dart';
+import '../../mixin/arg_return_type_mixin.dart';
 
 /// `TryAnyRunArg` takes a `T Function(S)` as a parameter
 /// and effectively turns it into a `TryAny Function(S)`
@@ -9,7 +10,9 @@ import '../../base/error_handler.dart';
 
 /// [ATTENTION] it ***DOES NOT*** catch error in the argument!
 
-class TryAnyRunArg<T, S> implements ArgDelegate<TryAny<T>, S> {
+class TryAnyRunArg<T, S>
+    with ArgAndReturnTypeMixin<T, S>
+    implements ArgDelegate<TryAny<T>, S> {
   const TryAnyRunArg(this.fun, [this.errorHandler]);
   final T Function(S) fun;
   final ErrorHandler errorHandler;

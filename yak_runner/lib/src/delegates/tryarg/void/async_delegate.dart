@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import '../../mixin/arg_type_mixin.dart';
 import '../../../delegates/base/future_delegate.dart';
 import '../../../freezed/void/sync.dart';
 import '../../../freezed/any/sync.dart';
@@ -12,7 +12,7 @@ import '../../base/error_handler.dart';
 ///  it is not meant to be used directly in frontend
 /// prefer using a `state_notifier` and `TryAsync` for that
 
-class TryRunTryArgAsync<T> implements FutureDelegate<Try> {
+class TryRunTryArgAsync<T> with ArgypeMixin<T> implements FutureDelegate<Try> {
   const TryRunTryArgAsync(this.fun, this.arg, [this.errorHandler]);
   final FutureOr<void> Function(T) fun;
   final ErrorHandler errorHandler;

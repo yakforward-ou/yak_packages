@@ -1,6 +1,7 @@
 import '../../../freezed/void/sync.dart';
 import '../../base/arg_delegate.dart';
 import '../../base/error_handler.dart';
+import '../../mixin/arg_type_mixin.dart';
 
 /// `TryRunArg` takes a `void Function(T)` as a parameter
 /// and effectively turns it into a `Try Function()`
@@ -9,7 +10,7 @@ import '../../base/error_handler.dart';
 
 /// [ATTENTION] it ***DOES NOT*** catch error in the argument!
 
-class TryRunArg<T> implements ArgDelegate<Try, T> {
+class TryRunArg<T> with ArgypeMixin<T> implements ArgDelegate<Try, T> {
   const TryRunArg(this.fun, [this.errorHandler]);
   final void Function(T) fun;
   final ErrorHandler errorHandler;
