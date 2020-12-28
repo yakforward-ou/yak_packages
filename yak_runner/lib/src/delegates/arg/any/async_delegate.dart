@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../../mixin/arg_return_type_mixin.dart';
+import '../../../mixin/test_factory/arg_result_test_factory_delegate.dart';
 import '../../base/future_arg_delegate.dart';
 import '../../../freezed/any/sync.dart';
 import '../../../../yak_runner.dart';
@@ -15,7 +15,7 @@ import '../../base/error_handler.dart';
 /// [ATTENTION] it ***DOES NOT*** catch error in the argument!
 
 class TryAnyRunArgAsync<T, S>
-    with ArgAndReturnTypeMixin<T, S>
+    with ArgResultTestFactoryMixin<T, S>
     implements FutureArgDelegate<TryAny<T>, S> {
   const TryAnyRunArgAsync(this.fun, [this.errorHandler]);
   final FutureOr<T> Function(FutureOr<S> arg) fun;

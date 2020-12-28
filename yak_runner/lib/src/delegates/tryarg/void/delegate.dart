@@ -2,7 +2,7 @@ import '../../../freezed/void/sync.dart';
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
 import '../../base/error_handler.dart';
-import '../../mixin/arg_type_mixin.dart';
+import '../../../mixin/test_factory/arg_test_factory_delegate.dart';
 
 /// `TryRunTryArg` takes a `void Function(T)` and a `TryAnyRun` (or equivalent)
 /// as a parameter and effectively turns it into a `TryRun`
@@ -14,18 +14,18 @@ import '../../mixin/arg_type_mixin.dart';
 /// and is needed to wrap it into a `TryAny`,
 /// ***if the argument is safe use `TryAnyRunArg` instead ***
 
-class TryRunTryArg<T> with ArgypeMixin<T> implements Delegate<Try> {
+class TryRunTryArg<S> with ArgTestFactoryMixin<S> implements Delegate<Try> {
   const TryRunTryArg(this.fun, this.arg, [this.errorHandler]);
-  final void Function(T) fun;
+  final void Function(S) fun;
   final ErrorHandler errorHandler;
 
   /// you can pass a `TryAnyRun` as `arg`
-  final TryAny<T> Function() arg;
+  final TryAny<S> Function() arg;
 
   @override
   Try call() {
     Try res;
-    arg().when(result: (T t) {
+    arg().when(result: (S t) {
       try {
         fun(t);
         res = Try.success();

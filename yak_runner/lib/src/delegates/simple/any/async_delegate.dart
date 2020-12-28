@@ -1,5 +1,5 @@
 import 'dart:async';
-import '../../mixin/return_type_mixin.dart';
+import '../../../mixin/test_factory/result_test_factory_delegate.dart';
 import '../../base/error_handler.dart';
 import '../../base/future_delegate.dart';
 import '../../../freezed/any/sync.dart';
@@ -12,7 +12,7 @@ import '../../../freezed/any/sync.dart';
 /// [ATTENTION] it returns `TryAny` ***NOT*** `TryAnyAsync`
 
 class TryAnyRunAsync<T>
-    with ReturnTypeMixin<T>
+    with ResultTestFactoryMixin<T>
     implements FutureDelegate<TryAny<T>> {
   const TryAnyRunAsync(this.fun, [this.errorHandler]);
   final FutureOr<T> Function() fun;

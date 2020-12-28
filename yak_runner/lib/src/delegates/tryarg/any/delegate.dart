@@ -1,7 +1,7 @@
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
 import '../../base/error_handler.dart';
-import '../../mixin/arg_return_type_mixin.dart';
+import '../../../mixin/test_factory/arg_result_test_factory_delegate.dart';
 
 /// `TryAnyRunTryArg` takes a `T Function(S)` and a `TryAnyRun` (or equivalent)
 /// as a parameter and effectively turns it into a `TryRun`
@@ -14,7 +14,7 @@ import '../../mixin/arg_return_type_mixin.dart';
 /// ***if the argument is safe use `TryAnyRunArg` instead ***
 
 class TryAnyRunTryArg<T, S>
-    with ArgAndReturnTypeMixin<T, S>
+    with ArgResultTestFactoryMixin<T, S>
     implements Delegate<TryAny<T>> {
   const TryAnyRunTryArg(this.fun, this.arg, [this.errorHandler]);
   final T Function(S) fun;

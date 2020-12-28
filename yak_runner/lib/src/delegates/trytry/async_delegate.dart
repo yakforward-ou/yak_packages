@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../../delegates/results/success.dart';
+import '../../results/success.dart';
 import '../../freezed/void/sync.dart';
 import '../base/error_handler.dart';
 import '../simple/void/async_delegate.dart';
