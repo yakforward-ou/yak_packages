@@ -1,10 +1,31 @@
-import 'package:yak_runner/yak_runner.dart';
-import '../../../testers/simple/any/delegate_test.dart';
+import 'dart:async';
 
-class TryAnyRunTestFactory implements ResultTestFactoryDelegate {
-  const TryAnyRunTestFactory(this.description);
-  final String description;
-  @override
-  ResultTestDelegate<T> call<T>() =>
-      TryAnyRunTester<T>(description: description);
+import 'package:flutter_test/flutter_test.dart';
+import 'package:yak_runner/yak_runner.dart';
+import 'package:yak_test/src/yak_runner/factory/all.dart';
+
+typedef void TestFunction(FutureOr<int> result);
+
+void main() {
+  group('`TryAnyRunTestFactory` test', () {
+    test(
+        'WHEN `TryAnyRun<int>` buildTest with `TryRunArgTestFactory` THEN returns `ResultTestDelegate<int>`',
+        () async {
+      final runner = TryAnyRun<int>(() => 1);
+      final tester = runner.buildTest(TryAnyRunTestFactory(''));
+
+      expect(
+        tester is ResultTestDelegate<int>,
+        true,
+        reason: 'tester should be ResultTestDelegate<int>',
+      );
+
+      expect(
+        tester.call is TestFunction,
+        true,
+        reason:
+            "`ResultTestFactoryDelegate.call` parameters' types should match `ArgDelegate` types ",
+      );
+    });
+  });
 }

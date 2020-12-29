@@ -1,9 +1,20 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:yak_runner/yak_runner.dart';
-import '../../../testers/simple/void/delegate_test.dart';
+import 'package:yak_test/src/yak_runner/factory/all.dart';
 
-class TryRunTestFactory implements VoidTestFactoryDelegate {
-  const TryRunTestFactory(this.description);
-  final String description;
-  @override
-  VoidTestDelegate call() => TryRunTester(description: description);
+void main() {
+  group('`TryRunTestFactory` test', () {
+    test(
+        'WHEN `TryAnyRun<int>` buildTest with `VoidTestFactoryDelegate` THEN returns `VoidTestDelegate`',
+        () async {
+      final runner = TryRun(() {});
+      final tester = runner.buildTest(TryRunTestFactory(''));
+
+      expect(
+        tester is VoidTestDelegate,
+        true,
+        reason: 'tester should be VoidTestDelegate',
+      );
+    });
+  });
 }
