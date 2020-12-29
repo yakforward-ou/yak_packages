@@ -1,3 +1,6 @@
+## [0.1.0+6-hotfix3] - 29th December 2020
+* tests updated with `test_factory_mixin`
+
 ## [0.1.0+6-hotfix2] - 29th December 2020
 * fixed error in `test_factory``delegates` and typo in changelog
 
