@@ -22,15 +22,15 @@ export 'src/delegates/simple/void/async_delegate.dart';
 export 'src/delegates/simple/void/delegate.dart';
 
 /// # # # [test]
-export 'src/delegates/test/arg_result_test_delegate.dart';
-export 'src/delegates/test/arg_test_delegate.dart';
-export 'src/delegates/test/result_test_delegate.dart';
+export 'src/delegates/test/arg_result.dart';
+export 'src/delegates/test/arg.dart';
+export 'src/delegates/test/result.dart';
 
 /// # # # [test factory]
 
-export 'src/delegates/test_factory/arg_result_test_factory_delegate.dart';
-export 'src/delegates/test_factory/arg_test_factory_delegate.dart';
-export 'src/delegates/test_factory/result_test_factory_delegate.dart';
+export 'src/delegates/test_factory/arg_result.dart';
+export 'src/delegates/test_factory/arg.dart';
+export 'src/delegates/test_factory/result.dart';
 
 /// # # # [tryarg]
 

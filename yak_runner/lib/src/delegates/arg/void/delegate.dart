@@ -1,7 +1,7 @@
 import '../../../freezed/void/sync.dart';
 import '../../base/arg_delegate.dart';
 import '../../base/error_handler.dart';
-import '../../../mixin/test_factory/arg_test_factory_delegate.dart';
+import '../../../mixin/test_factory/arg.dart';
 
 /// `TryRunArg` takes a `void Function(T)` as a parameter
 /// and effectively turns it into a `Try Function()`

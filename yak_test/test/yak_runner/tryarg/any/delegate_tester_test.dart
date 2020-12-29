@@ -4,5 +4,5 @@ void main() {
   const _tester = TryAnyRunTryArgTester<int, String>(
     description: '`TryAnyRunTryArgTester<int, String>` sample test',
   );
-  _tester(arg: 'hello', result: 4);
+  _tester(4, 'hello');
 }

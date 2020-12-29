@@ -1,3 +1,4 @@
+import '../../mixin/test_factory/void.dart';
 import '../../results/success.dart';
 import '../../freezed/void/sync.dart';
 import '../base/delegate.dart';
@@ -10,7 +11,7 @@ import '../simple/void/delegate.dart';
 /// this is recommended when is needed to safely run a `void Function()`
 /// only if the `delegate` succede
 
-class TryRunTry implements Delegate<Try> {
+class TryRunTry with VoidTestFactoryMixin implements Delegate<Try> {
   const TryRunTry(this.fun, this.delegate, [this.errorHandler]);
   final void Function() fun;
   final ErrorHandler errorHandler;

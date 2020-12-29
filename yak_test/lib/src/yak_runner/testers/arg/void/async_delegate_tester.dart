@@ -1,23 +1,25 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yak_runner/yak_runner.dart';
 import 'package:meta/meta.dart';
-import '../../../base/mock_error_handler.dart';
-import '../../../base/mock_future_arg_delegate.dart';
-import '../../../base/mock_future_delegate.dart';
+import '../../../mock/mock_error_handler.dart';
+import '../../../mock/mock_future_arg_delegate.dart';
+import '../../../mock/mock_future_delegate.dart';
 
-class TryRunArgAsyncTester<T> {
+class TryRunArgAsyncTester<S> implements ArgTestDelegate<S> {
   const TryRunArgAsyncTester({
     @required this.description,
   });
   final String description;
 
-  void call(T arg) {
+  void call(FutureOr<S> arg) {
     group(description, () {
       final _errorHandler = MockErrorHandler();
-      final _argDelegate = MockFutureDelegate<T>();
-      final _funDelegate = MockFutureArgDelegate<void, T>();
-      final _tryRun = TryRunArgAsync<T>(_funDelegate, _errorHandler);
+      final _argDelegate = MockFutureDelegate<S>();
+      final _funDelegate = MockFutureArgDelegate<void, S>();
+      final _tryRun = TryRunArgAsync<S>(_funDelegate, _errorHandler);
 
       when(_errorHandler.call(any, any)).thenAnswer((_) {});
 

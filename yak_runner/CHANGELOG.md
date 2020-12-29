@@ -1,3 +1,6 @@
+## [0.1.0+6] - 28th December 2020
+* implemented "void" test delegate, mixin and facctory
+
 ## [0.1.0+5] - 28th December 2020
 * removed `async freezed` implemented `delegates` for testing
 

@@ -1,5 +1,5 @@
 import '../../base/error_handler.dart';
-import '../../../mixin/test_factory/result_test_factory_delegate.dart';
+import '../../../mixin/test_factory/result.dart';
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
 

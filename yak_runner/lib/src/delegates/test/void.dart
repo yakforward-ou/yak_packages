@@ -1,0 +1,3 @@
+mixin VoidTestDelegate {
+  void call();
+}

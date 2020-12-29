@@ -1,7 +1,7 @@
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
 import '../../base/error_handler.dart';
-import '../../../mixin/test_factory/arg_result_test_factory_delegate.dart';
+import '../../../mixin/test_factory/arg_result.dart';
 
 /// `TryAnyRunTryArg` takes a `T Function(S)` and a `TryAnyRun` (or equivalent)
 /// as a parameter and effectively turns it into a `TryRun`

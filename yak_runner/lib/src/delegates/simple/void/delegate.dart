@@ -1,13 +1,14 @@
 import '../../../freezed/void/sync.dart';
 import '../../base/delegate.dart';
 import '../../base/error_handler.dart';
+import '../../../mixin/test_factory/void.dart';
 
 /// `TryRun` takes a `void Function()` as a parameter
 /// and effectively turns it into a `Try Function()`
 
 /// use cases: [io, general `unsafe` callback]
 
-class TryRun implements Delegate<Try> {
+class TryRun with VoidTestFactoryMixin implements Delegate<Try> {
   const TryRun(this.fun, [this.errorHandler]);
   final void Function() fun;
   final ErrorHandler errorHandler;

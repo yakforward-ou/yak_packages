@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../../../mixin/test_factory/arg_result_test_factory_delegate.dart';
+import '../../../mixin/test_factory/arg_result.dart';
 import '../../base/future_arg_delegate.dart';
 import '../../../freezed/any/sync.dart';
 import '../../../../yak_runner.dart';

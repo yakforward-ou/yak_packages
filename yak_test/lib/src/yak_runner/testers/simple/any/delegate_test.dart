@@ -1,17 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yak_runner/yak_runner.dart';
 import 'package:meta/meta.dart';
-import '../../../base/mock_delegate.dart';
-import '../../../base/mock_error_handler.dart';
+import '../../../mock/mock_delegate.dart';
+import '../../../mock/mock_error_handler.dart';
 
-class TryAnyRunTester<T> {
+class TryAnyRunTester<T> implements ResultTestDelegate<T> {
   const TryAnyRunTester({
     @required this.description,
   });
   final String description;
 
-  void call(T result) {
+  void call(FutureOr<T> result) {
     group(description, () {
       final _errorHandler = MockErrorHandler();
       final _delegate = MockDelegate<T>();

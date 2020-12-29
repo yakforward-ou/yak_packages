@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import '../../../mixin/test_factory/void.dart';
 import '../../base/error_handler.dart';
 import '../../../freezed/void/sync.dart';
 import '../../base/future_delegate.dart';
@@ -11,7 +11,7 @@ import '../../base/future_delegate.dart';
 
 /// [ATTENTION] it returns `Try` ***NOT*** `TryAsync`
 
-class TryRunAsync implements FutureDelegate<Try> {
+class TryRunAsync with VoidTestFactoryMixin implements FutureDelegate<Try> {
   const TryRunAsync(this.fun, [this.errorHandler]);
   final FutureOr<void> Function() fun;
   final ErrorHandler errorHandler;

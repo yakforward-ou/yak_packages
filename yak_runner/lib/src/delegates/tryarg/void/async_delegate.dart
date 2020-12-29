@@ -1,5 +1,5 @@
 import 'dart:async';
-import '../../../mixin/test_factory/arg_test_factory_delegate.dart';
+import '../../../mixin/test_factory/arg.dart';
 import '../../../delegates/base/future_delegate.dart';
 import '../../../freezed/void/sync.dart';
 import '../../../freezed/any/sync.dart';
