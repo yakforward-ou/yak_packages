@@ -1,7 +1,7 @@
 import 'package:yak_runner/yak_runner.dart';
-import '../../factory/all.dart';
+import 'package:yak_test/src/yak_runner/factory/all.dart';
 
 extension TryRunTryTestFactoryExtension on TryRunTry {
-  VoidTestFactoryDelegate buildTestFactory(description) =>
-      TryRunTryTestFactory(description);
+  VoidTestDelegate buildTester(String description) =>
+      this.buildTest(TryRunTryTestFactory(description));
 }
