@@ -1,3 +1,14 @@
+## [0.1.0+0] - 29 december 2020
+
+* repurposing the package to a `quiver-like` collection of unique classes and tools for `Dart` and `Flutter`
+* exporting `yak_tween`
+
+| TO DO LIST | STATUS  |
+|--------|-----|
+| yak_tween tests| * | (* as I'm planning to refactor w/ null-safaty anyway, tests can wait for now)
+
+ 
+
 ## [0.0.3] - 3rd August 2020
 
 * this release is STILL a pre-alpha
