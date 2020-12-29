@@ -8,6 +8,8 @@ import '../../../mock/mock_future_delegate.dart';
 
 import 'package:meta/meta.dart';
 
+/// a class that runs test for `TryAnyRunAsync`
+
 class TryAnyRunAsyncTester<T> implements ResultTestDelegate<T> {
   const TryAnyRunAsyncTester({@required this.description});
   final String description;

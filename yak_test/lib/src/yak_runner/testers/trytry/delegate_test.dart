@@ -5,7 +5,9 @@ import 'package:meta/meta.dart';
 import '../../mock/mock_delegate.dart';
 import '../../mock/mock_error_handler.dart';
 
-class TryRunTryTester {
+/// a class that runs test for `TryRunTry`
+
+class TryRunTryTester implements VoidTestDelegate {
   const TryRunTryTester({@required this.description});
   final String description;
 

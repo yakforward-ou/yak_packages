@@ -7,6 +7,8 @@ import 'package:meta/meta.dart';
 import '../../../mock/mock_delegate.dart';
 import '../../../mock/mock_error_handler.dart';
 
+/// a class that runs test for `TryAnyRun`
+
 class TryAnyRunTester<T> implements ResultTestDelegate<T> {
   const TryAnyRunTester({
     @required this.description,

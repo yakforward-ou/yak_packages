@@ -1,5 +1,5 @@
 import '../test/result.dart';
 
-mixin ResultTestFactoryDelegate<T> {
+mixin ResultTestFactoryDelegate {
   ResultTestDelegate<T> call<T>();
 }

@@ -9,6 +9,8 @@ import '../../../mock/mock_arg_delegate.dart';
 import '../../../mock/mock_delegate.dart';
 import '../../../mock/mock_error_handler.dart';
 
+/// a class that runs test for `TryAnyRunArgTester`
+
 class TryAnyRunArgTester<T, S> implements ArgResultTestDelegate<T, S> {
   const TryAnyRunArgTester({@required this.description});
   final String description;

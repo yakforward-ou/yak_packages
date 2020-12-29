@@ -1,5 +1,5 @@
 import '../test/arg.dart';
 
-mixin ArgTestFactoryDelegate<S> {
+mixin ArgTestFactoryDelegate {
   ArgTestDelegate<S> call<S>();
 }

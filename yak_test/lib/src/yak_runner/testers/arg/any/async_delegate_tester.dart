@@ -8,6 +8,8 @@ import '../../../mock/mock_error_handler.dart';
 import '../../../mock/mock_future_arg_delegate.dart';
 import '../../../mock/mock_future_delegate.dart';
 
+/// a class that runs test for `TryAnyRunArgAsync`
+
 class TryAnyRunArgAsyncTester<T, S> implements ArgResultTestDelegate<T, S> {
   const TryAnyRunArgAsyncTester({
     @required this.description,

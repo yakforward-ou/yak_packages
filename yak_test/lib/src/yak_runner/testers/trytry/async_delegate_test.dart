@@ -5,7 +5,9 @@ import 'package:meta/meta.dart';
 import '../../mock/mock_error_handler.dart';
 import '../../mock/mock_future_delegate.dart';
 
-class TryRunTryAsyncTester {
+/// a class that runs test for `TryRunTryAsync`
+
+class TryRunTryAsyncTester implements VoidTestDelegate {
   const TryRunTryAsyncTester({@required this.description});
   final String description;
 
