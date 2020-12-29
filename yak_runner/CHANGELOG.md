@@ -1,4 +1,7 @@
-## [0.1.0+6] - 28th December 2020
+## [0.1.0+6-hotfix1] - 29th December 2020
+* updated `export`s and bumped `meta` in `pubspec.yaml`
+
+## [0.1.0+6] - 29th December 2020
 * implemented "void" test delegate, mixin and facctory
 
 ## [0.1.0+5] - 28th December 2020

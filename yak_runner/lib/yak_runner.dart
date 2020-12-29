@@ -25,12 +25,14 @@ export 'src/delegates/simple/void/delegate.dart';
 export 'src/delegates/test/arg_result.dart';
 export 'src/delegates/test/arg.dart';
 export 'src/delegates/test/result.dart';
+export 'src/delegates/test/void.dart';
 
 /// # # # [test factory]
 
 export 'src/delegates/test_factory/arg_result.dart';
 export 'src/delegates/test_factory/arg.dart';
 export 'src/delegates/test_factory/result.dart';
+export 'src/delegates/test_factory/void.dart';
 
 /// # # # [tryarg]
 
@@ -49,7 +51,7 @@ export 'src/delegates/trytry/async_delegate.dart';
 export 'src/freezed/any/sync.dart';
 export 'src/freezed/void/sync.dart';
 
-/// [freezed] # # # # # #
+/// [mixin] # # # # # #
 ///
 // `I'll keep it internal to the package for now`
 
