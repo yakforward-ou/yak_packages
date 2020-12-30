@@ -1,0 +1,13 @@
+name: example
+description: A test app for `yak_test` package
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  yak_runner: ^0.1.0+6
+  yak_test: ^0.1.0+6
+ 
