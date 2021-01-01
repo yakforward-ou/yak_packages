@@ -1,3 +1,12 @@
+## [0.1.0+6-1] - 1st January 2021
+
+* `README` and `example` updated
+
+| TO DO LIST | STATUS |
+|--------|-----|
+| rework factory tests | x  |
+
+
 ## [0.1.0+6-hotfix2] - 1st January 2021
 
 * extensions reworked, all test passing*

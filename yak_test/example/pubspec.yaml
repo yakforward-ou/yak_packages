@@ -9,5 +9,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   yak_runner: ^0.1.0+6
-  yak_test: ^0.1.0+6
+  yak_test: ^0.1.0+6-hotfix2
  
