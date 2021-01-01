@@ -5,5 +5,6 @@ import 'package:yak_test/yak_test.dart';
 void main() {
   group('TryAnyRunArgAsync', () {
     final runner = TryAnyRunArgAsync<int, String>((_) => throw '');
+    final tester = runner.buildTester(runner);
   });
 }
