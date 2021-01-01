@@ -1,6 +1,6 @@
 name: yak_test
 description: A Flutter package to help testing when using `yak_packages`
-version: 0.1.0+6-hotfix2
+version: 0.1.0+6-1
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
