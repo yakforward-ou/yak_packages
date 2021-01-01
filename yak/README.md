@@ -1,7 +1,6 @@
 # yak
 
-A collection of ["Yak"] packages for Dart and Flutter wrapped in static constructor, 
-there isn't much coding going on, it's mostly for convenience
+This package includes few unique classes and tools for `Dart` and `Flutter`,
 
 ---
 ## Buy me a coffee

@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import '../../../mixin/test_factory/arg.dart';
 import '../../base/future_arg_delegate.dart';
 import '../../../freezed/void/sync.dart';
 import '../../base/error_handler.dart';
@@ -12,13 +12,15 @@ import '../../base/error_handler.dart';
 /// [ATTENTION] it returns `Try` ***NOT*** `TryAsync`
 /// [ATTENTION] it ***DOES NOT*** catch error in the argument!
 
-class TryRunArgAsync<T> implements FutureArgDelegate<Try, T> {
+class TryRunArgAsync<S>
+    with ArgTestFactoryMixin<S>
+    implements FutureArgDelegate<Try, S> {
   const TryRunArgAsync(this.fun, [this.errorHandler]);
-  final FutureOr<void> Function(FutureOr<T> arg) fun;
+  final FutureOr<void> Function(FutureOr<S> arg) fun;
   final ErrorHandler errorHandler;
 
   @override
-  Future<Try> call(FutureOr<T> arg) async {
+  Future<Try> call(FutureOr<S> arg) async {
     try {
       await fun(await arg);
       return Try.success();

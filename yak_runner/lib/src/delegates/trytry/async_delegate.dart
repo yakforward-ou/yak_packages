@@ -1,6 +1,6 @@
 import 'dart:async';
-
-import '../../delegates/results/success.dart';
+import '../../mixin/test_factory/void.dart';
+import '../../results/success.dart';
 import '../../freezed/void/sync.dart';
 import '../base/error_handler.dart';
 import '../simple/void/async_delegate.dart';
@@ -12,7 +12,7 @@ import '../base/future_delegate.dart';
 /// this is recommended when is needed to safely run a `FutureOr<void> Function()`
 /// only if the `delegate` succede
 
-class TryRunTryAsync<T> implements FutureDelegate<Try> {
+class TryRunTryAsync with VoidTestFactoryMixin implements FutureDelegate<Try> {
   const TryRunTryAsync(this.fun, this.delegate, [this.errorHandler]);
   final FutureOr<void> Function() fun;
   final ErrorHandler errorHandler;

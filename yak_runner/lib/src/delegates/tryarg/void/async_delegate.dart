@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import '../../../mixin/test_factory/arg.dart';
 import '../../../delegates/base/future_delegate.dart';
 import '../../../freezed/void/sync.dart';
 import '../../../freezed/any/sync.dart';
@@ -12,18 +12,20 @@ import '../../base/error_handler.dart';
 ///  it is not meant to be used directly in frontend
 /// prefer using a `state_notifier` and `TryAsync` for that
 
-class TryRunTryArgAsync<T> implements FutureDelegate<Try> {
+class TryRunTryArgAsync<S>
+    with ArgTestFactoryMixin<S>
+    implements FutureDelegate<Try> {
   const TryRunTryArgAsync(this.fun, this.arg, [this.errorHandler]);
-  final FutureOr<void> Function(T) fun;
+  final FutureOr<void> Function(S) fun;
   final ErrorHandler errorHandler;
 
   /// you can pass a `TryAnyRunAsync` ot `TryAnyRun` as `arg`
-  final FutureOr<TryAny<T>> Function() arg;
+  final FutureOr<TryAny<S>> Function() arg;
   @override
   Future<Try> call() async {
     Try res;
-    final TryAny<T> _arg = await arg();
-    await _arg.when(result: (T t) async {
+    final TryAny<S> _arg = await arg();
+    await _arg.when(result: (S t) async {
       try {
         await fun(t);
         res = Try.success();

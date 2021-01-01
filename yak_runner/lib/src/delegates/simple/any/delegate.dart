@@ -1,5 +1,5 @@
 import '../../base/error_handler.dart';
-
+import '../../../mixin/test_factory/result.dart';
 import '../../../freezed/any/sync.dart';
 import '../../base/delegate.dart';
 
@@ -8,7 +8,9 @@ import '../../base/delegate.dart';
 
 /// use cases: [io]
 
-class TryAnyRun<T> implements Delegate<TryAny<T>> {
+class TryAnyRun<T>
+    with ResultTestFactoryMixin<T>
+    implements Delegate<TryAny<T>> {
   const TryAnyRun(this.fun, [this.errorHandler]);
   final T Function() fun;
   final ErrorHandler errorHandler;

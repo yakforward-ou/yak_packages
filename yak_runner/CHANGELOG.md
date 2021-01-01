@@ -1,3 +1,21 @@
+## [0.1.0+6-hotfix3] - 29th December 2020
+* tests updated with `test_factory_mixin`
+
+## [0.1.0+6-hotfix2] - 29th December 2020
+* fixed error in `test_factory``delegates` and typo in changelog
+
+## [0.1.0+6-hotfix1] - 29th December 2020
+* updated `export`s and bumped `meta` in `pubspec.yaml`
+
+## [0.1.0+6] - 29th December 2020
+* implemented "void" test delegate, mixin and factory
+
+## [0.1.0+5] - 28th December 2020
+* removed `async freezed` implemented `delegates` for testing
+
+## [0.1.0+4] - 27th December 2020
+* added type mixin for integrationo with upcoming `yak_test` package
+
 ## [0.1.0+3] - 23rd December 2020
 * updated `readme.md` and grammar fixes
 
