@@ -1,6 +1,7 @@
 # yak
 
-This package includes few unique classes and tools for `Dart` and `Flutter`,
+This package includes few unique classes and tools for `Dart` and `Flutter`
+and repacks **all** the packages of the `yak_packages` family 
 
 ---
 ## Buy me a coffee

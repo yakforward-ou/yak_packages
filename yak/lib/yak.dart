@@ -1,3 +1,5 @@
 library yak;
 
-export 'src/yak_tween/all.dart';
+export 'src/tweens/all.dart';
+export 'src/external/all.dart';
+export 'src/extensions/all.dart';

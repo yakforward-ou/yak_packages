@@ -1,4 +1,4 @@
-## [0.1.0+6-1] - 1st January 2021
+## [0.1.0+6-hotfix3] - 1st January 2021
 
 * `README` and `example` updated
 

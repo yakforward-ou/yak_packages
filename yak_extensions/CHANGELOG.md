@@ -1,3 +1,6 @@
+## PACKAGE DEPRECATED
+
+
 ## [0.1.0+1] - Hotfix - 3rd August 2020
 
 yak_extension shouldn't depend from Flutter - fixed in pubspec.yaml

@@ -1,3 +1,12 @@
+## [0.1.0+6] - 2nd January 2021
+
+* version partity with other `yak_packages`, cleaner export
+
+| TO DO LIST | STATUS  |
+|--------|-----|
+| yak_tween tests| x | 
+
+
 ## [0.1.0+0] - 29 december 2020
 
 * repurposing the package to a `quiver-like` collection of unique classes and tools for `Dart` and `Flutter`

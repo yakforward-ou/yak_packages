@@ -1,6 +1,6 @@
 name: yak
 description: A Flutter package to collect all ["Yak"] packages
-version: 0.1.0+0
+version: 0.1.0+6
 
 homepage: https://github.com/iapicca/yak_packages
 
@@ -11,3 +11,5 @@ dependencies:
   flutter:
     sdk: flutter
   vector_math: ^2.0.8
+  yak_test: ^0.1.0+6
+  yak_runner: ^0.1.0+6
