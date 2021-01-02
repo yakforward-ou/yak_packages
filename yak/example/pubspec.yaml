@@ -1,0 +1,14 @@
+name: example
+description: A an example app for `yak` unique classes
+version: 1.0.0+6
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  yak: ^0.1.0+6
+
+flutter:
+  uses-material-design: true

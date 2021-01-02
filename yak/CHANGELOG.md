@@ -1,3 +1,11 @@
+## [0.1.0+6-1] - 2nd January 2021
+
+* example published 
+
+| TO DO LIST | STATUS  |
+|--------|-----|
+| yak_tween tests| x | 
+
 ## [0.1.0+6] - 2nd January 2021
 
 * version partity with other `yak_packages`, cleaner export
