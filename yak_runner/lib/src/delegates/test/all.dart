@@ -1,2 +1,2 @@
-export 'runner/all.dart';
+export 'delegate/all.dart';
 export 'factory/all.dart';
