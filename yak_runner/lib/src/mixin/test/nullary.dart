@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:yak_runner/src/delegates/all.dart';
 
 mixin YakRunnerTestMixin<T> {

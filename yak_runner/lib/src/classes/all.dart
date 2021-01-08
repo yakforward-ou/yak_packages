@@ -1,3 +1,3 @@
-export 'result/all.dart' show Result;
-export 'failure/all.dart' show Failure, FailureOfType;
-export 'success/all.dart' show Success;
+export 'result/all.dart';
+export 'failure/all.dart';
+export 'success/all.dart';
