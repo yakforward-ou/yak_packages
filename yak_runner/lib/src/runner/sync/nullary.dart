@@ -1,18 +1,18 @@
+import '../../classes/all.dart';
 import '../../mixin/all.dart';
-import '../../freezed/all.dart';
 import '../../delegates/all.dart';
 
-class YakRunner<T> with YakRunnerTestMixin implements Delegate<Try<T>> {
+class YakRunner<T> with YakRunnerTestMixin implements Delegate<Result<T>> {
   const YakRunner(this.fun, [this.errorHandler]);
   final T Function() fun;
   final ErrorHandler errorHandler;
 
-  Try<T> call() {
+  Result<T> call() {
     try {
-      return Try.success(fun());
+      return Result.success(fun());
     } catch (e, s) {
       errorHandler?.call(e, s);
-      return Try.failure(e, s);
+      return Result.failure(e, s);
     }
   }
 }

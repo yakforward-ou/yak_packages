@@ -1,20 +1,20 @@
+import '../../classes/all.dart';
 import '../../mixin/all.dart';
-import '../../freezed/all.dart';
 import '../../delegates/all.dart';
 
 class YakRunnerAsync<T>
     with YakRunnerTestMixin
-    implements Delegate<Future<Try<T>>> {
+    implements Delegate<Future<Result<T>>> {
   const YakRunnerAsync(this.fun, [this.errorHandler]);
   final Future<T> Function() fun;
   final ErrorHandler errorHandler;
 
-  Future<Try<T>> call() async {
+  Future<Result<T>> call() async {
     try {
-      return Try.success(await fun());
+      return Result.success(await fun());
     } catch (e, s) {
       errorHandler?.call(e, s);
-      return Try.failure(e, s);
+      return Result.failure(e, s);
     }
   }
 }
