@@ -1,5 +1,5 @@
-import 'dart:async';
+import 'package:mockito/mockito.dart';
+import 'package:yak_runner/yak_runner.dart';
 
-mixin YakRunnerTestDelegate<T> {
-  void call(FutureOr<T> result);
-}
+class MockYakRunnerTestDelegate<T, S> extends Mock
+    implements YakRunnerTestDelegate<T> {}

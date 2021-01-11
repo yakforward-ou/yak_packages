@@ -4,19 +4,19 @@ import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
 
 void main() {
-  group('`YakRunner`', () {
+  group('`YakRunnerAsync`', () {
     final _data = 1;
     final _errorHandler = MockErrorHandler();
-    final _delegate = MockDelegate<int>();
-    final _runner = YakRunner(_delegate, _errorHandler);
+    final _delegate = MockDelegate<Future<int>>();
+    final _runner = YakRunnerAsync(_delegate, _errorHandler);
     when(_errorHandler(any, any)).thenAnswer(null);
 
-    test('WHEN `void Function()` throws THEN `Result` is `Failure`', () {
+    test('WHEN `void Function()` throws THEN `Result` is `Failure`', () async {
       reset(_errorHandler);
       reset(_delegate);
 
       when(_delegate()).thenThrow('ops');
-      final _result = _runner();
+      final _result = await _runner();
 
       expect(
         _result,
@@ -38,12 +38,13 @@ void main() {
       verify(_errorHandler(any, any)).called(1);
     });
 
-    test('WHEN `void Function()` does not fail `Result` is `Success`', () {
+    test('WHEN `void Function()` does not fail `Result` is `Success`',
+        () async {
       reset(_errorHandler);
       reset(_delegate);
 
-      when(_delegate()).thenReturn(_data);
-      final _result = _runner();
+      when(_delegate()).thenAnswer((_) async => _data);
+      final _result = await _runner();
 
       expect(
         _result,

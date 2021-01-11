@@ -1,14 +1,14 @@
 name: yak_runner
 description: A Flutter package to make pseudo-TDD and error handling more concise
-version: 0.2.0-1
+version: 0.2.0-0
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
-  sdk: ">=2.10.4 <3.0.0"
+  sdk: '>=2.7.0 <3.0.0'
 
 dependencies: 
   meta: ^1.2.4
 
 dev_dependencies:
   test: ^1.15.7
-  mocktail: ^0.0.1-dev.4
+  mockito: ^4.1.3

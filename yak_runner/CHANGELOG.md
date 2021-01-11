@@ -1,3 +1,6 @@
+## [0.2.0+0] - xx January 2021
+* major refactor without freezed
+
 ## [0.1.0+6-hotfix3] - 29th December 2020
 * tests updated with `test_factory_mixin`
 

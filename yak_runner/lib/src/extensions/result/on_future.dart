@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import '../../classes/all.dart';
 
-extension OnFutureResult<S> on Future<Result<S>> {
+extension OnFutureResult<S> on FutureOr<Result<S>> {
   Future<Result<T>> onFutureResult<T>(
-    Result<T> Function(S) runner, [
+    Future<Result<T>> Function(FutureOr<S>) runner, [
     FailureOfType<T> failureOfType,
   ]) async =>
-      (await this).onResult((runner));
+      (await this).onResultAsync(runner);
 }
