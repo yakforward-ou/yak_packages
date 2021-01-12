@@ -1,3 +1,13 @@
+## [0.2.0+0-hotfix1] - 12th January 2021
+
+* example updated
+
+## [0.2.0+0] - 12th January 2021
+
+* complete implementation rework
+* references to `Flutter` replaced with `dart`
+* all test reworked and passing
+
 ## [0.1.0+6-hotfix3] - 1st January 2021
 
 * `README` and `example` updated
