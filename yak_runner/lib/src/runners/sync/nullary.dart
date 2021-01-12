@@ -2,8 +2,9 @@ import '../../classes/all.dart';
 import '../../mixin/all.dart';
 import '../../delegates/all.dart';
 
-class YakRunner<T> with YakRunnerTestMixin implements Delegate<Result<T>> {
-  const YakRunner(this.fun, [this.errorHandler]);
+class YakRunner<T> with YakRunnerTestMixin<T> implements Delegate<Result<T>> {
+  const YakRunner(this.fun, [this.errorHandler])
+      : assert(fun != null, ' a non null function must be provided');
   final T Function() fun;
   final ErrorHandler errorHandler;
 

@@ -4,3 +4,4 @@ export 'src/classes/all.dart' show Result, Failure, FailureOfType, Success;
 export 'src/delegates/all.dart';
 export 'src/extensions/all.dart';
 export 'src/runners/all.dart';
+export 'src/shared/all.dart';

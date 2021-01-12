@@ -1,15 +1,19 @@
 import '../../classes/all.dart';
 import '../../mixin/all.dart';
 import '../../delegates/all.dart';
+import '../../shared/all.dart';
 
 class YakRunnerArg<T, S>
-    with YakRunnerArgTestMixin
+    with YakRunnerArgTestMixin<T, S>
     implements UnaryDelegate<Result<T>, S> {
-  const YakRunnerArg(this.fun, [this.errorHandler]);
+  YakRunnerArg(this.fun, [this.errorHandler])
+      : assert(fun != null, ' a non null function must be provided'),
+        assert(S != typeVoid, '`S` must not be of type `void`');
   final T Function(S) fun;
   final ErrorHandler errorHandler;
 
   Result<T> call(S arg) {
+    assert(arg != null, ' a non null `arg` must be provided');
     try {
       return Result.success(fun(arg));
     } catch (e, s) {

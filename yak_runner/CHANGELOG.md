@@ -1,5 +1,15 @@
+## [0.2.0+2-hotfix2] - 12 January 2021
+* replacing `Flutter` references with `Dart` references
+* fixed `Type` for `Test Mixin`
+
+## [0.2.0+2-hotfix1] - 12 January 2021
+* export fixed
+
+## [0.2.0+2] - 12 January 2021
+* added `assert` for runners and `typeVoid`
+
 ## [0.2.0+1] - 11 January 2021
-* new sample app
+* new example app
 
 ## [0.2.0+0] - 11 January 2021
 * major refactor without freezed
