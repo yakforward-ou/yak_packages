@@ -1,7 +1,7 @@
 
 # yak_runner
 
-A Flutter package with goal of making TDD, DDD and error handling easier and more concise,
+A Dart package with goal of making TDD, DDD and error handling easier and more concise,
 please see the example for more details on how to use it
 
 ---

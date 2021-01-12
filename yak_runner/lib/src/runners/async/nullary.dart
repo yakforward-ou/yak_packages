@@ -3,9 +3,11 @@ import '../../mixin/all.dart';
 import '../../delegates/all.dart';
 
 class YakRunnerAsync<T>
-    with YakRunnerTestMixin
+    with YakRunnerTestMixin<T>
     implements Delegate<Future<Result<T>>> {
-  const YakRunnerAsync(this.fun, [this.errorHandler]);
+  const YakRunnerAsync(this.fun, [this.errorHandler])
+      : assert(fun != null, ' a non null function must be provided');
+
   final Future<T> Function() fun;
   final ErrorHandler errorHandler;
 

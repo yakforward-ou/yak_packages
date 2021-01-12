@@ -1,3 +1,7 @@
+## [0.2.0+0] - 12th January 2021
+
+* updated version of `yak_runner` and `yak_test`
+
 ## [0.1.0+6-1] - 2nd January 2021
 
 * example published 
