@@ -1,4 +1,7 @@
 import 'package:mockito/mockito.dart';
-import 'package:yak_runner/yak_runner.dart';
+
+mixin ErrorHandler {
+  void call(Object e, StackTrace s);
+}
 
 class MockErrorHandler extends Mock implements ErrorHandler {}

@@ -1,6 +1,6 @@
 name: yak_runner
 description: A Dart package to make pseudo-TDD and error handling more concise
-version: 0.2.0+2-hotfix2
+version: 0.2.0+3-hotfix1
 homepage: https://github.com/iapicca/yak_packages
 
 environment:

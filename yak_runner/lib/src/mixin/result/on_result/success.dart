@@ -1,4 +1,5 @@
 import '../../../classes/all.dart';
+import '../../../typedef/all.dart';
 
 mixin OnSuccess<S> on SuccessBase<S> {
   Result<T> onResult<T>(Result<T> Function(S) runner,

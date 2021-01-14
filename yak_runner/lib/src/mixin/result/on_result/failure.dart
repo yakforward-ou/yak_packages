@@ -1,4 +1,5 @@
 import '../../../classes/all.dart';
+import '../../../typedef/all.dart';
 
 mixin OnFailure<S> on FailureBase<S> {
   Result<T> onResult<T>(

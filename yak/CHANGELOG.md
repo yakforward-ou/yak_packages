@@ -1,3 +1,7 @@
+## [0.2.1+0] - 14th January 2021
+
+* added `yak_error_handler`
+
 ## [0.2.0+0] - 12th January 2021
 
 * updated version of `yak_runner` and `yak_test`

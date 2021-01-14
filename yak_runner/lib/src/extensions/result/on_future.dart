@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import '../../typedef/all.dart';
 import '../../classes/all.dart';
 
 extension OnFutureResult<S> on FutureOr<Result<S>> {

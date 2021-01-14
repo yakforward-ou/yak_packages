@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yak/yak.dart';
 
+/// `example`
+
 void main() => runApp(
       MaterialApp(
         home: Material(
