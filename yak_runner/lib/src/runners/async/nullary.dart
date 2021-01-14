@@ -9,7 +9,7 @@ class YakRunnerAsync<T>
       : assert(fun != null, ' a non null function must be provided');
 
   final Future<T> Function() fun;
-  final ErrorHandler errorHandler;
+  final void Function(Object, StackTrace) errorHandler;
 
   Future<Result<T>> call() async {
     try {

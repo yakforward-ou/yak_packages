@@ -1,14 +1,13 @@
-name: yak_runner
+name: yak_error_handler
 description: A Dart package to make pseudo-TDD and error handling more concise
-version: 0.2.0+3
+version: 0.1.0+0
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
 
 dependencies: 
-  meta: ^1.2.4
+  riverpod: ^0.12.1
 
 dev_dependencies:
   test: ^1.15.7
-  mockito: ^4.1.3

@@ -1,3 +1,6 @@
+## [0.2.0+3] - 14 January 2021
+* changing runners' `errorHandler` from `ErrorHandler` to `void Function(Object,Stacktrace)`
+
 ## [0.2.0+2-hotfix2] - 12 January 2021
 * replacing `Flutter` references with `Dart` references
 * fixed `Type` for `Test Mixin`

@@ -10,7 +10,7 @@ class YakRunnerArg<T, S>
       : assert(fun != null, ' a non null function must be provided'),
         assert(S != typeVoid, '`S` must not be of type `void`');
   final T Function(S) fun;
-  final ErrorHandler errorHandler;
+  final void Function(Object, StackTrace) errorHandler;
 
   Result<T> call(S arg) {
     assert(arg != null, ' a non null `arg` must be provided');

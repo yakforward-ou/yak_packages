@@ -6,7 +6,7 @@ class YakRunner<T> with YakRunnerTestMixin<T> implements Delegate<Result<T>> {
   const YakRunner(this.fun, [this.errorHandler])
       : assert(fun != null, ' a non null function must be provided');
   final T Function() fun;
-  final ErrorHandler errorHandler;
+  final void Function(Object, StackTrace) errorHandler;
 
   Result<T> call() {
     try {

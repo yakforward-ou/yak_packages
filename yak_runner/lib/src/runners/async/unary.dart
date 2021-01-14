@@ -13,7 +13,7 @@ class YakRunnerArgAsync<T, S>
       : assert(fun != null, ' a non null function must be provided'),
         assert(S != typeVoid, '`S` must not be of type `void`');
   final Future<T> Function(FutureOr<S>) fun;
-  final ErrorHandler errorHandler;
+  final void Function(Object, StackTrace) errorHandler;
 
   Future<Result<T>> call(FutureOr<S> arg) async {
     assert(arg != null, ' a non null `arg` must be provided');
