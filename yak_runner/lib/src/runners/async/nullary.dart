@@ -1,3 +1,4 @@
+import '../../typedef/all.dart';
 import '../../classes/all.dart';
 import '../../mixin/all.dart';
 import '../../delegates/all.dart';
@@ -9,7 +10,7 @@ class YakRunnerAsync<T>
       : assert(fun != null, ' a non null function must be provided');
 
   final Future<T> Function() fun;
-  final void Function(Object, StackTrace) errorHandler;
+  final Catch errorHandler;
 
   Future<Result<T>> call() async {
     try {

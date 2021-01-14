@@ -1,18 +1,25 @@
-// import 'package:riverpod/riverpod.dart';
-// import 'package:yak_error_handler/yak_error_handler.dart';
-// import 'dart:math' as math;
+import 'dart:math' as math;
 
-// import 'package:yak_runner/yak_runner.dart';
+import 'package:riverpod/riverpod.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
+import 'package:yak_runner/yak_runner.dart';
 
-// final _random = math.Random();
+final _random = math.Random();
 
-// int veryBadAPI() => _random.nextBool() ? _random.nextInt(10) : throw 'ops';
+void veryBadAPI() => _random.nextBool() ? {} : throw 'ops';
 
-// void main() {
-//   final container = ProviderContainer();
-//   final runner = YakRunner<int>(veryBadAPI, container.read(catchError));
-//   final _handleError = container.read(catchError);
-//   final value = container.read(helloWorldProvider);
+void main() {
+  final container = ProviderContainer();
+  final _runner = YakRunner(veryBadAPI, container.read(catchError));
+  final _handleError = container.read(handleError);
 
-//   print(value); // Hello world
-// }
+  _handleError.listen(
+      (error) => print('****** ERRROR COUGHT *******\n${error.e}\n${error.s}'));
+
+  for (var i = 0; i < 10; ++i) {
+    _runner().when(
+      success: (_) {},
+      failure: (_, __) {},
+    );
+  }
+}

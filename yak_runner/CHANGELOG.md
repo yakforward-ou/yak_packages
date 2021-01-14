@@ -1,3 +1,7 @@
+## [0.2.0+3-hotfix1] - 14 January 2021
+* [0.2.0+3] never made it to pub.dev [https://github.com/dart-lang/pub-dev/issues/4411]
+* deleted `ErrorHandler` mixin
+
 ## [0.2.0+3] - 14 January 2021
 * changing runners' `errorHandler` from `ErrorHandler` to `void Function(Object,Stacktrace)`
 

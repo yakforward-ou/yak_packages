@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import '../../../classes/all.dart';
+import '../../../typedef/all.dart';
 
 mixin OnSuccessAsync<S> on SuccessBase<S> {
   Future<Result<T>> onResultAsync<T>(

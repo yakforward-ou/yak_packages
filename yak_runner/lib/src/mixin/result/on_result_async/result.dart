@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:yak_runner/src/classes/failure/all.dart';
-
+import '../../../typedef/all.dart';
 import '../../../classes/all.dart';
 
 mixin OnResultAsync<S> on ResultBase<S> {

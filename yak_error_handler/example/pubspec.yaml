@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   riverpod: ^0.12.1
-  yak_runner: ^0.2.0
+  yak_runner: ^0.2.0+3-hotfix1
   yak_error_handler: ^0.1.0
   
 dev_dependencies:
