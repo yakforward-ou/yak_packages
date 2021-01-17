@@ -1,3 +1,7 @@
+## [0.1.0+2] - 17 January 2021
+
+* exporting `ErrorHandler` and `ErrorHandlerDelegate`
+
 ## [0.1.0+1] - 14 January 2021
 
 * added example, updated readme &
