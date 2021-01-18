@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
-import 'package:yak_test/src/yak_runner/mocks/all.dart';
+import '../../../shared/all.dart';
 
 class YakRunnerArgTest<T, S> implements YakRunnerArgTestDelegate<T, S> {
   YakRunnerArgTest({
@@ -20,7 +20,7 @@ class YakRunnerArgTest<T, S> implements YakRunnerArgTestDelegate<T, S> {
     assert(arg != null, 'result must not be null');
 
     group(description, () {
-      final _errorHandler = MockErrorHandler();
+      final _errorHandler = MockCatch();
       final _delegate = MockUnaryDelegate<T, S>();
       final _runner = YakRunnerArg<T, S>(_delegate, _errorHandler);
       when(_errorHandler(any, any)).thenAnswer(null);

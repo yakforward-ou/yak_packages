@@ -13,7 +13,7 @@ void main() {
 
       expect(
         _handler,
-        isA<ErrorHandler>(),
+        isA<YakErrorHandler>(),
         reason: '`read(errorHandler)` should output YakErrorHandler',
       );
     });
