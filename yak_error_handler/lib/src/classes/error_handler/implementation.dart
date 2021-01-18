@@ -1,9 +1,8 @@
 import 'dart:async';
 import '../error/error.dart';
-import 'delegate.dart';
 
-class ErrorHandler implements ErrorHandlerDelegate {
-  ErrorHandler() : _controller = StreamController<YakError>();
+class YakErrorHandler {
+  YakErrorHandler() : _controller = StreamController<YakError>();
   final StreamController<YakError> _controller;
 
   void get dispose => _controller?.close();

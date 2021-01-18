@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
-import 'package:yak_test/src/yak_runner/mocks/all.dart';
+import '../../../shared/all.dart';
 
 class YakRunnerAsyncTest<T> implements YakRunnerTestDelegate<T> {
   YakRunnerAsyncTest({
@@ -19,7 +19,7 @@ class YakRunnerAsyncTest<T> implements YakRunnerTestDelegate<T> {
     assert(result != null, 'result must not be null');
 
     group(description, () {
-      final _errorHandler = MockErrorHandler();
+      final _errorHandler = MockCatch();
       final _delegate = MockDelegate<Future<T>>();
       final _runner = YakRunnerAsync<T>(_delegate, _errorHandler);
       when(_errorHandler(any, any)).thenAnswer(null);
