@@ -1,3 +1,7 @@
+## [0.2.0+1-hotfix1] - 12th January 2021
+
+* re-upload for `https://github.com/dart-lang/pub-dev/issues/4411`
+
 ## [0.2.0+1] - 18th January 2021
 
 * added `yak_error_handler` w/ `yak_runner` test
