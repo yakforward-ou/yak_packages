@@ -6,7 +6,9 @@ a collection of packages for Dart and Flutter
 |--------|-----|
 | [yak](https://github.com/iapicca/yak_packages/tree/master/yak) | [pub](https://pub.dev/packages/yak) |
 | [yak_runner](https://github.com/iapicca/yak_packages/tree/master/yak_runner) | [pub](https://pub.dev/packages/yak_runner) |
-| [yak_extensions](https://github.com/iapicca/yak_packages/tree/master/yak_extension) | [pub](https://pub.dev/packages/yak_extensions) |
+| [yak_test](https://github.com/iapicca/yak_packages/tree/master/yak_test) | [pub](https://pub.dev/packages/yak_test) |
+| [yak_error_handler](https://github.com/iapicca/yak_packages/tree/master/yak_error_handler) | [pub](https://pub.dev/packages/yak_error_handler) |
+
 
 ---
 ## Buy me a coffee
