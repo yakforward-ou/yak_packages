@@ -1,6 +1,6 @@
 import 'package:riverpod/all.dart';
 import 'package:test/test.dart';
-import 'package:yak_error_handler/src/typedef/all.dart';
+import 'package:yak_error_handler/src/defs/all.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 
 void main() {
@@ -11,7 +11,7 @@ void main() {
 
       expect(
         _catchError,
-        isA<Catch>(),
+        isA<CatchError>(),
         reason: '`read(catchError)` should output `Catch`',
       );
     });

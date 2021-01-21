@@ -63,7 +63,7 @@ void main() {
       );
 
       verify(_delegate(_data)).called(1);
-      verifyZeroInteractions(_errorHandler);
+      verifyNever(_errorHandler(any, any));
     });
   });
 }

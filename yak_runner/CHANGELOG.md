@@ -1,3 +1,9 @@
+## [0.2.0+3-hotfix3] - 21 January 2021
+* fixed typo in `test`
+
+## [0.2.0+3-hotfix2] - 21 January 2021
+* `test`: replacing `mockito`'s `verifyZeroInteractions` with `verifyNever`
+
 ## [0.2.0+3-hotfix1] - 14 January 2021
 * [0.2.0+3] never made it to pub.dev [https://github.com/dart-lang/pub-dev/issues/4411]
 * deleted `ErrorHandler` mixin
