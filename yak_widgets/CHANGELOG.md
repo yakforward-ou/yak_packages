@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 22 January 2021
 
-* TODO: Describe initial release.
+* added `DamperWidget`, `DamperState`, `damperStatePod` with example
+- !!! test need to be done

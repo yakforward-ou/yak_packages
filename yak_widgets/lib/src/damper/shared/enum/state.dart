@@ -1,0 +1,4 @@
+enum DamperState {
+  impose,
+  withdraw,
+}
