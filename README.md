@@ -9,6 +9,7 @@ a collection of packages for Dart and Flutter
 | [yak_error_handler](https://github.com/iapicca/yak_packages/tree/master/yak_error_handler) | [pub](https://pub.dev/packages/yak_error_handler) |
 | [yak_widgets](https://github.com/iapicca/yak_packages/tree/master/yak_widgets) | [pub](https://pub.dev/packages/yak_widgets) |
 
+
 ---
 ## Buy me a coffee
 
