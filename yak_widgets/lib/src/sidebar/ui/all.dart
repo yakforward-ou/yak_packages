@@ -1,1 +1,1 @@
-export 'widgets/all.dart';
+export 'widgets/all.dart' show YakSidebar;
