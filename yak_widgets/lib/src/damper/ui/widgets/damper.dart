@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../../shared/all.dart';
+import '../../../shared/all.dart';
 import '../../logic/all.dart';
 
 class DamperWidget extends HookWidget {

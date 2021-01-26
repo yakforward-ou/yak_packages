@@ -1,1 +1,1 @@
-import 'package:yak_widgets/yak_widgets.dart';
+import 'package:yak_widgets/all.dart';
