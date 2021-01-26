@@ -1,3 +1,10 @@
+## [0.1.0+1-hotfix1] - 26 January 2021
+
+* re-naming `YakDamper`
+* example app for `YakDamper`
+* `dartfmt` where needed 
+
+
 ## [0.1.0+1] - 26 January 2021
 
 * created sidebar

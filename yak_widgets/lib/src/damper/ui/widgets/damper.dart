@@ -3,8 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../logic/all.dart';
 
-class DamperWidget extends HookWidget {
-  const DamperWidget({
+class YakDamper extends HookWidget {
+  const YakDamper({
     @required this.children,
     this.duration = const Duration(milliseconds: 250),
   }) : super(key: const ValueKey('DamperWidget'));

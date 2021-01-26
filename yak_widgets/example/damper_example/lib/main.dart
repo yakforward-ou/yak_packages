@@ -15,7 +15,7 @@ class MyHomePage extends HookWidget {
     final _state = useProvider(damperStatePod);
     return Scaffold(
       body: Stack(children: [
-        DamperWidget(
+        YakDamper(
           children: [
             FlutterLogo(size: MediaQuery.of(context).size.shortestSide),
           ],

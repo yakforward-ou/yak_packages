@@ -18,12 +18,15 @@ class YakSidebar extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final handedness = useProvider(handednessPod).state;
+    final size = MediaQuery.of(context).size;
     return Positioned(
       right: handedness == Handedness.righthanded ? 0 : null,
       left: handedness == Handedness.lefthanded ? 0 : null,
-      child: SizedBox.expand(
+      child: SizedBox(
+        height: size.height,
+        width: width,
         child: SidebarGestureDetector(
-          threshold: MediaQuery.of(context).size.height * scrollSensitivity,
+          threshold: size.height * scrollSensitivity,
           child: child,
         ),
       ),
