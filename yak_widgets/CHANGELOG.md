@@ -1,4 +1,4 @@
-## [0.1.0+1] - 23 January 2021
+## [0.1.0+1] - 26 January 2021
 
 * created sidebar
 * fixed export
