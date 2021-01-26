@@ -1,6 +1,6 @@
 # yak_widgets
 
-A collection of `widgets` based on `riverpod`
+A collection of `widgets` based on `riverpod` and `flutter_hooks`
 
 # Get Started
 
