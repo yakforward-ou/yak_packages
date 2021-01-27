@@ -1,3 +1,8 @@
+## [0.2.1+3] - 27 January 2021
+
+* transferred `yak_tweens` to `yak_math`
+* bumped all `yak_packages`
+
 ## [0.2.1+2] - 22 January 2021
 
 * added `yak_widgets`

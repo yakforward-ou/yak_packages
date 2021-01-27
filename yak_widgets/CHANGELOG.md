@@ -1,3 +1,7 @@
+## [0.1.0+2] - 27 January 2021
+
+* created `YakParallax`
+
 ## [0.1.0+1-hotfix2] - 27 January 2021
 
 * example app for `YakSidebar`
