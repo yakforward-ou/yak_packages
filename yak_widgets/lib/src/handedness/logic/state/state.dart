@@ -1,0 +1,4 @@
+enum Handedness {
+  lefthanded,
+  righthanded,
+}

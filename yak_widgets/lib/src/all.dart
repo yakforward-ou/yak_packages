@@ -1,1 +1,4 @@
-export 'damper/all.dart' show DamperWidget, DamperState, damperStatePod;
+export 'damper/all.dart';
+export 'sidebar/all.dart';
+export 'handedness/all.dart';
+export 'duration/all.dart';
