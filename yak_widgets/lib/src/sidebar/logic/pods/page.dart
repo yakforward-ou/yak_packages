@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:riverpod/all.dart';
-import 'package:yak_widgets/yak_widgets.dart';
+import '../../../all.dart';
 import '../all.dart';
 
 final sidebarPageControllerPod = Provider.autoDispose<PageController>((ref) {

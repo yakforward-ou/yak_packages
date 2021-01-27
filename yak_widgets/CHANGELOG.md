@@ -1,3 +1,7 @@
+## [0.1.0+1-hotfix2] - 27 January 2021
+
+* example app for `YakSidebar`
+
 ## [0.1.0+1-hotfix1] - 26 January 2021
 
 * re-naming `YakDamper`

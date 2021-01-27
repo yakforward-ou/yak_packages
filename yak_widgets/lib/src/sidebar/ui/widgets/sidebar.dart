@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yak_widgets/src/handedness/logic/pods/pod.dart';
 import '../../../../src/all.dart';
 import 'gesture.dart';
 
