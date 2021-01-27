@@ -7,8 +7,8 @@ void main() {
   runApp(
     ProviderScope(
       child: MaterialApp(
-        home: Material(
-          child: Stack(
+        home: Scaffold(
+          body: Stack(
             children: [
               const MyPageView(),
               const YakSidebar(
@@ -16,6 +16,7 @@ void main() {
               ),
             ],
           ),
+          floatingActionButton: const MyFloatingActionButton(),
         ),
       ),
     ),
@@ -34,5 +35,20 @@ class MyPageView extends HookWidget {
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, _) => FlutterLogo(),
     );
+  }
+}
+
+class MyFloatingActionButton extends HookWidget {
+  const MyFloatingActionButton()
+      : super(key: const ValueKey('MyFloatingActionButton'));
+
+  @override
+  Widget build(BuildContext context) {
+    final handedness = useProvider(handednessPod);
+    return FloatingActionButton(
+        child: const Icon(Icons.refresh),
+        onPressed: () => handedness.state == Handedness.righthanded
+            ? handedness.state = Handedness.lefthanded
+            : handedness.state = Handedness.righthanded);
   }
 }
