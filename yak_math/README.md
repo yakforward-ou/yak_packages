@@ -1,6 +1,6 @@
 # yak_math
 
-A collection of classes and extension part of `yak_package`
+A collection of flutter classes and extesions part of `yak_packages`
 
 # Get Started
 
