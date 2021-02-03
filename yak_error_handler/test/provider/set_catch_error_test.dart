@@ -11,10 +11,10 @@ void main() {
   group('`handleError`', () {
     final container = ProviderContainer(overrides: []);
     final _setCatch = container.read(setCatchError);
-    final _catch = container.read(catchError);
     final _delegate = MockDelegate();
     final _errorHandler = MockCatchError();
     _setCatch(_errorHandler);
+
     when(_errorHandler(any, any)).thenAnswer((_) {});
 
     test('WHEN `Delegate` throws THEN `Catch` should be triggered `', () {
@@ -25,10 +25,9 @@ void main() {
       try {
         _delegate();
       } catch (e, s) {
-        _catch(e, s);
+        container.read(catchError)(e, s);
       }
 
-      print('$_catch');
       verify(_delegate()).called(1);
       verify(_errorHandler(any, any)).called(1);
     });
@@ -41,7 +40,7 @@ void main() {
       try {
         _delegate();
       } catch (e, s) {
-        _catch(e, s);
+        container.read(catchError)(e, s);
       }
 
       verify(_delegate()).called(1);
