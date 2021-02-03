@@ -1,6 +1,7 @@
-## [0.1.0+2] - 27 January 2021
+## [0.1.0+2] - 3 February 2021
 
-* created `YakParallax`
+* changed folder structure
+* refactor with `useEffect()`
 
 ## [0.1.0+1-hotfix2] - 27 January 2021
 
