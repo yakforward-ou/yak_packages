@@ -1,3 +1,8 @@
+## [0.2.1+2] - 22 January 2021
+
+* added `yak_widgets`
+* bumped all `yak_packages`
+
 ## [0.2.1+1] - 18th January 2021
 
 * bumped all `yak_packages`
