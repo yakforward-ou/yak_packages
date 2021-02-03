@@ -1,5 +1,6 @@
 import 'package:riverpod/all.dart';
-import 'package:yak_error_handler/src/typedef/catch.dart';
+import '../defs/all.dart';
 import 'error_handler.dart';
 
-final catchError = Provider<Catch>((ref) => ref.read(errorHandler).call);
+final catchError =
+    Provider<CatchError>((ref) => ref.read(errorHandler).onError);

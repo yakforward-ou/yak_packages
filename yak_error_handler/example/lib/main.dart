@@ -11,11 +11,8 @@ void veryBadAPI() => _random.nextBool() ? {} : throw 'ops';
 void main() {
   final container = ProviderContainer();
   final _runner = YakRunner(veryBadAPI, container.read(catchError));
-  final _handleError = container.read(handleError);
-
-  _handleError.listen(
-      (error) => print('****** ERRROR COUGHT *******\n${error.e}\n${error.s}'));
-
+  container.read(setCatchError)(
+      (e, s) => print('****** ERRROR COUGHT *******\n$e\n$s'));
   for (var i = 0; i < 10; ++i) {
     _runner().when(
       success: (_) {},

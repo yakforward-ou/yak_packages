@@ -1,2 +1,2 @@
-export 'provider/all.dart' show catchError, handleError;
-export 'classes/all.dart';
+export 'provider/all.dart' show setCatchError, catchError;
+export 'defs/all.dart' show CatchErrorDelegate;
