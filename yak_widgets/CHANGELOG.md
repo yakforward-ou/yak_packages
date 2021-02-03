@@ -1,3 +1,7 @@
+## [0.1.0+3] - 3 February 2021
+
+* bumping to `0.1.1+0` for `github.com/dart-lang/pub-dev/issues/4411`
+
 ## [0.1.0+2] - 3 February 2021
 
 * changed folder structure
