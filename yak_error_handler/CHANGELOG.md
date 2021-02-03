@@ -1,3 +1,7 @@
+## [0.1.0+3-hotfix2] - 3 February 2021
+
+* example updated
+
 ## [0.1.0+3-hotfix1] - 3 February 2021
 
 * tests completed
