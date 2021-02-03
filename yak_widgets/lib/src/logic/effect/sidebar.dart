@@ -25,7 +25,7 @@ Effect _sidebarPageViewEffect(
         });
 
 extension SidebarPageViewEffect on StateController<SidebarScroll> {
-  void useDamperAnimationEffect(
+  void useSidebarPageViewEffect(
     PageController controller,
     Duration duration,
     Curve curve,

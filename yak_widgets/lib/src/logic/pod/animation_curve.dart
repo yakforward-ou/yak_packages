@@ -1,5 +1,5 @@
 import 'package:hooks_riverpod/all.dart';
 
-final animationDurationPod = StateProvider<Duration>(
+final animationCurvePod = StateProvider<Duration>(
   (ref) => const Duration(milliseconds: 250),
 );
