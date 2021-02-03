@@ -1,3 +1,7 @@
+## [0.1.0+3-hotfix1] - 3 February 2021
+
+* tests completed
+
 ## [0.1.0+3] - 18 January 2021
 
 * renaming `ErrorHandler` in `YakErrorHandler`

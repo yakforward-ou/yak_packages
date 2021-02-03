@@ -1,6 +1,6 @@
 name: yak_error_handler
 description: a simple dart package based on `riverpod` to easily handle `catch`
-version: 0.1.0+3
+version: 0.1.0+3-hotfix1
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
