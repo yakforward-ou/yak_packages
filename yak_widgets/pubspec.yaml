@@ -12,6 +12,7 @@ dependencies:
   riverpod:  ^0.12.2
   hooks_riverpod: ^0.12.2
   flutter_hooks: ^0.15.0
+  yak_math: ^0.1.0
 
 dev_dependencies:
   flutter_test:
