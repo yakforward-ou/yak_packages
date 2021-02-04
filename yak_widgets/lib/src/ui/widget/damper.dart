@@ -3,37 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yak_widgets/yak_widgets.dart';
 
-/* [EXAMPLE]
-
-
-void main() => runApp(
-      const ProviderScope(child: MaterialApp(home: MyHomePage())),
-    );
-
-class MyHomePage extends HookWidget {
-  const MyHomePage() : super(key: const ValueKey('MyHomePage'));
-
-  @override
-  Widget build(BuildContext context) {
-    final _state = useProvider(damperStatePod);
-    return Scaffold(
-      body: Stack(children: [
-        YakDamper(
-          children: [
-            FlutterLogo(size: MediaQuery.of(context).size.shortestSide),
-          ],
-        ),
-      ]),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _state.state = _state.state == DamperState.impose
-            ? DamperState.withdraw
-            : DamperState.impose,
-      ),
-    );
-  }
-}
-*/
-
 /// a ready to use widget that uses `useDamperAnimationEffect`
 
 class YakDamper extends HookWidget {

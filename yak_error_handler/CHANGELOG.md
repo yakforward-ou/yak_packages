@@ -1,23 +1,17 @@
-## [0.1.0+3-hotfix2] - 3 February 2021
+* [0.1.1+0] -4 February 21
+  - example updated
 
-* example updated
+* [0.1.0+3-hotfix1] - 3 February 21
+  - tests completed
 
-## [0.1.0+3-hotfix1] - 3 February 2021
+* [0.1.0+3] - 18 January 21
+  - renaming `ErrorHandler` in `YakErrorHandler`
 
-* tests completed
+* [0.1.0+2] - 17 January 21
+  - exporting `ErrorHandler` and `ErrorHandlerDelegate`
 
-## [0.1.0+3] - 18 January 2021
+* [0.1.0+1] - 14 January 21
+  - added example, updated readme &
 
-* renaming `ErrorHandler` in `YakErrorHandler`
-
-## [0.1.0+2] - 17 January 2021
-
-* exporting `ErrorHandler` and `ErrorHandlerDelegate`
-
-## [0.1.0+1] - 14 January 2021
-
-* added example, updated readme &
-
-## [0.1.0+0] - initila release
-
-* initial implementation complete, all tests passing
+* [0.1.0+0] - initila release
+  - initial implementation complete, all tests passing

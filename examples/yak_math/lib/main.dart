@@ -1,10 +1,5 @@
-# Example
-
-```dart
 import 'package:flutter/material.dart';
 import 'package:yak_math/yak_math.dart';
-
-/// `example`
 
 void main() => runApp(
       MaterialApp(
@@ -53,7 +48,3 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
         child: const FlutterLogo(size: 80),
       );
 }
-
-```
-
-[Jump to Source](https://github.com/iapicca/yak_packages/examples/yak_math)

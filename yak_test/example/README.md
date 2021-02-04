@@ -1,16 +1,21 @@
-# example
+# Example
 
-A new Flutter project.
+```dart
+import 'package:yak_runner/yak_runner.dart';
+import 'package:yak_test/yak_test.dart';
 
-## Getting Started
+/// STEP 1 - use  `yak_runner` from [https://pub.dev/packages/yak_runner]
 
-This project is a starting point for a Flutter application.
+final _runner = YakRunner<int>(() => 2);
 
-A few resources to get you started if this is your first Flutter project:
+/// STEP 2 - create a test with  `yak_test` from [https://pub.dev/packages/yak_test]
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+final _tester = _runner.buildTest(_runner.buildTestFactory('description here'));
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+/// STEP 3 - run the test
+
+void main() => _tester(0);
+
+```
+
+[Jump to Source](https://github.com/iapicca/yak_packages/examples/yak_test)

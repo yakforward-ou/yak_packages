@@ -1,6 +1,3 @@
-# Example
-
-```dart
 import 'dart:math' as math;
 import 'package:riverpod/riverpod.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
@@ -27,6 +24,3 @@ void main() {
     );
   }
 }
-```
-
-[Jump to Source](https://github.com/iapicca/yak_packages/examples/yak_error_handler)
