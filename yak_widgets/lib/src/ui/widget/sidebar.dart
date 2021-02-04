@@ -75,7 +75,7 @@ class YakSidebar extends HookWidget {
     final scroll = useProvider(sidebarPod);
     final height = MediaQuery.of(context).size.height;
     final threshold = height * scrollSensitivity;
-    return HandednessWidget(
+    return YakHandedness(
       child: SizedBox(
         key: const ValueKey('YakSidebar: SizedBox'),
         height: height,

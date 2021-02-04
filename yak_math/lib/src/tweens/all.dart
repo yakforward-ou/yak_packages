@@ -14,3 +14,5 @@ export 'edge_insets.dart';
 export 'border.dart';
 export 'matrtix_4.dart';
 export 'text_style.dart';
+
+/// simply exports folder's classes

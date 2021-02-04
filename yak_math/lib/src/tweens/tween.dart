@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
+/// an `Tween` that allows `const` constructor
+
 class YakTween<T extends dynamic> extends Animatable<T> {
   const YakTween({
     this.begin,
