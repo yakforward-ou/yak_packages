@@ -1,4 +1,0 @@
-enum Handedness {
-  lefthanded,
-  righthanded,
-}
