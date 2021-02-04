@@ -10,7 +10,7 @@ dependencies:
     sdk: flutter
   hooks_riverpod: ^0.12.2
   flutter_hooks: ^0.15.0
-  yak_widgets: ^0.1.0+1-hotfix1
+  yak_widgets: ^0.1.1+3
 
 flutter:
   uses-material-design: true

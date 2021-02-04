@@ -1,3 +1,3 @@
-export 'widget/all.dart';
+export 'handedness.dart';
 
 /// simply exports folder's classes

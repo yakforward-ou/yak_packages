@@ -28,12 +28,10 @@ class MyPageView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = usePageController();
-    final sidebar = useProvider(sidebarPod);
-    final duration = useProvider(animationDurationPod).state;
-    final curve = useProvider(animationCurvePod).state;
-
-    sidebar.useSidebarPageViewEffect(
-        controller, useProvider(animationDurationPod).state, duration, curve);
+    final duration = useProvider(animationDurationPod);
+    final curve = useProvider(animationCurvePod);
+    useProvider(sidebarPod)
+        .useSidebarPageViewEffect(controller, duration.state, curve.state);
     return PageView.builder(
       itemBuilder: (context, _) => const Center(child: FlutterLogo(size: 160)),
       controller: controller,

@@ -3,6 +3,8 @@ import 'package:riverpod/riverpod.dart';
 import 'package:yak_widgets/yak_widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+/// `hooks` effect for lining `PageController` to `StateController<SidebarScroll>`
+
 Effect _sidebarPageViewEffect(
   StateController<SidebarScroll> scrollbar,
   PageController controller,
