@@ -1,6 +1,8 @@
 import 'package:flutter/rendering.dart';
 import 'tween.dart';
 
+/// an `BoxConstraintsTween` that allows `const` constructor
+
 class YakBoxConstraintsTween extends YakTween<BoxConstraints> {
   const YakBoxConstraintsTween({
     BoxConstraints begin,

@@ -1,6 +1,8 @@
 import 'package:flutter/painting.dart';
 import 'tween.dart';
 
+/// an `FractionalOffsetTween` that allows `const` constructor
+
 class YakFractionalOffsetTween extends YakTween<FractionalOffset> {
   const YakFractionalOffsetTween({
     FractionalOffset begin,

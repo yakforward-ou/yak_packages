@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
+/// an `CurveTween` that allows `const` constructor
+
 class YakCurveTween extends Animatable<double> {
   const YakCurveTween({
     @required this.curve,

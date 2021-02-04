@@ -6,6 +6,8 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../../shared/all.dart';
 
+/// a test for `YakRunnerAsync`
+
 class YakRunnerAsyncTest<T> implements YakRunnerTestDelegate<T> {
   YakRunnerAsyncTest({
     @required this.description,

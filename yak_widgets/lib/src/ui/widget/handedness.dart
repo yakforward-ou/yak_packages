@@ -10,11 +10,11 @@ class YakHandedness extends HookWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    final handedness = useProvider(handednessPod).state;
+    final lefthanded = useProvider(handednessPod).state;
     return Positioned(
       key: ValueKey('$key: Positioned'),
-      right: handedness == Handedness.righthanded ? 0 : null,
-      left: handedness == Handedness.lefthanded ? 0 : null,
+      right: lefthanded ? null : 0,
+      left: lefthanded ? 0 : null,
       child: child,
     );
   }
