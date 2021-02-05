@@ -1,3 +1,6 @@
+* [0.2.1+5] - 5 February 2021
+  - updated `readme`
+
 * [0.2.1+4] - 4 February 21
   - added `example`
 
