@@ -1,3 +1,6 @@
+* [0.2.1+1] - 5 February 2021
+  - updated `readme`
+
 * [0.2.1+0] - 4 February
   - updated example
 
