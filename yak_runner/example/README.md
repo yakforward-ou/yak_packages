@@ -41,8 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
 }
-
-
 ```
 
-[Jump to Source](https://github.com/iapicca/yak_packages/examples/yak_runner)
+[Jump to Source](https://github.com/iapicca/yak_packages/tree/master/examples/yak_runner)

@@ -18,4 +18,4 @@ void main() => _tester(0);
 
 ```
 
-[Jump to Source](https://github.com/iapicca/yak_packages/examples/yak_test)
+[Jump to Source](https://github.com/iapicca/yak_packages/tree/master/examples/yak_test)

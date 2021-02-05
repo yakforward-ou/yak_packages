@@ -29,4 +29,4 @@ void main() {
 }
 ```
 
-[Jump to Source](https://github.com/iapicca/yak_packages/examples/yak_error_handler)
+[Jump to Source](https://github.com/iapicca/yak_packages/tree/master/examples/yak_error_handler)

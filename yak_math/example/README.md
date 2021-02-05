@@ -56,4 +56,4 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 
 ```
 
-[Jump to Source](https://github.com/iapicca/yak_packages/examples/yak_math)
+[Jump to Source](https://github.com/iapicca/yak_packages/tree/master/examples/yak_math)
