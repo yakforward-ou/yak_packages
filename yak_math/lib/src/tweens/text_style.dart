@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'tween.dart';
 
+/// an `TextStyleTween` that allows `const` constructor
+
 class YakTextStyleTween extends YakTween<TextStyle> {
   const YakTextStyleTween({
     TextStyle begin,

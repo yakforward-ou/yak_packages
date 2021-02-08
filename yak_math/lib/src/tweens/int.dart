@@ -1,5 +1,7 @@
 import 'tween.dart';
 
+/// an `IntTween` that allows `const` constructor
+
 class YakIntTween extends YakTween<int> {
   const YakIntTween({
     int begin,

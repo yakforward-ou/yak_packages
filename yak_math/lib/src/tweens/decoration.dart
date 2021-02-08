@@ -1,6 +1,8 @@
 import 'package:flutter/painting.dart';
 import 'tween.dart';
 
+/// an `DecorationTween` that allows `const` constructor
+
 class YakDecorationTween extends YakTween<Decoration> {
   const YakDecorationTween({
     Decoration begin,

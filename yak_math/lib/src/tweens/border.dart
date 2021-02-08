@@ -1,6 +1,8 @@
 import 'package:flutter/painting.dart';
 import 'tween.dart';
 
+/// an `BorderTwee` that allows `const` constructor
+
 class YakBorderTween extends YakTween<Border> {
   const YakBorderTween({
     Border begin,
