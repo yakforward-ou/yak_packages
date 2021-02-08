@@ -19,25 +19,19 @@ class _MyHomePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = useProvider(damperStatePod);
+    final _state = useProvider(handednessPod);
     return Scaffold(
       key: Keys.parent,
       body: Stack(children: [
-        YakDamper(
-          children: [
-            Center(
-              child: FlutterLogo(
-                key: Keys.subject,
-              ),
-            )
-          ],
+        YakHandedness(
+          child: FlutterLogo(
+            key: Keys.subject,
+          ),
         ),
       ]),
       floatingActionButton: FloatingActionButton(
         key: Keys.trigger,
-        onPressed: () => state.state = state.state == DamperState.impose
-            ? DamperState.withdraw
-            : DamperState.impose,
+        onPressed: () => _state.state = !_state.state,
       ),
     );
   }

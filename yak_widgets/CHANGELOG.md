@@ -1,5 +1,9 @@
-* [0.1.1+6] - 5 February 2021
- - added added `YakDamper` test 
+* [0.1.1+7] - 8 February 2021
+ - added  `YakHandedness` test 
+ - added  `YakSidebar` test 
+
+* [0.1.1+6] - 8 February 2021
+ - added `YakDamper` test 
  - added comments
 
 * [0.1.1+5] - 5 February 2021
@@ -31,7 +35,7 @@
   -  `dartfmt` where needed 
 
 * [0.1.0+1] - 26 January 2021
-  -  created sidebar
+  -  created `YakSidebar`
   -  fixed export
 
 * [0.1.0+0] - 22 January 2021
