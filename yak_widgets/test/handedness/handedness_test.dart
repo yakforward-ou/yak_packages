@@ -1,20 +1,37 @@
+import 'dart:ui';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'test_app.dart';
 
+Rect _left(Rect rect) => Rect.fromLTWH(
+      rect.left,
+      rect.top,
+      rect.width * .5,
+      rect.height,
+    );
+
+Rect _right(Rect rect) => Rect.fromLTWH(
+      rect.left + rect.width * .5,
+      rect.top,
+      rect.width * .5,
+      rect.height,
+    );
+
 void main() {
-  group('`YakDamper` test', () {
+  group('`YakHandedness` test', () {
     testWidgets(
-        'WHEN no interaction with `trigger` THEN `subject` is ON SCREEN',
+        'WHEN no interaction with `trigger` THEN `subject` is ON THE RIGHT',
         (tester) async {
       {
         await tester.pumpWidget(app);
       }
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
-      expect(parent.overlaps(subject), true, reason: 'should be ON-screen');
+      expect(subject.overlaps(_right(parent)), true,
+          reason: 'should be on RIGHT side');
     });
 
-    testWidgets('WHEN `trigger` tapped THEN `subject` is OFF SCREEN`',
+    testWidgets('WHEN `trigger` tapped THEN `subject` is ON THE LEFT`',
         (tester) async {
       {
         await tester.pumpWidget(app);
@@ -25,7 +42,9 @@ void main() {
       }
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
-      expect(parent.overlaps(subject), false, reason: 'should be OFF-screen');
+
+      expect(subject.overlaps(_left(parent)), true,
+          reason: 'should be on LEFT side');
     });
     testWidgets('WHEN new test is run THEN `app state` is not persisted',
         (tester) async {
@@ -34,11 +53,12 @@ void main() {
       }
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
-
-      expect(parent.overlaps(subject), true, reason: 'should be ON-screen');
+      expect(subject.overlaps(_right(parent)), true,
+          reason: 'should be on RIGHT side');
     });
 
-    testWidgets('WHEN `trigger` tapped **twice** THEN `subject` is ON SCREEN`',
+    testWidgets(
+        'WHEN `trigger` tapped **twice** THEN `subject`  is ON THE RIGHT',
         (tester) async {
       {
         await tester.pumpWidget(app);
@@ -53,8 +73,8 @@ void main() {
       }
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
-
-      expect(parent.overlaps(subject), true, reason: 'should be ON-screen');
+      expect(subject.overlaps(_right(parent)), true,
+          reason: 'should be on RIGHT side');
     });
   });
 }

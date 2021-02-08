@@ -8,7 +8,7 @@ import 'package:yak_widgets/yak_widgets.dart';
 class YakSidebar extends HookWidget {
   const YakSidebar({
     this.child,
-    this.scrollSensitivity = .001,
+    this.scrollSensitivity = .01,
     this.width = 54,
     Key key = const ValueKey('YakSidebar'),
   }) : super(key: key);
