@@ -1,3 +1,6 @@
+## [0.1.1+4] - 4 February 2021
+* added added `YakDamper` test 
+
 ## [0.1.1+3] - 4 February 2021
 * added comments
 
@@ -22,8 +25,6 @@
 ## [0.1.0+1] - 26 January 2021
 * created sidebar
 * fixed export
-- !!! test need to be done
 
 ## [0.1.0+0] - 22 January 2021
 * added `DamperWidget`, `DamperState`, `damperStatePod` with example
-- !!! test need to be done

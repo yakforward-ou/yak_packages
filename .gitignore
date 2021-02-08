@@ -19,3 +19,35 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+.vscode/
+
+# [CUSTOM]
+.idea/
+android/
+ios/
+linux/
+web/
+.metadata
+.packages
+pubspec.lock

@@ -5,9 +5,8 @@ import 'package:yak_widgets/yak_widgets.dart';
 
 /// a ready to use `Positioned` that changes  according to`handednessPod` state
 
-class HandednessWidget extends HookWidget {
-  HandednessWidget({@required this.child, key})
-      : super(key: key ?? UniqueKey());
+class YakHandedness extends HookWidget {
+  YakHandedness({@required this.child, key}) : super(key: key ?? UniqueKey());
   final Widget child;
   @override
   Widget build(BuildContext context) {
