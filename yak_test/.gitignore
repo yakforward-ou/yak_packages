@@ -73,7 +73,6 @@ build/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 
-
 # [CUSTOM]
 .idea/
 android/

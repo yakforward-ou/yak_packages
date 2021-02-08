@@ -1,3 +1,7 @@
+* [0.1.1+6] - 5 February 2021
+ - added added `YakDamper` test 
+ - added comments
+
 * [0.1.1+5] - 5 February 2021
  -  updated `readme`
 

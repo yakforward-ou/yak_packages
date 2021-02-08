@@ -12,32 +12,51 @@ class YakDamper extends HookWidget {
   }) : super(key: key);
   final List<Widget> children;
 
+  Key get subjectKey => ValueKey('$key: : SizedBox');
+
   @override
   Widget build(BuildContext context) {
     final damperState = useProvider(damperStatePod);
     final duration = useProvider(animationDurationPod);
+    final curve = useProvider(animationCurvePod);
+
     final animationController = useAnimationController(
       duration: duration.state,
     );
     animationController.useDamperAnimationEffect(damperState);
     final size = MediaQuery.of(context).size;
     return PositionedTransition(
-      key: const ValueKey('DamperWidget: PositionedTransition'),
+      key: ValueKey('$key: PositionedTransition'),
       rect: RelativeRectTween(
         begin: RelativeRect.fromSize(
-            Rect.fromLTWH(0, 0, size.width, size.height), size),
+          Rect.fromLTWH(
+            0,
+            0,
+            size.width,
+            size.height,
+          ),
+          size,
+        ),
         end: RelativeRect.fromSize(
-            Rect.fromLTWH(0, -size.height, size.width, size.height), size),
+          Rect.fromLTWH(
+            0,
+            -size.height,
+            size.width,
+            size.height,
+          ),
+          size,
+        ),
       ).animate(
         CurvedAnimation(
           parent: animationController,
-          curve: Curves.easeOut,
+          curve: curve.state,
         ),
       ),
-      child: SizedBox.expand(
-        key: const ValueKey('DamperWidget: SizedBox'),
+      child: SizedBox.fromSize(
+        size: size,
+        key: subjectKey,
         child: Stack(
-          key: const ValueKey('DamperWidget: Stack'),
+          key: ValueKey('$key: : Stack'),
           children: children,
         ),
       ),
