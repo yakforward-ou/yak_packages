@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
-import '../../../shared/all.dart';
+import '../../../mocks/all.dart';
 
 /// a test for `YakRunnerAsync`
 

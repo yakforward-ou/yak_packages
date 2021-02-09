@@ -1,6 +1,6 @@
 name: yak
 description: A collection of all "Yak" packages
-version: 0.2.1+5
+version: 0.2.1+6
 
 homepage: https://github.com/iapicca/yak_packages
 
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  yak_test: ^0.2.0
+  yak_test: ^0.2.1
   yak_runner: ^0.2.1
-  yak_error_handler: ^0.1.1
-  yak_widgets: ^0.1.0
+  yak_error_handler: ^0.2.0
+  yak_widgets: ^0.1.1
   yak_math: ^0.1.0

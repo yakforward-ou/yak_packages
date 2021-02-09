@@ -1,6 +1,3 @@
-# Example
-
-```dart
 import 'dart:async';
 import 'package:yak_runner/yak_runner.dart';
 import 'package:yak_test/yak_test.dart';
@@ -31,6 +28,3 @@ void main() {
   unaryAsyncTest('hello', 0);
   nullaryAsyncTest(0);
 }
-```
-
-[Jump to Source](https://github.com/iapicca/yak_packages/tree/master/yak_test/test/yak_runner_test)
