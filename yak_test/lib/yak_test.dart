@@ -1,3 +1,3 @@
 library yak_test;
 
-export 'src/all.dart';
+export 'src/yak_runner/extension/all.dart';

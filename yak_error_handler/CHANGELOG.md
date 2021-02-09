@@ -1,3 +1,6 @@
+* [0.2.0+0] - 9 February 2021
+  - complete refactor `Singleton` based without dependencies
+
 * [0.1.1+1] - 5 February 2021
   - updated `readme`
 

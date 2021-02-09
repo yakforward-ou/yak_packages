@@ -1,8 +1,7 @@
 name: example
 environment:
-  sdk: '>=2.10.0 <3.0.0'
+  sdk: '>=2.7.0 <3.0.0'
 
 dependencies:
-  riverpod: ^0.12.1
-  yak_runner: ^0.2.0
-  yak_error_handler: ^0.1.1
+  yak_runner: ^0.2.1
+  yak_error_handler: ^0.2.0

@@ -1,3 +1,6 @@
+* [0.2.1+6] - 5 February 2021
+  - updated dependencies
+
 * [0.2.1+5] - 5 February 2021
   - updated `readme`
 

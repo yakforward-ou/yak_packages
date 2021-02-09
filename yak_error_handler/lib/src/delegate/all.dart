@@ -1,3 +1,3 @@
-export 'mocks/all.dart';
+export 'catch.dart';
 
 /// simply exports folder's classes

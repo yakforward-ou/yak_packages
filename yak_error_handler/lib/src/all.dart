@@ -1,4 +1,5 @@
-export 'provider/all.dart' show setCatchError, catchError;
-export 'defs/all.dart' show CatchErrorDelegate;
+export 'delegate/all.dart';
+export 'typedef/all.dart';
+export 'implementation/all.dart';
 
 /// simply exports folder's classes

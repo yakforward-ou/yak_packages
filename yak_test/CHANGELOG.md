@@ -1,3 +1,8 @@
+* [0.2.1+2] - 9 February 2021
+  - removed unused dependencies
+  - simplyfied folder structure
+  - added test
+
 * [0.2.1+1] - 5 February 2021
   - updated `readme`
 
