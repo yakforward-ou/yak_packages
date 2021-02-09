@@ -1,3 +1,3 @@
-export 'catch_error.dart';
+export 'catch.dart';
 
 /// simply exports folder's classes
