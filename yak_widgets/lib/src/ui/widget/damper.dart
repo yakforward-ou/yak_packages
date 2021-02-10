@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '/yak_widgets.dart';
+import '../../../yak_widgets.dart';
 
 /// a ready to use widget that uses `useDamperAnimationEffect`
 

@@ -1,5 +1,5 @@
 import 'package:riverpod/riverpod.dart';
-import '/yak_widgets.dart';
+import '../../../yak_widgets.dart';
 
 /// `StateProvider` for `SidebarScroll`
 

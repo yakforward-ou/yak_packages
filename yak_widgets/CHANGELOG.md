@@ -1,21 +1,24 @@
+* [0.1.1+9] - 10 February 2021
+  - fix `pub.dev`'s complain `Pass static analysis`
+
 * [0.1.1+8] - 10 February 2021
- - added `effective_dart` to `dev_dependencies`
- - updated readme and comments
+  - added `effective_dart` to `dev_dependencies`
+  - updated readme and comments
 
 * [0.1.1+7] - 8 February 2021
- - added  `YakHandedness` test 
- - added  `YakSidebar` test 
+  - added  `YakHandedness` test 
+  - added  `YakSidebar` test 
 
 * [0.1.1+6] - 8 February 2021
- - added `YakDamper` test 
- - added comments
+  - added `YakDamper` test 
+  - added comments
 
 * [0.1.1+5] - 5 February 2021
- -  updated `readme`
+  -  updated `readme`
 
 * [0.1.1+4] - 4 February 2021
- -  changes in `handendness` 
- -  updated example
+  -  changes in `handendness` 
+  -  updated example
 
 * [0.1.1+3] - 4 February 2021
   -  added comments
