@@ -1,3 +1,6 @@
+* [0.2.1+4] - 10 February 21
+  - fix `pub.dev` complain "Add more detail to the description field of pubspec.yaml"
+
 * [0.2.1+3] - 10 February 21
   - added `effective_dart` to `dev_dependencies`
   - updated readme and comments
