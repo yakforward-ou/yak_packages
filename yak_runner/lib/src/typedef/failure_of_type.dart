@@ -1,3 +1,3 @@
 import '../classes/all.dart';
 
-typedef Failure<T> FailureOfType<T>(Object e, StackTrace s);
+typedef FailureOfType<T> = Failure<T> Function(Object e, StackTrace s);

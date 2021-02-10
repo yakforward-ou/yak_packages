@@ -1,3 +1,7 @@
+* [0.2.1+2] - 10 February 2021
+  - added `effective_dart` to `dev_dependencies`
+  - updated readme and comments
+
 * [0.2.1+1] - 5 February 2021
   - updated `readme`
 
@@ -11,7 +15,6 @@
   - `test`: replacing `mockito`'s `verifyZeroInteractions` with `verifyNever`
 
 * [0.2.0+3-hotfix1] - 14 January 21
-  - [0.2.0+3] never made it to pub.dev [https://github.com/dart-lang/pub-dev/issues/4411]
   - deleted `ErrorHandler` mixin
 
 * [0.2.0+3] - 14 January 21

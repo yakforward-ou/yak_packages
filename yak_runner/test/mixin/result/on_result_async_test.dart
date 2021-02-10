@@ -58,8 +58,8 @@ void main() {
     });
 
     test(
-        'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` fail THEN  `onResult() return Failure<T>',
-        () async {
+        'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` fail '
+        'THEN  `onResult() return Failure<T>', () async {
       reset(_errorHandler);
       reset(_firstDelegate);
       reset(_secondDelegate);
@@ -97,8 +97,8 @@ void main() {
     });
 
     test(
-        'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` does not fail THEN  `onResult() return Success<T>',
-        () async {
+        'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` does not fail '
+        'THEN  `onResult() return Success<T>', () async {
       reset(_errorHandler);
       reset(_firstDelegate);
       reset(_secondDelegate);

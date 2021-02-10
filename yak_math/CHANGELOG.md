@@ -1,3 +1,8 @@
+* [0.1.0+3] - 10 February 2021
+  - added `effective_dart` to `dev_dependencies`
+  - updated readme and comments
+  - test added
+  
 * [0.1.0+2] - 5 February 2021
   - updated `readme`
 

@@ -7,11 +7,14 @@ import 'package:yak_runner/yak_runner.dart';
 import '../../../mocks/all.dart';
 
 /// a test for `YakRunnerAsync`
-
 class YakRunnerAsyncTest<T> implements YakRunnerTestDelegate<T> {
+  /// takes the argument `description`
   YakRunnerAsyncTest({
     @required this.description,
   });
+
+  /// `description` is a `String`
+  /// it will be passed to the `test` when runned
   final String description;
 
   /// `result` is meant for `type` matching and ***must not be null***

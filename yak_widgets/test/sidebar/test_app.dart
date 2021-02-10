@@ -7,8 +7,8 @@ import 'package:yak_widgets/yak_widgets.dart';
 //void main() => runApp(app);
 
 class Keys {
-  static final parent = UniqueKey();
-  static final trigger = UniqueKey();
+  static const parent = ValueKey('parent');
+  static const trigger = ValueKey('trigger');
 }
 
 Widget get app => ProviderScope(

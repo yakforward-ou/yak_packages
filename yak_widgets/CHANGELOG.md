@@ -1,3 +1,7 @@
+* [0.1.1+8] - 10 February 2021
+ - added `effective_dart` to `dev_dependencies`
+ - updated readme and comments
+
 * [0.1.1+7] - 8 February 2021
  - added  `YakHandedness` test 
  - added  `YakSidebar` test 

@@ -1,11 +1,14 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:yak_widgets/yak_widgets.dart';
+import '/yak_widgets.dart';
 
-/// `hooks` effect for lining `AnimationController` to `StateController<DamperState>`
+/// `hooks` effect for linking `AnimationController`
+/// to `StateController<DamperState>`
 
 extension DamperAnimationEffect on AnimationController {
+  /// extension on `AnimationController`
+  /// returns `useEffect` proving a `stateController<DamperState>`
   void useDamperAnimationEffect(StateController<DamperState> state) =>
       useEffect(_damperAnimationEffect(this, state));
 }

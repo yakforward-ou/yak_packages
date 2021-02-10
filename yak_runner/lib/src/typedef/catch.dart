@@ -1,1 +1,1 @@
-typedef void Catch(Object e, StackTrace s);
+typedef Catch = void Function(Object e, StackTrace s);

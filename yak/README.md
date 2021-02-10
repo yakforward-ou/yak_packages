@@ -1,8 +1,17 @@
 # yak
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
 
-This package includes few unique classes and tools for `Dart` and `Flutter`
-and repacks **all** the packages of the `yak_packages` family 
+A collection of [yak_packages](https://github.com/iapicca/yak_packages), all in one place and always up to date
+---
+# Get Started
 
+add to your `pubspec.yaml`
+
+```yaml
+dependencies: 
+  yak: <latest version>
+```
 ---
 ## Buy me a coffee
 
@@ -11,3 +20,7 @@ Whether you use this package, have learned something from it, or just like it, p
 <a href="https://www.buymeacoffee.com/yakforward" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 ---
+
+## License
+
+Licensed under the [MIT License](LICENSE).

@@ -4,10 +4,14 @@ import 'tween.dart';
 /// an `TextStyleTween` that allows `const` constructor
 
 class YakTextStyleTween extends YakTween<TextStyle> {
+  /// like most `Tween`s has parameters `begin` and `end`
   const YakTextStyleTween({
     TextStyle begin,
     TextStyle end,
-  }) : super(begin: begin, end: end);
+  }) : super(
+          begin: begin,
+          end: end,
+        );
   @override
   TextStyle lerp(double t) => TextStyle.lerp(begin, end, t);
 }

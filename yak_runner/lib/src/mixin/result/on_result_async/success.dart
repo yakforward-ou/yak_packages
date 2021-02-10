@@ -3,7 +3,9 @@ import 'dart:async';
 import '../../../classes/all.dart';
 import '../../../typedef/all.dart';
 
+/// a `mixin` on `SuccessBase`
 mixin OnSuccessAsync<S> on SuccessBase<S> {
+  ///  `onResultAsync` implementation in case `Result` is `Success`
   Future<Result<T>> onResultAsync<T>(
       Future<Result<T>> Function(FutureOr<S>) runner,
       [FailureOfType<T> failureOfType]) async {
@@ -14,7 +16,7 @@ mixin OnSuccessAsync<S> on SuccessBase<S> {
       try {
         final b = this as Failure;
         return failureOfType(b.e, b.s);
-      } catch (e, s) {
+      } on Exception catch (e, s) {
         return failureOfType(e, s);
       }
     }

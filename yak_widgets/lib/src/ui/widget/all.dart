@@ -1,5 +1,5 @@
 export 'damper.dart';
-export 'sidebar.dart';
 export 'handedness.dart';
+export 'sidebar.dart';
 
 /// simply exports folder's classes
