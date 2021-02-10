@@ -1,4 +1,4 @@
-import 'package:riverpod/all.dart';
+import 'package:riverpod/riverpod.dart';
 import 'package:yak_widgets/yak_widgets.dart';
 
 /// `StateProvider` for `DamperState`
