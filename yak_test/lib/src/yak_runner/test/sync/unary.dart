@@ -7,14 +7,18 @@ import 'package:yak_runner/yak_runner.dart';
 import '../../../mocks/all.dart';
 
 /// a test for `YakRunnerArg`
-
 class YakRunnerArgTest<T, S> implements YakRunnerArgTestDelegate<T, S> {
+  /// takes the argument `description`
+
   YakRunnerArgTest({
     @required this.description,
   });
+
+  /// `description` is a `String`
+  /// it will be passed to the `test` when runned
   final String description;
 
-  /// `arg` and `result` are meant for `type` matching and ***must not be null***
+  /// `arg` and `result` are meant for `type` matching and *must not be null*
   /// `result` can be anything if `T` is void
   @override
   void call(FutureOr<T> result, FutureOr<S> arg) {

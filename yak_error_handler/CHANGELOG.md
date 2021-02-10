@@ -1,3 +1,7 @@
+* [0.2.0+1] - 10 February 2021
+  - added `effective_dart` to `dev_dependencies`
+  - updated readme and comments
+  
 * [0.2.0+0] - 9 February 2021
   - complete refactor `Singleton` based without dependencies
 

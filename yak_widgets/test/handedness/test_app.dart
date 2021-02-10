@@ -7,9 +7,9 @@ import 'package:yak_widgets/yak_widgets.dart';
 //void main() => runApp(app);
 
 class Keys {
-  static final subject = UniqueKey();
-  static final parent = UniqueKey();
-  static final trigger = UniqueKey();
+  static const subject = ValueKey('subject');
+  static const parent = ValueKey('parent');
+  static const trigger = ValueKey('trigger');
 }
 
 Widget get app => const ProviderScope(child: MaterialApp(home: _MyHomePage()));

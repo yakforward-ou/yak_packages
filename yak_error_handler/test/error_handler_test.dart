@@ -14,7 +14,7 @@ void main() {
       } catch (e, s) {
         try {
           YakErrorHandler()(e, s);
-        } catch (_, __) {
+        } on Exception catch (_, __) {
           err++;
         }
       }

@@ -1,9 +1,13 @@
-* [0.2.1+2] - 9 February 2021
+* [0.2.1+3] - 10 February 21
+  - added `effective_dart` to `dev_dependencies`
+  - updated readme and comments
+
+* [0.2.1+2] - 9 February 21
   - removed unused dependencies
   - simplyfied folder structure
   - added test
 
-* [0.2.1+1] - 5 February 2021
+* [0.2.1+1] - 5 February 21
   - updated `readme`
 
 * [0.2.1+0] - 4 February

@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:yak_widgets/yak_widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-/// `hooks` effect for lining `PageController` to `StateController<SidebarScroll>`
+import '/yak_widgets.dart';
+
+/// `hooks` effect for lining `PageController`
+/// to `StateController<SidebarScroll>`
+
+extension SidebarPageViewEffect on StateController<SidebarScroll> {
+  /// extension on `StateController<SidebarScroll> `
+  /// returns `useEffect` proving
+  /// `PageController`, `Duration` and `Curve`
+  void useSidebarPageViewEffect(
+    PageController controller,
+    Duration duration,
+    Curve curve,
+  ) =>
+      useEffect(_sidebarPageViewEffect(this, controller, duration, curve));
+}
 
 Effect _sidebarPageViewEffect(
   StateController<SidebarScroll> scrollbar,
@@ -25,12 +39,3 @@ Effect _sidebarPageViewEffect(
               break;
           }
         });
-
-extension SidebarPageViewEffect on StateController<SidebarScroll> {
-  void useSidebarPageViewEffect(
-    PageController controller,
-    Duration duration,
-    Curve curve,
-  ) =>
-      useEffect(_sidebarPageViewEffect(this, controller, duration, curve));
-}

@@ -1,9 +1,9 @@
 import 'package:yak_runner/yak_runner.dart';
-import 'package:yak_test/src/yak_runner/factory/all.dart';
+import '../../../yak_runner/factory/all.dart';
 
-// an extension on `YakRunnerAsync` that returns `YakRunnerAsyncTestFactory`
-
+/// an extension on `YakRunnerAsync`
 extension YakRunnerAsyncFactoryExtension on YakRunnerAsync {
+  /// `buildTestFactory` returns `YakRunnerAsyncTestFactory`
   YakRunnerAsyncTestFactory buildTestFactory(String description) =>
       YakRunnerAsyncTestFactory(description);
 }

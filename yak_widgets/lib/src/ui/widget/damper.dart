@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yak_widgets/yak_widgets.dart';
+import '/yak_widgets.dart';
 
 /// a ready to use widget that uses `useDamperAnimationEffect`
 
 class YakDamper extends HookWidget {
+  /// `YakDamper` constructor has parameters List<Widget> `children`
+  ///  and Key `key`
+
   const YakDamper({
     @required this.children,
     Key key = const ValueKey('YakDamper'),
   }) : super(key: key);
-  final List<Widget> children;
 
-  Key get subjectKey => ValueKey('$key: : SizedBox');
+  /// requires a `children` parameter
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,7 @@ class YakDamper extends HookWidget {
       ),
       child: SizedBox.fromSize(
         size: size,
-        key: subjectKey,
+        key: ValueKey('$key: SizedBox'),
         child: Stack(
           key: ValueKey('$key: : Stack'),
           children: children,
