@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
-import '/yak_widgets.dart';
+import '../../../yak_widgets.dart';
 
 /// `hooks` effect for lining `PageController`
 /// to `StateController<SidebarScroll>`
