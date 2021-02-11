@@ -10,7 +10,7 @@ void main() {
         home: Material(
           child: Stack(
             children: [
-              MyPageView(),
+              const MyPageView(),
               const YakSidebar(
                 child: ColoredBox(color: Color.fromRGBO(0, 0, 0, .3)),
               ),
@@ -23,7 +23,7 @@ void main() {
 }
 
 class MyPageView extends HookWidget {
-  MyPageView() : super(key: const ValueKey('MsidebaryPageView'));
+  const MyPageView() : super(key: const ValueKey('MsidebaryPageView'));
   @override
   Widget build(BuildContext context) {
     final controller = usePageController();
@@ -32,6 +32,7 @@ class MyPageView extends HookWidget {
     useProvider(sidebarPod)
         .useSidebarPageViewEffect(controller, duration.state, curve.state);
     return PageView.builder(
+      physics: const NeverScrollableScrollPhysics(),
       scrollDirection: Axis.vertical,
       itemBuilder: (context, _) => const Center(child: FlutterLogo(size: 160)),
       controller: controller,
