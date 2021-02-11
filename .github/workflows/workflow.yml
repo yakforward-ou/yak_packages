@@ -1,0 +1,41 @@
+name: Ci
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  flutter_test:
+    name: run flutter_test and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+
+      - name: Add pub cache bin to PATH
+        run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+
+      - name: Add pub cache to PATH
+        run: echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV
+
+      - run: dart pub global activate melos
+
+      - name: Install dependencies
+        run: melos bootstrap
+
+      - name: Analyze
+        run: melos exec --ignore="marvel" -- "flutter analyze"
+
+      - name: Run tests
+        run: melos run test
+
+      # - name: Upload coverage to codecov
+      #   run: curl -s https://codecov.io/bash | bash      
+      - uses: codecov/codecov-action@v1
