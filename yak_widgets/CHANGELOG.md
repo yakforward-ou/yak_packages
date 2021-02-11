@@ -1,4 +1,4 @@
-* [0.1.1+9] - 10 February 2021
+* [0.1.1+11] - 11 February 2021
   - fix `pub.dev`'s complain `Pass static analysis`
 
 * [0.1.1+8] - 10 February 2021
