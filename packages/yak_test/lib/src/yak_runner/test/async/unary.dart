@@ -35,7 +35,7 @@ class YakRunnerArgAsyncTest<T, S> implements YakRunnerArgTestDelegate<T, S> {
         reset(_errorHandler);
         reset(_delegate);
 
-        when(_delegate(arg)).thenThrow('throwable');
+        when(_delegate(arg)).thenThrow(Exception());
         final _result = await _runner(arg);
 
         expect(
