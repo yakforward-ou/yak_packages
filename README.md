@@ -1,4 +1,11 @@
 # yak_packages
+<p align="center">
+<a href="https://github.com/iapicca/yak_packages/actions"><img src="https://github.com/iapicca/yak_packages/workflows/Build/badge.svg" alt="Build Status"></a>
+<a href="https://codecov.io/gh/iapicca/yak_packages"><img src="https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg" alt="codecov"></a>
+<a href="https://www.buymeacoffee.com/yakforward" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="25px"></a>
+
+<p align="center">
+
 a collection of packages for Dart and Flutter
 
 | Package | Link |
@@ -8,13 +15,8 @@ a collection of packages for Dart and Flutter
 | [yak_test](https://github.com/iapicca/yak_packages/tree/master/yak_test) | [pub](https://pub.dev/packages/yak_test) |
 | [yak_error_handler](https://github.com/iapicca/yak_packages/tree/master/yak_error_handler) | [pub](https://pub.dev/packages/yak_error_handler) |
 | [yak_widgets](https://github.com/iapicca/yak_packages/tree/master/yak_widgets) | [pub](https://pub.dev/packages/yak_widgets) |
-
-
 ---
-## Buy me a coffee
 
-Whether you use this package, have learned something from it, or just like it, please consider supporting it by buying me a coffee, so I can dedicate more time on open-source projects like this :)
+### License
 
-<a href="https://www.buymeacoffee.com/yakforward" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
-
----
+Licensed under the [MIT License](LICENSE).
