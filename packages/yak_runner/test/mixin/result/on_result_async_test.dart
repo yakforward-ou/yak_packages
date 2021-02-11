@@ -25,7 +25,7 @@ void main() {
       reset(_firstDelegate);
       reset(_secondDelegate);
 
-      when(_firstDelegate()).thenThrow('throwable');
+      when(_firstDelegate()).thenThrow(Exception());
       when(_secondDelegate(_data)).thenAnswer((_) async => _res);
 
       final _result =
@@ -65,7 +65,7 @@ void main() {
       reset(_secondDelegate);
 
       when(_firstDelegate()).thenAnswer((_) => _data);
-      when(_secondDelegate(_data)).thenThrow('throwable');
+      when(_secondDelegate(_data)).thenThrow(Exception());
 
       final _result =
           await _firstRunner().onFutureResult<String>(_secondRunner);

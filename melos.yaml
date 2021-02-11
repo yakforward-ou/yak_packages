@@ -1,6 +1,5 @@
 name: yak_packages
 packages:
-  - examples/**
   - packages/**
 scripts:
   analyze: melos exec -- pub global run tuneup check

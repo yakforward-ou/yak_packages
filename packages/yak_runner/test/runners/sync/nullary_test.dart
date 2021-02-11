@@ -15,7 +15,7 @@ void main() {
       reset(_errorHandler);
       reset(_delegate);
 
-      when(_delegate()).thenThrow('ops');
+      when(_delegate()).thenThrow(Exception());
       final _result = _runner();
 
       expect(

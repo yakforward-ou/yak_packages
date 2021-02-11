@@ -23,7 +23,7 @@ void main() {
       reset(_firstDelegate);
       reset(_secondDelegate);
 
-      when(_firstDelegate()).thenThrow('throwable');
+      when(_firstDelegate()).thenThrow(Exception());
       when(_secondDelegate(_data)).thenReturn(_res);
 
       final _result = _firstRunner().onResult<String>(_secondRunner);
@@ -61,7 +61,7 @@ void main() {
       reset(_secondDelegate);
 
       when(_firstDelegate()).thenReturn(_data);
-      when(_secondDelegate(_data)).thenThrow('throwable');
+      when(_secondDelegate(_data)).thenThrow(Exception());
 
       final _result = _firstRunner().onResult<String>(_secondRunner);
 

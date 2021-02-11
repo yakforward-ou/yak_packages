@@ -16,7 +16,7 @@ void main() {
       reset(_errorHandler);
       reset(_delegate);
 
-      when(_delegate(_data)).thenThrow('throwable');
+      when(_delegate(_data)).thenThrow(Exception());
       final _result = _runner(_data);
 
       expect(

@@ -19,7 +19,7 @@ void main() {
       reset(_errorHandler);
       reset(_delegate);
 
-      when(_delegate(_data)).thenThrow('throwable');
+      when(_delegate(_data)).thenThrow(Exception());
 
       var _success;
       var _failure;
@@ -66,7 +66,7 @@ void main() {
       reset(_errorHandler);
       reset(_delegate);
 
-      when(_delegate()).thenThrow('throwable');
+      when(_delegate()).thenThrow(Exception());
 
       var _success;
       var _failure;
@@ -113,7 +113,7 @@ void main() {
       reset(_errorHandler);
       reset(_delegate);
 
-      when(_delegate(_data)).thenThrow('throwable');
+      when(_delegate(_data)).thenThrow(Exception());
 
       var _success;
       var _failure;
@@ -160,7 +160,7 @@ void main() {
       reset(_errorHandler);
       reset(_delegate);
 
-      when(_delegate()).thenThrow('throwable');
+      when(_delegate()).thenThrow(Exception());
 
       var _success;
       var _failure;

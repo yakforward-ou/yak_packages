@@ -76,6 +76,7 @@ build/
 # [CUSTOM]
 .idea/
 android/
+coverage/
 ios/
 linux/
 web/
