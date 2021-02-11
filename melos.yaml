@@ -1,11 +1,6 @@
 name: yak_packages
 packages:
   - examples/**
-  - yak/**
-  - yak_error_handler/**
-  - yak_math/**
-  - yak_runner/**
-  - yak_test/**
-  - yak_widgets/**
+  - packages/**
 scripts:
   analyze: melos exec -- pub global run tuneup check
