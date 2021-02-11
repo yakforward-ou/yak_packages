@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import '/yak_math.dart';
+import '../../yak_math.dart';
 
 /// an `extension`  that reverse the value of a `YakTween`
 extension ReverseYakTweenExtension on YakTween {
