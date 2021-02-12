@@ -2,8 +2,7 @@
 [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg)](https://github.com/invertase/melos)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[!["Buy Me A Coffee"](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/yakforward)
-
+[!["Buy Me A Coffee"](https://img.shields.io/badge/sponsor-buy%20me%20a%20coffee-orange)](https://www.buymeacoffee.com/yakforward)
 # yak_widgets
 
 A collection of `widgets` based on [riverpod] and [flutter_hooks]
