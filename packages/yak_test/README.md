@@ -1,4 +1,5 @@
-# yak_packages
+
+# yak_test
 <p align="center">
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
     <a href="https://github.com/iapicca/yak_packages/actions"><img src="https://github.com/iapicca/yak_packages/workflows/workflow/badge.svg" alt="Build Status"></a>
@@ -9,17 +10,20 @@
 <p align="center">
 
 
-a collection of packages for Dart and Flutter
 
-| Package | Link |
-|--------|-----|
-| [yak](https://github.com/iapicca/yak_packages/tree/master/packages/yak) | [pub](https://pub.dev/packages/yak) |
-| [yak_runner](https://github.com/iapicca/yak_packages/tree/master/packages/yak_runner) | [pub](https://pub.dev/packages/yak_runner) |
-| [yak_test](https://github.com/iapicca/yak_packages/tree/master/packages/yak_test) | [pub](https://pub.dev/packages/yak_test) |
-| [yak_error_handler](https://github.com/iapicca/yak_packages/tree/master/packages/yak_error_handler) | [pub](https://pub.dev/packages/yak_error_handler) |
-| [yak_widgets](https://github.com/iapicca/yak_packages/tree/master/packages/yak_widgets) | [pub](https://pub.dev/packages/yak_widgets) |
+Use this package to create tests for packages in the [yak_packages](https://github.com/iapicca/yak_packages) family
 ---
 
-### License
+### Get Started
+
+Add to your `pubspec.yaml`
+
+```yaml
+dev_dependencies: 
+  yak_test: <latest version>
+```
+---
+
+## License
 
 Licensed under the [MIT License](LICENSE).

@@ -1,4 +1,4 @@
-name: Ci
+name: CI
 on:
   pull_request:
     branches:
@@ -17,7 +17,7 @@ jobs:
 
       - uses: subosito/flutter-action@v1
         with:
-          channel: 'stable'
+          channel: 'dev'
 
       - name: Add pub cache bin to PATH
         run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
@@ -36,6 +36,6 @@ jobs:
       - name: Run tests
         run: melos run test
 
-      # - name: Upload coverage to codecov
-      #   run: curl -s https://codecov.io/bash | bash      
-      - uses: codecov/codecov-action@v1
+      - name: Upload coverage to codecov
+        run: curl -s https://codecov.io/bash | bash   
+      # - uses: codecov/codecov-action@v1
