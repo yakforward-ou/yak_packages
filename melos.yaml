@@ -17,8 +17,7 @@ scripts:
 
 # yaml & scripts borrowed from `rrousselGit/river_pod`
   test:dart:
-    #run: melos exec  -c 1 --fail-fast -- "\$MELOS_ROOT_PATH/scripts/coverage.sh"
-    run: melos exec -c 1 --fail-fast -- dart test --coverage="coverage"
+    run: melos exec -c 1 --fail-fast -- dart test --coverage="coverage" && format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
     description: Run Dart tests for a specific package in this project.
     select-package:
       flutter: false
