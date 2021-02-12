@@ -6,12 +6,14 @@ import 'package:yak_math/yak_math.dart';
 
 void main() {
   group('`YakTween` test', () {
+    const arguments = [1.0, 2.0];
+    final object = YakTween(begin: arguments[0], end: arguments[1]);
+    const lerp = 1 / 3;
+
     test('WHEN `YakTween` and `Tween` lerp THEN output is identical', () {
-      const lerp = 1 / 3;
-      const yakTween = YakTween(begin: 1.0, end: 2.0);
-      final tween = Tween(begin: 1.0, end: 2.0);
+      final tween = Tween(begin: arguments[0], end: arguments[1]);
       expect(
-        yakTween.lerp(lerp),
+        object.lerp(lerp),
         tween.lerp(lerp),
         reason: '`YakTween` & `Tween` lerp the same output',
       );
@@ -35,16 +37,21 @@ void main() {
     );
 
     test('`toString` works as intended', () {
-      final arguments = [1.0, 2.0];
-      final object = YakTween(begin: arguments[0], end: arguments[1]);
-      final objectName = 'YakTween';
-
+      const objectName = 'YakTween';
       final match = '$objectName<${arguments[0].runtimeType}>'
           '(${arguments[0]} → ${arguments[1]})';
       expect(
         '$object',
         match,
         reason: '`toString` output must be predictable',
+      );
+    });
+
+    test('WHEN `transform` THEN output `lerp', () {
+      expect(
+        object.lerp(lerp),
+        object.transform(lerp),
+        reason: '`transform` and `lerp` should have the same output',
       );
     });
   });

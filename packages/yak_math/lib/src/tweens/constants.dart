@@ -9,8 +9,10 @@ class YakConstantTween<T> extends YakTween<T> {
           begin: value,
           end: value,
         );
+
   @override
   T lerp(_) => begin;
+
   @override
   String toString() =>
       '${objectRuntimeType(this, 'YakConstantTween')}(value: $begin)';
