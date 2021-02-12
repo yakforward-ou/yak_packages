@@ -39,7 +39,7 @@ void main() {
     test('`toString` works as intended', () {
       const objectName = 'YakTween';
       final match = '$objectName<${arguments[0].runtimeType}>'
-          '(${arguments[0]} → ${arguments[1]})';
+          '(${arguments[0]} \u2192 ${arguments[1]})';
       expect(
         '$object',
         match,
