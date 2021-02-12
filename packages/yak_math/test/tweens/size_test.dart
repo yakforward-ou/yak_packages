@@ -4,11 +4,11 @@ import 'package:yak_math/yak_math.dart';
 
 void main() {
   group('`YakSizeTween` test', () {
+    const begin = Size.zero;
+    const end = Size.square(200);
     test(
         'WHEN `YakSizeTween` and `SizeTween` lerp '
         'THEN output is identical', () {
-      const begin = Size.zero;
-      const end = Size.square(200);
       const lerp = 1 / 3;
       const yakTween = YakSizeTween(begin: begin, end: end);
       final tween = SizeTween(begin: begin, end: end);

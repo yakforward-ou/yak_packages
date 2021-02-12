@@ -16,5 +16,36 @@ void main() {
         reason: '`YakTween` & `Tween` lerp the same output',
       );
     });
+
+    test(
+      'WHEN argument[0] is `null` THEN `assert` should fail',
+      () => expect(
+        () => YakTween(begin: null, end: .2),
+        throwsAssertionError,
+        reason: '`argument[0]` should throw AssertionError',
+      ),
+    );
+    test(
+      'WHEN argument[1] is `null` THEN `assert` should fail',
+      () => expect(
+        () => YakTween(begin: .0, end: null),
+        throwsAssertionError,
+        reason: '`argument[1]` should throw AssertionError',
+      ),
+    );
+
+    test('`toString` works as intended', () {
+      final arguments = [1.0, 2.0];
+      final object = YakTween(begin: arguments[0], end: arguments[1]);
+      final objectName = 'YakTween';
+
+      final match = '$objectName<${arguments[0].runtimeType}>'
+          '(${arguments[0]} → ${arguments[1]})';
+      expect(
+        '$object',
+        match,
+        reason: '`toString` output must be predictable',
+      );
+    });
   });
 }
