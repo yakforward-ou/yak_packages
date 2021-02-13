@@ -1,5 +1,5 @@
 import 'package:yak_runner/yak_runner.dart';
-import '../../test/all.dart';
+import '../../../all.dart';
 
 /// implementation of `YakRunnerTestFactoryDelegate` from `yak_runner`
 class YakRunnerArgAsyncTestFactory implements YakRunnerArgTestFactoryDelegate {

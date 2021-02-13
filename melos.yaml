@@ -1,5 +1,6 @@
 name: yak_packages
 packages:
+  - examples/**
   - packages/**
 
 scripts:
@@ -10,19 +11,26 @@ scripts:
     description: |
       Run `dart analyze` in all packages.
         - Note: you can also rely on your IDEs Dart Analysis / Issues window.
-        
-  test:
+
+  test: 
+#    run: melos run test:dart --no-select && test:format --no-select && melos run test:flutter --no-select
     run: melos run test:dart --no-select && melos run test:flutter --no-select
+
     description: Run all Dart & Flutter tests in this project.
 
-# yaml & scripts borrowed from `rrousselGit/river_pod`
   test:dart:
-    #run: melos exec  -c 1 --fail-fast -- "\$MELOS_ROOT_PATH/scripts/coverage.sh"
     run: melos exec -c 1 --fail-fast -- dart test --coverage="coverage"
     description: Run Dart tests for a specific package in this project.
     select-package:
       flutter: false
       dir-exists: test
+  
+  # test:format:
+  #   run: melos exec -c 1 format_coverage --lcov --in=coverage --out=coverage.lcov --report-on=lib
+  #   description: Format Dart tests' coverage data
+  #   select-package:
+  #     flutter: false
+  #     dir-exists: test
 
   test:flutter:
     run: melos exec -c 1 --fail-fast -- "flutter test --coverage"
