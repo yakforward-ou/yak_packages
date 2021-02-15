@@ -66,4 +66,13 @@ void main() {
       verifyNever(_errorHandler(any, any));
     });
   });
+
+  test(
+    'WHEN `fun` is `null` THEN `assert` should `throwsAssertionError`',
+    () => expect(
+      () => YakRunnerAsync(null),
+      throwsA(isA<AssertionError>()),
+      reason: '`fun == null` should throw `AssertionError`',
+    ),
+  );
 }

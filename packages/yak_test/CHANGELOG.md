@@ -1,6 +1,8 @@
+# 0.2.1+6
+- tests updated
+
 # 0.2.1+5
 - set up for `melos` and `coverage`
-- `codecov` unreliable `yak_packages/issues/35`
 
 # 0.2.1+3
 - added `effective_dart` to `dev_dependencies`

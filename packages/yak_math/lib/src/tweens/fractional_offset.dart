@@ -7,7 +7,10 @@ class YakFractionalOffsetTween extends YakTween<FractionalOffset> {
   const YakFractionalOffsetTween({
     FractionalOffset begin,
     FractionalOffset end,
-  }) : super(
+  })
+  // coverage:ignore-line to ignore one line.
+
+  : super(
           begin: begin,
           end: end,
         );

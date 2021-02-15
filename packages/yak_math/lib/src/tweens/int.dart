@@ -6,7 +6,10 @@ class YakIntTween extends YakTween<int> {
   const YakIntTween({
     int begin,
     int end,
-  }) : super(
+  })
+  // coverage:ignore-line to ignore one line.
+
+  : super(
           begin: begin,
           end: end,
         );

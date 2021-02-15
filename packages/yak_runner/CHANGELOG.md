@@ -1,6 +1,8 @@
+# 0.2.1+4
+- added tests for `mixin` and `assert`
+
 # 0.2.1+3
 - set up for `melos` and `coverage`
-- `codecov` unreliable `yak_packages/issues/35`
 
 # 0.2.1+2
 - added `effective_dart` to `dev_dependencies`

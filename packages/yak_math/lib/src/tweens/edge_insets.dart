@@ -7,7 +7,10 @@ class YakEdgeInsetsTween extends YakTween<EdgeInsets> {
   const YakEdgeInsetsTween({
     EdgeInsets begin,
     EdgeInsets end,
-  }) : super(
+  })
+  // coverage:ignore-line to ignore one line.
+
+  : super(
           begin: begin,
           end: end,
         );

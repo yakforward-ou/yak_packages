@@ -8,7 +8,10 @@ class YakBorderTween extends YakTween<Border> {
   const YakBorderTween({
     Border begin,
     Border end,
-  }) : super(
+  })
+  // coverage:ignore-line to ignore one line.
+
+  : super(
           begin: begin,
           end: end,
         );
