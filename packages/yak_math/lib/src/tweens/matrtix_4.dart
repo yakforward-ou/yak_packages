@@ -8,7 +8,10 @@ class YakMatrix4Tween extends YakTween<Matrix4> {
   const YakMatrix4Tween({
     Matrix4 begin,
     Matrix4 end,
-  }) : super(
+  })
+  // coverage:ignore-line to ignore one line.
+
+  : super(
           begin: begin,
           end: end,
         );

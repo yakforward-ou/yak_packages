@@ -7,7 +7,10 @@ class YakRectTween extends YakTween<Rect> {
   const YakRectTween({
     Rect begin,
     Rect end,
-  }) : super(
+  })
+  // coverage:ignore-line to ignore one line.
+
+  : super(
           begin: begin,
           end: end,
         );

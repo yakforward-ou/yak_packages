@@ -8,7 +8,10 @@ class YakBoxConstraintsTween extends YakTween<BoxConstraints> {
   const YakBoxConstraintsTween({
     BoxConstraints begin,
     BoxConstraints end,
-  }) : super(
+  })
+  // coverage:ignore-line to ignore one line.
+
+  : super(
           begin: begin,
           end: end,
         );

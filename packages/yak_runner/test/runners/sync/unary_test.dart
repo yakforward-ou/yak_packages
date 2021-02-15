@@ -65,5 +65,24 @@ void main() {
       verify(_delegate(_data)).called(1);
       verifyNever(_errorHandler(any, any));
     });
+
+    test(
+      'WHEN `fun` is `null` THEN `assert` should `throwsAssertionError`',
+      () => expect(
+        () => YakRunnerArg(null),
+        throwsA(isA<AssertionError>()),
+        reason: '`fun == null` should throw `AssertionError`',
+      ),
+    );
+    test(
+        'WHEN `call` -> `arg` is `null` '
+        'THEN `assert` should `throwsAssertionError`', () {
+      final runner = YakRunnerArg<String, int>((i) => 'i');
+      expect(
+        () => runner(null),
+        throwsA(isA<AssertionError>()),
+        reason: '`arg == null` should throw `AssertionError`',
+      );
+    });
   });
 }

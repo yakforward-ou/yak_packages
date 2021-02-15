@@ -9,7 +9,9 @@ class YakAlignmentGeometryTween extends YakTween<AlignmentGeometry> {
   const YakAlignmentGeometryTween({
     AlignmentGeometry begin,
     AlignmentGeometry end,
-  }) : super(
+  })
+  // coverage:ignore-line to ignore one line.
+  : super(
           begin: begin,
           end: end,
         );

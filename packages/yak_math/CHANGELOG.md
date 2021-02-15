@@ -1,7 +1,8 @@
+# 0.1.0+5
+- added `coverage:ignore-line to ignore one line` to `super`
+
 # 0.1.0+4
 - set up for `melos` and `coverage`
-- `codecov` unreliable `yak_packages/issues/35`
-
 
 # 0.1.0+3
 - added `effective_dart` to `dev_dependencies`

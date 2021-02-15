@@ -8,7 +8,10 @@ class YakAlignmentTween extends YakTween<Alignment> {
   const YakAlignmentTween({
     Alignment begin,
     Alignment end,
-  }) : super(
+  })
+  // coverage:ignore-line to ignore one line.
+
+  : super(
           begin: begin,
           end: end,
         );

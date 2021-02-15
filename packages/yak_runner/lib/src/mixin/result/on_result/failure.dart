@@ -9,15 +9,6 @@ mixin OnFailure<S> on FailureBase<S> {
     FailureOfType<T> failureOfType,
   ]) {
     failureOfType ??= (e, s) => Failure<T>(e, s);
-    if (this is Failure<S>) {
-      final b = this as Failure;
-      return failureOfType(b.e, b.s);
-    } else {
-      try {
-        return runner((this as Success).data);
-      } on Exception catch (e, s) {
-        return failureOfType(e, s);
-      }
-    }
+    return failureOfType(e, s);
   }
 }
