@@ -24,14 +24,15 @@ scripts:
       dir-exists: test
   
   test:format:
-    run: melos exec -c 1 format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
+#    run: melos exec -c 1 format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
+    run: melos exec -c 1 format_coverage --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
     description: Format Dart tests' coverage data
     select-package:
       flutter: false
       dir-exists: test
 
   test:flutter:
-    run: melos exec -c 1 --fail-fast -- "flutter test --coverage"
+    run: melos exec -c 1 --fail-fast -- flutter test --coverage
     description: Run Flutter tests for a specific package in this project.
     select-package:
       flutter: true
