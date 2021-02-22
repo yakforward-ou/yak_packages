@@ -7,8 +7,7 @@ class YakIntTween extends YakTween<int> {
     int begin,
     int end,
   })
-  // coverage:ignore-line to ignore one line.
-
+  // coverage:ignore-line
   : super(
           begin: begin,
           end: end,

@@ -8,8 +8,7 @@ class YakEdgeInsetsTween extends YakTween<EdgeInsets> {
     EdgeInsets begin,
     EdgeInsets end,
   })
-  // coverage:ignore-line to ignore one line.
-
+// coverage:ignore-line
   : super(
           begin: begin,
           end: end,

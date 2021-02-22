@@ -12,7 +12,9 @@ class YakDamper extends HookWidget {
   const YakDamper({
     @required this.children,
     Key key = const ValueKey('YakDamper'),
-  }) : super(key: key);
+  })
+  // coverage:ignore-line
+  : super(key: key);
 
   /// requires a `children` parameter
   final List<Widget> children;
