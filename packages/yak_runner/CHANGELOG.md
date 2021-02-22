@@ -1,3 +1,6 @@
+# 0.2.1+5
+- removed `on Exception` to catch `Error`
+
 # 0.2.1+4
 - added tests for `mixin` and `assert`
 
