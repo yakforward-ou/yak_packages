@@ -8,8 +8,7 @@ class YakDecorationTween extends YakTween<Decoration> {
     Decoration begin,
     Decoration end,
   })
-  // coverage:ignore-line to ignore one line.
-
+// coverage:ignore-line
   : super(
           begin: begin,
           end: end,

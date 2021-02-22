@@ -12,7 +12,9 @@ class YakSidebar extends HookWidget {
     this.scrollSensitivity = .01,
     this.width = 54,
     Key key = const ValueKey('YakSidebar'),
-  }) : super(key: key);
+  })
+  // coverage:ignore-line
+  : super(key: key);
 
   /// allow to change `scrollSensitivity` to a custom value; default `1%`
   final double scrollSensitivity;

@@ -8,8 +8,7 @@ class YakSizeTween extends YakTween<Size> {
     Size begin,
     Size end,
   })
-  // coverage:ignore-line to ignore one line.
-
+  // coverage:ignore-line
   : super(
           begin: begin,
           end: end,

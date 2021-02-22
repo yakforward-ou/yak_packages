@@ -9,8 +9,7 @@ class YakColorTween extends YakTween<Color> {
     Color begin,
     Color end,
   })
-  // coverage:ignore-line to ignore one line.
-
+  // coverage:ignore-line
   : super(
           begin: begin,
           end: end,

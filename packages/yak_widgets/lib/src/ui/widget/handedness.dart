@@ -10,7 +10,9 @@ class YakHandedness extends HookWidget {
   YakHandedness({
     @required this.child,
     Key key,
-  }) : super(key: key ?? UniqueKey());
+  })
+  // coverage:ignore-line
+  : super(key: key ?? UniqueKey());
 
   /// requires a `child` parameter
   final Widget child;

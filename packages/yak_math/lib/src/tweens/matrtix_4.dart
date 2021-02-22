@@ -9,8 +9,7 @@ class YakMatrix4Tween extends YakTween<Matrix4> {
     Matrix4 begin,
     Matrix4 end,
   })
-  // coverage:ignore-line to ignore one line.
-
+  // coverage:ignore-line
   : super(
           begin: begin,
           end: end,
