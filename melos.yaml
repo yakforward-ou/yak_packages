@@ -24,7 +24,7 @@ scripts:
       dir-exists: test
   
   test:format:
-    run: melos exec -c 1 -- format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
+    run: melos exec -c 1 -- format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib --check-ignore
     description: Format Dart tests' coverage data
     select-package:
       flutter: false
