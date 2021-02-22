@@ -5,6 +5,9 @@ import '../../mixin/all.dart';
 import '../../shared/all.dart';
 import '../../typedef/all.dart';
 
+/// following line added because [https://stackoverflow.com/questions/66315301/what-is-the-correct-way-to-catch-both-error-and-exception-following-effective-d]
+//  ignore_for_file: avoid_catches_without_on_clauses
+
 /// a class that takes a `Future<T> Function(FutureOr<S>)`
 /// and returns `Future<Result<T>> Function(FutureOr<S>)`
 /// on `Exception` invokes `errorHandler` if not null
@@ -30,7 +33,7 @@ class YakRunnerArgAsync<T, S>
 
     try {
       return Result.success(await fun(await arg));
-    } on Exception catch (e, s) {
+    } catch (e, s) {
       errorHandler?.call(e, s);
       return Result.failure(e, s);
     }
