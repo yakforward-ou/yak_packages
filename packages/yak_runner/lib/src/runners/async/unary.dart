@@ -33,7 +33,7 @@ class YakRunnerArgAsync<T, S>
 
     try {
       return Result.success(await fun(await arg));
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       errorHandler?.call(e, s);
       return Result.failure(e, s);
     }

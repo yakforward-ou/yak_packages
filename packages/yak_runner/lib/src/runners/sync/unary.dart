@@ -29,7 +29,7 @@ class YakRunnerArg<T, S>
     assert(arg != null, ' a non null `arg` must be provided');
     try {
       return Result.success(fun(arg));
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       errorHandler?.call(e, s);
       return Result.failure(e, s);
     }

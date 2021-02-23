@@ -28,7 +28,7 @@ class YakRunnerAsync<T>
   Future<Result<T>> call() async {
     try {
       return Result.success(await fun());
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       errorHandler?.call(e, s);
       return Result.failure(e, s);
     }

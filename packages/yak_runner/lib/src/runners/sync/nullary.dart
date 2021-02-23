@@ -24,7 +24,7 @@ class YakRunner<T> with YakRunnerTestMixin<T> implements Delegate<Result<T>> {
   Result<T> call() {
     try {
       return Result.success(fun());
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       errorHandler?.call(e, s);
       return Result.failure(e, s);
     }
