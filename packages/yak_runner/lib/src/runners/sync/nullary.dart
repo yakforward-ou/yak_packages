@@ -12,10 +12,14 @@ class YakRunner<T> extends YakRunnerBase
   /// takes as argument `fun` and `errorHandler`
   const YakRunner(
     this.fun, [
-    CatchException errorHandler,
+    HandleException handleException,
+    Set<HandleErrorBase> errorsWhitelist = const {},
   ])  : assert(fun != null, ' a non null function must be provided'),
         // coverage:ignore-line
-        super(errorHandler);
+        super(
+          handleException,
+          errorsWhitelist,
+        );
 
   /// `fun` is `T Function()`
   final T Function() fun;
@@ -25,10 +29,15 @@ class YakRunner<T> extends YakRunnerBase
     try {
       return Result.success(fun());
     } on Error catch (e) {
-      errorHandler?.call(Exception('$e'), e.stackTrace);
+      for (final err in errorsWhitelist) {
+        if (err.type != e.runtimeType) {
+          err(e);
+          return Result.failure(e, e.stackTrace);
+        }
+      }
       rethrow;
     } on Exception catch (e, s) {
-      errorHandler?.call(e, s);
+      handleException?.call(e, s);
       return Result.failure(e, s);
     }
   }

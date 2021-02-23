@@ -10,13 +10,18 @@ class YakRunnerArg<T, S> extends YakRunnerBase
     with YakRunnerArgTestMixin<T, S>
     implements UnaryDelegate<Result<T>, S> {
   /// takes as argument `fun` and `errorHandler`
+  /// unlike
   YakRunnerArg(
     this.fun, [
-    CatchException errorHandler,
+    HandleException handleException,
+    Set<HandleErrorBase> errorsWhitelist = const {},
   ])  : assert(fun != null, ' a non null function must be provided'),
         assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
-        super(errorHandler);
+        super(
+          handleException,
+          errorsWhitelist,
+        );
 
   /// `fun` is ` T Function(S)`
   final T Function(S) fun;
@@ -27,10 +32,15 @@ class YakRunnerArg<T, S> extends YakRunnerBase
     try {
       return Result.success(fun(arg));
     } on Error catch (e) {
-      errorHandler?.call(Exception('$e'), e.stackTrace);
+      for (final err in errorsWhitelist) {
+        if (err.type != e.runtimeType) {
+          err(e);
+          return Result.failure(e, e.stackTrace);
+        }
+      }
       rethrow;
     } on Exception catch (e, s) {
-      errorHandler?.call(e, s);
+      handleException?.call(e, s);
       return Result.failure(e, s);
     }
   }
