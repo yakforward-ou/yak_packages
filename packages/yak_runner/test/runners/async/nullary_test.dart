@@ -2,16 +2,25 @@ import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
+//  ignore_for_file: avoid_catching_errors
 
 void main() {
   group('`YakRunnerAsync`', () {
     final _data = 1;
-    final _errorHandler = MockErrorHandler();
+    final _exceptionHandler = MockExceptionHandler();
+    final _errorHandler = MockHandleError<AssertionError>();
     final _delegate = MockDelegate<Future<int>>();
-    final _runner = YakRunnerAsync(_delegate, _errorHandler);
-    when(_errorHandler(any, any)).thenAnswer(null);
+    final _runner = YakRunnerAsync<int>(
+      _delegate,
+      _exceptionHandler,
+      {_errorHandler},
+    );
+    when(_exceptionHandler(any, any)).thenAnswer(null);
+    verifyNever(_errorHandler(any));
+    when(_errorHandler(any)).thenAnswer(null);
 
     test('WHEN `void Function()` throws THEN `Result` is `Failure`', () async {
+      reset(_exceptionHandler);
       reset(_errorHandler);
       reset(_delegate);
 
@@ -35,11 +44,13 @@ void main() {
       );
 
       verify(_delegate()).called(1);
-      verify(_errorHandler(any, any)).called(1);
+      verifyNever(_errorHandler(any));
+      verify(_exceptionHandler(any, any)).called(1);
     });
 
     test('WHEN `void Function()` does not fail `Result` is `Success`',
         () async {
+      reset(_exceptionHandler);
       reset(_errorHandler);
       reset(_delegate);
 
@@ -63,16 +74,60 @@ void main() {
       );
 
       verify(_delegate()).called(1);
-      verifyNever(_errorHandler(any, any));
+      verifyNever(_errorHandler(any));
+      verifyNever(_exceptionHandler(any, any));
     });
-  });
 
-  test(
-    'WHEN `fun` is `null` THEN `assert` should `throwsAssertionError`',
-    () => expect(
-      () => YakRunnerAsync(null),
-      throwsA(isA<AssertionError>()),
-      reason: '`fun == null` should throw `AssertionError`',
-    ),
-  );
+    test('WHEN `ERROR` is thwon THEN runner fails', () async {
+      reset(_exceptionHandler);
+      reset(_errorHandler);
+      reset(_delegate);
+
+      when(_delegate()).thenThrow(Error());
+
+      Error err;
+
+      try {
+        await _runner();
+      } on Error catch (e) {
+        err = e;
+      }
+
+      expect(
+        err != null,
+        true,
+        reason: '`Error` should NOT be handled',
+      );
+
+      verify(_delegate()).called(1);
+      verifyNever(_errorHandler(any));
+      verifyNever(_exceptionHandler(any, any));
+    });
+
+    test('WHEN `AssertionError` is thwon THEN gets handled', () async {
+      reset(_exceptionHandler);
+      reset(_errorHandler);
+      reset(_delegate);
+
+      when(_delegate()).thenThrow(AssertionError());
+
+      expect(
+        await _runner(),
+        isA<Failure>(),
+        reason: '`Error` should be handled',
+      );
+
+      verify(_delegate()).called(1);
+      verify(_errorHandler(any)).called(1);
+      verifyNever(_exceptionHandler(any, any));
+    });
+    test(
+      'WHEN `fun` is `null` THEN `assert` should `throwsAssertionError`',
+      () => expect(
+        () => YakRunnerAsync(null),
+        throwsA(isA<AssertionError>()),
+        reason: '`fun == null` should throw `AssertionError`',
+      ),
+    );
+  });
 }

@@ -6,20 +6,20 @@ import '../../mocks/all.dart';
 void main() {
   final _data = 1;
   final _res = '$_data';
-  final _errorHandler = MockErrorHandler();
-  when(_errorHandler(any, any)).thenAnswer(null);
+  final _exceptionHandler = MockExceptionHandler();
+  when(_exceptionHandler(any, any)).thenAnswer(null);
 
   group('`onResult` MIXIN', () {
     final _firstDelegate = MockDelegate<int>();
 
     final _secondDelegate = MockUnaryDelegate<String, int>();
-    final _firstRunner = YakRunner(_firstDelegate, _errorHandler);
+    final _firstRunner = YakRunner(_firstDelegate, _exceptionHandler);
 
     final _secondRunner =
-        YakRunnerArg<String, int>(_secondDelegate, _errorHandler);
+        YakRunnerArg<String, int>(_secondDelegate, _exceptionHandler);
 
     test('WHEN `Delegate<S>` fails THEN  `onResult() return Failure<T>', () {
-      reset(_errorHandler);
+      reset(_exceptionHandler);
       reset(_firstDelegate);
       reset(_secondDelegate);
 
@@ -50,13 +50,13 @@ void main() {
       );
 
       verify(_firstDelegate()).called(1);
-      verify(_errorHandler(any, any)).called(1);
+      verify(_exceptionHandler(any, any)).called(1);
       verifyZeroInteractions(_secondDelegate);
     });
 
     test('WHEN `ArgDelegate<T,S>` fail THEN  `onResult() return Failure<T>',
         () {
-      reset(_errorHandler);
+      reset(_exceptionHandler);
       reset(_firstDelegate);
       reset(_secondDelegate);
 
@@ -88,7 +88,7 @@ void main() {
 
       verify(_firstDelegate()).called(1);
       verify(_secondDelegate(_data)).called(1);
-      verify(_errorHandler(any, any)).called(1);
+      verify(_exceptionHandler(any, any)).called(1);
     });
   });
 }

@@ -1,3 +1,7 @@
+# 0.2.2+0
+- breaking change: 
+  - sepatarate handling between `Exception` and `Error`
+
 # 0.2.1+5
 - removed `on Exception` to catch `Error`
 

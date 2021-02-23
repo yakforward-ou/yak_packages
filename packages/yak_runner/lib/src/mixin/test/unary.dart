@@ -1,7 +1,7 @@
-import '../../delegates/all.dart';
+import '../../all.dart';
 
-/// a `mixin` on `Object`
-mixin YakRunnerArgTestMixin<T, S> {
+/// a `mixin` on `YakRunnerBase`
+mixin YakRunnerArgTestMixin<T, S> on YakRunnerBase {
   /// is a `YakRunnerTestDelegate Function(YakRunnerTestFactoryDelegate)`
   /// types `T` & `S` are passed by the `Object`
   /// to the test to `YakRunnerTestDelegate`

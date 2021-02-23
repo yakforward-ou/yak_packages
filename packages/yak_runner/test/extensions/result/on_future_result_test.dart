@@ -7,21 +7,21 @@ import '../../mocks/all.dart';
 void main() {
   final _data = 1;
   final _res = '$_data';
-  final _errorHandler = MockErrorHandler();
-  when(_errorHandler(any, any)).thenAnswer(null);
+  final _exceptionHandler = MockExceptionHandler();
+  when(_exceptionHandler(any, any)).thenAnswer(null);
 
   group('`onFutureResult` EXTENSION', () {
     final _firstDelegate = MockDelegate<Future<int>>();
 
     final _secondDelegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
-    final _firstRunner = YakRunnerAsync<int>(_firstDelegate, _errorHandler);
+    final _firstRunner = YakRunnerAsync<int>(_firstDelegate, _exceptionHandler);
 
     final _secondRunner =
-        YakRunnerArgAsync<String, int>(_secondDelegate, _errorHandler);
+        YakRunnerArgAsync<String, int>(_secondDelegate, _exceptionHandler);
 
     test('WHEN `Delegate<Future<S>>` fails THEN  `onResult() return Failure<T>',
         () async {
-      reset(_errorHandler);
+      reset(_exceptionHandler);
       reset(_firstDelegate);
       reset(_secondDelegate);
 
@@ -53,14 +53,14 @@ void main() {
       );
 
       verify(_firstDelegate()).called(1);
-      verify(_errorHandler(any, any)).called(1);
+      verify(_exceptionHandler(any, any)).called(1);
       verifyZeroInteractions(_secondDelegate);
     });
 
     test(
         'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` fail '
         'THEN  `onResult() return Failure<T>', () async {
-      reset(_errorHandler);
+      reset(_exceptionHandler);
       reset(_firstDelegate);
       reset(_secondDelegate);
 
@@ -93,13 +93,13 @@ void main() {
 
       verify(_firstDelegate()).called(1);
       verify(_secondDelegate(_data)).called(1);
-      verify(_errorHandler(any, any)).called(1);
+      verify(_exceptionHandler(any, any)).called(1);
     });
 
     test(
         'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` does not fail '
         'THEN  `onResult() return Success<T>', () async {
-      reset(_errorHandler);
+      reset(_exceptionHandler);
       reset(_firstDelegate);
       reset(_secondDelegate);
 
@@ -128,7 +128,7 @@ void main() {
 
       verify(_firstDelegate()).called(1);
       verify(_secondDelegate(_data)).called(1);
-      verifyZeroInteractions(_errorHandler);
+      verifyZeroInteractions(_exceptionHandler);
     });
   });
 }
