@@ -1,4 +1,4 @@
-export 'catch/all.dart';
+export 'handlers/all.dart';
 export 'function/all.dart';
 
 /// simply exports folder's classes
