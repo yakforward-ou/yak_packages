@@ -1,22 +1,11 @@
-# 0.2.1+6
+# 0.2.2+0
+- new implementation for `yak_runner` version `0.2.2`
+
+# 0.2.1
 - tests updated
-
-# 0.2.1+5
 - set up for `melos` and `coverage`
-
-# 0.2.1+3
 - added `effective_dart` to `dev_dependencies`
-- updated readme and comments
-
-# 0.2.1+2
-- removed unused dependencies
-- simplyfied folder structure
-- added test
-
-# 0.2.1+1
 - updated `readme`
-
-# 0.2.1+0
 - updated example
 
 # 0.2.0
