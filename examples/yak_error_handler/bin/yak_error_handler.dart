@@ -4,10 +4,14 @@ import 'package:yak_runner/yak_runner.dart';
 
 final _random = math.Random();
 
-void veryBadAPI(int i) => _random.nextBool() ? print('$i') : throw 'ops';
+void veryBadAPI(int i) =>
+    _random.nextBool() ? print('$i') : throw Exception('ops');
 
 void main() {
-  final runner = YakRunnerArg(veryBadAPI, YakErrorHandler());
+  final runner = YakRunnerArg(
+    veryBadAPI,
+    handleException: YakErrorHandler(),
+  );
 
   YakErrorHandler().handleError =
       (e, s) => print('****** ERRROR COUGHT *******\n$e\n$s');
