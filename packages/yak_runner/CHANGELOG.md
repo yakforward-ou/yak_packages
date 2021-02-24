@@ -1,3 +1,10 @@
+# 0.2.2+1
+- breaking change: 
+  - `"runners"` have now optional named constructor arguments
+  - `HandleError` has optional constructor argument
+- `HandleError` has new factory constructor and extensions
+- updated `readme` and `pubspec` description
+
 # 0.2.2+0
 - breaking change: 
   - sepatarate handling between `Exception` and `Error`
