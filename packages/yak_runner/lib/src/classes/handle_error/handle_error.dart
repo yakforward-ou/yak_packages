@@ -11,4 +11,8 @@ class HandleError<T extends Error> extends HandleErrorBase<T> {
   /// the `call(T)` reflect the `handleError` Function
   @override
   void call(T error) => handleError(error);
+
+  /// create a `HandleError` that ignores the error,
+  /// but the runner returns `Failure`
+  factory HandleError.ignore() => HandleError((_) {});
 }
