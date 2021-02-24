@@ -12,15 +12,15 @@ class YakRunnerArgAsync<T, S> extends YakRunnerBase
     implements UnaryDelegate<Future<Result<T>>, FutureOr<S>> {
   /// takes as argument `fun` and `errorHandler`
   YakRunnerArgAsync(
-    this.fun, [
+    this.fun, {
     HandleException handleException,
     Set<HandleErrorBase> errorsWhitelist = const {},
-  ])  : assert(fun != null, ' a non null function must be provided'),
+  })  : assert(fun != null, ' a non null function must be provided'),
         assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
         super(
-          handleException,
-          errorsWhitelist,
+          handleException: handleException,
+          errorsWhitelist: errorsWhitelist,
         );
 
   /// `fun` is ` Future<T> Function(FutureOr<S>)`

@@ -12,15 +12,15 @@ class YakRunnerArg<T, S> extends YakRunnerBase
   /// takes as argument `fun` and `errorHandler`
   /// unlike
   YakRunnerArg(
-    this.fun, [
+    this.fun, {
     HandleException handleException,
     Set<HandleErrorBase> errorsWhitelist = const {},
-  ])  : assert(fun != null, ' a non null function must be provided'),
+  })  : assert(fun != null, ' a non null function must be provided'),
         assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
         super(
-          handleException,
-          errorsWhitelist,
+          handleException: handleException,
+          errorsWhitelist: errorsWhitelist,
         );
 
   /// `fun` is ` T Function(S)`

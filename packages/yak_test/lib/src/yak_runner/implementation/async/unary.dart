@@ -32,8 +32,8 @@ class YakRunnerArgAsyncTest<T, S> implements YakRunnerArgTestDelegate<T, S> {
       final _delegate = MockUnaryDelegate<Future<T>, FutureOr<S>>();
       final _runner = YakRunnerArgAsync<T, S>(
         _delegate,
-        _exceptionHandler,
-        {_errorHandler},
+        handleException: _exceptionHandler,
+        errorsWhitelist: {_errorHandler},
       );
       when(_exceptionHandler(any, any)).thenAnswer(null);
       when(_errorHandler(any)).thenAnswer(null);

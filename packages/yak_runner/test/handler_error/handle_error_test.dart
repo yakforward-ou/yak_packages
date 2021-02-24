@@ -1,4 +1,5 @@
 import 'package:test/test.dart';
+import 'package:yak_runner/yak_runner.dart';
 
 import '../mocks/all.dart';
 
@@ -19,6 +20,16 @@ void main() {
           subj.type,
           isA<AssertionError>(),
           reason: '`T should match `HandleError.type`',
+        );
+      };
+    });
+
+    test('WHEN `HandleError.ignore` THEN returns `HandleError`', () {
+      () {
+        expect(
+          HandleError.ignore(),
+          isA<HandleError>(),
+          reason: '`HandleError.ignore()` should be `HandleError`',
         );
       };
     });

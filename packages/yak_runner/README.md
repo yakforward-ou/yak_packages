@@ -3,9 +3,11 @@
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg)](https://github.com/invertase/melos)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [!["Buy Me A Coffee"](https://img.shields.io/badge/sponsor-buy%20me%20a%20coffee-orange)](https://www.buymeacoffee.com/yakforward)
+
 # yak_runner
 
-A Dart package to run function safely, with customizable error handling and easily testable
+A Dart package that makes running functions safer and easier to test
+
 ---
 
 ### Get Started

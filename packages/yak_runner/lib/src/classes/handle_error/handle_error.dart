@@ -6,9 +6,13 @@ class HandleError<T extends Error> extends HandleErrorBase<T> {
   final void Function(T) handleError;
 
   /// constuctor has a single positinal argumeny
-  HandleError(this.handleError);
+  HandleError([this.handleError]);
 
   /// the `call(T)` reflect the `handleError` Function
   @override
-  void call(T error) => handleError(error);
+  void call(T error) => handleError?.call(error);
+
+  /// create a `HandleError` that ignores the error,
+  /// but the runner returns `Failure`
+  factory HandleError.ignore() => HandleError();
 }

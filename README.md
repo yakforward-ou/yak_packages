@@ -4,9 +4,11 @@
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [!["Buy Me A Coffee"](https://img.shields.io/badge/sponsor-buy%20me%20a%20coffee-orange)](https://www.buymeacoffee.com/yakforward)
 
-# yak_packages
+#yak_packages
 
 a collection of packages for Dart and Flutter
+
+---
 
 | Package | Link |
 |--------|-----|
