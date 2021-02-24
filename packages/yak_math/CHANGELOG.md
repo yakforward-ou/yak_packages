@@ -1,3 +1,6 @@
+# 0.1.0+6
+- fix formatting with dartfmt
+
 # 0.1.0+5
 - added `coverage:ignore-line to ignore one line` to `super`
 
