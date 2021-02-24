@@ -1,3 +1,7 @@
+# 0.2.2+2
+- implemented `IterableContains` and `TypeAsType`
+  with extensions and tests 
+
 # 0.2.2+1
 - breaking change: 
   - `"runners"` have now optional named constructor arguments
