@@ -1,3 +1,6 @@
+# 0.1.1+13
+- bump `flutter_hooks` to `^0.16.0`
+
 # 0.1.1+12
 - set up for `melos` and `coverage`
 - `codecov` unreliable `yak_packages/issues/35`
