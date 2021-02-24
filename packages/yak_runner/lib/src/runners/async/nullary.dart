@@ -11,14 +11,14 @@ class YakRunnerAsync<T> extends YakRunnerBase
     implements Delegate<Future<Result<T>>> {
   /// takes as argument `fun` and `errorHandler`
   const YakRunnerAsync(
-    this.fun, [
+    this.fun, {
     HandleException handleException,
     Set<HandleErrorBase> errorsWhitelist = const {},
-  ])  : assert(fun != null, ' a non null function must be provided'),
+  })  : assert(fun != null, ' a non null function must be provided'),
         // coverage:ignore-line
         super(
-          handleException,
-          errorsWhitelist,
+          handleException: handleException,
+          errorsWhitelist: errorsWhitelist,
         );
 
   /// `fun` is `Future<T> Function()`

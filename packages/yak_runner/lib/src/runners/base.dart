@@ -9,8 +9,8 @@ abstract class YakRunnerBase {
   final Set<HandleErrorBase> errorsWhitelist;
 
   /// the constructor takes an optional parameter `errorHandler`
-  const YakRunnerBase([
+  const YakRunnerBase({
     this.handleException,
     this.errorsWhitelist,
-  ]);
+  });
 }

@@ -15,9 +15,14 @@ void main() {
     final _firstDelegate = MockDelegate<int>();
     final _secondDelegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
 
-    final _firstRunner = YakRunner<int>(_firstDelegate, _exceptionHandler);
-    final _secondRunner =
-        YakRunnerArgAsync<String, int>(_secondDelegate, _exceptionHandler);
+    final _firstRunner = YakRunner<int>(
+      _firstDelegate,
+      handleException: _exceptionHandler,
+    );
+    final _secondRunner = YakRunnerArgAsync<String, int>(
+      _secondDelegate,
+      handleException: _exceptionHandler,
+    );
 
     test('WHEN `Delegate<S>` fails THEN  `onResult() return Failure<T>',
         () async {

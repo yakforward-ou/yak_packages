@@ -13,10 +13,15 @@ void main() {
     final _firstDelegate = MockDelegate<int>();
 
     final _secondDelegate = MockUnaryDelegate<String, int>();
-    final _firstRunner = YakRunner(_firstDelegate, _exceptionHandler);
+    final _firstRunner = YakRunner(
+      _firstDelegate,
+      handleException: _exceptionHandler,
+    );
 
-    final _secondRunner =
-        YakRunnerArg<String, int>(_secondDelegate, _exceptionHandler);
+    final _secondRunner = YakRunnerArg<String, int>(
+      _secondDelegate,
+      handleException: _exceptionHandler,
+    );
 
     test('WHEN `Delegate<S>` fails THEN  `onResult() return Failure<T>', () {
       reset(_exceptionHandler);

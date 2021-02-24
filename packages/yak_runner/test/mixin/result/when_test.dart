@@ -13,7 +13,10 @@ void main() {
 
   group('`when` MIXIN on`YakRunnerArg`', () {
     final _delegate = MockUnaryDelegate<String, int>();
-    final _runner = YakRunnerArg<String, int>(_delegate, _exceptionHandler);
+    final _runner = YakRunnerArg<String, int>(
+      _delegate,
+      handleException: _exceptionHandler,
+    );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
       reset(_exceptionHandler);
@@ -60,7 +63,10 @@ void main() {
 
   group('`when` MIXIN on `YakRunner`', () {
     final _delegate = MockDelegate<int>();
-    final _runner = YakRunner(_delegate, _exceptionHandler);
+    final _runner = YakRunner(
+      _delegate,
+      handleException: _exceptionHandler,
+    );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
       reset(_exceptionHandler);
@@ -107,8 +113,10 @@ void main() {
 
   group('`when` MIXIN on `YakRunnerArgAsync`', () {
     final _delegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
-    final _runner =
-        YakRunnerArgAsync<String, int>(_delegate, _exceptionHandler);
+    final _runner = YakRunnerArgAsync<String, int>(
+      _delegate,
+      handleException: _exceptionHandler,
+    );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {
       reset(_exceptionHandler);
@@ -155,7 +163,10 @@ void main() {
 
   group('`when` MIXIN on `YakRunnerAsync`', () {
     final _delegate = MockDelegate<Future<int>>();
-    final _runner = YakRunnerAsync(_delegate, _exceptionHandler);
+    final _runner = YakRunnerAsync(
+      _delegate,
+      handleException: _exceptionHandler,
+    );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {
       reset(_exceptionHandler);

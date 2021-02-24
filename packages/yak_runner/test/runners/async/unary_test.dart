@@ -16,8 +16,8 @@ void main() {
     final _delegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
     final _runner = YakRunnerArgAsync<String, int>(
       _delegate,
-      _exceptionHandler,
-      {_errorHandler},
+      handleException: _exceptionHandler,
+      errorsWhitelist: {_errorHandler},
     );
     when(_exceptionHandler(any, any)).thenAnswer(null);
     when(_errorHandler(any)).thenAnswer(null);

@@ -12,8 +12,8 @@ void main() {
     final _delegate = MockDelegate<Future<int>>();
     final _runner = YakRunnerAsync<int>(
       _delegate,
-      _exceptionHandler,
-      {_errorHandler},
+      handleException: _exceptionHandler,
+      errorsWhitelist: {_errorHandler},
     );
     when(_exceptionHandler(any, any)).thenAnswer(null);
     verifyNever(_errorHandler(any));
