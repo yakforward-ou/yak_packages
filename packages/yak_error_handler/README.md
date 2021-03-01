@@ -9,6 +9,7 @@
 
 This is small and lightweight package based on `riverpod`
 to handle errors from `try / catch` easy to integrate with `yak_runner`
+
 ---
 
 ### Get Started

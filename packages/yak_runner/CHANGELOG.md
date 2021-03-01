@@ -1,3 +1,6 @@
+# 0.2.2+3
+- `readme.md` updated 
+
 # 0.2.2+2
 - implemented `IterableContains` and `TypeAsType`
   with extensions and tests 
@@ -13,24 +16,12 @@
 - breaking change: 
   - sepatarate handling between `Exception` and `Error`
 
-# 0.2.1+5
-- removed `on Exception` to catch `Error`
-
-# 0.2.1+4
-- added tests for `mixin` and `assert`
-
-# 0.2.1+3
-- set up for `melos` and `coverage`
-
-# 0.2.1+2
+# 0.2.1
+- added `melos` and `coverage`
 - added `effective_dart` to `dev_dependencies`
-- updated readme and comments
-
-# 0.2.1+1
 - updated `readme`
-
-# 0.2.1+0
-- updated example
+- updated `example`
+- updated `tests`
 
 # 0.2.0
 - `yak_error_handler` friendly

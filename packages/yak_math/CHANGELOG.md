@@ -1,3 +1,6 @@
+# 0.1.0+7
+- `readme.md` updated 
+
 # 0.1.0+6
 - fix formatting in `lib/src/all.dart `
 
