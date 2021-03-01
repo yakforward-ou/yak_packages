@@ -1,3 +1,5 @@
+# 0.2.0+3
+- `readme.md` updated 
 # 0.2.0+2
 - set up for `melos` and `coverage`
 - `codecov` unreliable `yak_packages/issues/35`
