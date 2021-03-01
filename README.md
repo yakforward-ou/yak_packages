@@ -1,10 +1,11 @@
-[![codecov](https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0)](https://codecov.io/gh/iapicca/yak_packages)
-[![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
-[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg)](https://github.com/invertase/melos)
-[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[!["Buy Me A Coffee"](https://img.shields.io/badge/sponsor-buy%20me%20a%20coffee-orange)](https://www.buymeacoffee.com/yakforward)
+[![codecov badge][]][codecov]
+[![style badge][]][style]
+[![melos badge][]][melos]
+[![license badge][]][license]
+[![sponsor badge][]][sponsor]
+[![twitter badge][]][twitter]
 
-#yak_packages
+# yak_packages
 
 a collection of packages for Dart and Flutter
 
@@ -17,3 +18,18 @@ a collection of packages for Dart and Flutter
 | [yak_error_handler](https://github.com/iapicca/yak_packages/tree/master/packages/yak_error_handler) | [pub](https://pub.dev/packages/yak_error_handler) |
 | [yak_widgets](https://github.com/iapicca/yak_packages/tree/master/packages/yak_widgets) | [pub](https://pub.dev/packages/yak_widgets) |
 ---
+
+
+
+[codecov]: https://codecov.io/gh/iapicca/yak_packages
+[codecov badge]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0
+[style]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0
+[style badge]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
+[melos badge]: https://img.shields.io/badge/maintained%20with-melos-f700ff.svg
+[melos]: https://github.com/invertase/melos
+[license]: https://opensource.org/licenses/MIT
+[license badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[sponsor]: https://www.buymeacoffee.com/yakforward
+[sponsor badge]: https://img.shields.io/badge/sponsor-buy%20me%20a%20coffee-orange
+[twitter]: https://twitter.com/intent/follow?screen_name=yakforward
+[twitter badge]: https://img.shields.io/twitter/follow/yakforward?label=twitter&style=social
