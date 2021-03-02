@@ -6,10 +6,10 @@ import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
 
 void main() {
-  final _data = 1;
-  final _res = '$_data';
+  const _data = 1;
+  const _res = '$_data';
   final _exceptionHandler = MockExceptionHandler();
-  when(_exceptionHandler(any, any)).thenAnswer(null);
+  when(_exceptionHandler(Object, any)).thenReturn(() {});
 
   group('`when` MIXIN on`YakRunnerArg`', () {
     final _delegate = MockUnaryDelegate<String, int>();
@@ -36,7 +36,7 @@ void main() {
       expect(_failure != null, true, reason: '`failure:`should be called');
 
       verify(_delegate(_data)).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      verify(_exceptionHandler(Object, any)).called(1);
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () {
@@ -86,7 +86,7 @@ void main() {
       expect(_failure != null, true, reason: '`failure:`should be called');
 
       verify(_delegate()).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      verify(_exceptionHandler(Object, any)).called(1);
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () {
@@ -136,7 +136,7 @@ void main() {
       expect(_failure != null, true, reason: '`failure:`should be called');
 
       verify(_delegate(_data)).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      verify(_exceptionHandler(Object, any)).called(1);
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () async {
@@ -186,7 +186,7 @@ void main() {
       expect(_failure != null, true, reason: '`failure:`should be called');
 
       verify(_delegate()).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      verify(_exceptionHandler(Object, any)).called(1);
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () async {

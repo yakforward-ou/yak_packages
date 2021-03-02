@@ -6,7 +6,7 @@ mixin OnFailure<S> on FailureBase<S> {
   ///  `onResult` implementation in case `Result` is `Failure`
   Result<T> onResult<T>(
     Result<T> Function(S) runner, [
-    FailureOfType<T> failureOfType,
+    FailureOfType<T>? failureOfType,
   ]) {
     failureOfType ??= (e, s) => Failure<T>(e, s);
     return failureOfType(e, s);

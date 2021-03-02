@@ -13,10 +13,9 @@ class YakRunnerArgAsync<T, S> extends YakRunnerBase
   /// takes as argument `fun` and `errorHandler`
   YakRunnerArgAsync(
     this.fun, {
-    HandleException handleException,
+    HandleException? handleException,
     Set<HandleErrorBase> errorsWhitelist = const {},
-  })  : assert(fun != null, ' a non null function must be provided'),
-        assert(S != typeVoid, '`S` must not be of type `void`'),
+  })  : assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
         super(
           handleException: handleException,
@@ -33,10 +32,12 @@ class YakRunnerArgAsync<T, S> extends YakRunnerBase
     try {
       return Result.success(await fun(await arg));
     } on Error catch (e) {
-      for (final err in errorsWhitelist) {
-        if (err.type != e.runtimeType) {
-          err(e);
-          return Result.failure(e, e.stackTrace);
+      if (errorsWhitelist != null) {
+        for (final err in errorsWhitelist!) {
+          if (err.type != e.runtimeType) {
+            err(e);
+            return Result.failure(e, e.stackTrace);
+          }
         }
       }
       rethrow;

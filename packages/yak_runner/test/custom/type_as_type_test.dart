@@ -2,7 +2,7 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  const failure = Failure(null, null);
+  const failure = Failure(Object(), null);
   group('`TypeAsType`', () {
     test(
       'WHEN `<S extends T> as T` S.as<T>() THEN returns `Success<T>`',

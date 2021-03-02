@@ -4,16 +4,16 @@ import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
 
 void main() {
-  final _data = 1;
-  final _res = '$_data';
+  const _data = 1;
+  const _res = '$_data';
   final _exceptionHandler = MockExceptionHandler();
-  when(_exceptionHandler(any, any)).thenAnswer(null);
+  when(_exceptionHandler(Object, any)).thenReturn(() {});
 
   group('`onResult` MIXIN', () {
     final _firstDelegate = MockDelegate<int>();
 
     final _secondDelegate = MockUnaryDelegate<String, int>();
-    final _firstRunner = YakRunner(
+    final _firstRunner = YakRunner<int>(
       _firstDelegate,
       handleException: _exceptionHandler,
     );
@@ -55,7 +55,7 @@ void main() {
       );
 
       verify(_firstDelegate()).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      verify(_exceptionHandler(Object, any)).called(1);
       verifyZeroInteractions(_secondDelegate);
     });
 
@@ -93,7 +93,7 @@ void main() {
 
       verify(_firstDelegate()).called(1);
       verify(_secondDelegate(_data)).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      verify(_exceptionHandler(Object, any)).called(1);
     });
   });
 }

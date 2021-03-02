@@ -6,8 +6,8 @@ import '../../mocks/all.dart';
 
 void main() {
   group('`YakRunnerArg`', () {
-    final _data = 1;
-    final _res = '$_data';
+    const _data = 1;
+    const _res = '$_data';
     final _exceptionHandler = MockExceptionHandler();
     final _delegate = MockUnaryDelegate<String, int>();
     final _errorHandler = MockHandleError<AssertionError>();
@@ -16,8 +16,8 @@ void main() {
       handleException: _exceptionHandler,
       errorsWhitelist: {_errorHandler},
     );
-    when(_exceptionHandler(any, any)).thenAnswer(null);
-    when(_errorHandler(any)).thenAnswer(null);
+    when(_exceptionHandler(Object, any)).thenReturn(() {});
+    when(_errorHandler(AssertionError())).thenReturn(() {});
 
     test('WHEN `void Function(T)` throws THEN `Result` is `Failure`', () {
       reset(_exceptionHandler);
@@ -43,7 +43,8 @@ void main() {
         reason: '`_result` should be `Failure`',
       );
       verify(_delegate(_data)).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      verify(_exceptionHandler(Object, any)).called(1);
+      verifyZeroInteractions(_errorHandler);
     });
 
     test('WHEN `void Function()` does not fail `Result` is `Success`', () {
@@ -72,7 +73,8 @@ void main() {
       );
 
       verify(_delegate(_data)).called(1);
-      verifyNever(_exceptionHandler(any, any));
+      verifyZeroInteractions(_errorHandler);
+      verifyZeroInteractions(_exceptionHandler);
     });
     test('WHEN `ERROR` is thwon THEN runner fails', () {
       reset(_exceptionHandler);
@@ -81,7 +83,7 @@ void main() {
 
       when(_delegate(_data)).thenThrow(Error());
 
-      Error err;
+      Error? err;
 
       try {
         _runner(_data);
@@ -96,8 +98,8 @@ void main() {
       );
 
       verify(_delegate(_data)).called(1);
-      verifyNever(_errorHandler(any));
-      verifyNever(_exceptionHandler(any, any));
+      verifyZeroInteractions(_errorHandler);
+      verifyZeroInteractions(_exceptionHandler);
     });
 
     test('WHEN `AssertionError` is thwon THEN gets handled', () {
@@ -114,26 +116,8 @@ void main() {
       );
 
       verify(_delegate(_data)).called(1);
-      verify(_errorHandler(any)).called(1);
-      verifyNever(_exceptionHandler(any, any));
-    });
-    test(
-      'WHEN `fun` is `null` THEN `assert` should `throwsAssertionError`',
-      () => expect(
-        () => YakRunnerArg(null),
-        throwsA(isA<AssertionError>()),
-        reason: '`fun == null` should throw `AssertionError`',
-      ),
-    );
-    test(
-        'WHEN `call` -> `arg` is `null` '
-        'THEN `assert` should `throwsAssertionError`', () {
-      final runner = YakRunnerArg<String, int>((i) => 'i');
-      expect(
-        () => runner(null),
-        throwsA(isA<AssertionError>()),
-        reason: '`arg == null` should throw `AssertionError`',
-      );
+      verify(_errorHandler(AssertionError())).called(1);
+      verifyZeroInteractions(_exceptionHandler);
     });
   });
 }

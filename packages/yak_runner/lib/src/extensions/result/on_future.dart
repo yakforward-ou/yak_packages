@@ -9,7 +9,7 @@ extension OnFutureResult<S> on FutureOr<Result<S>> {
   /// await the result and calls `onResultAsync` on the extended `Result`
   Future<Result<T>> onFutureResult<T>(
     Future<Result<T>> Function(FutureOr<S>) runner, [
-    FailureOfType<T> failureOfType,
+    FailureOfType<T>? failureOfType,
   ]) async =>
       (await this).onResultAsync(runner);
 }
