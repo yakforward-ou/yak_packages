@@ -13,7 +13,7 @@ class YakRunner<T> extends YakRunnerBase
   const YakRunner(
     this.fun, {
     HandleException? handleException,
-    Set<HandleErrorBase> errorsWhitelist = const {},
+    Set<HandleErrorBase>? errorsWhitelist,
   }) :
         // coverage:ignore-line
         super(

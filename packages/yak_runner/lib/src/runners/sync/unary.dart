@@ -14,7 +14,7 @@ class YakRunnerArg<T, S> extends YakRunnerBase
   YakRunnerArg(
     this.fun, {
     HandleException? handleException,
-    Set<HandleErrorBase> errorsWhitelist = const {},
+    Set<HandleErrorBase>? errorsWhitelist,
   })  : assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
         super(

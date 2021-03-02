@@ -8,7 +8,7 @@ void main() {
   const _data = 1;
   const _res = '$_data';
   final _exceptionHandler = MockExceptionHandler();
-  when(_exceptionHandler).calls(#call).thenAnswer((i) => null);
+  when(_exceptionHandler).calls(#call).thenAnswer((i) {});
 
   group('`onFutureResult` EXTENSION', () {
     final _firstDelegate = MockDelegate<Future<int>>();
