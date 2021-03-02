@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
@@ -8,7 +8,7 @@ void main() {
   const _data = 1;
   const _res = '$_data';
   final _exceptionHandler = MockExceptionHandler();
-  when(_exceptionHandler(Object, any)).thenReturn(() {});
+  when(_exceptionHandler).calls(#call).thenAnswer((i) => null);
 
   group('`onFutureResult` EXTENSION', () {
     final _firstDelegate = MockDelegate<Future<int>>();
@@ -30,8 +30,8 @@ void main() {
       reset(_firstDelegate);
       reset(_secondDelegate);
 
-      when(_firstDelegate()).thenThrow(Exception());
-      when(_secondDelegate(_data)).thenAnswer((_) async => _res);
+      when(_firstDelegate).calls(#call).thenThrow(Exception());
+      when(_secondDelegate).calls(#call).thenAnswer((any) async => _res);
 
       final _result =
           await _firstRunner().onFutureResult<String>(_secondRunner);
@@ -57,9 +57,10 @@ void main() {
         reason: '`_result` should be `Failure<T>`',
       );
 
-      verify(_firstDelegate()).called(1);
-      verify(_exceptionHandler(Object(), any)).called(1);
-      verifyZeroInteractions(_secondDelegate);
+      verify(_firstDelegate).called(#call).once();
+      verify(_secondDelegate).called(#call).never();
+
+      verify(_exceptionHandler).called(#call).once();
     });
 
     test(
@@ -69,8 +70,8 @@ void main() {
       reset(_firstDelegate);
       reset(_secondDelegate);
 
-      when(_firstDelegate()).thenAnswer((_) async => _data);
-      when(_secondDelegate(_data)).thenThrow(Exception());
+      when(_firstDelegate).calls(#call).thenAnswer((_) async => _data);
+      when(_secondDelegate).calls(#call).thenThrow(Exception());
 
       final _result =
           await _firstRunner().onFutureResult<String>(_secondRunner);
@@ -96,9 +97,10 @@ void main() {
         reason: '`_result` should be `Failure<T>`',
       );
 
-      verify(_firstDelegate()).called(1);
-      verify(_secondDelegate(_data)).called(1);
-      verify(_exceptionHandler(Object, any)).called(1);
+      verify(_firstDelegate).called(#call).once();
+      verify(_secondDelegate).called(#call).once();
+
+      verify(_exceptionHandler).called(#call).once();
     });
 
     test(
@@ -108,8 +110,8 @@ void main() {
       reset(_firstDelegate);
       reset(_secondDelegate);
 
-      when(_firstDelegate()).thenAnswer((_) async => _data);
-      when(_secondDelegate(_data)).thenAnswer((_) async => _res);
+      when(_firstDelegate).calls(#call).thenAnswer((_) async => _data);
+      when(_secondDelegate).calls(#call).thenAnswer((_) async => _res);
 
       final _result =
           await _firstRunner().onFutureResult<String>(_secondRunner);
@@ -130,10 +132,10 @@ void main() {
         isNot(Failure),
         reason: '`_result` should not be `Failure`',
       );
+      verify(_firstDelegate).called(#call).once();
+      verify(_secondDelegate).called(#call).once();
 
-      verify(_firstDelegate()).called(1);
-      verify(_secondDelegate(_data)).called(1);
-      verifyZeroInteractions(_exceptionHandler);
+      verify(_exceptionHandler).called(#call).never();
     });
   });
 }

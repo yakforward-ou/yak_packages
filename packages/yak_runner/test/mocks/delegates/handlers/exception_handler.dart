@@ -1,4 +1,4 @@
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 mixin ExceptionHandler {
   void call(Object e, StackTrace? s);
