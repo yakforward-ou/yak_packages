@@ -6,5 +6,5 @@ mixin Bar<T, S, Z, W, A> {
 
 class BarStub<T, S, Z, W, A> extends Stub<T> implements Bar<T, S, Z, W, A> {
   @override
-  T bar(S s, Z z, W w, A a) => stub();
+  T bar(S s, Z z, W w, A a) => stub.result;
 }

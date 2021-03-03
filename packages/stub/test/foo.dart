@@ -12,5 +12,5 @@ class FooStub<T> extends Stub<T> implements Foo<T> {
   @override
   T baz() => throw UnimplementedError();
   @override
-  T foo() => stub();
+  T foo() => stub.result;
 }
