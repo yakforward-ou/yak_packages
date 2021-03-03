@@ -1,5 +1,7 @@
 import 'package:meta/meta.dart';
 
+import '../../stub.dart';
+
 /// an interface for the `Stub` class
 abstract class StubBase<T> {
   /// a `late` initialization for `T Function()`
@@ -12,7 +14,7 @@ abstract class StubBase<T> {
   /// `stub` runs the function `result`
   /// and updates `callCountInternal`
   @internal
-  T stub();
+  StubResult<T> get stub;
 
   /// provides a `const` constructor
   StubBase() : callCountInternal = 0;

@@ -6,14 +6,15 @@ import 'foo.dart';
 class FooWrap {
   void Function() fun;
   FooWrap(this.fun);
-  void call() {
+  bool call() {
     try {
       fun();
+      return false;
     } on Error catch (e) {
       if (e is AssertionError) {
-        print('ok');
+        return true;
       }
-      rethrow;
+      return false;
     }
   }
 }
@@ -29,7 +30,11 @@ void main() {
       foo.reset;
       foo.result = () => throw AssertionError();
 
-      fooWrap();
+      expect(
+        fooWrap(),
+        true,
+        reason: '`AssertionError should "flow" until the function is run`',
+      );
     });
   });
 }
