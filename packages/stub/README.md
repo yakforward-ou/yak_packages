@@ -9,6 +9,13 @@
 
  A Dart micro-package to help you stub methods in your tests
 
+ if you feel that you are testing the mock rather than your code
+ when you just need a simple `stub` you may want to take a look
+
+ if instead you are looking for a complete mocking experience
+ or the classes you want to mock have 200 lines and 20 methods
+ this package is probably not for you
+
 ---
 
 ### Get Started
