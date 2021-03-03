@@ -1,0 +1,14 @@
+name: stub
+description:  A Dart micro-package to help writing tests stubbing methods
+version: 0.1.0+0
+homepage: https://github.com/iapicca/yak_packages
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  meta: ^1.3.0
+
+  
+dev_dependencies:
+  test: ^1.16.5
+  effective_dart: ^1.3.0

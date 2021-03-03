@@ -5,22 +5,29 @@
 [![sponsor badge][]][sponsor]
 [![twitter badge][]][twitter]
 
-# yak_packages
+# stub
 
-a collection of packages for Dart and Flutter
+ A Dart micro-package to help you stub methods in your tests
+
+ if you feel that you are testing the mock rather than your code
+ when you just need a simple `stub` you may want to take a look
+
+ if instead you are looking for a complete mocking experience
+ or the classes you want to mock have 200 lines and 20 methods
+ this package is probably not for you
 
 ---
 
-| Package | Link |
-|--------|-----|
-| [stub](https://github.com/iapicca/yak_packages/tree/master/packages/stub) | [pub](https://pub.dev/packages/stub) |
-| [yak_runner](https://github.com/iapicca/yak_packages/tree/master/packages/yak_runner) | [pub](https://pub.dev/packages/yak_runner) |
-| [yak_test](https://github.com/iapicca/yak_packages/tree/master/packages/yak_test) | [pub](https://pub.dev/packages/yak_test) |
-| [yak_error_handler](https://github.com/iapicca/yak_packages/tree/master/packages/yak_error_handler) | [pub](https://pub.dev/packages/yak_error_handler) |
-| [yak_widgets](https://github.com/iapicca/yak_packages/tree/master/packages/yak_widgets) | [pub](https://pub.dev/packages/yak_widgets) |
+### Get Started
+
+add to your `pubspec.yaml`
+
+```yaml
+dependencies: 
+  stub: <latest version>
+```
+
 ---
-
-
 
 [codecov]: https://codecov.io/gh/iapicca/yak_packages
 [codecov badge]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0
