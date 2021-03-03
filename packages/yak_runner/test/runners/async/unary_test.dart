@@ -145,22 +145,35 @@ void main() {
     });
 
     // !! TEST FAILS
-    // test('WHEN `AssertionError` is thwon THEN gets handled', () async {
-    //   reset(exceptionHandler);
-    //   reset(errorHandler);
-    //   reset(delegate);
+    test('WHEN `AssertionError` is thwon THEN gets handled', () async {
+      delegate.reset;
+      exceptionHandler.reset;
+      errorHandler.reset;
 
-    //   when(delegate(data)).thenThrow(AssertionError());
+      delegate.result = () => throw AssertionError();
+      exceptionHandler.result = () {};
+      errorHandler.result = () {};
 
-    //   expect(
-    //     await runner(data),
-    //     isA<Failure>(),
-    //     reason: '`Error` should be handled',
-    //   );
-
-    //   verify(delegate(data)).called(1);
-    //   verify(errorHandler(AssertionError())).called(1);
-    //   verifyZeroInteractions(exceptionHandler);
-    // });
+      expect(
+        await runner(data),
+        isA<Failure>(),
+        reason: '`Error` should be handled',
+      );
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` should be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        0,
+        reason: '`exceptionHandler` should NOT be called ',
+      );
+      expect(
+        errorHandler.callCount,
+        1,
+        reason: '`errorHandler` should be called once',
+      );
+    });
   });
 }

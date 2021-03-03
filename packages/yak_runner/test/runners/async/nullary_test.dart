@@ -143,37 +143,37 @@ void main() {
     });
 
     // !! TEST FAILS
-    // test(
-    //     'WHEN `Error` of `Type` `errorHandler.type`  is thwon '
-    //     'THEN gets handled', () async {
-    //   delegate.reset;
-    //   exceptionHandler.reset;
-    //   errorHandler.reset;
+    test(
+        'WHEN `Error` of `Type` `errorHandler.type`  is thwon '
+        'THEN gets handled', () async {
+      delegate.reset;
+      exceptionHandler.reset;
+      errorHandler.reset;
 
-    //   delegate.result = () => throw AssertionError();
-    //   exceptionHandler.result = () {};
-    //   errorHandler.result = () {};
+      delegate.result = () => throw AssertionError();
+      exceptionHandler.result = () {};
+      errorHandler.result = () {};
 
-    //   expect(
-    //     await runner(),
-    //     isA<Failure>(),
-    //     reason: '`Error` should be handled',
-    //   );
-    //   expect(
-    //     delegate.callCount,
-    //     1,
-    //     reason: '`delegate` should be called once',
-    //   );
-    //   expect(
-    //     exceptionHandler.callCount,
-    //     0,
-    //     reason: '`exceptionHandler` should NOT be called ',
-    //   );
-    //   expect(
-    //     errorHandler.callCount,
-    //     1,
-    //     reason: '`errorHandler` should be called once',
-    //   );
-    // });
+      expect(
+        await runner(),
+        isA<Failure>(),
+        reason: '`Error` should be handled',
+      );
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` should be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        0,
+        reason: '`exceptionHandler` should NOT be called ',
+      );
+      expect(
+        errorHandler.callCount,
+        1,
+        reason: '`errorHandler` should be called once',
+      );
+    });
   });
 }
