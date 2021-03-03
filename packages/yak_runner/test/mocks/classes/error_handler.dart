@@ -1,5 +1,11 @@
-import 'package:mocktail/mocktail.dart';
-import 'package:yak_runner/src/classes/all.dart';
+import 'package:stub/stub.dart';
+import 'package:yak_runner/yak_runner.dart';
 
-class MockHandleError<T extends Error> extends Mock
-    implements HandleErrorBase<T> {}
+class MockHandleError<T extends Error> extends Stub<void>
+    implements HandleErrorBase<T> {
+  @override
+  void call(T error) => stub();
+
+  @override
+  Type get type => T;
+}

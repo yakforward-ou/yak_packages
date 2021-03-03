@@ -1,6 +1,6 @@
 name: yak_runner
 description: A Dart package that makes running functions safer and easier to test
-version: 0.2.2+3
+version: 0.3.0+0
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
@@ -8,5 +8,5 @@ environment:
   
 dev_dependencies:
   test: ^1.16.5
-  mocktail: ^0.0.0
+  stub: ^0.1.0
   effective_dart: ^1.3.0
