@@ -34,7 +34,7 @@ class YakRunnerArgAsync<T, S> extends YakRunnerBase
     } on Error catch (e) {
       if (errorsWhitelist != null) {
         for (final err in errorsWhitelist!) {
-          if (err.type != e.runtimeType) {
+          if (err.type == e.runtimeType) {
             err(e);
             return Result.failure(e, e.stackTrace);
           }
