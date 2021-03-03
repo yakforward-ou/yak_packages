@@ -1,14 +1,36 @@
+[![codecov badge][]][codecov]
+[![style badge][]][style]
+[![melos badge][]][melos]
+[![license badge][]][license]
+[![sponsor badge][]][sponsor]
+[![twitter badge][]][twitter]
+
 # stub
 
-A new Flutter package project.
+ A Dart micro-package to help you stub methods in your tests
 
-## Getting Started
+---
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+### Get Started
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+add to your `pubspec.yaml`
+
+```yaml
+dependencies: 
+  stub: <latest version>
+```
+
+---
+
+[codecov]: https://codecov.io/gh/iapicca/yak_packages
+[codecov badge]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0
+[style]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0
+[style badge]: https://img.shields.io/badge/style-effective_dart-40c4ff.svg
+[melos badge]: https://img.shields.io/badge/maintained%20with-melos-f700ff.svg
+[melos]: https://github.com/invertase/melos
+[license]: https://opensource.org/licenses/MIT
+[license badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[sponsor]: https://www.buymeacoffee.com/yakforward
+[sponsor badge]: https://img.shields.io/badge/sponsor-buy%20me%20a%20coffee-orange
+[twitter]: https://twitter.com/intent/follow?screen_name=yakforward
+[twitter badge]: https://img.shields.io/twitter/follow/yakforward?label=twitter&style=social
