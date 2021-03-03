@@ -1,4 +1,3 @@
-import 'package:stub/src/result/all.dart';
 import 'package:stub/stub.dart';
 
 mixin Foo<T> {
