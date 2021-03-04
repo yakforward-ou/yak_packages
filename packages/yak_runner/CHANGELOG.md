@@ -1,20 +1,15 @@
-# 0.2.2+3
-- `readme.md` updated 
+# 0.3.0+0
+- migrated to `null-safety`
 
-# 0.2.2+2
+# 0.2.2
 - implemented `IterableContains` and `TypeAsType`
   with extensions and tests 
-
-# 0.2.2+1
 - breaking change: 
+  - sepatarate handling between `Exception` and `Error`
   - `"runners"` have now optional named constructor arguments
   - `HandleError` has optional constructor argument
 - `HandleError` has new factory constructor and extensions
 - updated `readme` and `pubspec` description
-
-# 0.2.2+0
-- breaking change: 
-  - sepatarate handling between `Exception` and `Error`
 
 # 0.2.1
 - added `melos` and `coverage`
