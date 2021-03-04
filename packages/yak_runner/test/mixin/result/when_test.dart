@@ -1,213 +1,280 @@
 import 'dart:async';
 
-import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
 
 void main() {
-  final _data = 1;
-  final _res = '$_data';
-  final _exceptionHandler = MockExceptionHandler();
-  when(_exceptionHandler(any, any)).thenAnswer(null);
+  const data = 1;
+  const res = '$data';
 
   group('`when` MIXIN on`YakRunnerArg`', () {
-    final _delegate = MockUnaryDelegate<String, int>();
-    final _runner = YakRunnerArg<String, int>(
-      _delegate,
-      handleException: _exceptionHandler,
+    final exceptionHandler = MockExceptionHandler();
+    final delegate = MockUnaryDelegate<String, int>();
+    final runner = YakRunnerArg<String, int>(
+      delegate,
+      handleException: exceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
-      reset(_exceptionHandler);
-      reset(_delegate);
+      delegate.reset;
+      exceptionHandler.reset;
 
-      when(_delegate(_data)).thenThrow(Exception());
+      delegate.result = () => throw Exception();
+      exceptionHandler.result = () {};
 
       var _success;
       var _failure;
 
-      _runner(_data).when(
+      runner(data).when(
         success: (data) => _success = data,
         failure: (_, s) => _failure = s,
       );
 
       expect(_success != null, false, reason: '`success:`should not be called');
       expect(_failure != null, true, reason: '`failure:`should be called');
-
-      verify(_delegate(_data)).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` houl be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        1,
+        reason: '`exceptionHandler` shoul be called once',
+      );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () {
-      reset(_exceptionHandler);
-      reset(_delegate);
+      delegate.reset;
+      exceptionHandler.reset;
 
-      when(_delegate(_data)).thenReturn(_res);
+      delegate.result = () => res;
+      exceptionHandler.result = () {};
 
       var _success;
       var _failure;
 
-      _runner(_data).when(
+      runner(data).when(
         success: (data) => _success = data,
         failure: (_, s) => _failure = s,
       );
 
       expect(_success != null, true, reason: '`success:`should be called');
       expect(_failure != null, false, reason: '`failure:`should not be called');
-
-      verify(_delegate(_data)).called(1);
-      verifyZeroInteractions(_exceptionHandler);
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` shoul be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        0,
+        reason: '`exceptionHandler` should NOT be called ',
+      );
     });
   });
 
   group('`when` MIXIN on `YakRunner`', () {
-    final _delegate = MockDelegate<int>();
-    final _runner = YakRunner(
-      _delegate,
-      handleException: _exceptionHandler,
+    final delegate = MockDelegate<int>();
+    final exceptionHandler = MockExceptionHandler();
+    final runner = YakRunner(
+      delegate,
+      handleException: exceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
-      reset(_exceptionHandler);
-      reset(_delegate);
+      delegate.reset;
+      exceptionHandler.reset;
 
-      when(_delegate()).thenThrow(Exception());
+      delegate.result = () => throw Exception();
+      exceptionHandler.result = () {};
 
       var _success;
       var _failure;
 
-      _runner().when(
+      runner().when(
         success: (data) => _success = data,
         failure: (_, s) => _failure = s,
       );
 
       expect(_success != null, false, reason: '`success:`should not be called');
       expect(_failure != null, true, reason: '`failure:`should be called');
-
-      verify(_delegate()).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` houl be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        1,
+        reason: '`exceptionHandler` shoul be called once',
+      );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () {
-      reset(_exceptionHandler);
-      reset(_delegate);
+      delegate.reset;
+      exceptionHandler.reset;
 
-      when(_delegate()).thenReturn(_data);
+      delegate.result = () => data;
+      exceptionHandler.result = () {};
 
       var _success;
       var _failure;
 
-      _runner().when(
+      runner().when(
         success: (data) => _success = data,
         failure: (_, s) => _failure = s,
       );
 
       expect(_success != null, true, reason: '`success:`should be called');
       expect(_failure != null, false, reason: '`failure:`should not be called');
-
-      verify(_delegate()).called(1);
-      verifyZeroInteractions(_exceptionHandler);
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` shoul be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        0,
+        reason: '`exceptionHandler` should NOT be called ',
+      );
     });
   });
 
   group('`when` MIXIN on `YakRunnerArgAsync`', () {
-    final _delegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
-    final _runner = YakRunnerArgAsync<String, int>(
-      _delegate,
-      handleException: _exceptionHandler,
+    final delegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
+    final exceptionHandler = MockExceptionHandler();
+
+    final runner = YakRunnerArgAsync<String, int>(
+      delegate,
+      handleException: exceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {
-      reset(_exceptionHandler);
-      reset(_delegate);
+      delegate.reset;
+      exceptionHandler.reset;
 
-      when(_delegate(_data)).thenThrow(Exception());
+      delegate.result = () => throw Exception();
+      exceptionHandler.result = () {};
 
       var _success;
       var _failure;
 
-      (await _runner(_data)).when(
+      (await runner(data)).when(
         success: (data) => _success = data,
         failure: (_, s) => _failure = s,
       );
 
       expect(_success != null, false, reason: '`success:`should not be called');
       expect(_failure != null, true, reason: '`failure:`should be called');
-
-      verify(_delegate(_data)).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` houl be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        1,
+        reason: '`exceptionHandler` shoul be called once',
+      );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () async {
-      reset(_exceptionHandler);
-      reset(_delegate);
+      delegate.reset;
+      exceptionHandler.reset;
 
-      when(_delegate(_data)).thenAnswer((_) async => _res);
+      delegate.result = () async => res;
+      exceptionHandler.result = () {};
 
       var _success;
       var _failure;
 
-      (await _runner(_data)).when(
+      (await runner(data)).when(
         success: (data) => _success = data,
         failure: (_, s) => _failure = s,
       );
 
       expect(_success != null, true, reason: '`success:`should be called');
       expect(_failure != null, false, reason: '`failure:`should not be called');
-
-      verify(_delegate(_data)).called(1);
-      verifyZeroInteractions(_exceptionHandler);
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` shoul be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        0,
+        reason: '`exceptionHandler` should NOT be called ',
+      );
     });
   });
 
   group('`when` MIXIN on `YakRunnerAsync`', () {
-    final _delegate = MockDelegate<Future<int>>();
-    final _runner = YakRunnerAsync(
-      _delegate,
-      handleException: _exceptionHandler,
+    final delegate = MockDelegate<Future<int>>();
+    final exceptionHandler = MockExceptionHandler();
+
+    final runner = YakRunnerAsync(
+      delegate,
+      handleException: exceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {
-      reset(_exceptionHandler);
-      reset(_delegate);
+      delegate.reset;
+      exceptionHandler.reset;
 
-      when(_delegate()).thenThrow(Exception());
+      delegate.result = () => throw Exception();
+      exceptionHandler.result = () {};
 
       var _success;
       var _failure;
 
-      (await _runner()).when(
+      (await runner()).when(
         success: (data) => _success = data,
         failure: (_, s) => _failure = s,
       );
 
       expect(_success != null, false, reason: '`success:`should not be called');
       expect(_failure != null, true, reason: '`failure:`should be called');
-
-      verify(_delegate()).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` houl be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        1,
+        reason: '`exceptionHandler` shoul be called once',
+      );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () async {
-      reset(_exceptionHandler);
-      reset(_delegate);
+      delegate.reset;
+      exceptionHandler.reset;
 
-      when(_delegate()).thenAnswer((_) async => _data);
+      delegate.result = () async => data;
+      exceptionHandler.result = () {};
 
       var _success;
       var _failure;
 
-      (await _runner()).when(
+      (await runner()).when(
         success: (data) => _success = data,
         failure: (_, s) => _failure = s,
       );
 
       expect(_success != null, true, reason: '`success:`should be called');
       expect(_failure != null, false, reason: '`failure:`should not be called');
-
-      verify(_delegate()).called(1);
-      verifyZeroInteractions(_exceptionHandler);
+      expect(
+        delegate.callCount,
+        1,
+        reason: '`delegate` shoul be called once',
+      );
+      expect(
+        exceptionHandler.callCount,
+        0,
+        reason: '`exceptionHandler` should NOT be called ',
+      );
     });
   });
 }

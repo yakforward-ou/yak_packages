@@ -5,9 +5,9 @@ abstract class FailureBase<T> implements Result<T> {
   /// `FailureBase` has argument `Object` `e` and `StackTrace` `s`
   const FailureBase(this.e, this.s);
 
-  /// `Object` `e` is for the `error`'s body
+  /// `e` is the `Exception` or `Error` body
   final Object e;
 
-  /// `StackTrace` `s`is for the `error`'s stacktrace
-  final StackTrace s;
+  /// `s` a possibly `null` `Stacktrace`
+  final StackTrace? s;
 }

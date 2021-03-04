@@ -1,5 +1,8 @@
-import 'package:mockito/mockito.dart';
+import 'package:stub/stub.dart';
 import 'package:yak_runner/yak_runner.dart';
 
-class MockYakRunnerArgTestFactoryDelegate extends Mock
-    implements YakRunnerArgTestFactoryDelegate {}
+class MockYakRunnerArgTestFactoryDelegate extends Stub<dynamic>
+    implements YakRunnerArgTestFactoryDelegate {
+  @override
+  YakRunnerArgTestDelegate<T, S> call<T, S>() => stub.result;
+}

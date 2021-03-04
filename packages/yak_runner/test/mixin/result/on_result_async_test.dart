@@ -1,139 +1,169 @@
 import 'dart:async';
 
-import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
 
 void main() {
-  final _data = 1;
-  final _res = '$_data';
-  final _exceptionHandler = MockExceptionHandler();
-  when(_exceptionHandler(any, any)).thenAnswer(null);
+  const data = 1;
+  const res = '$data';
+  final exceptionHandler = MockExceptionHandler();
 
   group('`onResultAsync` MIXIN', () {
-    final _firstDelegate = MockDelegate<int>();
-    final _secondDelegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
+    final firstDelegate = MockDelegate<int>();
+    final secondDelegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
 
-    final _firstRunner = YakRunner<int>(
-      _firstDelegate,
-      handleException: _exceptionHandler,
+    final firstRunner = YakRunner<int>(
+      firstDelegate,
+      handleException: exceptionHandler,
     );
-    final _secondRunner = YakRunnerArgAsync<String, int>(
-      _secondDelegate,
-      handleException: _exceptionHandler,
+    final secondRunner = YakRunnerArgAsync<String, int>(
+      secondDelegate,
+      handleException: exceptionHandler,
     );
 
     test('WHEN `Delegate<S>` fails THEN  `onResult() return Failure<T>',
         () async {
-      reset(_exceptionHandler);
-      reset(_firstDelegate);
-      reset(_secondDelegate);
+      exceptionHandler.reset;
+      firstDelegate.reset;
+      secondDelegate.reset;
 
-      when(_firstDelegate()).thenThrow(Exception());
-      when(_secondDelegate(_data)).thenAnswer((_) async => _res);
-
-      final _result =
-          await _firstRunner().onFutureResult<String>(_secondRunner);
+      firstDelegate.result = () => throw Exception();
+      secondDelegate.result = () async => res;
+      exceptionHandler.result = () {};
+      final result = await firstRunner().onFutureResult<String>(secondRunner);
 
       expect(
-        _result,
+        result,
         isNotNull,
-        reason: '`_result` must not be null',
+        reason: '`result` must not be null',
       );
       expect(
-        _result,
+        result,
         isNot(Success),
-        reason: '`_result` should not be `Success`',
+        reason: '`result` should not be `Success`',
       );
       expect(
-        _result is Failure<int>,
+        result is Failure<int>,
         false,
-        reason: '`_result`should not be `Failure<S>`',
+        reason: '`result`should not be `Failure<S>`',
       );
       expect(
-        _result,
+        result,
         isA<Failure<String>>(),
-        reason: '`_result` should be `Failure<T>`',
+        reason: '`result` should be `Failure<T>`',
       );
-
-      verify(_firstDelegate()).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
-      verifyZeroInteractions(_secondDelegate);
+      expect(
+        firstDelegate.callCount,
+        1,
+        reason: '`firstDelegate` should be called once',
+      );
+      expect(
+        secondDelegate.callCount,
+        0,
+        reason: '`secondDelegate` should NOT be called',
+      );
+      expect(
+        exceptionHandler.callCount,
+        1,
+        reason: '`exceptionHandler` shoul be called once',
+      );
     });
 
     test(
         'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` fail '
         'THEN  `onResult() return Failure<T>', () async {
-      reset(_exceptionHandler);
-      reset(_firstDelegate);
-      reset(_secondDelegate);
+      exceptionHandler.reset;
+      firstDelegate.reset;
+      secondDelegate.reset;
 
-      when(_firstDelegate()).thenAnswer((_) => _data);
-      when(_secondDelegate(_data)).thenThrow(Exception());
+      firstDelegate.result = () => data;
+      secondDelegate.result = () => throw Exception();
+      exceptionHandler.result = () {};
 
-      final _result =
-          await _firstRunner().onFutureResult<String>(_secondRunner);
+      final result = await firstRunner().onFutureResult<String>(secondRunner);
 
       expect(
-        _result,
+        result,
         isNotNull,
-        reason: '`_result` must not be null',
+        reason: '`result` must not be null',
       );
       expect(
-        _result,
+        result,
         isNot(Success),
-        reason: '`_result` should not be `Success`',
+        reason: '`result` should not be `Success`',
       );
       expect(
-        _result is Failure<int>,
+        result is Failure<int>,
         false,
-        reason: '`_result`should not be `Failure<S>`',
+        reason: '`result`should not be `Failure<S>`',
       );
       expect(
-        _result,
+        result,
         isA<Failure<String>>(),
-        reason: '`_result` should be `Failure<T>`',
+        reason: '`result` should be `Failure<T>`',
       );
-
-      verify(_firstDelegate()).called(1);
-      verify(_secondDelegate(_data)).called(1);
-      verify(_exceptionHandler(any, any)).called(1);
+      expect(
+        firstDelegate.callCount,
+        1,
+        reason: '`firstDelegate` should be called once',
+      );
+      expect(
+        secondDelegate.callCount,
+        1,
+        reason: '`secondDelegate` should NOT be called',
+      );
+      expect(
+        exceptionHandler.callCount,
+        1,
+        reason: '`exceptionHandler` shoul be called once',
+      );
     });
 
     test(
         'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` does not fail '
         'THEN  `onResult() return Success<T>', () async {
-      reset(_exceptionHandler);
-      reset(_firstDelegate);
-      reset(_secondDelegate);
+      exceptionHandler.reset;
+      firstDelegate.reset;
+      secondDelegate.reset;
 
-      when(_firstDelegate()).thenAnswer((_) => _data);
-      when(_secondDelegate(_data)).thenAnswer((_) async => _res);
+      firstDelegate.result = () => data;
+      secondDelegate.result = () async => res;
+      exceptionHandler.result = () {};
 
-      final _result =
-          await _firstRunner().onFutureResult<String>(_secondRunner);
+      final result = await firstRunner().onFutureResult<String>(secondRunner);
 
       expect(
-        _result,
+        result,
         isNotNull,
-        reason: '`_result` must not be null',
+        reason: '`result` must not be null',
       );
       expect(
-        _result,
+        result,
         isA<Success>(),
-        reason: '`_result` should be `Success`',
+        reason: '`result` should be `Success`',
       );
 
       expect(
-        _result,
+        result,
         isNot(Failure),
-        reason: '`_result` should not be `Failure`',
+        reason: '`result` should not be `Failure`',
       );
-
-      verify(_firstDelegate()).called(1);
-      verify(_secondDelegate(_data)).called(1);
-      verifyZeroInteractions(_exceptionHandler);
+      expect(
+        firstDelegate.callCount,
+        1,
+        reason: '`firstDelegate` should be called once',
+      );
+      expect(
+        secondDelegate.callCount,
+        1,
+        reason: '`secondDelegate` should NOT be called',
+      );
+      expect(
+        exceptionHandler.callCount,
+        0,
+        reason: '`exceptionHandler` shoul NOT be called',
+      );
     });
   });
 }
