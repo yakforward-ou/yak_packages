@@ -9,9 +9,9 @@ class IterableContains<T> extends YakRunnerArg<T, T> {
   IterableContains(this.elements)
       : super(
           (element) {
-            assert(elements.contains(element));
+            avow(elements.contains(element));
             return element;
           },
-          errorsWhitelist: {AssertionError().ignore},
+          errorsWhitelist: {AvowError().ignore},
         );
 }

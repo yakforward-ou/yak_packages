@@ -7,5 +7,5 @@ import '../../all.dart';
 ///
 extension YakRunnerTypeAsTypeExtension<S> on S {
   /// returns a `Result<T>`
-  Result<T> asType<T>() => TypeAsType<T, S>().call(this);
+  Result<T> asType<T>() => AsType<T, S>().call(this);
 }
