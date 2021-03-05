@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:yak_error_handler/src/all.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 
 import '../stub/all.dart';
 
