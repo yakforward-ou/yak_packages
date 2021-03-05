@@ -28,7 +28,7 @@ void main() {
         'WHEN Foo.foo is called '
         'THEN returns `result`', () {
       fooStub.reset;
-      fooStub.result = () => data;
+      fooStub.stub = () => data;
       expect(
         fooStub.foo(),
         data,

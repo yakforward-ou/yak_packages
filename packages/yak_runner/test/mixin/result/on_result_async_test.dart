@@ -28,9 +28,9 @@ void main() {
       firstDelegate.reset;
       secondDelegate.reset;
 
-      firstDelegate.result = () => throw Exception();
-      secondDelegate.result = () async => res;
-      exceptionHandler.result = () {};
+      firstDelegate.stub = () => throw Exception();
+      secondDelegate.stub = () async => res;
+      exceptionHandler.stub = () {};
       final result = await firstRunner().onFutureResult<String>(secondRunner);
 
       expect(
@@ -77,9 +77,9 @@ void main() {
       firstDelegate.reset;
       secondDelegate.reset;
 
-      firstDelegate.result = () => data;
-      secondDelegate.result = () => throw Exception();
-      exceptionHandler.result = () {};
+      firstDelegate.stub = () => data;
+      secondDelegate.stub = () => throw Exception();
+      exceptionHandler.stub = () {};
 
       final result = await firstRunner().onFutureResult<String>(secondRunner);
 
@@ -127,9 +127,9 @@ void main() {
       firstDelegate.reset;
       secondDelegate.reset;
 
-      firstDelegate.result = () => data;
-      secondDelegate.result = () async => res;
-      exceptionHandler.result = () {};
+      firstDelegate.stub = () => data;
+      secondDelegate.stub = () async => res;
+      exceptionHandler.stub = () {};
 
       final result = await firstRunner().onFutureResult<String>(secondRunner);
 

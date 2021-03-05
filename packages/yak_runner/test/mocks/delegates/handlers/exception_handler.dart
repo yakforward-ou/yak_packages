@@ -6,5 +6,5 @@ mixin ExceptionHandler {
 
 class MockExceptionHandler extends Stub<void> implements ExceptionHandler {
   @override
-  void call(Exception e, StackTrace? s) => stub.result;
+  void call(Exception e, StackTrace? s) => stub();
 }

@@ -21,9 +21,9 @@ void main() {
       exceptionHandler.reset;
       errorHandler.reset;
 
-      delegate.result = () => throw Exception();
-      exceptionHandler.result = () {};
-      errorHandler.result = () {};
+      delegate.stub = () => throw Exception();
+      exceptionHandler.stub = () {};
+      errorHandler.stub = () {};
 
       final result = runner();
 
@@ -64,9 +64,9 @@ void main() {
       exceptionHandler.reset;
       errorHandler.reset;
 
-      delegate.result = () => data;
-      exceptionHandler.result = () {};
-      errorHandler.result = () {};
+      delegate.stub = () => data;
+      exceptionHandler.stub = () {};
+      errorHandler.stub = () {};
 
       final result = runner();
 
@@ -107,9 +107,9 @@ void main() {
       exceptionHandler.reset;
       errorHandler.reset;
 
-      delegate.result = () => throw Error();
-      exceptionHandler.result = () {};
-      errorHandler.result = () {};
+      delegate.stub = () => throw Error();
+      exceptionHandler.stub = () {};
+      errorHandler.stub = () {};
 
       Error? err;
 
@@ -141,16 +141,14 @@ void main() {
       );
       ;
     });
-    // !! TEST FAILS
-
     test('WHEN `AssertionError` is thwon THEN gets handled', () {
       delegate.reset;
       exceptionHandler.reset;
       errorHandler.reset;
 
-      delegate.result = () => throw AssertionError();
-      exceptionHandler.result = () {};
-      errorHandler.result = () {};
+      delegate.stub = () => throw AssertionError();
+      exceptionHandler.stub = () {};
+      errorHandler.stub = () {};
 
       expect(
         runner(),

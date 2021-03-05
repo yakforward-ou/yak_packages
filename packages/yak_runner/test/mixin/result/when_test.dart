@@ -20,8 +20,8 @@ void main() {
       delegate.reset;
       exceptionHandler.reset;
 
-      delegate.result = () => throw Exception();
-      exceptionHandler.result = () {};
+      delegate.stub = () => throw Exception();
+      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -49,8 +49,8 @@ void main() {
       delegate.reset;
       exceptionHandler.reset;
 
-      delegate.result = () => res;
-      exceptionHandler.result = () {};
+      delegate.stub = () => res;
+      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -87,8 +87,8 @@ void main() {
       delegate.reset;
       exceptionHandler.reset;
 
-      delegate.result = () => throw Exception();
-      exceptionHandler.result = () {};
+      delegate.stub = () => throw Exception();
+      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -116,8 +116,8 @@ void main() {
       delegate.reset;
       exceptionHandler.reset;
 
-      delegate.result = () => data;
-      exceptionHandler.result = () {};
+      delegate.stub = () => data;
+      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -155,8 +155,8 @@ void main() {
       delegate.reset;
       exceptionHandler.reset;
 
-      delegate.result = () => throw Exception();
-      exceptionHandler.result = () {};
+      delegate.stub = () => throw Exception();
+      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -184,8 +184,8 @@ void main() {
       delegate.reset;
       exceptionHandler.reset;
 
-      delegate.result = () async => res;
-      exceptionHandler.result = () {};
+      delegate.stub = () async => res;
+      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -223,8 +223,8 @@ void main() {
       delegate.reset;
       exceptionHandler.reset;
 
-      delegate.result = () => throw Exception();
-      exceptionHandler.result = () {};
+      delegate.stub = () => throw Exception();
+      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -252,8 +252,8 @@ void main() {
       delegate.reset;
       exceptionHandler.reset;
 
-      delegate.result = () async => data;
-      exceptionHandler.result = () {};
+      delegate.stub = () async => data;
+      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;

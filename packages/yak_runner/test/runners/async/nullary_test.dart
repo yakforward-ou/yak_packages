@@ -20,9 +20,9 @@ void main() {
       exceptionHandler.reset;
       errorHandler.reset;
 
-      delegate.result = () => throw Exception();
-      exceptionHandler.result = () {};
-      errorHandler.result = () {};
+      delegate.stub = () => throw Exception();
+      exceptionHandler.stub = () {};
+      errorHandler.stub = () {};
 
       final result = await runner();
 
@@ -64,9 +64,9 @@ void main() {
       exceptionHandler.reset;
       errorHandler.reset;
 
-      delegate.result = () async => data;
-      exceptionHandler.result = () {};
-      errorHandler.result = () {};
+      delegate.stub = () async => data;
+      exceptionHandler.stub = () {};
+      errorHandler.stub = () {};
 
       final result = await runner();
 
@@ -107,9 +107,9 @@ void main() {
       exceptionHandler.reset;
       errorHandler.reset;
 
-      delegate.result = () => throw Error();
-      exceptionHandler.result = () {};
-      errorHandler.result = () {};
+      delegate.stub = () => throw Error();
+      exceptionHandler.stub = () {};
+      errorHandler.stub = () {};
 
       Error? err;
 
@@ -142,7 +142,6 @@ void main() {
       );
     });
 
-    // !! TEST FAILS
     test(
         'WHEN `Error` of `Type` `errorHandler.type`  is thwon '
         'THEN gets handled', () async {
@@ -150,9 +149,9 @@ void main() {
       exceptionHandler.reset;
       errorHandler.reset;
 
-      delegate.result = () => throw AssertionError();
-      exceptionHandler.result = () {};
-      errorHandler.result = () {};
+      delegate.stub = () => throw AssertionError();
+      exceptionHandler.stub = () {};
+      errorHandler.stub = () {};
 
       expect(
         await runner(),

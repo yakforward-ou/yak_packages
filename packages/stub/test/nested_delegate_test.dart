@@ -28,7 +28,7 @@ void main() {
         'WHEN Bar.bar is called '
         'THEN returns `result` regardless the arguments', () {
       foo.reset;
-      foo.result = () => throw AssertionError();
+      foo.stub = () => throw AssertionError();
 
       expect(
         fooWrap(),
