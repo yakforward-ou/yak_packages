@@ -1,3 +1,6 @@
+# 0.3.0+1
+- updated `stub` to 0.2.0
+
 # 0.3.0+0
 - migrated to `null-safety`
 

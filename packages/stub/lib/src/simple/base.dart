@@ -1,24 +1,20 @@
-import 'package:meta/meta.dart';
+import 'all.dart';
 
-import '../../stub.dart';
+/// an interface for `Stub` class, implements `StubMixin` and `CallCounterMixin`
+abstract class StubBase<T> implements CallCounterMixin {
+  T Function() _stub;
 
-/// an interface for the `Stub` class
-abstract class StubBase<T> {
-  /// a `late` initialization for `T Function()`
-  late T Function()? result;
+  /// initialize `stub` with `defaultStub`
+  StubBase() : _stub = defaultStub<T>();
 
-  /// and `internal` counter fot the calls at the "stubbed" function
-  @internal
-  int callCountInternal;
+  /// prvides a `stub` `T Function()`
+  T Function() get stub => _stub;
 
-  /// `stub` runs the function `result`
-  /// and updates `callCountInternal`
-  @internal
-  StubResult<T> get stub;
-
-  /// provides a `const` constructor
-  StubBase() : callCountInternal = 0;
-
-  /// provides the number of times the "stubbed" function has been called
-  int get callCount => callCountInternal;
+  ///
+  set stub(T Function() stub) {
+    _stub = () {
+      increaseCallCount;
+      return stub();
+    };
+  }
 }

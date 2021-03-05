@@ -29,22 +29,14 @@ void main() {
     });
 
     test(
-        'GIVEN `stub is null` '
+        'GIVEN `stub is not set` '
         'WHEN Foo.foo is called '
-        'THEN throw `AssertionError`', () {
+        'THEN throw `UnimplementedError`', () {
       foo.reset;
-      foo.result = () => data;
-      foo.reset;
-      var error;
-      try {
-        foo.foo();
-      } on AssertionError catch (e) {
-        error = e;
-      }
 
       expect(
-        error != null,
-        true,
+        foo.foo,
+        throwsA(isA<UnimplementedError>()),
         reason: '`Foo.foo` throw `AssertionError`',
       );
     });
@@ -53,7 +45,7 @@ void main() {
         'WHEN Foo.foo is called '
         'THEN returns `result`', () {
       foo.reset;
-      foo.result = () => data;
+      foo.stub = () => data;
       expect(
         foo.foo(),
         data,
@@ -65,7 +57,7 @@ void main() {
         'GIVEN `stub != null` '
         'WHEN Foo.foo is called  n `times` '
         'THEN  `callCount` == `times`', () {
-      foo.result = () => data;
+      foo.stub = () => data;
       for (var i = 1; i < times; ++i) {
         foo.foo();
       }
@@ -109,8 +101,8 @@ void main() {
         'WHEN Foo.bar is set twice '
         'THEN  only latest has effect', () {
       foo.reset;
-      foo.result = () => data;
-      foo.result = () => data * times;
+      foo.stub = () => data;
+      foo.stub = () => data * times;
 
       expect(
         foo.foo(),

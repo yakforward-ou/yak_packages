@@ -10,7 +10,7 @@ void main() {
         'WHEN Bar.bar is called '
         'THEN returns `result` regardless the arguments', () {
       bar.reset;
-      bar.result = () => data;
+      bar.stub = () => data;
       expect(
         bar.bar('1', true, .2, bar.runtimeType),
         data,

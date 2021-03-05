@@ -25,9 +25,9 @@ void main() {
       firstDelegate.reset;
       secondDelegate.reset;
 
-      firstDelegate.result = () => throw Exception();
-      secondDelegate.result = () => res;
-      exceptionHandler.result = () {};
+      firstDelegate.stub = () => throw Exception();
+      secondDelegate.stub = () => res;
+      exceptionHandler.stub = () {};
 
       final result = firstRunner().onResult<String>(secondRunner);
 
@@ -74,9 +74,9 @@ void main() {
       firstDelegate.reset;
       secondDelegate.reset;
 
-      firstDelegate.result = () => data;
-      secondDelegate.result = () => throw Exception();
-      exceptionHandler.result = () {};
+      firstDelegate.stub = () => data;
+      secondDelegate.stub = () => throw Exception();
+      exceptionHandler.stub = () {};
 
       final result = firstRunner().onResult<String>(secondRunner);
 

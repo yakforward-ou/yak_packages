@@ -11,7 +11,7 @@ void main() {
         'WHEN Foo.foo is called '
         'THEN returns `result`', () async {
       fooStub.reset;
-      fooStub.result = () async => data;
+      fooStub.stub = () async => data;
       expect(
         await fooStub.foo(),
         data,
