@@ -7,8 +7,7 @@
 
 # yak_error_handler
 
-This is small and lightweight package based on `riverpod`
-to handle errors from `try / catch` easy to integrate with `yak_runner`
+a small and lightweight package that provides handlers for `Exeption`, `Error` end ***custom*** `Errors`
 
 ---
 

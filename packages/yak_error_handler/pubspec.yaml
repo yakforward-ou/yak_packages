@@ -1,5 +1,5 @@
 name: yak_error_handler
-description: a simple dart package that to hadle errors consistently across app and packages                                                                          
+description: a small package to handle exception and errors consistently across app and packages                                                                          
 version: 0.3.0+0
 homepage: https://github.com/iapicca/yak_packages
 
