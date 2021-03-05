@@ -9,7 +9,7 @@ void main() {
         '', () {
       var succcess;
       final handler = HandleExceptionDelegateStub()
-        ..result = () => succcess = true;
+        ..stub = () => succcess = true;
       late final void Function(Exception e, StackTrace s) fun;
       fun = handler;
       try {

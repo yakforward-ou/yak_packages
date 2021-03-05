@@ -7,6 +7,6 @@ class AsTypeError extends Error {
   AsTypeError([this.message]);
 
   String toString() => message != null
-      ? 'AsType failed: ' + Error.safeToString(message)
+      ? 'AsType failed: ${Error.safeToString(message)}'
       : 'AsType failed';
 }

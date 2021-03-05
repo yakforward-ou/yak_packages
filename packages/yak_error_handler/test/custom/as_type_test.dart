@@ -20,7 +20,7 @@ void main() {
         'THEN stub is not called', () {
       stub
         ..reset
-        ..result = () {};
+        ..stub = () {};
       try {
         throw Error();
       } on Error catch (e) {
@@ -39,7 +39,7 @@ void main() {
         'THEN should theow `AsTypeError`', () {
       stub
         ..reset
-        ..result = () {};
+        ..stub = () {};
       try {
         asType<Bar>(foo);
       } on Error catch (e) {
@@ -55,11 +55,11 @@ void main() {
 
     test(
         'GIVEN `Baz` does extends nor implements `Bar`'
-        'WHEN `Baz asType<Bar> should succed'
-        'THEN should theow `AsTypeError`', () {
+        'WHEN `Baz asType<Bar> '
+        'THEN should succeed', () {
       stub
         ..reset
-        ..result = () {};
+        ..stub = () {};
       try {
         asType<Bar>(baz);
       } on Error catch (e) {
@@ -77,7 +77,7 @@ void main() {
         'THEN outputs a predictable result', () {
       stub
         ..reset
-        ..result = () {};
+        ..stub = () {};
 
       var err;
       try {

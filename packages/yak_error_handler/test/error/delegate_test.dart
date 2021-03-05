@@ -8,7 +8,7 @@ void main() {
         'THEN can be assigned as `void Function(Error)`'
         '', () {
       var succcess;
-      final handler = HandleErrorDelegateStub()..result = () => succcess = true;
+      final handler = HandleErrorDelegateStub()..stub = () => succcess = true;
       late final void Function(Error e) fun;
       fun = handler;
       try {

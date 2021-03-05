@@ -22,7 +22,7 @@ void main() {
       ExceptionHandler()..handleException = handler;
       handler
         ..reset
-        ..result = () {};
+        ..stub = () {};
 
       try {
         throw Exception();
@@ -59,7 +59,7 @@ void main() {
 
       secondHandler
         ..reset
-        ..result = () {};
+        ..stub = () {};
 
       try {
         throw Exception();
