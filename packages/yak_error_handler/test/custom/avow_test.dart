@@ -6,7 +6,7 @@ import '../stub/all.dart';
 void main() {
   group('AvowError & avow', () {
     final stub = HandleErrorDelegateStub();
-    final handler = ErrorHandler<AvowError>(stub);
+    final handler = ErrorHandler<void, AvowError>(stub);
 
     test(
         'WHEN `Error` != AvowError is thrown '

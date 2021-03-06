@@ -1,3 +1,6 @@
+# 0.3.0+1
+- minor update to `ErrorHandler<T,S>`
+
 # 0.3.0+0
 - `NNBD` 
 - separated logic between `Error` and `Exception`

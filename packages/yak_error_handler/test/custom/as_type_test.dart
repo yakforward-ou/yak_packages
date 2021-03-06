@@ -12,7 +12,7 @@ class Baz extends Bar {}
 void main() {
   group('AsTypeError & asType<T>', () {
     final stub = HandleErrorDelegateStub();
-    final handler = ErrorHandler<AsTypeError>(stub);
+    final handler = ErrorHandler<void, AsTypeError>(stub);
     final foo = Foo();
     final baz = Baz();
     test(

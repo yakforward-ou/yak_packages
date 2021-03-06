@@ -6,7 +6,7 @@ import '../stub/all.dart';
 void main() {
   group('ErrorHandler', () {
     final stub = HandleErrorDelegateStub()..stub = () {};
-    final handler = ErrorHandler<AssertionError>(stub);
+    final handler = ErrorHandler<void, AssertionError>(stub);
     test(
         'GIVEN `ErrorHandler<T>` '
         'WHEN `Error` != T is thrown '
