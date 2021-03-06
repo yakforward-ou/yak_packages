@@ -1,5 +1,4 @@
 export 'alignment.dart';
-export 'alignment_geometry.dart';
 export 'border.dart';
 export 'border_radius.dart';
 export 'box_constrains.dart';
@@ -15,5 +14,3 @@ export 'rect.dart';
 export 'size.dart';
 export 'text_style.dart';
 export 'tween.dart';
-
-/// simply exports folder's classes

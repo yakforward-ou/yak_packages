@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:meta/meta.dart';
-import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../../mocks/all.dart';
 //  ignore_for_file: avoid_catching_errors
@@ -11,7 +10,7 @@ import '../../../mocks/all.dart';
 class YakRunnerAsyncTest<T> implements YakRunnerTestDelegate<T> {
   /// takes the argument `description`
   YakRunnerAsyncTest({
-    @required this.description,
+    required this.description,
   });
 
   /// `description` is a `String`
@@ -21,94 +20,119 @@ class YakRunnerAsyncTest<T> implements YakRunnerTestDelegate<T> {
   /// `result` is meant for `type` matching and ***must not be null***
   /// it can be anything if `T` is void
   @override
-  void call(FutureOr<T> result) {
-    assert(result != null, 'result must not be null');
-
+  void call(FutureOr<T> response) {
     group(description, () {
-      final _data = 1;
-      final _exceptionHandler = MockExceptionHandler();
-      final _errorHandler = MockHandleError<AssertionError>();
-      final _delegate = MockDelegate<Future<int>>();
-      final _runner = YakRunnerAsync<int>(
-        _delegate,
-        handleException: _exceptionHandler,
-        errorsWhitelist: {_errorHandler},
+      final exceptionStub = HandleExceptionDelegateStub();
+      final errorStub = HandleErrorDelegateStub();
+      final errorHandler = ErrorHandler<AssertionError>(errorStub);
+      final delegate = MockDelegate<Future<T>>();
+      final runner = YakRunnerAsync<T>(
+        delegate,
+        exceptionHandler: exceptionStub,
+        errorHandlers: {errorHandler},
       );
-      when(_exceptionHandler(any, any)).thenAnswer(null);
-      verifyNever(_errorHandler(any));
-      when(_errorHandler(any)).thenAnswer(null);
 
       test('WHEN `void Function()` throws THEN `Result` is `Failure`',
           () async {
-        reset(_exceptionHandler);
-        reset(_errorHandler);
-        reset(_delegate);
+        delegate.reset;
+        exceptionStub.reset;
+        errorStub.reset;
 
-        when(_delegate()).thenThrow(Exception());
-        final _result = await _runner();
+        delegate.stub = () => throw Exception();
+        exceptionStub.stub = () {};
+        errorStub.stub = () {};
+
+        final result = await runner();
 
         expect(
-          _result,
+          result,
           isNotNull,
-          reason: '`_result` must not be null',
+          reason: '`result` must not be null',
         );
         expect(
-          _result,
+          result,
           isNot(Success),
-          reason: '`_result` should not be `Success`',
+          reason: '`result` should not be `Success`',
         );
         expect(
-          _result,
+          result,
           isA<Failure>(),
-          reason: '`_result` should be `Failure`',
+          reason: '`result` should be `Failure`',
         );
-
-        verify(_delegate()).called(1);
-        verifyNever(_errorHandler(any));
-        verify(_exceptionHandler(any, any)).called(1);
+        expect(
+          delegate.callCount,
+          1,
+          reason: '`delegate` should be called once',
+        );
+        expect(
+          exceptionStub.callCount,
+          1,
+          reason: '`exceptionStub` should be called once',
+        );
+        expect(
+          errorStub.callCount,
+          0,
+          reason: '`errorHandler` should NOT be called',
+        );
       });
 
       test('WHEN `void Function()` does not fail `Result` is `Success`',
           () async {
-        reset(_exceptionHandler);
-        reset(_errorHandler);
-        reset(_delegate);
+        delegate.reset;
+        exceptionStub.reset;
+        errorStub.reset;
+        final data = await response;
+        delegate.stub = () async => await data;
+        exceptionStub.stub = () {};
+        errorStub.stub = () {};
 
-        when(_delegate()).thenAnswer((_) async => _data);
-        final _result = await _runner();
+        final result = await runner();
 
         expect(
-          _result,
+          result,
           isNotNull,
-          reason: '`_result` must not be null',
+          reason: '`result` must not be null',
         );
         expect(
-          _result,
+          result,
           isA<Success>(),
-          reason: '`_result` should be `Success`',
+          reason: '`result` should be `Success`',
         );
         expect(
-          _result,
+          result,
           isNot(Failure),
-          reason: '`_result` should not be `Failure`',
+          reason: '`result` should not be `Failure`',
         );
-
-        verify(_delegate()).called(1);
-        verifyNever(_errorHandler(any));
-        verifyNever(_exceptionHandler(any, any));
+        expect(
+          delegate.callCount,
+          1,
+          reason: '`delegate` should be called once',
+        );
+        expect(
+          exceptionStub.callCount,
+          0,
+          reason: '`exceptionStub` should NOT be called ',
+        );
+        expect(
+          errorStub.callCount,
+          0,
+          reason: '`errorHandler` should NOT be called',
+        );
       });
 
       test('WHEN `ERROR` is thwon THEN runner fails', () async {
-        reset(_exceptionHandler);
-        reset(_errorHandler);
-        reset(_delegate);
+        delegate.reset;
+        exceptionStub.reset;
+        errorStub.reset;
 
-        when(_delegate()).thenThrow(Error());
+        delegate.stub = () => throw Error();
+        exceptionStub.stub = () {};
+        errorStub.stub = () {};
 
-        Error err;
+        Error? err;
 
         try {
-          await _runner();
+          await runner();
         } on Error catch (e) {
           err = e;
         }
@@ -119,36 +143,55 @@ class YakRunnerAsyncTest<T> implements YakRunnerTestDelegate<T> {
           reason: '`Error` should NOT be handled',
         );
 
-        verify(_delegate()).called(1);
-        verifyNever(_errorHandler(any));
-        verifyNever(_exceptionHandler(any, any));
+        expect(
+          delegate.callCount,
+          1,
+          reason: '`delegate` should be called once',
+        );
+        expect(
+          exceptionStub.callCount,
+          0,
+          reason: '`exceptionStub` should NOT be called ',
+        );
+        expect(
+          errorStub.callCount,
+          0,
+          reason: '`errorHandler` should NOT be called',
+        );
       });
 
-      test('WHEN `AssertionError` is thwon THEN gets handled', () async {
-        reset(_exceptionHandler);
-        reset(_errorHandler);
-        reset(_delegate);
+      test(
+          'WHEN `Error` of `Type` `errorHandler.type`  is thwon '
+          'THEN gets handled', () async {
+        delegate.reset;
+        exceptionStub.reset;
+        errorStub.reset;
 
-        when(_delegate()).thenThrow(AssertionError());
+        delegate.stub = () => throw AssertionError();
+        exceptionStub.stub = () {};
+        errorStub.stub = () {};
 
         expect(
-          await _runner(),
+          await runner(),
           isA<Failure>(),
           reason: '`Error` should be handled',
         );
-
-        verify(_delegate()).called(1);
-        verify(_errorHandler(any)).called(1);
-        verifyNever(_exceptionHandler(any, any));
+        expect(
+          delegate.callCount,
+          1,
+          reason: '`delegate` should be called once',
+        );
+        expect(
+          exceptionStub.callCount,
+          0,
+          reason: '`exceptionStub` should NOT be called ',
+        );
+        expect(
+          errorStub.callCount,
+          1,
+          reason: '`errorHandler` should be called once',
+        );
       });
-      test(
-        'WHEN `fun` is `null` THEN `assert` should `throwsAssertionError`',
-        () => expect(
-          () => YakRunnerAsync(null),
-          throwsA(isA<AssertionError>()),
-          reason: '`fun == null` should throw `AssertionError`',
-        ),
-      );
     });
   }
 }

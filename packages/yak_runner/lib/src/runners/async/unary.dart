@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:yak_error_handler/yak_error_handler.dart';
+
 import '../../all.dart';
 
 /// following line added because [https://stackoverflow.com/questions/66315301/what-is-the-correct-way-to-catch-both-error-and-exception-following-effective-d]
@@ -13,13 +15,13 @@ class YakRunnerArgAsync<T, S> extends YakRunnerBase
   /// takes as argument `fun` and `errorHandler`
   YakRunnerArgAsync(
     this.fun, {
-    HandleException? handleException,
-    Set<HandleErrorBase>? errorsWhitelist,
+    HandleExceptionDelegate? exceptionHandler,
+    Set<ErrorHandler> errorHandlers = const {},
   })  : assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
         super(
-          handleException: handleException,
-          errorsWhitelist: errorsWhitelist,
+          exceptionHandler: exceptionHandler,
+          errorHandlers: errorHandlers,
         );
 
   /// `fun` is ` Future<T> Function(FutureOr<S>)`
@@ -32,17 +34,15 @@ class YakRunnerArgAsync<T, S> extends YakRunnerBase
     try {
       return Result.success(await fun(await arg));
     } on Error catch (e) {
-      if (errorsWhitelist != null) {
-        for (final err in errorsWhitelist!) {
-          if (err.type == e.runtimeType) {
-            err(e);
-            return Result.failure(e, e.stackTrace);
-          }
+      for (final h in errorHandlers) {
+        if (e.runtimeType == h.type) {
+          h.handleError(e);
+          return Result.failure(e, e.stackTrace);
         }
       }
       rethrow;
     } on Exception catch (e, s) {
-      handleException?.call(e, s);
+      exceptionHandler?.call(e, s);
       return Result.failure(e, s);
     }
   }

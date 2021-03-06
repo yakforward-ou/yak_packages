@@ -7,7 +7,7 @@
 
 # yak_math
 
-A collection of flutter classes and extesions part of [yak_packages](https://github.com/iapicca/yak_packages)
+A replicas of flutter classes and functions with `const` constructor and `non-null-only` 
 
 ---
 

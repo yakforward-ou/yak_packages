@@ -1,15 +1,15 @@
 name: yak_math
-description: a collection of flutter classes and extesions part of `yak_packages`
-version: 0.1.0+7
+description: replicas of flutter `non-null-only` with `const` constructor
+version: 0.2.0+0
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
-  sdk: '>=2.7.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  vector_math: ^2.0.8
+  vector_math: ^2.1.0
 
 flutter:
   uses-material-design: true

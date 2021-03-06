@@ -1,6 +1,9 @@
-import 'package:mockito/mockito.dart';
-import 'package:yak_runner/yak_runner.dart';
+import 'package:stub/stub.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 
-/// a `Mock` for  `HandleErrorBase`
-class MockHandleError<T extends Error> extends Mock
-    implements HandleErrorBase<T> {}
+/// a `stub` for `HandleExceptionDelegate`
+class HandleErrorDelegateStub extends Stub<void>
+    implements HandleErrorDelegate {
+  @override
+  void call(Error e) => stub();
+}

@@ -6,16 +6,6 @@ import '../../../yak_widgets.dart';
 /// a ready to use widget that changes `sidebarPod` state
 
 class YakSidebar extends HookWidget {
-  /// `YakSidebar` does not require any
-  const YakSidebar({
-    this.child,
-    this.scrollSensitivity = .01,
-    this.width = 54,
-    Key key = const ValueKey('YakSidebar'),
-  })
-  // coverage:ignore-line
-  : super(key: key);
-
   /// allow to change `scrollSensitivity` to a custom value; default `1%`
   final double scrollSensitivity;
 
@@ -24,6 +14,16 @@ class YakSidebar extends HookWidget {
 
   /// you may provide a `child` althogh is not required
   final Widget child;
+
+  /// `YakSidebar` does not require any
+  const YakSidebar({
+    required this.child,
+    this.scrollSensitivity = .01,
+    this.width = 54,
+    Key key = const ValueKey('YakSidebar'),
+  })
+  // coverage:ignore-line
+  : super(key: key);
 
   @override
   Widget build(BuildContext context) {

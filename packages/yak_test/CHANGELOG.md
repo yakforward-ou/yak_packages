@@ -1,12 +1,8 @@
-# 0.2.2+3
-- `readme.md` updated 
+# 0.3.0+0
+- `non null` implementation
 
-# 0.2.2+2
-- fix breaking changes in `yak_runnner` v0.2.2+1
-- fix typo
-
-# 0.2.2+0
-- new implementation for `yak_runner` version `0.2.2`
+# 0.2.2
+-  implementation for `yak_runner` version `0.2.2`
 
 # 0.2.1
 - tests updated

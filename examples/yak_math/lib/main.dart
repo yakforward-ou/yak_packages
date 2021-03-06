@@ -22,7 +22,7 @@ class MyAnimatedWidget extends StatefulWidget {
 
 class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late final AnimationController _controller;
 
   static const _tween = YakAlignmentTween(
       begin: Alignment.centerLeft, end: Alignment.centerRight);
@@ -38,7 +38,7 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 
   @override
   void dispose() {
-    _controller?.dispose();
+    _controller.dispose();
     super.dispose();
   }
 

@@ -1,12 +1,12 @@
 import 'package:flutter/painting.dart';
-import 'tween.dart';
+import '../../yak_math.dart';
 
 /// an `EdgeInsetsTween` that allows `const` constructor
 class YakEdgeInsetsTween extends YakTween<EdgeInsets> {
   /// like most `Tween`s has parameters `begin` and `end`
   const YakEdgeInsetsTween({
-    EdgeInsets begin,
-    EdgeInsets end,
+    required EdgeInsets begin,
+    required EdgeInsets end,
   })
 // coverage:ignore-line
   : super(
@@ -14,5 +14,10 @@ class YakEdgeInsetsTween extends YakTween<EdgeInsets> {
           end: end,
         );
   @override
-  EdgeInsets lerp(double t) => EdgeInsets.lerp(begin, end, t);
+  EdgeInsets lerp(double t) => EdgeInsets.fromLTRB(
+        lerpNNDouble(begin.left, end.left, t),
+        lerpNNDouble(begin.top, end.top, t),
+        lerpNNDouble(begin.right, end.right, t),
+        lerpNNDouble(begin.bottom, end.bottom, t),
+      );
 }

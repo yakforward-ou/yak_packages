@@ -6,8 +6,8 @@ import 'tween.dart';
 class YakMatrix4Tween extends YakTween<Matrix4> {
   /// like most `Tween`s has parameters `begin` and `end`
   const YakMatrix4Tween({
-    Matrix4 begin,
-    Matrix4 end,
+    required Matrix4 begin,
+    required Matrix4 end,
   })
   // coverage:ignore-line
   : super(
@@ -16,8 +16,6 @@ class YakMatrix4Tween extends YakTween<Matrix4> {
         );
   @override
   Matrix4 lerp(double t) {
-    assert(begin != null);
-    assert(end != null);
     final beginTranslation = Vector3.zero();
     final endTranslation = Vector3.zero();
     final beginRotation = Quaternion.identity();

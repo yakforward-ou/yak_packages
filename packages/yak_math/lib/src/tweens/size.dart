@@ -1,12 +1,12 @@
 import 'dart:ui';
-import 'tween.dart';
+import '../../yak_math.dart';
 
 /// an `SizeTween` that allows `const` constructor
 class YakSizeTween extends YakTween<Size> {
   /// like most `Tween`s has parameters `begin` and `end`
   const YakSizeTween({
-    Size begin,
-    Size end,
+    required Size begin,
+    required Size end,
   })
   // coverage:ignore-line
   : super(
@@ -14,5 +14,8 @@ class YakSizeTween extends YakTween<Size> {
           end: end,
         );
   @override
-  Size lerp(double t) => Size.lerp(begin, end, t);
+  Size lerp(double t) => Size(
+        lerpNNDouble(begin.width, end.width, t),
+        lerpNNDouble(begin.height, end.height, t),
+      );
 }

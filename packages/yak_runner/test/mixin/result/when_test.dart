@@ -9,11 +9,11 @@ void main() {
   const res = '$data';
 
   group('`when` MIXIN on`YakRunnerArg`', () {
-    final exceptionHandler = MockExceptionHandler();
+    final exceptionHandler = HandleExceptionDelegateStub();
     final delegate = MockUnaryDelegate<String, int>();
     final runner = YakRunnerArg<String, int>(
       delegate,
-      handleException: exceptionHandler,
+      exceptionHandler: exceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
@@ -77,10 +77,10 @@ void main() {
 
   group('`when` MIXIN on `YakRunner`', () {
     final delegate = MockDelegate<int>();
-    final exceptionHandler = MockExceptionHandler();
+    final exceptionHandler = HandleExceptionDelegateStub();
     final runner = YakRunner(
       delegate,
-      handleException: exceptionHandler,
+      exceptionHandler: exceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
@@ -144,11 +144,11 @@ void main() {
 
   group('`when` MIXIN on `YakRunnerArgAsync`', () {
     final delegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
-    final exceptionHandler = MockExceptionHandler();
+    final exceptionHandler = HandleExceptionDelegateStub();
 
     final runner = YakRunnerArgAsync<String, int>(
       delegate,
-      handleException: exceptionHandler,
+      exceptionHandler: exceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {
@@ -212,11 +212,11 @@ void main() {
 
   group('`when` MIXIN on `YakRunnerAsync`', () {
     final delegate = MockDelegate<Future<int>>();
-    final exceptionHandler = MockExceptionHandler();
+    final exceptionHandler = HandleExceptionDelegateStub();
 
     final runner = YakRunnerAsync(
       delegate,
-      handleException: exceptionHandler,
+      exceptionHandler: exceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {

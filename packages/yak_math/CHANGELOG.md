@@ -1,25 +1,12 @@
-# 0.1.0+7
-- `readme.md` updated 
+# 0.2.0+0
+- migrated to null safety
+- TODO implement `alignment geometry`
 
-# 0.1.0+6
-- fix formatting in `lib/src/all.dart `
-
-# 0.1.0+5
+# 0.1.0
 - added `coverage:ignore-line to ignore one line` to `super`
-
-# 0.1.0+4
 - set up for `melos` and `coverage`
-
-# 0.1.0+3
 - added `effective_dart` to `dev_dependencies`
-- updated readme and comments
-- test added
-  
-# 0.1.0+2
+- updated test 
 - updated `readme`
-
-# 0.1.0+1
 - updated example
 
-# 0.1.0+0
-- `yak_tweens` from `yak` package

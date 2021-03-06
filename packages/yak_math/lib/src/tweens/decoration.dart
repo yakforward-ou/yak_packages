@@ -1,12 +1,13 @@
 import 'package:flutter/painting.dart';
 import 'tween.dart';
+// ignore_for_file: invalid_use_of_protected_member
 
 /// an `DecorationTween` that allows `const` constructor
 class YakDecorationTween extends YakTween<Decoration> {
   /// like most `Tween`s has parameters `begin` and `end`
   const YakDecorationTween({
-    Decoration begin,
-    Decoration end,
+    required Decoration begin,
+    required Decoration end,
   })
 // coverage:ignore-line
   : super(
@@ -14,5 +15,13 @@ class YakDecorationTween extends YakTween<Decoration> {
           end: end,
         );
   @override
-  Decoration lerp(double t) => Decoration.lerp(begin, end, t);
+  Decoration lerp(double t) => t == 0.0
+      ? begin
+      : t == 1.0
+          ? end
+          : end.lerpFrom(begin, t) ??
+              begin.lerpTo(end, t) ??
+              (t < 0.5
+                  ? (begin.lerpTo(null, t * 2.0) ?? begin)
+                  : (end.lerpFrom(null, (t - 0.5) * 2.0) ?? end));
 }

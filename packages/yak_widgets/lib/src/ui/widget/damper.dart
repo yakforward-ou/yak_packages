@@ -6,30 +6,28 @@ import '../../../yak_widgets.dart';
 /// a ready to use widget that uses `useDamperAnimationEffect`
 
 class YakDamper extends HookWidget {
-  /// `YakDamper` constructor has parameters List<Widget> `children`
-  ///  and Key `key`
+  /// requires a `children` parameter
+  final List<Widget> children;
 
+  /// `YakDamper` constructor has parameters List<Widget> `children` and Key
   const YakDamper({
-    @required this.children,
+    required this.children,
     Key key = const ValueKey('YakDamper'),
   })
   // coverage:ignore-line
   : super(key: key);
-
-  /// requires a `children` parameter
-  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
     final damperState = useProvider(damperStatePod);
     final duration = useProvider(animationDurationPod);
     final curve = useProvider(animationCurvePod);
-
     final animationController = useAnimationController(
       duration: duration.state,
     );
     animationController.useDamperAnimationEffect(damperState);
     final size = MediaQuery.of(context).size;
+
     return PositionedTransition(
       key: ValueKey('$key: PositionedTransition'),
       rect: RelativeRectTween(
