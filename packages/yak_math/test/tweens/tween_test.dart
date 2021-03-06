@@ -7,35 +7,17 @@ import 'package:yak_math/yak_math.dart';
 void main() {
   group('`YakTween` test', () {
     const arguments = [1.0, 2.0];
-    final object = YakTween(begin: arguments[0], end: arguments[1]);
+    final object = YakTween<double>(begin: arguments[0], end: arguments[1]);
     const lerp = 1 / 3;
 
     test('WHEN `YakTween` and `Tween` lerp THEN output is identical', () {
-      final tween = Tween(begin: arguments[0], end: arguments[1]);
+      final tween = Tween<double>(begin: arguments[0], end: arguments[1]);
       expect(
         object.lerp(lerp),
         tween.lerp(lerp),
-        reason: '`YakTween` & `Tween` lerp the same output',
+        reason: '`YakTween<double>` & `Tween` lerp the same output',
       );
     });
-
-    test(
-      'WHEN argument[0] is `null` THEN `assert` should fail',
-      () => expect(
-        () => YakTween(begin: null, end: .2),
-        throwsAssertionError,
-        reason: '`argument[0]` should throw AssertionError',
-      ),
-    );
-    test(
-      'WHEN argument[1] is `null` THEN `assert` should fail',
-      () => expect(
-        () => YakTween(begin: .0, end: null),
-        throwsAssertionError,
-        reason: '`argument[1]` should throw AssertionError',
-      ),
-    );
-
     test('`toString` works as intended', () {
       const objectName = 'YakTween';
       final match = '$objectName<${arguments[0].runtimeType}>'

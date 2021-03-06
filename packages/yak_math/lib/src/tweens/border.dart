@@ -6,8 +6,8 @@ import 'tween.dart';
 class YakBorderTween extends YakTween<Border> {
   /// like most `Tween`s has parameters `begin` and `end`
   const YakBorderTween({
-    Border begin,
-    Border end,
+    required Border begin,
+    required Border end,
   })
   // coverage:ignore-line
   : super(
@@ -15,5 +15,10 @@ class YakBorderTween extends YakTween<Border> {
           end: end,
         );
   @override
-  Border lerp(double t) => Border.lerp(begin, end, t);
+  Border lerp(double t) => Border(
+        top: BorderSide.lerp(begin.top, end.top, t),
+        right: BorderSide.lerp(begin.right, end.right, t),
+        bottom: BorderSide.lerp(begin.bottom, end.bottom, t),
+        left: BorderSide.lerp(begin.left, end.left, t),
+      );
 }

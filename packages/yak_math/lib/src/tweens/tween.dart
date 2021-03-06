@@ -6,10 +6,9 @@ import 'package:flutter/foundation.dart';
 class YakTween<T extends dynamic> extends Animatable<T> {
   /// like most `Tween`s has parameters `begin` and `end`
   const YakTween({
-    this.begin,
-    this.end,
-  })  : assert(begin != null),
-        assert(end != null);
+    required this.begin,
+    required this.end,
+  });
 
   /// `begin` represent the value at lerp `0`
   final T begin;

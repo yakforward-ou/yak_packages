@@ -4,8 +4,8 @@ import 'tween.dart';
 class YakIntTween extends YakTween<int> {
   /// like most `Tween`s has parameters `begin` and `end`
   const YakIntTween({
-    int begin,
-    int end,
+    required int begin,
+    required int end,
   })
   // coverage:ignore-line
   : super(

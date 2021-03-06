@@ -5,8 +5,8 @@ import 'package:flutter/widgets.dart';
 class YakCurveTween extends Animatable<double> {
   /// has a parameter `curve`
   const YakCurveTween({
-    @required this.curve,
-  }) : assert(curve != null);
+    required this.curve,
+  });
 
   /// has a parameter `curve` of type `Curve`
   final Curve curve;
