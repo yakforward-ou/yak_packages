@@ -1,6 +1,9 @@
-import 'package:mockito/mockito.dart';
+import 'package:stub/stub.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 
-import 'handle_exception_delegate.dart';
-
-/// a `mockito` based `Mock` for ` void Function(Exception, StackTrace)`
-class MockExceptionHandler extends Mock implements ExceptionHandler {}
+/// a `stub` for `HandleExceptionDelegate`
+class HandleExceptionDelegateStub extends Stub<void>
+    implements HandleExceptionDelegate {
+  @override
+  void call(Exception e, StackTrace? s) => stub();
+}
