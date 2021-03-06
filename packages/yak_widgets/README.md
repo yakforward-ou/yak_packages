@@ -7,7 +7,7 @@
 
 # yak_widgets
 
-A collection of `widgets` based on [riverpod] and [flutter_hooks]
+A collection of `widgets` based on [hooks_riverpod]
 
 ---
 
@@ -22,8 +22,8 @@ dependencies:
 
 ---
 
-[riverpod]: https://pub.dev/packages/riverpod
-[flutter_hooks]: https://pub.dev/packages/flutter_hooks
+[hooks_riverpod]: https://pub.dev/packages/hooks_riverpod
+
 
 [codecov]: https://codecov.io/gh/iapicca/yak_packages
 [codecov badge]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0
