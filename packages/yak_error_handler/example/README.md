@@ -1,33 +1,22 @@
 # Example
 
 ```dart
-import 'dart:math' as math;
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 
-final _random = math.Random();
+Stream<int> get stream => Stream.fromIterable([for (var i = 0; i < 10; ++i) i]);
 
-void veryBadAPI(int i) =>
-    _random.nextBool() ? print('$i') : throw Exception('ops');
+final onError = ErrorHandler<AvowError>((_) => print('this is odd!'));
+final runner = YakRunnerArg<void, int>(
+  (i) {
+    avow(i.isEven);
+    print(i);
+  },
+  exceptionHandler: ExceptionHandler(),
+  errorHandlers: {onError},
+);
 
-void main() {
-  final runner = YakRunnerArg(veryBadAPI, handleException: ExceptionHandler());
-
-  ExceptionHandler().handleException =
-      (e, s) => print('****** ERRROR COUGHT *******\n$e\n$s');
-
-  for (var i = 0; i < 10; ++i) {
-    runner(i);
-  }
-
-  ExceptionHandler().handleException =
-      (e, s) => print('*** UPDATED ERROR MESSAGE***');
-
-  for (var i = 0; i < 10; ++i) {
-    runner(i);
-  }
-}
-
+void main() => stream.listen(runner);
 ```
 
-[Jump to Source](https://github.com/iapicca/yak_packages/tree/master/examples/yak_error_handler)
+[Jump to Source](https://github.com/iapicca/yak_packages/tree/master/examples/yak_runner)

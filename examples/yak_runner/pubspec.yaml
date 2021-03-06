@@ -1,14 +1,10 @@
 name: example
-description: An example app for `yak_runner`
+description: An example for `yak_runner` & `yak_error_handler`
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  flutter:
-    sdk: flutter
+  yak_error_handler: ^0.3.0
   yak_runner: ^0.3.0
- 
-flutter:
-  uses-material-design: true
