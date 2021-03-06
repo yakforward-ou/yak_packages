@@ -1,4 +1,5 @@
 import 'package:test/test.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
 //  ignore_for_file: avoid_catching_errors
@@ -6,23 +7,24 @@ import '../../mocks/all.dart';
 void main() {
   const data = 1;
   group('`YakRunnerAsync`', () {
-    final exceptionHandler = MockExceptionHandler();
-    final errorHandler = MockHandleError<AssertionError>();
+    final exceptionStub = HandleExceptionDelegateStub();
+    final errorStub = HandleErrorDelegateStub();
+    final errorHandler = ErrorHandler<AssertionError>(errorStub);
     final delegate = MockDelegate<Future<int>>();
     final runner = YakRunnerAsync<int>(
       delegate,
-      handleException: exceptionHandler,
-      errorsWhitelist: {errorHandler},
+      exceptionHandler: exceptionStub,
+      errorHandlers: {errorHandler},
     );
 
     test('WHEN `void Function()` throws THEN `Result` is `Failure`', () async {
       delegate.reset;
-      exceptionHandler.reset;
-      errorHandler.reset;
+      exceptionStub.reset;
+      errorStub.reset;
 
       delegate.stub = () => throw Exception();
-      exceptionHandler.stub = () {};
-      errorHandler.stub = () {};
+      exceptionStub.stub = () {};
+      errorStub.stub = () {};
 
       final result = await runner();
 
@@ -47,12 +49,12 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        exceptionStub.callCount,
         1,
-        reason: '`exceptionHandler` should be called once',
+        reason: '`exceptionStub` should be called once',
       );
       expect(
-        errorHandler.callCount,
+        errorStub.callCount,
         0,
         reason: '`errorHandler` should NOT be called',
       );
@@ -61,12 +63,12 @@ void main() {
     test('WHEN `void Function()` does not fail `Result` is `Success`',
         () async {
       delegate.reset;
-      exceptionHandler.reset;
-      errorHandler.reset;
+      exceptionStub.reset;
+      errorStub.reset;
 
       delegate.stub = () async => data;
-      exceptionHandler.stub = () {};
-      errorHandler.stub = () {};
+      exceptionStub.stub = () {};
+      errorStub.stub = () {};
 
       final result = await runner();
 
@@ -91,12 +93,12 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        exceptionStub.callCount,
         0,
-        reason: '`exceptionHandler` should NOT be called ',
+        reason: '`exceptionStub` should NOT be called ',
       );
       expect(
-        errorHandler.callCount,
+        errorStub.callCount,
         0,
         reason: '`errorHandler` should NOT be called',
       );
@@ -104,12 +106,12 @@ void main() {
 
     test('WHEN `ERROR` is thwon THEN runner fails', () async {
       delegate.reset;
-      exceptionHandler.reset;
-      errorHandler.reset;
+      exceptionStub.reset;
+      errorStub.reset;
 
       delegate.stub = () => throw Error();
-      exceptionHandler.stub = () {};
-      errorHandler.stub = () {};
+      exceptionStub.stub = () {};
+      errorStub.stub = () {};
 
       Error? err;
 
@@ -131,12 +133,12 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        exceptionStub.callCount,
         0,
-        reason: '`exceptionHandler` should NOT be called ',
+        reason: '`exceptionStub` should NOT be called ',
       );
       expect(
-        errorHandler.callCount,
+        errorStub.callCount,
         0,
         reason: '`errorHandler` should NOT be called',
       );
@@ -146,12 +148,12 @@ void main() {
         'WHEN `Error` of `Type` `errorHandler.type`  is thwon '
         'THEN gets handled', () async {
       delegate.reset;
-      exceptionHandler.reset;
-      errorHandler.reset;
+      exceptionStub.reset;
+      errorStub.reset;
 
       delegate.stub = () => throw AssertionError();
-      exceptionHandler.stub = () {};
-      errorHandler.stub = () {};
+      exceptionStub.stub = () {};
+      errorStub.stub = () {};
 
       expect(
         await runner(),
@@ -164,12 +166,12 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        exceptionStub.callCount,
         0,
-        reason: '`exceptionHandler` should NOT be called ',
+        reason: '`exceptionStub` should NOT be called ',
       );
       expect(
-        errorHandler.callCount,
+        errorStub.callCount,
         1,
         reason: '`errorHandler` should be called once',
       );

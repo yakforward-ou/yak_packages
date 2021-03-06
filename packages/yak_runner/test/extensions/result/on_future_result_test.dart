@@ -6,17 +6,17 @@ import '../../mocks/all.dart';
 void main() async {
   const data = 1;
   const res = '$data';
-  final exceptionHandler = MockExceptionHandler();
+  final exceptionHandler = HandleExceptionDelegateStub();
   final firstDelegate = MockDelegate<Future<int>>();
   final secondDelegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
   final firstRunner = YakRunnerAsync<int>(
     firstDelegate,
-    handleException: exceptionHandler,
+    exceptionHandler: exceptionHandler,
   );
 
   final secondRunner = YakRunnerArgAsync<String, int>(
     secondDelegate,
-    handleException: exceptionHandler,
+    exceptionHandler: exceptionHandler,
   );
 
   group('`onFutureResult` EXTENSION', () {

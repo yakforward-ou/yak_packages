@@ -1,17 +1,19 @@
+import 'package:yak_error_handler/yak_error_handler.dart';
+
 import '../../all.dart';
 
 /// a `YakRunnerArg` that returns a T if contained in a given iterable
 class IterableContains<T> extends YakRunnerArg<T, T> {
   /// an iterable of elements of type <T>
   final Iterable<T> elements;
+  //final void Function(AvowError e) _callback;
 
-  ///
-  IterableContains(this.elements)
-      : super(
-          (element) {
-            avow(elements.contains(element));
-            return element;
-          },
-          errorsWhitelist: {AvowError().ignore},
-        );
+  /// takes as constructors an `Iterable` and an optional `handleError`
+  IterableContains(this.elements, [Function(Error e)? handleError])
+      : super((element) {
+          avow(elements.contains(element));
+          return element;
+        }, errorHandlers: {
+          AvowError().handle(handleError),
+        });
 }

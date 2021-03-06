@@ -7,19 +7,18 @@ import '../../mocks/all.dart';
 void main() {
   const data = 1;
   const res = '$data';
-  final exceptionHandler = MockExceptionHandler();
-
+  final exceptionHandler = HandleExceptionDelegateStub();
   group('`onResultAsync` MIXIN', () {
     final firstDelegate = MockDelegate<int>();
     final secondDelegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
 
     final firstRunner = YakRunner<int>(
       firstDelegate,
-      handleException: exceptionHandler,
+      exceptionHandler: exceptionHandler,
     );
     final secondRunner = YakRunnerArgAsync<String, int>(
       secondDelegate,
-      handleException: exceptionHandler,
+      exceptionHandler: exceptionHandler,
     );
 
     test('WHEN `Delegate<S>` fails THEN  `onResult() return Failure<T>',

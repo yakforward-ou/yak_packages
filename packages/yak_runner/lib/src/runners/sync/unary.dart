@@ -13,10 +13,11 @@ class YakRunnerArg<T, S> extends YakRunnerBase
     implements UnaryDelegate<Result<T>, S> {
   /// takes as argument `fun` and `errorHandler`
   /// unlike
-  YakRunnerArg(this.fun,
-      {required ExceptionHandler exceptionHandler,
-      Set<ErrorHandler> errorHandlers = const {}})
-      : assert(S != typeVoid, '`S` must not be of type `void`'),
+  YakRunnerArg(
+    this.fun, {
+    HandleExceptionDelegate? exceptionHandler,
+    Set<ErrorHandler> errorHandlers = const {},
+  })  : assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
         super(
           exceptionHandler: exceptionHandler,
@@ -32,17 +33,15 @@ class YakRunnerArg<T, S> extends YakRunnerBase
     try {
       return Result.success(fun(arg));
     } on Error catch (e) {
-      if (errorsWhitelist != null) {
-        for (final err in errorsWhitelist!) {
-          if (err.type == e.runtimeType) {
-            err(e);
-            return Result.failure(e, e.stackTrace);
-          }
+      for (final h in errorHandlers) {
+        if (e.runtimeType == h.type) {
+          h.handleError(e);
+          return Result.failure(e, e.stackTrace);
         }
       }
       rethrow;
     } on Exception catch (e, s) {
-      handleException?.call(e, s);
+      exceptionHandler?.call(e, s);
       return Result.failure(e, s);
     }
   }

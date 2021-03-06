@@ -7,18 +7,18 @@ void main() {
   const res = '$data';
 
   group('`onResult` MIXIN', () {
-    final exceptionHandler = MockExceptionHandler();
+    final exceptionHandler = HandleExceptionDelegateStub();
     final firstDelegate = MockDelegate<int>();
 
     final secondDelegate = MockUnaryDelegate<String, int>();
     final firstRunner = YakRunner<int>(
       firstDelegate,
-      handleException: exceptionHandler,
+      exceptionHandler: exceptionHandler,
     );
 
     final secondRunner = YakRunnerArg<String, int>(
       secondDelegate,
-      handleException: exceptionHandler,
+      exceptionHandler: exceptionHandler,
     );
     test('WHEN `Delegate<S>` fails THEN  `onResult() return Failure<T>', () {
       exceptionHandler.reset;

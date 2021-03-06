@@ -1,11 +1,15 @@
-import '../../all.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
+
+import '../../../yak_runner.dart';
 
 /// a `YakRunnerArg` that returns a T if contained in a given iterable
 class AsType<T, S> extends YakRunnerArg<T, S> {
-  /// provide the function to the `super` constructor
-  AsType()
+  /// takes as constructor an optional `handleError`
+  AsType([Function(Error e)? handleError])
       : super(
           (obj) => asType<T>(obj),
-          errorsWhitelist: {AsTypeError().ignore},
+          errorHandlers: {
+            AsTypeError().handle(handleError),
+          },
         );
 }

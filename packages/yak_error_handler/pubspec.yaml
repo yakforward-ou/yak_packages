@@ -1,6 +1,6 @@
 name: yak_error_handler
 description: a small package to handle exception and errors consistently across app and packages                                                                          
-version: 0.3.0+2
+version: 0.3.0+3
 homepage: https://github.com/iapicca/yak_packages
 
 environment:

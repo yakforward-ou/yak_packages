@@ -1,5 +1,6 @@
-# 0.3.0+1
+# 0.3.0+3
 - updated `stub` to 0.2.0
+- removed redundancies with `yak_error_handler`
 
 # 0.3.0+0
 - migrated to `null-safety`
