@@ -12,7 +12,7 @@ class Baz extends Bar {}
 void main() {
   group('AsTypeError & asType<T>', () {
     final stub = HandleErrorDelegateStub();
-    final handler = ErrorHandler<void, AsTypeError>(stub);
+    final handler = ErrorHandler<AsTypeError>(stub);
     final foo = Foo();
     final baz = Baz();
     test(
@@ -24,7 +24,9 @@ void main() {
       try {
         throw Error();
       } on Error catch (e) {
-        handler(e);
+        if (e.runtimeType == handler.type) {
+          handler(e);
+        }
       }
 
       expect(
@@ -43,7 +45,9 @@ void main() {
       try {
         asType<Bar>(foo);
       } on Error catch (e) {
-        handler(e);
+        if (e.runtimeType == handler.type) {
+          handler(e);
+        }
       }
 
       expect(
@@ -63,7 +67,9 @@ void main() {
       try {
         asType<Bar>(baz);
       } on Error catch (e) {
-        handler(e);
+        if (e.runtimeType == handler.type) {
+          handler(e);
+        }
       }
       expect(
         stub.callCount,
@@ -79,21 +85,20 @@ void main() {
         ..reset
         ..stub = () {};
 
-      var err;
+      var message;
       try {
         asType<Bar>(foo);
-      } on Error catch (e) {
-        err = e;
+      } on AsTypeError catch (e) {
+        message = '$e';
       }
-      expect(
-          (err as AsTypeError).toString(), 'AsType failed: "object is a Foo"');
+      expect(message, 'AsType failed: "object is a Foo"');
 
       try {
         throw AsTypeError();
-      } on Error catch (e) {
-        err = e;
+      } on AsTypeError catch (e) {
+        message = '$e';
       }
-      expect((err as AsTypeError).toString(), 'AsType failed');
+      expect(message, 'AsType failed');
     });
   });
 }

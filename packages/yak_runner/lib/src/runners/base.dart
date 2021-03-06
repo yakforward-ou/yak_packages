@@ -1,16 +1,17 @@
-import '../all.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
+import 'package:yak_runner/yak_runner.dart';
 
 /// an interface for `yak_runner` class
-abstract class YakRunnerBase {
+abstract class YakRunnerBase<T> {
   /// a function of typedef `HandleException`
-  final HandleException? handleException;
+  final ExceptionHandler exceptionHandler;
 
   /// a list of specific to handle in a predetermined way
-  final Set<HandleErrorBase>? errorsWhitelist;
+  final Set<ErrorHandler<Failure<T>, dynamic>> errorHandlers;
 
   /// the constructor takes an optional parameter `errorHandler`
   const YakRunnerBase({
-    this.handleException,
-    this.errorsWhitelist,
+    required this.exceptionHandler,
+    required this.errorHandlers,
   });
 }

@@ -1,5 +1,5 @@
 /// `void Function(Error e)` delegate
-mixin HandleErrorDelegate<T> {
+mixin HandleErrorDelegate {
   /// `call` is equivalente to `void Function(Error e)`
-  T? call(Error e);
+  void call(Error e);
 }

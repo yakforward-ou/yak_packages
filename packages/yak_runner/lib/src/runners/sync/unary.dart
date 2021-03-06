@@ -1,3 +1,5 @@
+import 'package:yak_error_handler/yak_error_handler.dart';
+
 import '../../all.dart';
 
 /// following line added because [https://stackoverflow.com/questions/66315301/what-is-the-correct-way-to-catch-both-error-and-exception-following-effective-d]
@@ -11,15 +13,14 @@ class YakRunnerArg<T, S> extends YakRunnerBase
     implements UnaryDelegate<Result<T>, S> {
   /// takes as argument `fun` and `errorHandler`
   /// unlike
-  YakRunnerArg(
-    this.fun, {
-    HandleException? handleException,
-    Set<HandleErrorBase>? errorsWhitelist,
-  })  : assert(S != typeVoid, '`S` must not be of type `void`'),
+  YakRunnerArg(this.fun,
+      {required ExceptionHandler exceptionHandler,
+      Set<ErrorHandler> errorHandlers = const {}})
+      : assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
         super(
-          handleException: handleException,
-          errorsWhitelist: errorsWhitelist,
+          exceptionHandler: exceptionHandler,
+          errorHandlers: errorHandlers,
         );
 
   /// `fun` is ` T Function(S)`

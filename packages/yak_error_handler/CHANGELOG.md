@@ -1,5 +1,6 @@
-# 0.3.0+1
+# 0.3.0+2
 - minor update to `ErrorHandler<T,S>`
+- added internal `WrongErrorHandler`
 
 # 0.3.0+0
 - `NNBD` 

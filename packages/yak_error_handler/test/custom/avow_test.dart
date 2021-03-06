@@ -6,7 +6,7 @@ import '../stub/all.dart';
 void main() {
   group('AvowError & avow', () {
     final stub = HandleErrorDelegateStub();
-    final handler = ErrorHandler<void, AvowError>(stub);
+    final handler = ErrorHandler<AvowError>(stub);
 
     test(
         'WHEN `Error` != AvowError is thrown '
@@ -17,7 +17,9 @@ void main() {
       try {
         throw Error();
       } on Error catch (e) {
-        handler(e);
+        if (e.runtimeType == handler.type) {
+          handler(e);
+        }
       }
 
       expect(
@@ -35,7 +37,9 @@ void main() {
       try {
         avow(false);
       } on Error catch (e) {
-        handler(e);
+        if (e.runtimeType == handler.type) {
+          handler(e);
+        }
       }
 
       expect(
@@ -54,7 +58,9 @@ void main() {
       try {
         avow(true);
       } on Error catch (e) {
-        handler(e);
+        if (e.runtimeType == handler.type) {
+          handler(e);
+        }
       }
       expect(
         stub.callCount,
@@ -70,20 +76,28 @@ void main() {
         ..reset
         ..stub = () {};
 
-      var err;
+      var message;
       try {
         avow(false, '...successfully');
-      } on Error catch (e) {
-        err = e;
+      } on AvowError catch (e) {
+        message = '$e';
       }
-      expect((err as AvowError).toString(), 'Avow failed: "...successfully"');
+      expect(
+        message,
+        'Avow failed: "...successfully"',
+        reason: '`toString` should be predicatble',
+      );
 
       try {
         avow(false);
-      } on Error catch (e) {
-        err = e;
+      } on AvowError catch (e) {
+        message = '$e';
       }
-      expect((err as AvowError).toString(), 'Avow failed');
+      expect(
+        message,
+        'Avow failed',
+        reason: '`toString` should be predicatble',
+      );
     });
   });
 }
