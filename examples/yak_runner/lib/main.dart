@@ -1,10 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:yak_runner/yak_runner.dart';
+//  ignore_for_file: undefined_named_parameter
+
+final _random = Random();
 
 final _api = YakRunner<int>(() {
-  final _random = Random();
-  return _random.nextBool() ? throw 'ops' : _random.nextInt(10);
+  return _random.nextBool() ? throw Exception('ops') : _random.nextInt(10);
 });
 
 void main() => runApp(const MyApp());
