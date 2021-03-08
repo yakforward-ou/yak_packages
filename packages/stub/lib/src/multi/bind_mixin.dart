@@ -1,5 +1,3 @@
-import 'package:stub/stub.dart';
-
 import '../all.dart';
 
 /// a mixin that implements `bind` method for `MultiStubBase`

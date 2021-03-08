@@ -1,5 +1,3 @@
-import 'package:stub/src/shared/default_stub.dart';
-
 import '../all.dart';
 
 /// a mixin that implements `stub` getter and setter
