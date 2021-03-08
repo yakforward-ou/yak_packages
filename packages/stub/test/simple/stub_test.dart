@@ -5,47 +5,28 @@ import 'foo.dart';
 
 void main() {
   group('`Stub` test', () {
-    final foo = FooStub<int>();
-    const data = 1;
-    const times = 42;
-
-    test(
-        'GIVEN `stub is not initialized` '
-        'WHEN Foo.foo is called '
-        'THEN throw `LateInitializationError`', () {
-      foo.reset;
-      var error;
-      try {
-        foo.foo();
-      } on Error catch (e) {
-        error = e;
-      }
-
-      expect(
-        error != null,
-        true,
-        reason: '`Foo.foo` throw `LateInitializationError`',
-      );
-    });
-
     test(
         'GIVEN `stub is not set` '
         'WHEN Foo.foo is called '
-        'THEN throw `UnimplementedError`', () {
-      foo.reset;
+        'THEN throw `Exception`', () {
+      final _foo = FooStub<int>();
 
       expect(
-        foo.foo,
-        throwsA(isA<UnimplementedError>()),
-        reason: '`Foo.foo` throw `AssertionError`',
+        _foo.foo,
+        throwsA(isA<Exception>()),
+        reason: '`Foo.foo` should throw `Exception`',
       );
     });
+
+    const data = 1;
+    final foo = FooStub<int>()..stub = () => data;
+    const times = 42;
     test(
         'GIVEN `stub != null` '
         'WHEN Foo.foo is called '
         'THEN returns `result`', () {
       foo.reset;
-      foo.stub = () => data;
+
       expect(
         foo.foo(),
         data,
@@ -57,7 +38,6 @@ void main() {
         'GIVEN `stub != null` '
         'WHEN Foo.foo is called  n `times` '
         'THEN  `callCount` == `times`', () {
-      foo.stub = () => data;
       for (var i = 1; i < times; ++i) {
         foo.foo();
       }
@@ -98,10 +78,9 @@ void main() {
 
     test(
         'GIVEN _ '
-        'WHEN Foo.bar is set twice '
+        'WHEN Foo.foo is set twice '
         'THEN  only latest has effect', () {
       foo.reset;
-      foo.stub = () => data;
       foo.stub = () => data * times;
 
       expect(

@@ -1,3 +1,3 @@
 library stub;
 
-export 'src/simple/all.dart' show Stub;
+export 'src/all.dart' show Stub, MultiStub;
