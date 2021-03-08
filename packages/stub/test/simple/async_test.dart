@@ -4,14 +4,15 @@ import 'foo.dart';
 
 void main() {
   group('`Stub` async test', () {
-    final fooStub = FooStub<Future<int>>();
     const data = 1;
+    final fooStub = FooStub<Future<int>>()..stub = () async => data;
+
     test(
         'GIVEN `stub != null` '
         'WHEN Foo.foo is called '
         'THEN returns `result`', () async {
       fooStub.reset;
-      fooStub.stub = () async => data;
+
       expect(
         await fooStub.foo(),
         data,

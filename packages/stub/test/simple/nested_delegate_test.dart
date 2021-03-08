@@ -21,14 +21,14 @@ class FooWrap {
 
 void main() {
   group('`Stub` in "nested delegate"', () {
-    final foo = FooStub<void>();
+    final foo = FooStub<void>()..stub = () => throw AssertionError();
+    ;
     final fooWrap = FooWrap(foo.foo);
     test(
-        'GIVEN `stub != null` '
-        'WHEN Bar.bar is called '
-        'THEN returns `result` regardless the arguments', () {
+        'GIVEN an error throwing`stub` '
+        'WHEN foo is called '
+        'THEN error flow through the stubbed class', () {
       foo.reset;
-      foo.stub = () => throw AssertionError();
 
       expect(
         fooWrap(),

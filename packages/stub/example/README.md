@@ -6,33 +6,79 @@ import 'package:test/test.dart';
 
 mixin Foo<T> {
   T foo();
-  T baz();
+}
+
+mixin Bar<T,S> {
   T bar();
+  S baz();
 }
 
 class FooStub<T> extends Stub<T> implements Foo<T> {
   @override
-  T bar() => throw UnimplementedError();
-  @override
-  T baz() => throw UnimplementedError();
-  @override
   T foo() => stub();
 }
 
+class BarStub<T,S> extends Multistub implements Bar<T,S> {
+  BarStub() {
+    bind<T>('bar');
+    bind<S>('baz');
+  }
+
+  @override
+  T bar() => this['bar'].stub();
+
+    @override
+  S baz() => this['baz'].stub();
+}
+
+
 void main() {
-  group('`Stub` test', () {
-      final fooStub = FooStub<int>();
+  group('`Foo` test', () {
+      final foo = FooStub<int>();
       const data = 1;
     test(
         'GIVEN `stub != null`'
         'WHEN Foo.foo is called '
         'THEN returns `result`', () {
-      fooStub.reset;
-      fooStub.stub = () => data;
+      foo.reset;
+      foo.stub = () => data;
       expect(
-        fooStub.foo(),
+        foo.foo(),
         data,
         reason: '`Foo.foo` should match `data`',
+      );
+      expect(
+        foo.callCount,
+        1,
+        reason: '`foo` should be called once',
+      );
+    });
+  });
+  group('`Bar` test', () {
+      final bar = BarStub<int,String>();
+      const data = 1;
+
+    test(
+        'GIVEN `stub != null`'
+        'WHEN Foo.foo is called '
+        'THEN returns `result`', () {
+      fooStub.reset;
+      bar['bar'].stub = () => data;
+      bar['baz'].stub = () => '$data';
+      expect(
+        bar.bar(),
+        data,
+        reason: '`Foo.foo` should match `data`',
+      );
+       expect(
+        bar['bar'].callCount,
+        1,
+        reason: '`bar` should be called once',
+      );
+       expect(
+        bar['baz'].callCount,
+        0,
+        reason: '`baz` should not be called',
       );
     });
   });
