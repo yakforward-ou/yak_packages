@@ -19,6 +19,8 @@ void main() {
         throwsA(isA<Exception>()),
         reason: '`Foo.foo` should throw `Exception`',
       );
+
+      print('ok');
     });
 
     final foo = FooMultiStub<int, String>();
@@ -44,7 +46,7 @@ void main() {
         'THEN  `callCount` == `times`', () {
       foo['foo'].reset;
       foo['bar'].reset;
-      for (var i = 1; i < times; ++i) {
+      for (var i = 1; i <= times; ++i) {
         foo.foo();
       }
       expect(

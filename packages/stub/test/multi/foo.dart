@@ -6,8 +6,13 @@ mixin Foo<T, S> {
 }
 
 class FooMultiStub<T, S> extends MultiStub implements Foo<T, S> {
+  FooMultiStub() {
+    bind<T>('foo');
+    bind<S>('bar');
+  }
+
   @override
-  T foo() => bind<T>('foo').stub();
+  T foo() => this['foo'].stub();
   @override
-  S bar() => bind<S>('bar').stub();
+  S bar() => this['bar'].stub();
 }

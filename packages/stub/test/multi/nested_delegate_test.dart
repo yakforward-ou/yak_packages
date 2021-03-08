@@ -21,9 +21,8 @@ class FooWrap {
 
 void main() {
   group('`MultiStub` in "nested delegate"', () {
-    const data = 1;
     final foo = FooMultiStub<int, String>();
-    foo['foo'].stub = () => data;
+    foo['foo'].stub = () => throw AssertionError();
     foo['bar'].stub = () => 'hello';
     final fooWrap = FooWrap(foo.foo);
     test(
