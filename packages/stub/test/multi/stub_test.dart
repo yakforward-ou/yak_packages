@@ -86,12 +86,12 @@ void main() {
       expect(
         foo['foo'].callCount,
         1,
-        reason: '`foo` stub should be called once',
+        reason: '`foo` should be called once',
       );
       expect(
         foo['bar'].callCount,
         0,
-        reason: '`bar` stub should not be called once',
+        reason: '`bar` should not be called',
       );
     });
 
