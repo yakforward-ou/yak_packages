@@ -18,9 +18,8 @@ a collection of packages for Dart and Flutter
 | [yak_test](https://github.com/iapicca/yak_packages/tree/master/packages/yak_test) | [pub](https://pub.dev/packages/yak_test) |
 | [yak_error_handler](https://github.com/iapicca/yak_packages/tree/master/packages/yak_error_handler) | [pub](https://pub.dev/packages/yak_error_handler) |
 | [yak_widgets](https://github.com/iapicca/yak_packages/tree/master/packages/yak_widgets) | [pub](https://pub.dev/packages/yak_widgets) |
+
 ---
-
-
 
 [codecov]: https://codecov.io/gh/iapicca/yak_packages
 [codecov badge]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0
