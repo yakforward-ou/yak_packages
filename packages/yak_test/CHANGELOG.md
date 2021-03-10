@@ -1,3 +1,6 @@
+# 0.3.0+1
+- `readme` updated
+
 # 0.3.0+0
 - `non null` implementation
 

@@ -1,3 +1,6 @@
+# 0.3.0+4
+- `readme` updated
+
 # 0.3.0+3
 - updated `stub` to 0.2.0
 - removed redundancies with `yak_error_handler`

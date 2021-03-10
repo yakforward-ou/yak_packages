@@ -1,3 +1,6 @@
+# 0.2.0+1
+- `readme` updated
+
 # 0.2.0+0
 - transition to `NNBD`
 
