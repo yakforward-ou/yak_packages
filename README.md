@@ -2,7 +2,7 @@
 [![style badge][]][style]
 [![melos badge][]][melos]
 [![license badge][]][license]
-[![sponsor badge][]][sponsor]
+<a class="github-button" href="https://github.com/sponsors/iapicca" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-heart" aria-label="Sponsor @iapicca on GitHub">Sponsor</a>
 [![twitter badge][]][twitter]
 
 # yak_packages
@@ -30,7 +30,5 @@ a collection of packages for Dart and Flutter
 [melos]: https://github.com/invertase/melos
 [license]: https://opensource.org/licenses/MIT
 [license badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[sponsor]: https://www.buymeacoffee.com/yakforward
-[sponsor badge]: https://img.shields.io/badge/sponsor-buy%20me%20a%20coffee-orange
 [twitter]: https://twitter.com/intent/follow?screen_name=yakforward
 [twitter badge]: https://img.shields.io/twitter/follow/yakforward?label=twitter&style=social
