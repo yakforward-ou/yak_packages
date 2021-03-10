@@ -1,3 +1,6 @@
+# 0.3.0+4
+- `readme` updated
+
 # 0.3.0+3
 - minor update to `ErrorHandler<T,S>`
 - added internal `WrongErrorHandler` and `from_error`

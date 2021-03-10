@@ -1,3 +1,6 @@
+# 0.2.0+2
+- `readme` updated
+
 # 0.2.0+1
 - added `MultiStub`
 
