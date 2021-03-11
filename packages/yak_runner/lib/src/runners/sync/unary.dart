@@ -29,7 +29,6 @@ class YakRunnerArg<T, S> extends YakRunnerBase
 
   /// `call` is a  `Result<T> Function(S)`
   Result<T> call(S arg) {
-    assert(arg != null, ' a non null `arg` must be provided');
     try {
       return Result.success(fun(arg));
     } on Error catch (e) {

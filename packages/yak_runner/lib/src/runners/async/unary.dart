@@ -29,8 +29,6 @@ class YakRunnerArgAsync<T, S> extends YakRunnerBase
 
   /// `call` is a  `Future<Result<T>> Function(FutureOr<S>)`
   Future<Result<T>> call(FutureOr<S> arg) async {
-    assert(arg != null, ' a non null `arg` must be provided');
-
     try {
       return Result.success(await fun(await arg));
     } on Error catch (e) {
