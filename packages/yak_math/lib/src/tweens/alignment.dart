@@ -8,12 +8,8 @@ class YakAlignmentTween extends YakTween<Alignment> {
   const YakAlignmentTween({
     required Alignment begin,
     required Alignment end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   Alignment lerp(double t) => Alignment(
         lerpNNDouble(begin.x, end.x, t),

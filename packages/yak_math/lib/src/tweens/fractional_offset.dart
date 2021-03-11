@@ -7,12 +7,8 @@ class YakFractionalOffsetTween extends YakTween<FractionalOffset> {
   const YakFractionalOffsetTween({
     required FractionalOffset begin,
     required FractionalOffset end,
-  })
-// coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   FractionalOffset lerp(double t) => FractionalOffset(
         lerpNNDouble(begin.dx, end.dx, t),

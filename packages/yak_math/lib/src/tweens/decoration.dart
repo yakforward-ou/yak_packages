@@ -8,12 +8,8 @@ class YakDecorationTween extends YakTween<Decoration> {
   const YakDecorationTween({
     required Decoration begin,
     required Decoration end,
-  })
-// coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   Decoration lerp(double t) => t == 0.0
       ? begin

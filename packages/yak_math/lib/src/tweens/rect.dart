@@ -7,12 +7,8 @@ class YakRectTween extends YakTween<Rect> {
   const YakRectTween({
     required Rect begin,
     required Rect end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   Rect lerp(double t) => Rect.fromLTRB(
         lerpNNDouble(begin.left, end.left, t),

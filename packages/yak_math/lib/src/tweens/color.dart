@@ -9,12 +9,8 @@ class YakColorTween extends YakTween<Color> {
   const YakColorTween({
     required Color begin,
     required Color end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   Color lerp(double t) => Color.fromARGB(
         clampInt(lerpInt(begin.alpha, end.alpha, t).toInt(), 0, 255),

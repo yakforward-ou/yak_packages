@@ -19,8 +19,6 @@ void main() {
         throwsA(isA<Exception>()),
         reason: '`Foo.foo` should throw `Exception`',
       );
-
-      print('ok');
     });
 
     final foo = FooMultiStub<int, String>();
@@ -96,7 +94,6 @@ void main() {
     });
 
     test(
-        'GIVEN _ '
         'WHEN Foo.bar is set twice '
         'THEN  only latest has effect', () {
       foo['foo'].reset;
@@ -111,7 +108,6 @@ void main() {
     });
 
     test(
-        'GIVEN _ '
         'WHEN Foo.bar is set twice '
         'THEN  only latest has effect', () {
       foo['foo'].reset;
@@ -121,6 +117,22 @@ void main() {
       expect(
         foo.bar(),
         '${data * times}',
+        reason: '`Foo.bar()` should be the latest `result` provided',
+      );
+    });
+    test(
+        'WHEN foo[`fizz`] is not set  '
+        'THEN exception is thrown', () {
+      var ex;
+      try {
+        foo['fix'].stub.call();
+      } on Exception catch (e, _) {
+        ex = e;
+      }
+
+      expect(
+        ex != null,
+        true,
         reason: '`Foo.bar()` should be the latest `result` provided',
       );
     });

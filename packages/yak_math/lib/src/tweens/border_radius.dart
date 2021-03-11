@@ -8,12 +8,8 @@ class YakBorderRadiusTween extends YakTween<BorderRadius> {
   const YakBorderRadiusTween({
     required BorderRadius begin,
     required BorderRadius end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   BorderRadius lerp(double t) => BorderRadius.only(
         topLeft: radiusNNLerp(begin.topLeft, end.topLeft, t),

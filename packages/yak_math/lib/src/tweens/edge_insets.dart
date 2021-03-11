@@ -7,12 +7,8 @@ class YakEdgeInsetsTween extends YakTween<EdgeInsets> {
   const YakEdgeInsetsTween({
     required EdgeInsets begin,
     required EdgeInsets end,
-  })
-// coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   EdgeInsets lerp(double t) => EdgeInsets.fromLTRB(
         lerpNNDouble(begin.left, end.left, t),

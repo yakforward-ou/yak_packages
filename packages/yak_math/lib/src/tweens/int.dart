@@ -6,12 +6,8 @@ class YakIntTween extends YakTween<int> {
   const YakIntTween({
     required int begin,
     required int end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   int lerp(double t) => (begin + (end - begin) * t).round();
 }
