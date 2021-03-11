@@ -7,12 +7,8 @@ class YakBoxConstraintsTween extends YakTween<BoxConstraints> {
   const YakBoxConstraintsTween({
     required BoxConstraints begin,
     required BoxConstraints end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   BoxConstraints lerp(double t) {
     assert(begin.debugAssertIsValid());

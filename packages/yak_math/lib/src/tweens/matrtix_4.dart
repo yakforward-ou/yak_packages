@@ -8,12 +8,8 @@ class YakMatrix4Tween extends YakTween<Matrix4> {
   const YakMatrix4Tween({
     required Matrix4 begin,
     required Matrix4 end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   Matrix4 lerp(double t) {
     final beginTranslation = Vector3.zero();

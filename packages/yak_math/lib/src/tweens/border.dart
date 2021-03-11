@@ -8,12 +8,8 @@ class YakBorderTween extends YakTween<Border> {
   const YakBorderTween({
     required Border begin,
     required Border end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   Border lerp(double t) => Border(
         top: BorderSide.lerp(begin.top, end.top, t),

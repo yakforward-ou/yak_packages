@@ -7,12 +7,8 @@ class YakSizeTween extends YakTween<Size> {
   const YakSizeTween({
     required Size begin,
     required Size end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   Size lerp(double t) => Size(
         lerpNNDouble(begin.width, end.width, t),

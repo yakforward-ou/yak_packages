@@ -5,11 +5,7 @@ import 'tween.dart';
 class YakConstantTween<T> extends YakTween<T> {
   /// has a parameter `value`
   const YakConstantTween(T value)
-      // coverage:ignore-line
-      : super(
-          begin: value,
-          end: value,
-        );
+      : super(begin: value, end: value); // coverage:ignore-line
 
   @override
   T lerp(_) => begin;

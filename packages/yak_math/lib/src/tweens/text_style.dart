@@ -8,12 +8,8 @@ class YakTextStyleTween extends YakTween<TextStyle> {
   const YakTextStyleTween({
     required TextStyle begin,
     required TextStyle end,
-  })
-  // coverage:ignore-line
-  : super(
-          begin: begin,
-          end: end,
-        );
+  }) : super(begin: begin, end: end); // coverage:ignore-line
+
   @override
   TextStyle lerp(double t) => TextStyle(
         inherit: end.inherit,
