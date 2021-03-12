@@ -13,6 +13,7 @@ class YakBoxConstraintsTween extends YakTween<BoxConstraints> {
   BoxConstraints lerp(double t) {
     assert(begin.debugAssertIsValid());
     assert(end.debugAssertIsValid());
+
     assert(
       (begin.minWidth.isFinite && end.minWidth.isFinite) ||
           (begin.minWidth == double.infinity &&
