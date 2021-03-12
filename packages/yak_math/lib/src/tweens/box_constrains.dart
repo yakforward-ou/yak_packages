@@ -13,6 +13,7 @@ class YakBoxConstraintsTween extends YakTween<BoxConstraints> {
   BoxConstraints lerp(double t) {
     assert(begin.debugAssertIsValid());
     assert(end.debugAssertIsValid());
+
     assert(
       (begin.minWidth.isFinite && end.minWidth.isFinite) ||
           (begin.minWidth == double.infinity &&
@@ -24,6 +25,20 @@ class YakBoxConstraintsTween extends YakTween<BoxConstraints> {
       (begin.maxWidth.isFinite && end.maxWidth.isFinite) ||
           (begin.maxWidth == double.infinity &&
               end.maxWidth == double.infinity),
+      'Cannot interpolate '
+      'between finite constraints and unbounded constraints.',
+    );
+    assert(
+      (begin.minHeight.isFinite && end.minHeight.isFinite) ||
+          (begin.minHeight == double.infinity &&
+              end.minHeight == double.infinity),
+      'Cannot interpolate '
+      'between finite constraints and unbounded constraints.',
+    );
+    assert(
+      (begin.maxHeight.isFinite && end.maxHeight.isFinite) ||
+          (begin.maxHeight == double.infinity &&
+              end.maxHeight == double.infinity),
       'Cannot interpolate '
       'between finite constraints and unbounded constraints.',
     );
