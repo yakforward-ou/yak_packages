@@ -6,12 +6,12 @@ import '../../mocks/all.dart';
 
 void main() {
   const data = 1;
-  group('`YakRunnerAsync`', () {
+  group('`RunnerAsync`', () {
     final exceptionStub = HandleExceptionDelegateStub();
     final errorStub = HandleErrorDelegateStub();
     final errorHandler = ErrorHandler<AssertionError>(errorStub);
     final delegate = MockDelegate<Future<int>>();
-    final runner = YakRunnerAsync<int>(
+    final runner = RunnerAsync<int>(
       delegate,
       exceptionHandler: exceptionStub,
       errorHandlers: {errorHandler},

@@ -9,12 +9,12 @@ void main() async {
   final exceptionHandler = HandleExceptionDelegateStub();
   final firstDelegate = MockDelegate<Future<int>>();
   final secondDelegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
-  final firstRunner = YakRunnerAsync<int>(
+  final firstRunner = RunnerAsync<int>(
     firstDelegate,
     exceptionHandler: exceptionHandler,
   );
 
-  final secondRunner = YakRunnerArgAsync<String, int>(
+  final secondRunner = UnaryRunnerAsync<String, int>(
     secondDelegate,
     exceptionHandler: exceptionHandler,
   );

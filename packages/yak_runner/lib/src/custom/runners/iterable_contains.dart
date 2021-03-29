@@ -2,8 +2,8 @@ import 'package:yak_error_handler/yak_error_handler.dart';
 
 import '../../all.dart';
 
-/// a `YakRunnerArg` that returns a T if contained in a given iterable
-class IterableContains<T> extends YakRunnerArg<T, T> {
+/// a `UnaryRunner` that returns a T if contained in a given iterable
+class IterableContains<T> extends UnaryRunner<T, T> {
   /// an iterable of elements of type <T>
   final Iterable<T> elements;
   //final void Function(AvowError e) _callback;

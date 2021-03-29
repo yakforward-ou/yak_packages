@@ -1,7 +1,7 @@
 import 'package:yak_error_handler/yak_error_handler.dart';
 
 /// an interface for `yak_runner` class
-abstract class YakRunnerBase<T> {
+abstract class RunnerBase<T> {
   /// a function of typedef `HandleException`
   final HandleExceptionDelegate? exceptionHandler;
 
@@ -9,7 +9,7 @@ abstract class YakRunnerBase<T> {
   final Set<ErrorHandler> errorHandlers;
 
   /// the constructor takes an optional parameter `errorHandler`
-  const YakRunnerBase({
+  const RunnerBase({
     this.exceptionHandler,
     required this.errorHandlers,
   });

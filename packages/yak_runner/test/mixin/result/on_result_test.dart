@@ -11,12 +11,12 @@ void main() {
     final firstDelegate = MockDelegate<int>();
 
     final secondDelegate = MockUnaryDelegate<String, int>();
-    final firstRunner = YakRunner<int>(
+    final firstRunner = Runner<int>(
       firstDelegate,
       exceptionHandler: exceptionHandler,
     );
 
-    final secondRunner = YakRunnerArg<String, int>(
+    final secondRunner = UnaryRunner<String, int>(
       secondDelegate,
       exceptionHandler: exceptionHandler,
     );

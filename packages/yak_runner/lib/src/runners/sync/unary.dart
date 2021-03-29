@@ -8,12 +8,12 @@ import '../../all.dart';
 /// a class that takes `T Function(S)`
 /// and returns `Result<T> Function(S)`
 /// on `Exception` invokes `errorHandler` if not null
-class YakRunnerArg<T, S> extends YakRunnerBase
-    with YakRunnerArgTestMixin<T, S>
+class UnaryRunner<T, S> extends RunnerBase
+    with UnaryRunnerTestMixin<T, S>
     implements UnaryDelegate<Result<T>, S> {
   /// takes as argument `fun` and `errorHandler`
   /// unlike
-  YakRunnerArg(
+  UnaryRunner(
     this.fun, {
     HandleExceptionDelegate? exceptionHandler,
     Set<ErrorHandler> errorHandlers = const {},

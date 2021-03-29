@@ -4,17 +4,17 @@ import 'package:yak_runner/src/all.dart';
 import 'test_factory/nullary.dart';
 
 void main() {
-  group('`YakRunnerTestMixin` MIXIN', () {
-    final runner = YakRunner(() => 'hello');
+  group('`RunnerTestMixin` MIXIN', () {
+    final runner = Runner(() => 'hello');
 
     test(
-        'WHEN `YakRunner<T>` calls `buildTest` '
-        'THEN returns a YakRunnerTestDelegate<T>', () {
+        'WHEN `Runner<T>` calls `buildTest` '
+        'THEN returns a RunnerTestDelegate<T>', () {
       final test = runner.buildTest(const FakeNullaryTestFactory());
       expect(
-        test is YakRunnerTestDelegate<String>,
+        test is RunnerTestDelegate<String>,
         true,
-        reason: 'buildTest should return YakRunnerTestDelegate',
+        reason: 'buildTest should return RunnerTestDelegate',
       );
     });
   });

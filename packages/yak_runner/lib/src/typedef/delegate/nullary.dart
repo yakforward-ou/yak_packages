@@ -1,4 +1,4 @@
-/// a delegate for a nullary function
+/// a function that returns a Type `T`
 /// a Delegate<T> can be assigned at a Nullary<T>
 /// ```
 /// class Foo implements Delegate<void> {
@@ -6,7 +6,4 @@
 /// }
 ///  final Nullary delegate = Foo();
 /// ```
-mixin NullaryDelegate<T> {
-  /// `call` represent `T Function()`
-  T call();
-}
+typedef Nullary<T> = T Function();
