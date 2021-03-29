@@ -1,16 +1,16 @@
 import 'package:yak_runner/yak_runner.dart';
 import '../../../all.dart';
 
-/// implementation of `YakRunnerTestFactoryDelegate` from `yak_runner`
-class YakRunnerArgAsyncTestFactory implements YakRunnerArgTestFactoryDelegate {
+/// implementation of `RunnerTestFactoryDelegate` from `yak_runner`
+class UnaryRunnerAsyncTestFactory implements UnaryRunnerTestFactoryDelegate {
   /// takes a `description` as argument
-  const YakRunnerArgAsyncTestFactory(this.description);
+  const UnaryRunnerAsyncTestFactory(this.description);
 
   /// `description` is a `String`
   final String description;
 
-  /// `call` is a `YakRunnerArgTestDelegate Function()`
+  /// `call` is a `UnaryRunnerTestDelegate Function()`
   @override
-  YakRunnerArgTestDelegate<T, S> call<T, S>() =>
-      YakRunnerArgAsyncTest<T, S>(description: description);
+  UnaryRunnerTestDelegate<T, S> call<T, S>() =>
+      UnaryRunnerAsyncTest<T, S>(description: description);
 }

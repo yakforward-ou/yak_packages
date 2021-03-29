@@ -1,3 +1,6 @@
+# 0.3.1+0
+- updated to accommodate `yak_runner` v0.3.1
+
 # 0.3.0+1
 - `readme` updated
 

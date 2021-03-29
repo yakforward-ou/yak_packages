@@ -6,10 +6,10 @@ import 'package:yak_runner/yak_runner.dart';
 import '../../../mocks/all.dart';
 //  ignore_for_file: avoid_catching_errors
 
-/// a test for `YakRunnerArgAsync`
-class YakRunnerArgAsyncTest<T, S> implements YakRunnerArgTestDelegate<T, S> {
+/// a test for `UnaryRunnerAsync`
+class UnaryRunnerAsyncTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
   /// takes the argument `description`
-  YakRunnerArgAsyncTest({
+  UnaryRunnerAsyncTest({
     required this.description,
   });
 
@@ -26,7 +26,7 @@ class YakRunnerArgAsyncTest<T, S> implements YakRunnerArgTestDelegate<T, S> {
       final errorStub = HandleErrorDelegateStub();
       final errorHandler = ErrorHandler<AssertionError>(errorStub);
       final delegate = MockUnaryDelegate<Future<T>, FutureOr<S>>();
-      final runner = YakRunnerArgAsync<T, S>(
+      final runner = UnaryRunnerAsync<T, S>(
         delegate,
         exceptionHandler: exceptionStub,
         errorHandlers: {errorHandler},

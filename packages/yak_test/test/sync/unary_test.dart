@@ -1,7 +1,7 @@
 import 'package:yak_runner/yak_runner.dart';
 import 'package:yak_test/yak_test.dart';
 
-final runner = YakRunnerArg<String, int>((i) => '$i');
+final runner = UnaryRunner<String, int>((i) => '$i');
 final _test = runner.buildTest(
   runner.buildTestFactory('unary test'),
 );
