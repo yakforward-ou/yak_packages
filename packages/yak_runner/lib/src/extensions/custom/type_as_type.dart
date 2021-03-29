@@ -5,7 +5,7 @@ import '../../all.dart';
 ///
 /// for example Result.asType<Failure>()
 ///
-extension YakRunnerTypeAsTypeExtension<S> on S {
+extension RunnerTypeAsTypeExtension<S> on S {
   /// returns a `Result<T>`
   Result<T> asType<T>() => AsType<T, S>().call(this);
 }

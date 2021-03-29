@@ -7,12 +7,12 @@ import '../../mocks/all.dart';
 void main() {
   const data = 1;
 
-  group('`YakRunner`', () {
+  group('`Runner`', () {
     final exceptionStub = HandleExceptionDelegateStub();
     final delegate = MockDelegate<int>();
     final errorStub = HandleErrorDelegateStub();
     final errorHandler = ErrorHandler<AssertionError>(errorStub);
-    final runner = YakRunner(
+    final runner = Runner(
       delegate,
       exceptionHandler: exceptionStub,
       errorHandlers: {errorHandler},

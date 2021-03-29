@@ -8,11 +8,11 @@ import '../../all.dart';
 /// a class that takes `Future<T> Function()`
 /// and returns `Future<Result<T>> Function()`
 /// on `Exception` invokes `errorHandler` if not null
-class YakRunnerAsync<T> extends YakRunnerBase
-    with YakRunnerTestMixin<T>
-    implements Delegate<Future<Result<T>>> {
+class RunnerAsync<T> extends RunnerBase
+    with RunnerTestMixin<T>
+    implements NullaryDelegate<Future<Result<T>>> {
   /// takes as argument `fun` and `errorHandler`
-  const YakRunnerAsync(
+  const RunnerAsync(
     this.fun, {
     HandleExceptionDelegate? exceptionHandler,
     Set<ErrorHandler> errorHandlers = const {},

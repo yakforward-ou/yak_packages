@@ -9,12 +9,12 @@ import '../../mocks/all.dart';
 void main() {
   const data = 1;
   const res = '$data';
-  group('`YakRunnerArgAsync`', () {
+  group('`UnaryRunnerAsync`', () {
     final exceptionStub = HandleExceptionDelegateStub();
     final errorStub = HandleErrorDelegateStub();
     final errorHandler = ErrorHandler<AssertionError>(errorStub);
     final delegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
-    final runner = YakRunnerArgAsync<String, int>(
+    final runner = UnaryRunnerAsync<String, int>(
       delegate,
       exceptionHandler: exceptionStub,
       errorHandlers: {errorHandler},

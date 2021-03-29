@@ -6,10 +6,10 @@ import 'package:yak_runner/yak_runner.dart';
 import '../../../mocks/all.dart';
 //  ignore_for_file: avoid_catching_errors
 
-/// a test for `YakRunner`
-class YakRunnerTest<T> implements YakRunnerTestDelegate<T> {
+/// a test for `Runner`
+class RunnerTest<T> implements RunnerTestDelegate<T> {
   /// takes the argument `description`
-  YakRunnerTest({
+  RunnerTest({
     required this.description,
   });
 
@@ -23,10 +23,10 @@ class YakRunnerTest<T> implements YakRunnerTestDelegate<T> {
   void call(FutureOr<T> res) {
     group(description, () {
       final exceptionStub = HandleExceptionDelegateStub();
-      final delegate = MockDelegate<T>();
+      final delegate = MockNullaryDelegate<T>();
       final errorStub = HandleErrorDelegateStub();
       final errorHandler = ErrorHandler<AssertionError>(errorStub);
-      final runner = YakRunner<T>(
+      final runner = Runner<T>(
         delegate,
         exceptionHandler: exceptionStub,
         errorHandlers: {errorHandler},

@@ -4,7 +4,7 @@ import 'package:yak_runner/yak_runner.dart';
 Stream<int> get stream => Stream.fromIterable([for (var i = 0; i < 10; ++i) i]);
 
 final onError = ErrorHandler<AvowError>((_) => print('this is odd!'));
-final runner = YakRunnerArg<void, int>(
+final runner = UnaryRunner<void, int>(
   (i) {
     avow(i.isEven);
     print(i);

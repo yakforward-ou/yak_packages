@@ -1,3 +1,12 @@
+# 0.3.1+1
+- `example` updated
+- fixes implementation
+
+# 0.3.1+0
+- renamed `Runner` and `NullaryDelegate`
+- added `typedef` for `Delegate`s and `Runner`s
+- added `IterableRunner`
+
 # 0.3.0+4
 - `readme` updated
 

@@ -1,8 +1,8 @@
 import 'package:stub/stub.dart';
 import 'package:yak_runner/yak_runner.dart';
 
-class MockYakRunnerArgTestFactoryDelegate extends Stub<dynamic>
-    implements YakRunnerArgTestFactoryDelegate {
+class MockUnaryRunnerTestFactoryDelegate extends Stub<dynamic>
+    implements UnaryRunnerTestFactoryDelegate {
   @override
-  YakRunnerArgTestDelegate<T, S> call<T, S>() => stub();
+  UnaryRunnerTestDelegate<T, S> call<T, S>() => stub();
 }

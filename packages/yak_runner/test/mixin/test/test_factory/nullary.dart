@@ -2,8 +2,8 @@ import 'package:yak_runner/yak_runner.dart';
 
 import '../test_delegate/nullary.dart';
 
-class FakeNullaryTestFactory implements YakRunnerTestFactoryDelegate {
+class FakeNullaryTestFactory implements RunnerTestFactoryDelegate {
   const FakeNullaryTestFactory();
   @override
-  YakRunnerTestDelegate<T> call<T>() => const FakeNullaryTest();
+  RunnerTestDelegate<T> call<T>() => const FakeNullaryTest();
 }

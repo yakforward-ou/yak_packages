@@ -4,17 +4,17 @@ import 'package:yak_runner/src/all.dart';
 import 'test_factory/unary.dart';
 
 void main() {
-  group('`YakRunnerTestMixin` MIXIN', () {
-    final runner = YakRunnerArg<String, int>((i) => '$i');
+  group('`RunnerTestMixin` MIXIN', () {
+    final runner = UnaryRunner<String, int>((i) => '$i');
 
     test(
-        'WHEN `YakRunnerArg<T,S>` calls `buildTest` '
-        'THEN returns a YakRunnerArgTestDelegate<T,S>', () {
+        'WHEN `UnaryRunner<T,S>` calls `buildTest` '
+        'THEN returns a UnaryRunnerTestDelegate<T,S>', () {
       final test = runner.buildTest(const FakeUnaryTestFactory());
       expect(
-        test is YakRunnerArgTestDelegate<String, int>,
+        test is UnaryRunnerTestDelegate<String, int>,
         true,
-        reason: 'buildTest should return YakRunnerArgTestDelegate',
+        reason: 'buildTest should return UnaryRunnerTestDelegate',
       );
     });
   });

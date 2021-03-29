@@ -7,4 +7,4 @@ environment:
 
 dependencies:
   yak_error_handler: ^0.3.0
-  yak_runner: ^0.3.0
+  yak_runner: ^0.3.1

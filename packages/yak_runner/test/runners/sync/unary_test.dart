@@ -5,14 +5,14 @@ import '../../mocks/all.dart';
 //  ignore_for_file: avoid_catching_errors
 
 void main() {
-  group('`YakRunnerArg`', () {
+  group('`UnaryRunner`', () {
     const data = 1;
     const res = '$data';
     final exceptionStub = HandleExceptionDelegateStub();
     final delegate = MockUnaryDelegate<String, int>();
     final errorStub = HandleErrorDelegateStub();
     final errorHandler = ErrorHandler<AssertionError>(errorStub);
-    final runner = YakRunnerArg<String, int>(
+    final runner = UnaryRunner<String, int>(
       delegate,
       exceptionHandler: exceptionStub,
       errorHandlers: {errorHandler},
