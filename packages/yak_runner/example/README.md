@@ -1,46 +1,22 @@
 # Example
 
 ```dart
-import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 
-final _api = YakRunner<int>(() {
-  final _random = Random();
-  return _random.nextBool() ? throw 'ops' : _random.nextInt(10);
-});
+Stream<int> get stream => Stream.fromIterable([for (var i = 0; i < 10; ++i) i]);
 
-void main() => runApp(const MyApp());
+final onError = ErrorHandler<AvowError>((_) => print('this is odd!'));
+final runner = UnaryRunner<void, int>(
+  (i) {
+    avow(i.isEven);
+    print(i);
+  },
+  exceptionHandler: ExceptionHandler(),
+  errorHandlers: {onError},
+);
 
-class MyApp extends StatelessWidget {
-  const MyApp() : super(key: const ValueKey('MyApp'));
-  @override
-  Widget build(BuildContext context) => const MaterialApp(home: MyHomePage());
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage() : super(key: const ValueKey('MyHomePage'));
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  var _int = 0;
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Center(child: Text('$_int')),
-        floatingActionButton: FloatingActionButton(
-          child: const Text('?'),
-          onPressed: () => _api().when(
-            success: (number) => setState(() => _int = number),
-            failure: (e, s) => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: const Text('something went wrong')),
-            ),
-          ),
-        ),
-      );
-}
+void main() => stream.listen(runner);
 ```
 
 [Jump to Source](https://github.com/iapicca/yak_packages/tree/master/examples/yak_runner)

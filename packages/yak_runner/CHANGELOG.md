@@ -1,3 +1,6 @@
+# 0.3.1+1
+- `example` updated
+
 # 0.3.1+0
 - renamed `Runner` and `NullaryDelegate`
 - added `typedef` for `Delegate`s and `Runner`s
