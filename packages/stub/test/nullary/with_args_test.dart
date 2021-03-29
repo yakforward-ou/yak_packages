@@ -5,7 +5,6 @@ void main() {
   group('`Stub` with args test', () {
     const data = 1;
     final bar = BarStub<int, String, bool, double, Type>()..stub = () => data;
-
     test(
         'GIVEN `stub != null` '
         'WHEN Bar.bar is called '

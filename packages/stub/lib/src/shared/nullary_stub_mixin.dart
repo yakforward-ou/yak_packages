@@ -1,15 +1,14 @@
 import '../all.dart';
 
 /// a mixin that implements `stub` getter and setter
-mixin StubMixin<T> on StubBase<T> {
+mixin NullaryStubMixin<T> on StubBase {
   T Function() _stub = defaultStub<T>();
 
-  @override
+  /// returns a nullary stub
   T Function() get stub => () {
         callCount++;
         return _stub();
       };
 
-  @override
   set stub(T Function() stub) => _stub = stub;
 }
