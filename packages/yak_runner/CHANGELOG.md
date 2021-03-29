@@ -1,5 +1,6 @@
 # 0.3.1+1
 - `example` updated
+- fixes implementation
 
 # 0.3.1+0
 - renamed `Runner` and `NullaryDelegate`

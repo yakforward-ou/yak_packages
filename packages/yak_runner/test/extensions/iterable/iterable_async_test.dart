@@ -25,7 +25,7 @@ void main() {
       );
 
       expect(
-        await iterable.iterateAsync(runner),
+        await runner.iterate(iterable),
         isA<Failure>(),
         reason: 'result should be a `Failure`',
       );
@@ -48,8 +48,7 @@ void main() {
         exceptionHandler: handler,
       );
 
-      final result = await iterable.iterateAsync<String>(runner);
-
+      final result = await runner.iterate(iterable);
       expect(
         result,
         isA<Success>(),

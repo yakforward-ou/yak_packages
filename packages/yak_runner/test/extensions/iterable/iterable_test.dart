@@ -24,7 +24,7 @@ void main() {
       );
 
       expect(
-        iterable.iterate(runner),
+        runner.iterate(iterable),
         isA<Failure>(),
         reason: 'result should be a `Failure`',
       );
@@ -47,7 +47,7 @@ void main() {
         exceptionHandler: handler,
       );
 
-      final result = iterable.iterate<String>(runner);
+      final result = runner.iterate(iterable);
 
       expect(
         result,
