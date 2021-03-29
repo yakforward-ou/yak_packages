@@ -1,10 +1,9 @@
-# 0.2.0+2
+# 0.2.1
+- unary stub
+
+# 0.2.0
 - `readme` updated
-
-# 0.2.0+1
 - added `MultiStub`
-
-# 0.2.0+0
 - breaking changes in api
 - removed `meta` from dependencies
 
