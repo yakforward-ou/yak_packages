@@ -1,6 +1,6 @@
 name: stub
-description:  a lightweight Dart micro-package to help you stub methods for your tests
-version: 0.2.1+2
+description: a pure `dart` lightweight package to help you stub methods for your tests
+version: 0.3.0+0
 homepage: https://github.com/iapicca/yak_packages
 environment:
   sdk: '>=2.12.0 <3.0.0'

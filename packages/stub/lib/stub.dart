@@ -1,3 +1,4 @@
 library stub;
 
-export 'src/all.dart' show Stub, MultiStub, UnaryStub;
+export 'src/method/all.dart';
+export 'src/stub.dart';

@@ -1,6 +1,5 @@
 import 'package:meta/meta.dart';
-
-import 'stub.dart';
+import 'method.dart';
 
 /// a mixin on `Stub` that implements the count method
 mixin Counter<Z> on StubMethod<Z> {
