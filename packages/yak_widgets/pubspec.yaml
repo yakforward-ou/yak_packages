@@ -1,6 +1,6 @@
 name: yak_widgets
 description: a collection of widgets based on `flutter_hooks` and `riverpod`
-version: 0.2.0+1
+version: 0.2.0+2
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies: 
   flutter:
     sdk: flutter
-  hooks_riverpod: ^0.13.1
+  hooks_riverpod: ^0.14.0
   flutter_hooks: ^0.16.0
   yak_math: ^0.2.0
 
