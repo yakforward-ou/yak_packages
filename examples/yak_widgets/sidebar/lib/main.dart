@@ -12,7 +12,7 @@ void main() {
           child: Stack(
             children: [
               const MyPageView(),
-              const YakSidebar(
+              const Sidebar(
                 child: ColoredBox(color: Color.fromRGBO(0, 0, 0, .3)),
               ),
             ],

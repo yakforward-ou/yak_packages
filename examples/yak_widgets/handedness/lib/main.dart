@@ -15,7 +15,7 @@ class MyHomePage extends HookWidget {
     final _state = useProvider(handednessPod);
     return Scaffold(
       body: Stack(children: [
-        YakHandedness(
+        Handedness(
           child: FlutterLogo(
             size: MediaQuery.of(context).size.shortestSide,
           ),
