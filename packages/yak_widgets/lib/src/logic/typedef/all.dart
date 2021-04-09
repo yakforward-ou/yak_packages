@@ -1,3 +1,2 @@
 export 'effect.dart';
-
-/// simply exports folder's classes
+export 'on_index_changed.dart';
