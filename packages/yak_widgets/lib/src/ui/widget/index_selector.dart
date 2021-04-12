@@ -66,6 +66,9 @@ class IndexSelector extends HookWidget {
               key: ValueKey('SizedBox:$index@IndexedSelector:$key'),
               height: height,
               child: GestureDetector(
+                behavior: currentIndex.value == index
+                    ? HitTestBehavior.translucent
+                    : null,
                 key: ValueKey('GestureDetector$index@IndexedSelector:$key'),
                 onTap: onTap(rem),
                 child: Center(
