@@ -1,4 +1,4 @@
 export 'damper.dart';
 export 'handedness.dart';
-export 'index_selector.dart';
+export 'focused_index_list.dart';
 export 'sidebar.dart';
