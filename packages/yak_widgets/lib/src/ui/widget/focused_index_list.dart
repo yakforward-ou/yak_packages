@@ -81,6 +81,7 @@ class _FocusedIndexListState extends State<FocusedIndexList> {
 
         return ListView.builder(
           key: ValueKey('ListView.builder@FocusedIndexList:${widget.key}'),
+          cacheExtent: 0,
           physics: const NeverScrollableScrollPhysics(),
           controller: _controller,
           itemBuilder: (context, index) {
