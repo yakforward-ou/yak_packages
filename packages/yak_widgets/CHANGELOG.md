@@ -1,5 +1,9 @@
+# 0.3.0+0
+- breaking change: naming scheme
+- added `padding`, `top` and `bottom` to `Handedness`
+
 # 0.2.0+2
-- bump `hooks_riverpod` version 
+- bump `hooks_riverpod` version
 
 # 0.2.0+1
 - `readme` updated

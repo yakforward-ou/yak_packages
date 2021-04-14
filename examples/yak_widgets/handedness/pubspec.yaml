@@ -8,9 +8,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  hooks_riverpod: ^0.13.1
+  hooks_riverpod: ^0.14.0
   flutter_hooks: ^0.16.0
-  yak_widgets: ^0.2.0
+  yak_widgets: ^0.3.0
 
     
 flutter:
