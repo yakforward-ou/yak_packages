@@ -5,7 +5,7 @@ import '../../../yak_widgets.dart';
 
 /// a ready to use widget that changes `sidebarPod` state
 
-class YakSidebar extends HookWidget {
+class Sidebar extends HookWidget {
   /// allow to change `scrollSensitivity` to a custom value; default `1%`
   final double scrollSensitivity;
 
@@ -16,7 +16,7 @@ class YakSidebar extends HookWidget {
   final Widget child;
 
   /// `YakSidebar` does not require any
-  const YakSidebar({
+  const Sidebar({
     required this.child,
     this.scrollSensitivity = .01,
     this.width = 54,
@@ -30,13 +30,13 @@ class YakSidebar extends HookWidget {
     final scroll = useProvider(sidebarPod);
     final height = MediaQuery.of(context).size.height;
     final threshold = height * scrollSensitivity;
-    return YakHandedness(
+    return Handedness(
       child: SizedBox(
-        key: ValueKey('$key: SizedBox'),
+        key: ValueKey('$key@SizedBox'),
         height: height,
         width: width,
         child: GestureDetector(
-          key: ValueKey('$key: GestureDetector'),
+          key: ValueKey('$key@GestureDetector'),
           onVerticalDragUpdate: (details) {
             if (details.delta.dy.abs() > threshold &&
                 details.delta.dx < threshold) {

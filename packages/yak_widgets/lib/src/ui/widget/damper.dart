@@ -5,12 +5,12 @@ import '../../../yak_widgets.dart';
 
 /// a ready to use widget that uses `useDamperAnimationEffect`
 
-class YakDamper extends HookWidget {
+class Damper extends HookWidget {
   /// requires a `children` parameter
   final List<Widget> children;
 
   /// `YakDamper` constructor has parameters List<Widget> `children` and Key
-  const YakDamper({
+  const Damper({
     required this.children,
     Key key = const ValueKey('YakDamper'),
   })
@@ -29,7 +29,7 @@ class YakDamper extends HookWidget {
     final size = MediaQuery.of(context).size;
 
     return PositionedTransition(
-      key: ValueKey('$key: PositionedTransition'),
+      key: ValueKey('$key@PositionedTransition'),
       rect: RelativeRectTween(
         begin: RelativeRect.fromSize(
           Rect.fromLTWH(
@@ -41,14 +41,13 @@ class YakDamper extends HookWidget {
           size,
         ),
         end: RelativeRect.fromSize(
-          Rect.fromLTWH(
-            0,
-            -size.height,
-            size.width,
-            size.height,
-          ),
-          size,
-        ),
+            Rect.fromLTWH(
+              0,
+              -size.height,
+              size.width,
+              size.height,
+            ),
+            size),
       ).animate(
         CurvedAnimation(
           parent: animationController,
@@ -57,9 +56,9 @@ class YakDamper extends HookWidget {
       ),
       child: SizedBox.fromSize(
         size: size,
-        key: ValueKey('$key: SizedBox'),
+        key: ValueKey('$key@SizedBox'),
         child: Stack(
-          key: ValueKey('$key: : Stack'),
+          key: ValueKey('$key@Stack'),
           children: children,
         ),
       ),

@@ -16,7 +16,7 @@ Widget get app => ProviderScope(
         home: Stack(
           children: [
             const _MyPageView(),
-            YakSidebar(
+            Sidebar(
               key: Keys.trigger,
               child: const ColoredBox(
                 color: Color.fromRGBO(0, 0, 0, .3),

@@ -23,7 +23,7 @@ class _MyHomePage extends HookWidget {
     return Scaffold(
       key: Keys.parent,
       body: Stack(children: [
-        YakHandedness(
+        Handedness(
           child: FlutterLogo(
             key: Keys.subject,
           ),

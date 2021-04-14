@@ -4,14 +4,26 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../yak_widgets.dart';
 
 /// a ready to use `Positioned` that changes  according to`handednessPod` state
-class YakHandedness extends HookWidget {
+class Handedness extends HookWidget {
   /// requires a `child` parameter
   final Widget child;
 
+  /// an optionl parameter mirroring `Positioned` top
+  final double? top;
+
+  /// an optionl parameter mirroring `Positioned` bottom
+  final double? bottom;
+
+  /// set the parameter to either `left` or `right`
+  final double? padding;
+
   /// `YakHandedness` constructor has parameters Widget `child` and Key `key`
-  YakHandedness({
+  Handedness({
     required this.child,
-    Key key = const ValueKey('YakHandedness'),
+    this.bottom,
+    this.top,
+    this.padding = 0,
+    Key key = const ValueKey('Handedness'),
   })
   // coverage:ignore-line
   : super(key: key);
@@ -20,9 +32,11 @@ class YakHandedness extends HookWidget {
   Widget build(BuildContext context) {
     final lefthanded = useProvider(handednessPod).state;
     return Positioned(
-      key: ValueKey('$key: Positioned'),
-      right: lefthanded ? null : 0,
-      left: lefthanded ? 0 : null,
+      key: ValueKey('$key@Positioned'),
+      right: lefthanded ? null : padding,
+      top: top,
+      bottom: bottom,
+      left: lefthanded ? padding : null,
       child: child,
     );
   }
