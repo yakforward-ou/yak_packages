@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 import 'method.dart';
 
 /// a mixin on `Stub` that implements the count method
-mixin Counter<Z> on StubMethod<Z> {
+mixin Counter<Z> on Stub<Z> {
   int _count = 0;
   int get count => _count;
 

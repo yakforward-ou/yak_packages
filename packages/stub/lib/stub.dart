@@ -1,4 +1,4 @@
 library stub;
 
-export 'src/method/all.dart';
-export 'src/stub.dart';
+export 'src/all.dart'
+    show nullaryStub, unaryStub, WrapNullaryStubX, WrapUnaryStubX, Stub;

@@ -5,12 +5,12 @@ import 'all.dart';
 ///
 /// to be replaced with `non-function type alias`
 /// see [https://github.com/dart-lang/sdk/issues/44951]
-StubMethod<T Function(S)> unaryStub<T, S>() => UnaryStub<T, S, T Function(S)>();
+Stub<T Function(S)> unaryStub<T, S>() => _UnaryStub<T, S, T Function(S)>();
 
 /// an `UNARY` implementation of `StubMethod`
 /// it's recommended to use  `nullaryStub<T>()`
 
-class UnaryStub<T, S, Z extends T Function(S)> extends StubMethod<Z>
+class _UnaryStub<T, S, Z extends T Function(S)> extends Stub<Z>
     with Counter<Z> {
   Z? _stub;
   @override

@@ -1,9 +1,9 @@
-import 'package:stub/src/method/all.dart';
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('`StubMethod` UNARY test', () {
-    final method = unaryStub<String, int>();
+  group('`Stub` NULLARY test', () {
+    final method = nullaryStub<int>();
     const data = 1;
     const times = 42;
     test(
@@ -11,7 +11,7 @@ void main() {
         'WHEN method.stub is called '
         'THEN throw `UnimplementedError`', () {
       expect(
-        () => method.stub(data),
+        method.stub,
         throwsA(isA<UnimplementedError>()),
         reason: '`method.stub` should throw `UnimplementedError`',
       );
@@ -22,12 +22,12 @@ void main() {
         'WHEN method.stub is called '
         'THEN returns `data`', () {
       method.reset;
-      method.stub = (i) => '$i';
+      method.stub = () => data;
 
       expect(
-        method.stub(data),
-        '$data',
-        reason: '`method.stub` should match `"data"`',
+        method.stub(),
+        data,
+        reason: '`method.stub` should match `data`',
       );
     });
     test(
@@ -37,7 +37,7 @@ void main() {
       method.reset;
 
       for (var i = 0; i < times; ++i) {
-        method.stub(i);
+        method.stub();
       }
       expect(
         method.count,
@@ -62,12 +62,12 @@ void main() {
         'WHEN Foo.foo is set twice '
         'THEN  only latest has effect', () {
       method.reset;
-      method.stub = (i) => '${i * 3}';
-      method.stub = (i) => '${i * times}';
+      method.stub = () => data * 3;
+      method.stub = () => data * times;
 
       expect(
-        method.stub(data),
-        '${data * times}',
+        method.stub(),
+        data * times,
         reason: '`method.stub()` should be the latest `result` provided',
       );
     });

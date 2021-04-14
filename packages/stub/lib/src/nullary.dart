@@ -6,12 +6,11 @@ import 'all.dart';
 /// to be replaced with `non-function type alias`
 /// see [https://github.com/dart-lang/sdk/issues/44951]
 
-StubMethod<T Function()> nullaryStub<T>() => NullaryStub<T, T Function()>();
+Stub<T Function()> nullaryStub<T>() => _NullaryStub<T, T Function()>();
 
 /// a `NULLARY` implementation of `StubMethod`
 /// it's recommended to use  `nullaryStub<T>()`
-class NullaryStub<T, Z extends T Function()> extends StubMethod<Z>
-    with Counter<Z> {
+class _NullaryStub<T, Z extends T Function()> extends Stub<Z> with Counter<Z> {
   Z? _stub;
   @override
   Z get stub {

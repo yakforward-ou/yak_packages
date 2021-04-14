@@ -1,5 +1,4 @@
 import 'package:test/test.dart';
-
 import 'mock.dart';
 
 void main() {
@@ -13,7 +12,7 @@ void main() {
   const nextNullaryResult = 9999;
   const nextUnaryResult = 'hello';
 
-  group('`StubMethod` MOCK test', () {
+  group('`Stub` MOCK test', () {
     test(
         'GIVEN `mock[...] is set` and `mock[...].stub` is not set '
         'WHEN `mock[...].stub` is called '
@@ -24,31 +23,6 @@ void main() {
         reason: '`mock[...].stub` should throw `UnimplementedError`',
       );
     });
-    // test(
-    //     'GIVEN `mock[...] is set` '
-    //     'WHEN `mock[...].stub` try setting a wrong function'
-    //     'THEN throws an `Error`', () {
-    //   expect(
-    //     () => mock.fooStub.stub = (i) => '$i',
-    //     throwsA(isA<Error>()),
-    //     reason: '${mock.fooStub.stub} should throw if wrong function is set',
-    //   );
-    //   expect(
-    //     () => mock.barStub.stub = () => j,
-    //     throwsA(isA<Error>()),
-    //     reason: '${mock.fooStub.stub} should throw if wrong function is set',
-    //   );
-    //   expect(
-    //     () => mock.bazStub.stub = () => j,
-    //     throwsA(isA<Error>()),
-    //     reason: '${mock.fooStub.stub} should throw if wrong function is set',
-    //   );
-    //   expect(
-    //     () => mock.fizzStub.stub = () => j,
-    //     throwsA(isA<Error>()),
-    //     reason: '${mock.fooStub.stub} should throw if wrong function is set',
-    //   );
-    // });
     test(
         'GIVEN `mock[...] is set` and `mock[...].stub` is also set '
         'WHEN `mock[...].stub` is called '

@@ -1,12 +1,10 @@
 import 'package:stub/stub.dart';
 
-// ignore_for_file: invalid_use_of_internal_member
-
 class Foo {
   int foo() => 42;
-  String bar(int i) => '$i';
-  String baz(int i, String s) => '$i$s';
-  String fizz({required int i, required String s}) => '$i$s';
+  String bar(int i) => 'hello';
+  String baz(int i, String s) => 'world';
+  String fizz({required int i, required String s}) => '!';
 }
 
 class FooMock implements Foo {
@@ -15,6 +13,7 @@ class FooMock implements Foo {
   final bazStub = unaryStub<String, List>();
   final fizzStub = unaryStub<String, Map>();
 
+  /// this is totally optional
   void get reset {
     fooStub.reset;
     barStub.reset;

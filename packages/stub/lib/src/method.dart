@@ -1,5 +1,5 @@
 /// an interface for a stubbed method
-abstract class StubMethod<Z> {
+abstract class Stub<Z> {
   /// returns how many times the method has been called between resets
   int get count;
 
