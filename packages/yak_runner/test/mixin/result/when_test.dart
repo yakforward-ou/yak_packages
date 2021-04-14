@@ -1,27 +1,26 @@
 import 'dart:async';
 
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
 
 void main() {
   const data = 1;
-  const res = '$data';
-
+  final mockExceptionHandler = MockHandleExceptionDelegate()
+    ..stub.stub = (_) {};
   group('`when` MIXIN on`UnaryRunner`', () {
-    final exceptionHandler = HandleExceptionDelegateStub();
-    final delegate = MockUnaryDelegate<String, int>();
+    final delegate = unaryStub<String, int>();
     final runner = UnaryRunner<String, int>(
-      delegate,
-      exceptionHandler: exceptionHandler,
+      delegate.wrap,
+      exceptionHandler: mockExceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
       delegate.reset;
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
 
-      delegate.stub = () => throw Exception();
-      exceptionHandler.stub = () {};
+      delegate.stub = (i) => throw Exception();
 
       var _success;
       var _failure;
@@ -34,23 +33,22 @@ void main() {
       expect(_success != null, false, reason: '`success:`should not be called');
       expect(_failure != null, true, reason: '`failure:`should be called');
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` houl be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         1,
-        reason: '`exceptionHandler` shoul be called once',
+        reason: '`mockExceptionHandler` shoul be called once',
       );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () {
       delegate.reset;
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
 
-      delegate.stub = () => res;
-      exceptionHandler.stub = () {};
+      delegate.stub = (i) => '$i';
 
       var _success;
       var _failure;
@@ -63,32 +61,30 @@ void main() {
       expect(_success != null, true, reason: '`success:`should be called');
       expect(_failure != null, false, reason: '`failure:`should not be called');
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` shoul be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         0,
-        reason: '`exceptionHandler` should NOT be called ',
+        reason: '`mockExceptionHandler` should NOT be called ',
       );
     });
   });
 
   group('`when` MIXIN on `Runner`', () {
-    final delegate = MockDelegate<int>();
-    final exceptionHandler = HandleExceptionDelegateStub();
+    final delegate = nullaryStub<int>();
     final runner = Runner(
-      delegate,
-      exceptionHandler: exceptionHandler,
+      delegate.wrap,
+      exceptionHandler: mockExceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
       delegate.reset;
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
 
       delegate.stub = () => throw Exception();
-      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -101,23 +97,22 @@ void main() {
       expect(_success != null, false, reason: '`success:`should not be called');
       expect(_failure != null, true, reason: '`failure:`should be called');
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` houl be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         1,
-        reason: '`exceptionHandler` shoul be called once',
+        reason: '`mockExceptionHandler` shoul be called once',
       );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () {
       delegate.reset;
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
 
       delegate.stub = () => data;
-      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -130,33 +125,31 @@ void main() {
       expect(_success != null, true, reason: '`success:`should be called');
       expect(_failure != null, false, reason: '`failure:`should not be called');
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` shoul be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         0,
-        reason: '`exceptionHandler` should NOT be called ',
+        reason: '`mockExceptionHandler` should NOT be called ',
       );
     });
   });
 
   group('`when` MIXIN on `UnaryRunnerAsync`', () {
-    final delegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
-    final exceptionHandler = HandleExceptionDelegateStub();
+    final delegate = unaryStub<Future<String>, FutureOr<int>>();
 
     final runner = UnaryRunnerAsync<String, int>(
-      delegate,
-      exceptionHandler: exceptionHandler,
+      delegate.wrap,
+      exceptionHandler: mockExceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {
       delegate.reset;
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
 
-      delegate.stub = () => throw Exception();
-      exceptionHandler.stub = () {};
+      delegate.stub = (i) => throw Exception();
 
       var _success;
       var _failure;
@@ -169,23 +162,22 @@ void main() {
       expect(_success != null, false, reason: '`success:`should not be called');
       expect(_failure != null, true, reason: '`failure:`should be called');
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` houl be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         1,
-        reason: '`exceptionHandler` shoul be called once',
+        reason: '`mockExceptionHandler` shoul be called once',
       );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () async {
       delegate.reset;
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
 
-      delegate.stub = () async => res;
-      exceptionHandler.stub = () {};
+      delegate.stub = (i) async => '$i';
 
       var _success;
       var _failure;
@@ -198,33 +190,31 @@ void main() {
       expect(_success != null, true, reason: '`success:`should be called');
       expect(_failure != null, false, reason: '`failure:`should not be called');
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` shoul be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         0,
-        reason: '`exceptionHandler` should NOT be called ',
+        reason: '`mockExceptionHandler` should NOT be called ',
       );
     });
   });
 
   group('`when` MIXIN on `RunnerAsync`', () {
-    final delegate = MockDelegate<Future<int>>();
-    final exceptionHandler = HandleExceptionDelegateStub();
+    final delegate = nullaryStub<Future<int>>();
 
     final runner = RunnerAsync(
-      delegate,
-      exceptionHandler: exceptionHandler,
+      delegate.wrap,
+      exceptionHandler: mockExceptionHandler,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {
       delegate.reset;
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
 
       delegate.stub = () => throw Exception();
-      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -237,23 +227,22 @@ void main() {
       expect(_success != null, false, reason: '`success:`should not be called');
       expect(_failure != null, true, reason: '`failure:`should be called');
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` houl be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         1,
-        reason: '`exceptionHandler` shoul be called once',
+        reason: '`mockExceptionHandler` shoul be called once',
       );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () async {
       delegate.reset;
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
 
       delegate.stub = () async => data;
-      exceptionHandler.stub = () {};
 
       var _success;
       var _failure;
@@ -266,14 +255,14 @@ void main() {
       expect(_success != null, true, reason: '`success:`should be called');
       expect(_failure != null, false, reason: '`failure:`should not be called');
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` shoul be called once',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         0,
-        reason: '`exceptionHandler` should NOT be called ',
+        reason: '`mockExceptionHandler` should NOT be called ',
       );
     });
   });
