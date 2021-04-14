@@ -1,3 +1,7 @@
+# 0.3.1+2
+- bump `stub` version
+- updated tests
+
 # 0.3.1+1
 - `example` updated
 - fixes implementation
