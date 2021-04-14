@@ -191,7 +191,7 @@ void main() {
     test(
         'GIVEN ... '
         'WHEN reset and calls on single stubs '
-        'THEN other stubs are not affeted ', () {
+        'THEN other stubs are not affected ', () {
       /// mock.reset;
       mock.foo();
       mock['bar'].reset;
@@ -245,6 +245,21 @@ void main() {
         mock.fizz(i: j, s: w),
         nextUnaryResult,
         reason: '`mock[...].stub(*)` return a predictable result',
+      );
+    });
+    test(
+        'GIVEN ... '
+        'WHEN when stub throws'
+        'THEN then error flows throgh', () {
+      mock['foo'].stub = () {
+        assert(false);
+        return 1;
+      };
+
+      expect(
+        mock.foo,
+        throwsA(isA<AssertionError>()),
+        reason: '`mock.foo` should throw an `AssertionError`',
       );
     });
   });

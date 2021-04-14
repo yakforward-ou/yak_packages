@@ -1,5 +1,7 @@
 import 'package:stub/stub.dart';
 
+// ignore_for_file: invalid_use_of_internal_member
+
 class Foo {
   int foo() => 42;
   String bar(int i) => '$i';

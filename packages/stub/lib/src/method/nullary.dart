@@ -1,4 +1,5 @@
 import 'all.dart';
+// ignore_for_file: invalid_use_of_internal_member
 
 /// returns a NULLARY `stub`
 ///
@@ -14,13 +15,11 @@ class NullaryStub<T, Z extends T Function()> extends StubMethod<Z>
   Z? _stub;
   @override
   Z get stub {
-    print(_stub == null);
     return _stub ?? _default;
   }
 
   @override
   set stub(Z fun) {
-    print(fun);
     _stub = () {
       increase();
       return fun();
