@@ -1,7 +1,6 @@
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
-
-import '../stub/all.dart';
 
 class Foo {}
 
@@ -11,16 +10,15 @@ class Baz extends Bar {}
 
 void main() {
   group('AsTypeError & asType<T>', () {
-    final stub = HandleErrorDelegateStub();
-    final handler = ErrorHandler<AsTypeError>(stub);
+    final stub = unaryStub<void, Error>()..stub = (e) {};
+    final handler = ErrorHandler<AsTypeError>(stub.wrap);
     final foo = Foo();
     final baz = Baz();
     test(
         'WHEN `Error` != AsTypeError is thrown '
         'THEN stub is not called', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
+
       try {
         throw Error();
       } on Error catch (e) {
@@ -30,7 +28,7 @@ void main() {
       }
 
       expect(
-        stub.callCount,
+        stub.count,
         0,
         reason: 'stub should not be called',
       );
@@ -39,9 +37,7 @@ void main() {
         'GIVEN `Foo` does not extends nor implements `Bar`'
         'WHEN `Foo asType<Bar> should throw'
         'THEN should theow `AsTypeError`', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
       try {
         asType<Bar>(foo);
       } on Error catch (e) {
@@ -51,7 +47,7 @@ void main() {
       }
 
       expect(
-        stub.callCount,
+        stub.count,
         1,
         reason: 'stub should be called',
       );
@@ -61,9 +57,8 @@ void main() {
         'GIVEN `Baz` does extends nor implements `Bar`'
         'WHEN `Baz asType<Bar> '
         'THEN should succeed', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
+
       try {
         asType<Bar>(baz);
       } on Error catch (e) {
@@ -72,7 +67,7 @@ void main() {
         }
       }
       expect(
-        stub.callCount,
+        stub.count,
         0,
         reason: 'stub should not be called',
       );
@@ -81,9 +76,7 @@ void main() {
     test(
         'WHEN `toString` is called'
         'THEN outputs a predictable result', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
 
       var message;
       try {

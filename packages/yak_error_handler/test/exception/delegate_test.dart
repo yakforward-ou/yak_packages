@@ -7,20 +7,17 @@ void main() {
         'WHEN `HandleExceptionDelegate`'
         'THEN can be assigned as `void Function(Exception,StackTrace)`'
         '', () {
-      var succcess;
-      final handler = HandleExceptionDelegateStub()
-        ..stub = () => succcess = true;
-      late final void Function(Exception e, StackTrace s) fun;
-      fun = handler;
+      final mock = MockHandleExceptionDelegate()..stub.stub = (_) {};
+      final void Function(Exception e, StackTrace s) fun = mock;
       try {
         throw Exception();
       } on Exception catch (e, s) {
         fun(e, s);
       }
       expect(
-        succcess,
-        true,
-        reason: 'the delegate can be pass at the equivalent function',
+        mock.stub.count,
+        1,
+        reason: 'HandleExceptionDelegate function is called',
       );
     });
   });
