@@ -109,11 +109,25 @@ void main() {
 
       delegate.stub = (_) => throw Error();
 
+      late final err;
+
+      try {
+        await runner(data);
+        // ignore: avoid_catching_errors
+      } on Error catch (e) {
+        err = e;
+      }
+
       expect(
-        () => runner(data),
-        throwsA(isA<Error>()),
+        err,
+        isA<Error>(),
         reason: '`Error` should NOT be handled',
       );
+      // expect(
+      //   () => runner(data),
+      //   throwsA(isA<Error>()),
+      //   reason: '`Error` should NOT be handled',
+      // );
       expect(
         delegate.count,
         1,
