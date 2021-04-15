@@ -123,6 +123,8 @@ void main() {
         isA<Error>(),
         reason: '`Error` should NOT be handled',
       );
+
+      /// see issue `iapicca/yak_packages/issues/89`
       // expect(
       //   () => runner(data),
       //   throwsA(isA<Error>()),
