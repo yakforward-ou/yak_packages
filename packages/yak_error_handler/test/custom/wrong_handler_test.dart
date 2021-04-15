@@ -1,21 +1,17 @@
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
-import 'package:yak_error_handler/src/custom/error/wrong_handler.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
-
-import '../stub/all.dart';
 
 void main() {
   group('WrongErrorHandler ', () {
-    final stub = HandleErrorDelegateStub();
-    final handler = ErrorHandler<AvowError>(stub);
+    final stub = unaryStub<void, Error>()..stub = (e) {};
+    final handler = ErrorHandler<AvowError>(stub.wrap);
 
     test(
         'GIVEN `ErrorHandler<T>`'
         'WHEN `Error` != T is thrown '
         'THEN WrongErrorHandler is thrown', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
 
       late final err;
       try {
@@ -34,7 +30,7 @@ void main() {
         reason: 'WrongErrorHandler should be thrown',
       );
       expect(
-        stub.callCount,
+        stub.count,
         0,
         reason: '`stub` should not be called',
       );
@@ -43,9 +39,7 @@ void main() {
     test(
         'WHEN `toString` is called'
         'THEN outputs a predictable result', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
 
       late final message;
       try {

@@ -1,33 +1,33 @@
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
+
 import '../../mocks/all.dart';
 
 void main() {
   const data = 1;
-  const res = '$data';
-
+  final mockExceptionHandler = MockHandleExceptionDelegate()
+    ..stub.stub = (_) {};
   group('`onResult` MIXIN', () {
-    final exceptionHandler = HandleExceptionDelegateStub();
-    final firstDelegate = MockDelegate<int>();
+    final firstDelegate = nullaryStub<int>();
 
-    final secondDelegate = MockUnaryDelegate<String, int>();
+    final secondDelegate = unaryStub<String, int>();
     final firstRunner = Runner<int>(
-      firstDelegate,
-      exceptionHandler: exceptionHandler,
+      firstDelegate.wrap,
+      exceptionHandler: mockExceptionHandler,
     );
 
     final secondRunner = UnaryRunner<String, int>(
-      secondDelegate,
-      exceptionHandler: exceptionHandler,
+      secondDelegate.wrap,
+      exceptionHandler: mockExceptionHandler,
     );
     test('WHEN `Delegate<S>` fails THEN  `onResult() return Failure<T>', () {
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
       firstDelegate.stub = () => throw Exception();
-      secondDelegate.stub = () => res;
-      exceptionHandler.stub = () {};
+      secondDelegate.stub = (i) => '$i';
 
       final result = firstRunner().onResult<String>(secondRunner);
 
@@ -52,17 +52,17 @@ void main() {
         reason: '`result` should be `Failure<T>`',
       );
       expect(
-        firstDelegate.callCount,
+        firstDelegate.count,
         1,
         reason: '`firstDelegate` should be called once',
       );
       expect(
-        secondDelegate.callCount,
+        secondDelegate.count,
         0,
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         1,
         reason: '`exceptionHandler` shoul be called once',
       );
@@ -70,13 +70,12 @@ void main() {
 
     test('WHEN `ArgDelegate<T,S>` fail THEN  `onResult() return Failure<T>',
         () {
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
       firstDelegate.stub = () => data;
-      secondDelegate.stub = () => throw Exception();
-      exceptionHandler.stub = () {};
+      secondDelegate.stub = (i) => throw Exception();
 
       final result = firstRunner().onResult<String>(secondRunner);
 
@@ -101,17 +100,17 @@ void main() {
         reason: '`result` should be `Failure<T>`',
       );
       expect(
-        firstDelegate.callCount,
+        firstDelegate.count,
         1,
         reason: '`firstDelegate` should be called once',
       );
       expect(
-        secondDelegate.callCount,
+        secondDelegate.count,
         1,
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         1,
         reason: '`exceptionHandler` shoul be called once',
       );

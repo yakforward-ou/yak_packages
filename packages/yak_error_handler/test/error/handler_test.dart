@@ -1,12 +1,11 @@
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
-
-import '../stub/all.dart';
+import '../stub/handler_error_delegate.dart';
 
 void main() {
   group('ErrorHandler', () {
-    final stub = HandleErrorDelegateStub()..stub = () {};
-    final handler = ErrorHandler<AssertionError>(stub);
+    final mock = MockHandleErrorDelegate()..stub.stub = (e) {};
+    final handler = ErrorHandler<AssertionError>(mock);
     test(
         'GIVEN `ErrorHandler<T>` '
         'WHEN `Error` != T is thrown '
@@ -20,7 +19,7 @@ void main() {
       }
 
       expect(
-        stub.callCount,
+        mock.stub.count,
         0,
         reason: 'stub should not be called',
       );
@@ -38,7 +37,7 @@ void main() {
       }
 
       expect(
-        stub.callCount,
+        mock.stub.count,
         1,
         reason: 'stub should be called',
       );
