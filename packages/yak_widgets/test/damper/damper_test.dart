@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'test_app.dart';
 
 void main() {
-  group('`YakDamper` test', () {
+  group('`Damper` test', () {
     testWidgets(
         'WHEN no interaction with `trigger` THEN `subject` is ON SCREEN',
         (tester) async {

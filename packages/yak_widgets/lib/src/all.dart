@@ -1,5 +1,2 @@
-export 'logic/all.dart';
-export 'settings/all.dart';
-export 'ui/all.dart';
-
-/// simply exports folder's classes
+export 'typedef/all.dart';
+export 'widgets/all.dart';

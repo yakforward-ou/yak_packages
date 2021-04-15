@@ -18,7 +18,7 @@ Rect _right(Rect rect) => Rect.fromLTWH(
     );
 
 void main() {
-  group('`YakHandedness` test', () {
+  group('`Handedness` test', () {
     testWidgets(
         'WHEN no interaction with `trigger` THEN `subject` is ON THE RIGHT',
         (tester) async {

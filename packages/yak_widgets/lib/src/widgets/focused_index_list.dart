@@ -5,7 +5,7 @@ import '../../../yak_widgets.dart';
 /// a widget that allows to select an action according to an index
 class FocusedIndexList extends StatefulWidget {
   /// a list of widget
-  final FocusedIndexedItemBuilder builder;
+  final FocusedIndexItemBuilder builder;
 
   /// the number of item in the selector
   final int itemCount;
@@ -13,6 +13,10 @@ class FocusedIndexList extends StatefulWidget {
   /// the index of the focused item
   /// defaults on `0`
   final int focusedIndex;
+
+  /// the index of first item selected
+  /// defaults on `0`
+  final int initialIndex;
 
   /// a `void Function(int)` called when the selected index changes
   final OnIndexChanged? onIndexChanged;
@@ -30,6 +34,7 @@ class FocusedIndexList extends StatefulWidget {
     Key? key,
     this.childrenAlignment = Alignment.center,
     this.focusedIndex = 0,
+    this.initialIndex = 0,
     this.duration = kThemeAnimationDuration,
     this.onIndexChanged,
     required this.builder,
@@ -38,6 +43,7 @@ class FocusedIndexList extends StatefulWidget {
           focusedIndex < itemCount && focusedIndex >= 0,
           '`focusedIndex` value should be between `0` and `itemCount`',
         ),
+        // coverage:ignore-line
         super(key: key ?? UniqueKey());
 
   @override
@@ -49,7 +55,7 @@ class _FocusedIndexListState extends State<FocusedIndexList> {
   late final ValueNotifier<int> _selectedIndex;
   @override
   void initState() {
-    _selectedIndex = ValueNotifier(0);
+    _selectedIndex = ValueNotifier(widget.initialIndex);
     _controller = ScrollController();
     super.initState();
   }
