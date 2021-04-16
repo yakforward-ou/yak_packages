@@ -1,31 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yak_widgets/yak_widgets.dart';
 
-void main() => runApp(
-      const ProviderScope(child: MaterialApp(home: MyHomePage())),
-    );
+main() => runApp(const MaterialApp(home: MyHomePage()));
 
-class MyHomePage extends HookWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage() : super(key: const ValueKey('MyHomePage'));
 
   @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  late final ValueNotifier<bool> _withdrawn;
+  @override
+  void initState() {
+    super.initState();
+    _withdrawn = ValueNotifier(false);
+  }
+
+  @override
+  void dispose() {
+    _withdrawn.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _state = useProvider(damperStatePod);
     return Scaffold(
       body: Stack(children: [
         Damper(
+          withdrawn: _withdrawn,
           children: [
-            FlutterLogo(size: MediaQuery.of(context).size.shortestSide),
+            Center(
+              child: FlutterLogo(),
+            )
           ],
         ),
       ]),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _state.state = _state.state == DamperState.impose
-            ? DamperState.withdraw
-            : DamperState.impose,
-      ),
+          onPressed: () => _withdrawn.value = !_withdrawn.value),
     );
   }
 }
