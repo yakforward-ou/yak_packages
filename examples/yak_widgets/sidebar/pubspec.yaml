@@ -1,5 +1,5 @@
 name: sidebar
-description: an example app for `YakSidebar`
+description: an example app for `Sidebar`
 version: 1.0.0+1
 
 environment:
@@ -8,9 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  hooks_riverpod: ^0.14.0
-  flutter_hooks: ^0.16.0
-  yak_widgets: ^0.3.0
+  yak_widgets: ^0.4.0
 
     
 flutter:
