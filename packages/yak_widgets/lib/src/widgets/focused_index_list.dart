@@ -84,7 +84,6 @@ class _FocusedIndexListState extends State<FocusedIndexList> {
       builder: (context, constraints) {
         final height = constraints.maxHeight / widget.itemCount;
         final scroll = scrollFromHeight(height);
-
         return ListView.builder(
           key: ValueKey('ListView.builder@FocusedIndexList:${widget.key}'),
           cacheExtent: 0,
@@ -94,34 +93,50 @@ class _FocusedIndexListState extends State<FocusedIndexList> {
             final remainder =
                 (index - widget.focusedIndex + widget.itemCount).abs() %
                     widget.itemCount;
-            return SizedBox(
-              key: ValueKey('SizedBox@FocusedIndexList:${widget.key}'),
-              height: height,
-              child: GestureDetector(
-                key: ValueKey('GestureDetector@FocusedIndexList:${widget.key}'),
-                onTap: () {
-                  widget.onIndexChanged?.call(remainder);
-                  _selectedIndex.value = remainder;
-                  scroll(remainder);
-                },
-                child: ValueListenableBuilder(
-                  key: ValueKey(
-                    'ValueListenableBuilder@FocusedIndexList:${widget.key}',
-                  ),
-                  valueListenable: _selectedIndex,
-                  builder: (context, value, child) {
-                    return Align(
-                      key: ValueKey('Align@FocusedIndexList:${widget.key}'),
-                      alignment: widget.childrenAlignment,
-                      child: widget.builder(
-                        context,
-                        remainder,
-                        value == remainder,
-                      ),
-                    );
-                  },
-                ),
+            return ValueListenableBuilder(
+              key: ValueKey(
+                'ValueListenableBuilder:$remainder'
+                '@FocusedIndexList:${widget.key}',
               ),
+              valueListenable: _selectedIndex,
+              builder: (context, value, child) {
+                final selected = value == remainder;
+                final child = ConstrainedBox(
+                  key: ValueKey(
+                    'ConstrainedBox:$remainder@FocusedIndexList:${widget.key}',
+                  ),
+                  constraints: BoxConstraints(
+                    minHeight: constraints.minHeight / widget.itemCount,
+                    maxHeight: height,
+                    minWidth: constraints.minWidth,
+                    maxWidth: constraints.maxWidth,
+                  ),
+                  child: Align(
+                    key: ValueKey(
+                      'Align:$remainder@FocusedIndexList:${widget.key}',
+                    ),
+                    alignment: widget.childrenAlignment,
+                    child: widget.builder(
+                      context,
+                      remainder,
+                      selected,
+                    ),
+                  ),
+                );
+                return selected
+                    ? child
+                    : InkWell(
+                        key: ValueKey(
+                          'Align:$remainder@FocusedIndexList:${widget.key}',
+                        ),
+                        onTap: () {
+                          widget.onIndexChanged?.call(remainder);
+                          _selectedIndex.value = remainder;
+                          scroll(remainder);
+                        },
+                        child: child,
+                      );
+              },
             );
           },
         );

@@ -7,9 +7,8 @@ void main() {
   group('`Sidebar` test', () {
     testWidgets('WHEN no interaction with `trigger` ' 'THEN find index 0',
         (tester) async {
-      {
-        await tester.pumpWidget(app);
-      }
+      await tester.pumpWidget(app);
+
       expect(find.byKey(ValueKey(0)), findsOneWidget,
           reason: 'ScrollView should be at index 0');
       expect(find.byKey(ValueKey(1)), findsNothing,
@@ -19,17 +18,15 @@ void main() {
     testWidgets(
         'WHEN `trigger` is scrolled ***enough*** '
         'THEN scrolls listening widget', (tester) async {
-      {
-        await tester.pumpWidget(app);
-      }
-      {
-        final size = tester.getRect(find.byKey(Keys.parent)).size;
-        await tester.drag(
-          find.byKey(Keys.trigger),
-          Offset(0.0, -size.height * .1),
-        );
-        await tester.pumpAndSettle(const Duration(milliseconds: 300));
-      }
+      await tester.pumpWidget(app);
+
+      final size = tester.getRect(find.byKey(Keys.parent)).size;
+      await tester.drag(
+        find.byKey(Keys.trigger),
+        Offset(0.0, -size.height * .1),
+      );
+      await tester.pumpAndSettle(const Duration(milliseconds: 300));
+
       expect(find.byKey(ValueKey(1)), findsOneWidget,
           reason: 'ScrollView should be at index 1');
       expect(find.byKey(ValueKey(0)), findsNothing,
@@ -39,17 +36,15 @@ void main() {
     testWidgets(
         'WHEN `trigger` is NOT scrolled ***enough*** '
         'THEN nothing happens', (tester) async {
-      {
-        await tester.pumpWidget(app);
-      }
-      {
-        final size = tester.getRect(find.byKey(Keys.parent)).size;
-        await tester.drag(
-          find.byKey(Keys.trigger),
-          Offset(0.0, -size.height * .0001),
-        );
-        await tester.pumpAndSettle(kThemeAnimationDuration * 3);
-      }
+      await tester.pumpWidget(app);
+
+      final size = tester.getRect(find.byKey(Keys.parent)).size;
+      await tester.drag(
+        find.byKey(Keys.trigger),
+        Offset(0.0, -size.height * .0001),
+      );
+      await tester.pumpAndSettle(kThemeAnimationDuration * 3);
+
       expect(find.byKey(ValueKey(0)), findsOneWidget,
           reason: 'ScrollView should be at index 0');
       expect(find.byKey(ValueKey(1)), findsNothing,
@@ -58,9 +53,8 @@ void main() {
 
     testWidgets('WHEN new test is run THEN `app state` is not persisted',
         (tester) async {
-      {
-        await tester.pumpWidget(app);
-      }
+      await tester.pumpWidget(app);
+
       expect(find.byKey(ValueKey(0)), findsOneWidget,
           reason: 'ScrollView should be at index 0');
       expect(find.byKey(ValueKey(1)), findsNothing,
@@ -70,9 +64,8 @@ void main() {
     testWidgets(
         'WHEN `trigger` scrolled once forward and back'
         ' THEN find index is unchanged', (tester) async {
-      {
-        await tester.pumpWidget(app);
-      }
+      await tester.pumpWidget(app);
+
       {
         final size = tester.getRect(find.byKey(Keys.parent)).size;
         await tester.drag(

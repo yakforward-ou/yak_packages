@@ -22,9 +22,8 @@ void main() {
     testWidgets(
         'WHEN no interaction with `trigger` THEN `subject` is ON THE RIGHT',
         (tester) async {
-      {
-        await tester.pumpWidget(app);
-      }
+      await tester.pumpWidget(app);
+
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
       expect(subject.overlaps(_right(parent)), true,
@@ -33,13 +32,11 @@ void main() {
 
     testWidgets('WHEN `trigger` tapped THEN `subject` is ON THE LEFT`',
         (tester) async {
-      {
-        await tester.pumpWidget(app);
-      }
-      {
-        await tester.tap(find.byKey(Keys.trigger));
-        await tester.pumpAndSettle(const Duration(milliseconds: 300));
-      }
+      await tester.pumpWidget(app);
+
+      await tester.tap(find.byKey(Keys.trigger));
+      await tester.pumpAndSettle(const Duration(milliseconds: 300));
+
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
 
@@ -48,9 +45,8 @@ void main() {
     });
     testWidgets('WHEN new test is run THEN `app state` is not persisted',
         (tester) async {
-      {
-        await tester.pumpWidget(app);
-      }
+      await tester.pumpWidget(app);
+
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
       expect(subject.overlaps(_right(parent)), true,
@@ -60,17 +56,14 @@ void main() {
     testWidgets(
         'WHEN `trigger` tapped **twice** THEN `subject`  is ON THE RIGHT',
         (tester) async {
-      {
-        await tester.pumpWidget(app);
-      }
-      {
-        await tester.tap(find.byKey(Keys.trigger));
-        await tester.pumpAndSettle(const Duration(milliseconds: 300));
-      }
-      {
-        await tester.tap(find.byKey(Keys.trigger));
-        await tester.pumpAndSettle(const Duration(milliseconds: 300));
-      }
+      await tester.pumpWidget(app);
+
+      await tester.tap(find.byKey(Keys.trigger));
+      await tester.pumpAndSettle(const Duration(milliseconds: 300));
+
+      await tester.tap(find.byKey(Keys.trigger));
+      await tester.pumpAndSettle(const Duration(milliseconds: 300));
+
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
       expect(subject.overlaps(_right(parent)), true,
