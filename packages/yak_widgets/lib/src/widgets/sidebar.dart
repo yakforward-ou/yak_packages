@@ -40,7 +40,7 @@ class Sidebar extends StatelessWidget {
         onVerticalDragUpdate: (details) {
           if (details.delta.dy.abs() > threshold &&
               details.delta.dx < threshold) {
-            onScroll(details.delta.dy > 0);
+            onScroll(details.delta.dy < 0);
           }
         },
         child: child,
