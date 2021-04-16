@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yak_widgets/yak_widgets.dart';
 
 // !! uncomment the line below to run as test app
@@ -11,36 +9,57 @@ class Keys {
   static const trigger = ValueKey('trigger');
 }
 
-Widget get app => ProviderScope(
-      child: MaterialApp(
-        home: Stack(
-          children: [
-            const _MyPageView(),
-            Sidebar(
-              key: Keys.trigger,
-              child: const ColoredBox(
-                color: Color.fromRGBO(0, 0, 0, .3),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+Widget get app => const MaterialApp(home: Material(child: _MyHomePage()));
 
-class _MyPageView extends HookWidget {
-  const _MyPageView() : super(key: const ValueKey('_MyPageView'));
+class _MyHomePage extends StatefulWidget {
+  const _MyHomePage() : super(key: const ValueKey('_MyHomePage'));
+
+  @override
+  __MyHomePageState createState() => __MyHomePageState();
+}
+
+class __MyHomePageState extends State<_MyHomePage> {
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    _pageController = PageController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final controller = usePageController();
-    final duration = useProvider(animationDurationPod);
-    final curve = useProvider(animationCurvePod);
-    useProvider(sidebarPod)
-        .useSidebarPageViewEffect(controller, duration.state, curve.state);
-    return PageView.builder(
-      key: Keys.parent,
-      itemBuilder: (context, index) =>
-          Center(child: FlutterLogo(key: ValueKey(index))),
-      controller: controller,
+    return Stack(
+      children: [
+        PageView.builder(
+          key: Keys.parent,
+          itemBuilder: (context, index) =>
+              Center(child: FlutterLogo(key: ValueKey(index))),
+          controller: _pageController,
+        ),
+        Positioned(
+          key: Keys.trigger,
+          left: 0,
+          child: Sidebar(
+            onScroll: (forward) => forward
+                ? _pageController.nextPage(
+                    duration: kThemeAnimationDuration,
+                    curve: Curves.fastOutSlowIn)
+                : _pageController.previousPage(
+                    duration: kThemeAnimationDuration,
+                    curve: Curves.fastOutSlowIn),
+            child: const ColoredBox(
+              color: Color.fromRGBO(0, 0, 0, .3),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

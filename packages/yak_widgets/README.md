@@ -7,23 +7,16 @@
 
 # yak_widgets
 
-A collection of `widgets` based on [hooks_riverpod]
+simply a collection of widgets nothing fancy, but well tested
+the widgets are:
 
----
+`Damper`
+`FocusedIndexList`
+`Handedness`
+`Sidebar`
 
-### Get Started
-
-add to your `pubspec.yaml`
-
-```yaml
-dependencies: 
-  yak_widgets: <latest version>
-```
-
----
-
-[hooks_riverpod]: https://pub.dev/packages/hooks_riverpod
-
+this isn't a community project, 
+but feel free to open an issue to share a feedback
 
 [codecov]: https://codecov.io/gh/iapicca/yak_packages
 [codecov badge]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0

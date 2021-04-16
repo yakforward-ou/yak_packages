@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yak_widgets/yak_widgets.dart';
 
-void main() => runApp(
-      const ProviderScope(child: MaterialApp(home: MyHomePage())),
-    );
+main() => runApp(const MaterialApp(home: MyHomePage()));
 
-class MyHomePage extends HookWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage() : super(key: const ValueKey('MyHomePage'));
 
   @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  late final ValueNotifier<bool> lefthanded;
+
+  @override
+  void initState() {
+    lefthanded = ValueNotifier(false);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    lefthanded.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _state = useProvider(handednessPod);
     return Scaffold(
       body: Stack(children: [
         Handedness(
-          child: FlutterLogo(
-            size: MediaQuery.of(context).size.shortestSide,
-          ),
+          lefthanded: lefthanded,
+          child: FlutterLogo(),
         ),
       ]),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _state.state = !_state.state,
+        onPressed: () => lefthanded.value = !lefthanded.value,
       ),
     );
   }

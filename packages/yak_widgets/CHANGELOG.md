@@ -1,14 +1,14 @@
-# 0.3.0+0
+# 0.4.0+0
+- breaking change: removed 3rd party dependencies
+- added `FocusedIndexList`
+
+# 0.3.0
 - breaking change: naming scheme
 - added `padding`, `top` and `bottom` to `Handedness`
 
-# 0.2.0+2
+# 0.2.0
 - bump `hooks_riverpod` version
-
-# 0.2.0+1
 - `readme` updated
-
-# 0.2.0+0
 - transition to `NNBD`
 
 # 0.1.1
