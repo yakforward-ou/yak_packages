@@ -41,7 +41,13 @@ class FocusedIndexList extends StatefulWidget {
     required this.itemCount,
   })  : assert(
           focusedIndex < itemCount && focusedIndex >= 0,
-          '`focusedIndex` value should be between `0` and `itemCount`',
+          '`focusedIndex` value should be between  `0` '
+          'and less than `itemCount`',
+        ),
+        assert(
+          initialIndex < itemCount && initialIndex >= 0,
+          '`initialIndex` value should be between `0` '
+          'and less than `itemCount`',
         ),
         // coverage:ignore-line
         super(key: key ?? UniqueKey());
