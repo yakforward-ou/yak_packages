@@ -1,19 +1,17 @@
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 
-import '../stub/all.dart';
-
 void main() {
   group('AvowError & avow', () {
-    final stub = HandleErrorDelegateStub();
-    final handler = ErrorHandler<AvowError>(stub);
+    final stub = unaryStub<void, Error>()..stub = (e) {};
+    final handler = ErrorHandler<AvowError>(stub.wrap);
 
     test(
         'WHEN `Error` != AvowError is thrown '
         'THEN stub is not called', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
+
       try {
         throw Error();
       } on Error catch (e) {
@@ -23,7 +21,7 @@ void main() {
       }
 
       expect(
-        stub.callCount,
+        stub.count,
         0,
         reason: 'stub should not be called',
       );
@@ -31,9 +29,8 @@ void main() {
     test(
         'WHEN `avow(false)`'
         'THEN should throw `AvowError`', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
+
       try {
         avow(false);
       } on Error catch (e) {
@@ -43,7 +40,7 @@ void main() {
       }
 
       expect(
-        stub.callCount,
+        stub.count,
         1,
         reason: 'stub should be called',
       );
@@ -52,9 +49,8 @@ void main() {
     test(
         'WHEN `avow(true)`'
         'THEN should succees', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
+
       try {
         avow(true);
       } on Error catch (e) {
@@ -63,7 +59,7 @@ void main() {
         }
       }
       expect(
-        stub.callCount,
+        stub.count,
         0,
         reason: 'stub should not be called',
       );
@@ -72,9 +68,7 @@ void main() {
     test(
         'WHEN `toString` is called'
         'THEN outputs a predictable result', () {
-      stub
-        ..reset
-        ..stub = () {};
+      stub.reset;
 
       var message;
       try {

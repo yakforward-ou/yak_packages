@@ -15,4 +15,3 @@ dev_dependencies:
     sdk: flutter
   stub: ^0.3.0
   effective_dart: ^1.3.0
-

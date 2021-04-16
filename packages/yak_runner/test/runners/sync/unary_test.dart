@@ -1,3 +1,4 @@
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
@@ -7,25 +8,29 @@ import '../../mocks/all.dart';
 void main() {
   group('`UnaryRunner`', () {
     const data = 1;
-    const res = '$data';
-    final exceptionStub = HandleExceptionDelegateStub();
-    final delegate = MockUnaryDelegate<String, int>();
-    final errorStub = HandleErrorDelegateStub();
-    final errorHandler = ErrorHandler<AssertionError>(errorStub);
+    final mockExceptionHandler = MockHandleExceptionDelegate()
+      ..stub.stub = (_) {};
+    final errorStub = unaryStub<void, Error>()..stub = (_) {};
+    final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
+    final delegate = unaryStub<String, int>();
+
     final runner = UnaryRunner<String, int>(
-      delegate,
-      exceptionHandler: exceptionStub,
+      delegate.wrap,
+      exceptionHandler: mockExceptionHandler,
       errorHandlers: {errorHandler},
     );
 
     test('WHEN `void Function(T)` throws THEN `Result` is `Failure`', () {
       delegate.reset;
-      exceptionStub.reset;
+      mockExceptionHandler.stub.reset;
+
       errorStub.reset;
 
-      delegate.stub = () => throw Exception();
-      exceptionStub.stub = () {};
-      errorStub.stub = () {};
+      delegate.reset;
+      mockExceptionHandler.stub.reset;
+      errorStub.reset;
+
+      delegate.stub = (i) => throw Exception();
 
       final result = runner(data);
 
@@ -45,17 +50,17 @@ void main() {
         reason: '`result` should be `Failure`',
       );
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` should be called once',
       );
       expect(
-        exceptionStub.callCount,
+        mockExceptionHandler.stub.count,
         1,
         reason: '`exceptionStub` should be called once',
       );
       expect(
-        errorStub.callCount,
+        errorStub.count,
         0,
         reason: '`errorHandler` should NOT be called',
       );
@@ -63,12 +68,10 @@ void main() {
 
     test('WHEN `void Function()` does not fail `Result` is `Success`', () {
       delegate.reset;
-      exceptionStub.reset;
+      mockExceptionHandler.stub.reset;
       errorStub.reset;
 
-      delegate.stub = () => res;
-      exceptionStub.stub = () {};
-      errorStub.stub = () {};
+      delegate.stub = (i) => '$i';
 
       final result = runner(data);
 
@@ -88,67 +91,59 @@ void main() {
         reason: '`result` should not be `Failure`',
       );
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` should be called once',
       );
       expect(
-        exceptionStub.callCount,
+        mockExceptionHandler.stub.count,
         0,
         reason: '`exceptionStub` should NOT be called ',
       );
       expect(
-        errorStub.callCount,
+        errorStub.count,
         0,
         reason: '`errorHandler` should NOT be called',
       );
     });
     test('WHEN `ERROR` is thwon THEN runner fails', () {
       delegate.reset;
-      exceptionStub.reset;
+      mockExceptionHandler.stub.reset;
       errorStub.reset;
 
-      delegate.stub = () => throw Error();
-      exceptionStub.stub = () {};
-      errorStub.stub = () {};
-
-      Error? err;
-
-      try {
-        runner(data);
-      } on Error catch (e) {
-        err = e;
-      }
+      delegate.stub = (_) => throw Error();
 
       expect(
-        err != null,
-        true,
+        () => runner(data),
+        throwsA(isA<Error>()),
         reason: '`Error` should NOT be handled',
       );
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` should be called once',
       );
       expect(
-        exceptionStub.callCount,
+        mockExceptionHandler.stub.count,
         0,
         reason: '`exceptionStub` should NOT be called ',
       );
       expect(
-        errorStub.callCount,
+        errorStub.count,
         0,
         reason: '`errorHandler` should NOT be called',
       );
     });
-    test('WHEN `AssertionError` is thwon THEN gets handled', () {
+    test('WHEN `AvowError` is thwon THEN gets handled', () {
       delegate.reset;
-      exceptionStub.reset;
+      mockExceptionHandler.stub.reset;
+
       errorStub.reset;
 
-      delegate.stub = () => throw AssertionError();
-      exceptionStub.stub = () {};
-      errorStub.stub = () {};
+      delegate.stub = (i) {
+        avow(false);
+        return '$i';
+      };
 
       expect(
         runner(data),
@@ -157,17 +152,17 @@ void main() {
       );
 
       expect(
-        delegate.callCount,
+        delegate.count,
         1,
         reason: '`delegate` should be called once',
       );
       expect(
-        exceptionStub.callCount,
+        mockExceptionHandler.stub.count,
         0,
         reason: '`exceptionStub` should NOT be called ',
       );
       expect(
-        errorStub.callCount,
+        errorStub.count,
         1,
         reason: '`errorHandler` should be called once',
       );

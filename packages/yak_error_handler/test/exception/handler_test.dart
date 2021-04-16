@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 
-import '../stub/all.dart';
+import '../stub/exception_handler_delegate.dart';
 
 void main() {
-  group('`YakErrorHandler`', () {
-    final handler = HandleExceptionDelegateStub();
-    final secondHandler = HandleExceptionDelegateStub();
+  group('`ExceptionHandler test`', () {
+    final handler = MockHandleExceptionDelegate();
+    final secondHandler = MockHandleExceptionDelegate();
 
     test('WHEN no `Catch` set THEN does not throw`', () {
       var err = 0;
@@ -20,9 +20,9 @@ void main() {
 
     test('WHEN `function` throws THEN `handleError` should be triggered `', () {
       ExceptionHandler()..handleException = handler;
-      handler
+      handler.stub
         ..reset
-        ..stub = () {};
+        ..stub = (_) {};
 
       try {
         throw Exception();
@@ -31,7 +31,7 @@ void main() {
       }
 
       expect(
-        handler.callCount,
+        handler.stub.count,
         1,
         reason: '`handleError` should be triggered',
       );
@@ -46,20 +46,20 @@ void main() {
       }
 
       expect(
-        handler.callCount,
+        handler.stub.count,
         2,
         reason: '`handleError` should be triggered',
       );
     });
 
     test(
-        'WHEN `YakErrorHandler` `handleError` is changed '
+        'WHEN `ExceptionHandler` `handleError` is changed '
         'THEN should updated `', () {
       ExceptionHandler()..handleException = secondHandler;
 
-      secondHandler
+      secondHandler.stub
         ..reset
-        ..stub = () {};
+        ..stub = (_) {};
 
       try {
         throw Exception();
@@ -68,7 +68,7 @@ void main() {
       }
 
       expect(
-        secondHandler.callCount,
+        secondHandler.stub.count,
         1,
         reason: '`handleError` should be triggered',
       );

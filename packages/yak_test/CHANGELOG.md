@@ -1,3 +1,7 @@
+# 0.3.1+1
+- bump `stub` and `test` version
+- update test
+
 # 0.3.1+0
 - updated to accommodate `yak_runner` v0.3.1
 
