@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../../mocks/all.dart';
-//  ignore_for_file: avoid_catching_errors
 
 /// a test for `UnaryRunner`
 class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
@@ -23,25 +23,25 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
   @override
   void call(FutureOr<T> respose, FutureOr<S> arg) {
     group(description, () {
-      final exceptionStub = HandleExceptionDelegateStub();
-      final delegate = MockUnaryDelegate<T, S>();
-      final errorStub = HandleErrorDelegateStub();
-      final errorHandler = ErrorHandler<AssertionError>(errorStub);
+      final mockExceptionHandler = MockHandleExceptionDelegate()
+        ..stub.stub = (_) {};
+      final errorStub = unaryStub<void, Error>()..stub = (_) {};
+      final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
+      final delegate = unaryStub<T, S>();
       final runner = UnaryRunner<T, S>(
-        delegate,
-        exceptionHandler: exceptionStub,
+        delegate.wrap,
+        exceptionHandler: mockExceptionHandler,
         errorHandlers: {errorHandler},
       );
 
       test('WHEN `void Function(T)` throws THEN `Result` is `Failure`',
           () async {
         delegate.reset;
-        exceptionStub.reset;
+        mockExceptionHandler.stub.reset;
         errorStub.reset;
 
-        delegate.stub = () => throw Exception();
-        exceptionStub.stub = () {};
-        errorStub.stub = () {};
+        delegate.stub = (_) => throw Exception();
+
         final data = await arg;
         final result = runner(data);
 
@@ -61,17 +61,17 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`result` should be `Failure`',
         );
         expect(
-          delegate.callCount,
+          delegate.count,
           1,
           reason: '`delegate` should be called once',
         );
         expect(
-          exceptionStub.callCount,
+          mockExceptionHandler.stub.count,
           1,
-          reason: '`exceptionStub` should be called once',
+          reason: '`mockExceptionHandler` should be called once',
         );
         expect(
-          errorStub.callCount,
+          errorStub.count,
           0,
           reason: '`errorHandler` should NOT be called',
         );
@@ -80,13 +80,13 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
       test('WHEN `void Function()` does not fail `Result` is `Success`',
           () async {
         delegate.reset;
-        exceptionStub.reset;
+        mockExceptionHandler.stub.reset;
         errorStub.reset;
+
         final res = await respose;
         final data = await arg;
-        delegate.stub = () => res;
-        exceptionStub.stub = () {};
-        errorStub.stub = () {};
+
+        delegate.stub = (_) => res;
 
         final result = runner(data);
 
@@ -106,34 +106,41 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`result` should not be `Failure`',
         );
         expect(
-          delegate.callCount,
+          delegate.count,
           1,
           reason: '`delegate` should be called once',
         );
         expect(
-          exceptionStub.callCount,
+          mockExceptionHandler.stub.count,
           0,
-          reason: '`exceptionStub` should NOT be called ',
+          reason: '`mockExceptionHandler` should NOT be called ',
         );
         expect(
-          errorStub.callCount,
+          errorStub.count,
           0,
           reason: '`errorHandler` should NOT be called',
         );
       });
       test('WHEN `ERROR` is thwon THEN runner fails', () async {
         delegate.reset;
-        exceptionStub.reset;
+        mockExceptionHandler.stub.reset;
+
         errorStub.reset;
-        final data = await arg;
-        delegate.stub = () => throw Error();
-        exceptionStub.stub = () {};
-        errorStub.stub = () {};
+        delegate.stub = (_) => throw Error();
+        delegate.stub = (_) => throw Error();
+
+        /// see issue `iapicca/yak_packages/issues/89`
+        // expect(
+        //   runner.call,
+        //   throwsA(isA<Error>()),
+        //   reason: '`Error` should NOT be handled',
+        // );
 
         Error? err;
 
         try {
-          runner(data);
+          await runner(await arg);
+          // ignore: avoid_catching_errors
         } on Error catch (e) {
           err = e;
         }
@@ -144,48 +151,46 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`Error` should NOT be handled',
         );
         expect(
-          delegate.callCount,
+          delegate.count,
           1,
           reason: '`delegate` should be called once',
         );
         expect(
-          exceptionStub.callCount,
+          mockExceptionHandler.stub.count,
           0,
-          reason: '`exceptionStub` should NOT be called ',
+          reason: '`mockExceptionHandler` should NOT be called ',
         );
         expect(
-          errorStub.callCount,
+          errorStub.count,
           0,
           reason: '`errorHandler` should NOT be called',
         );
       });
-      test('WHEN `AssertionError` is thwon THEN gets handled', () async {
+      test('WHEN `AvowError` is thwon THEN gets handled', () async {
         delegate.reset;
-        exceptionStub.reset;
+        mockExceptionHandler.stub.reset;
         errorStub.reset;
         final data = await arg;
-        delegate.stub = () => throw AssertionError();
-        exceptionStub.stub = () {};
-        errorStub.stub = () {};
+
+        delegate.stub = (_) => throw AvowError();
 
         expect(
-          runner(data),
+          await runner(data),
           isA<Failure>(),
           reason: '`Error` should be handled',
         );
-
         expect(
-          delegate.callCount,
+          delegate.count,
           1,
           reason: '`delegate` should be called once',
         );
         expect(
-          exceptionStub.callCount,
+          mockExceptionHandler.stub.count,
           0,
-          reason: '`exceptionStub` should NOT be called ',
+          reason: '`mockExceptionHandler` should NOT be called ',
         );
         expect(
-          errorStub.callCount,
+          errorStub.count,
           1,
           reason: '`errorHandler` should be called once',
         );

@@ -5,13 +5,14 @@ import '../../mocks/all.dart';
 
 void main() {
   const iterable = [1, 2, 3, 4];
-  final handler = HandleExceptionDelegateStub()..stub = () {};
+  final mockExceptionHandler = MockHandleExceptionDelegate()
+    ..stub.stub = (_) {};
   group('`IterableRunnerX`', () {
     test(
         'Given `Iterable<S>`'
         'WHEN `runner` fails even once '
         'THEN return Futire<Failure<Iterable<T>>>', () async {
-      handler.reset;
+      mockExceptionHandler.stub.reset;
 
       final runner = UnaryRunnerAsync<String, int>(
         (i) async {
@@ -21,7 +22,7 @@ void main() {
           }
           return '$j';
         },
-        exceptionHandler: handler,
+        exceptionHandler: mockExceptionHandler,
       );
 
       expect(
@@ -31,7 +32,7 @@ void main() {
       );
 
       expect(
-        handler.callCount,
+        mockExceptionHandler.stub.count,
         1,
         reason: 'as runner should stop at first failure, '
             'handler should be called only once',
@@ -41,11 +42,11 @@ void main() {
         'Given `Iterable<S>`'
         'WHEN `runner` does not fail '
         'THEN return Future<Success<Iterable<T>>>', () async {
-      handler.reset;
+      mockExceptionHandler.stub.reset;
 
       final runner = UnaryRunnerAsync<String, int>(
         (i) async => '${await i}',
-        exceptionHandler: handler,
+        exceptionHandler: mockExceptionHandler,
       );
 
       final result = await runner.iterate(iterable);
@@ -64,7 +65,7 @@ void main() {
       );
 
       expect(
-        handler.callCount,
+        mockExceptionHandler.stub.count,
         0,
         reason: 'handler should NOT be called',
       );

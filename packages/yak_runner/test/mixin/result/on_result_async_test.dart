@@ -1,35 +1,35 @@
 import 'dart:async';
 
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import '../../mocks/all.dart';
 
 void main() {
   const data = 1;
-  const res = '$data';
-  final exceptionHandler = HandleExceptionDelegateStub();
+  final mockExceptionHandler = MockHandleExceptionDelegate()
+    ..stub.stub = (_) {};
   group('`onResultAsync` MIXIN', () {
-    final firstDelegate = MockDelegate<int>();
-    final secondDelegate = MockUnaryDelegate<Future<String>, FutureOr<int>>();
+    final firstDelegate = nullaryStub<int>();
+    final secondDelegate = unaryStub<Future<String>, FutureOr<int>>();
 
     final firstRunner = Runner<int>(
-      firstDelegate,
-      exceptionHandler: exceptionHandler,
+      firstDelegate.wrap,
+      exceptionHandler: mockExceptionHandler,
     );
     final secondRunner = UnaryRunnerAsync<String, int>(
-      secondDelegate,
-      exceptionHandler: exceptionHandler,
+      secondDelegate.wrap,
+      exceptionHandler: mockExceptionHandler,
     );
 
     test('WHEN `Delegate<S>` fails THEN  `onResult() return Failure<T>',
         () async {
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
       firstDelegate.stub = () => throw Exception();
-      secondDelegate.stub = () async => res;
-      exceptionHandler.stub = () {};
+      secondDelegate.stub = (i) async => '$i';
       final result = await firstRunner().onFutureResult<String>(secondRunner);
 
       expect(
@@ -53,17 +53,17 @@ void main() {
         reason: '`result` should be `Failure<T>`',
       );
       expect(
-        firstDelegate.callCount,
+        firstDelegate.count,
         1,
         reason: '`firstDelegate` should be called once',
       );
       expect(
-        secondDelegate.callCount,
+        secondDelegate.count,
         0,
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         1,
         reason: '`exceptionHandler` shoul be called once',
       );
@@ -72,13 +72,12 @@ void main() {
     test(
         'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` fail '
         'THEN  `onResult() return Failure<T>', () async {
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
       firstDelegate.stub = () => data;
-      secondDelegate.stub = () => throw Exception();
-      exceptionHandler.stub = () {};
+      secondDelegate.stub = (i) => throw Exception();
 
       final result = await firstRunner().onFutureResult<String>(secondRunner);
 
@@ -103,17 +102,17 @@ void main() {
         reason: '`result` should be `Failure<T>`',
       );
       expect(
-        firstDelegate.callCount,
+        firstDelegate.count,
         1,
         reason: '`firstDelegate` should be called once',
       );
       expect(
-        secondDelegate.callCount,
+        secondDelegate.count,
         1,
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         1,
         reason: '`exceptionHandler` shoul be called once',
       );
@@ -122,13 +121,12 @@ void main() {
     test(
         'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` does not fail '
         'THEN  `onResult() return Success<T>', () async {
-      exceptionHandler.reset;
+      mockExceptionHandler.stub.reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
       firstDelegate.stub = () => data;
-      secondDelegate.stub = () async => res;
-      exceptionHandler.stub = () {};
+      secondDelegate.stub = (i) async => '$i';
 
       final result = await firstRunner().onFutureResult<String>(secondRunner);
 
@@ -149,17 +147,17 @@ void main() {
         reason: '`result` should not be `Failure`',
       );
       expect(
-        firstDelegate.callCount,
+        firstDelegate.count,
         1,
         reason: '`firstDelegate` should be called once',
       );
       expect(
-        secondDelegate.callCount,
+        secondDelegate.count,
         1,
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        exceptionHandler.callCount,
+        mockExceptionHandler.stub.count,
         0,
         reason: '`exceptionHandler` shoul NOT be called',
       );

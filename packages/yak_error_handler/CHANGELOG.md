@@ -1,3 +1,8 @@
+# 0.3.0+5
+- bumped `stub` version
+- updated tests
+
+
 # 0.3.0+4
 - `readme` updated
 
