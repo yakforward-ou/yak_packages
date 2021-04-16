@@ -4,4 +4,4 @@ import '../../../yak_widgets.dart';
 /// `true` for a scroll `forward`
 /// `false` for a scroll `backward`
 
-typedef OnScroll = void Function(Forward);
+typedef OnScroll = void Function(bool);
