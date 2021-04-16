@@ -17,7 +17,7 @@ jobs:
 
       - uses: subosito/flutter-action@v1
         with:
-          channel: 'master'
+          channel: 'dev'
 
       - name: Add pub cache bin to PATH
         run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
