@@ -1,4 +1,4 @@
-# 0.4.0+0
+# 0.4.0+1
 - breaking change: removed 3rd party dependencies
 - added `FocusedIndexList`
 
