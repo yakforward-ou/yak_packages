@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../yak_widgets.dart';
+import '../../yak_widgets.dart';
 
 /// a widget that allows to select an action according to an index
 class FocusedIndexList extends StatefulWidget {
