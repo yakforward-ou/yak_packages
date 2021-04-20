@@ -1,3 +1,6 @@
+# 0.2.0+3
+- added `extension` on `double` `roundToPrecision`
+
 # 0.2.0+2
 - `readme` updated
 
