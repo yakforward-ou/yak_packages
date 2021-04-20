@@ -8,12 +8,14 @@
 # yak_widgets
 
 simply a collection of widgets nothing fancy, but well tested
-the widgets are:
 
-`Damper`
-`FocusedIndexList`
-`Handedness`
-`Sidebar`
+the available widgets are:
+
+- `Damper`
+- `FocusedIndexList`
+- `Handedness`
+- `Initializer`
+- `Sidebar`
 
 this isn't a community project, 
 but feel free to open an issue to share a feedback
