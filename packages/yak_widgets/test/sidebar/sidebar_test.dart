@@ -25,7 +25,7 @@ void main() {
         find.byKey(Keys.trigger),
         Offset(0.0, -size.height * .1),
       );
-      await tester.pumpAndSettle(const Duration(milliseconds: 300));
+      await tester.pumpAndSettle(kThemeAnimationDuration);
 
       expect(find.byKey(ValueKey(1)), findsOneWidget,
           reason: 'ScrollView should be at index 1');

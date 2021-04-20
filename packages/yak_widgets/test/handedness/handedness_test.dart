@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'test_app.dart';
 
@@ -35,7 +36,7 @@ void main() {
       await tester.pumpWidget(app);
 
       await tester.tap(find.byKey(Keys.trigger));
-      await tester.pumpAndSettle(const Duration(milliseconds: 300));
+      await tester.pumpAndSettle(kThemeAnimationDuration);
 
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
@@ -59,10 +60,10 @@ void main() {
       await tester.pumpWidget(app);
 
       await tester.tap(find.byKey(Keys.trigger));
-      await tester.pumpAndSettle(const Duration(milliseconds: 300));
+      await tester.pumpAndSettle(kThemeAnimationDuration);
 
       await tester.tap(find.byKey(Keys.trigger));
-      await tester.pumpAndSettle(const Duration(milliseconds: 300));
+      await tester.pumpAndSettle(kThemeAnimationDuration);
 
       final parent = tester.getRect(find.byKey(Keys.parent));
       final subject = tester.getRect(find.byKey(Keys.subject));
