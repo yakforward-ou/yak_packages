@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../yak_widgets.dart';
+import '../../yak_widgets.dart';
 
 /// a ready to use widget that changes `sidebarPod` state
 
