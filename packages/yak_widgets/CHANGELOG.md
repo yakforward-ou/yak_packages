@@ -1,6 +1,7 @@
-# 0.4.0+3
+# 0.4.0+4
 - breaking change: removed 3rd party dependencies
 - added `FocusedIndexList`
+- added `initializer`
 
 # 0.3.0
 - breaking change: naming scheme
