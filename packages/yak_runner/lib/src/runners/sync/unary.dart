@@ -8,7 +8,7 @@ import '../../all.dart';
 /// a class that takes `T Function(S)`
 /// and returns `Result<T> Function(S)`
 /// on `Exception` invokes `errorHandler` if not null
-class UnaryRunner<T, S> extends RunnerBase
+class UnaryRunner<T, S> extends RunnerBase<T>
     with UnaryRunnerTestMixin<T, S>
     implements UnaryDelegate<Result<T>, S> {
   /// takes as argument `fun` and `errorHandler`
@@ -17,11 +17,13 @@ class UnaryRunner<T, S> extends RunnerBase
     this.fun, {
     HandleExceptionDelegate? exceptionHandler,
     Set<ErrorHandler> errorHandlers = const {},
+    List<OnSuccessCallback<T>> onSuccess = const [],
   })  : assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
         super(
           exceptionHandler: exceptionHandler,
           errorHandlers: errorHandlers,
+          onSuccess: onSuccess,
         );
 
   /// `fun` is ` T Function(S)`
@@ -30,7 +32,11 @@ class UnaryRunner<T, S> extends RunnerBase
   /// `call` is a  `Result<T> Function(S)`
   Result<T> call(S arg) {
     try {
-      return Result.success(fun(arg));
+      final data = fun(arg);
+      for (final callback in onSuccess) {
+        callback(data);
+      }
+      return Result.success(data);
     } on Error catch (e) {
       for (final h in errorHandlers) {
         if (e.runtimeType == h.type) {

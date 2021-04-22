@@ -8,7 +8,7 @@ import '../../all.dart';
 /// a class that takes `Future<T> Function()`
 /// and returns `Future<Result<T>> Function()`
 /// on `Exception` invokes `errorHandler` if not null
-class RunnerAsync<T> extends RunnerBase
+class RunnerAsync<T> extends RunnerBase<T>
     with RunnerTestMixin<T>
     implements NullaryDelegate<Future<Result<T>>> {
   /// takes as argument `fun` and `errorHandler`
@@ -16,11 +16,13 @@ class RunnerAsync<T> extends RunnerBase
     this.fun, {
     HandleExceptionDelegate? exceptionHandler,
     Set<ErrorHandler> errorHandlers = const {},
+    List<OnSuccessCallback<T>> onSuccess = const [],
   }) :
         // coverage:ignore-line
         super(
           exceptionHandler: exceptionHandler,
           errorHandlers: errorHandlers,
+          onSuccess: onSuccess,
         );
 
   /// `fun` is `Future<T> Function()`
@@ -29,7 +31,11 @@ class RunnerAsync<T> extends RunnerBase
   /// `call` is a `Future<Result<T>> Function()`
   Future<Result<T>> call() async {
     try {
-      return Result.success(await fun());
+      final data = await fun();
+      for (final callback in onSuccess) {
+        await callback(data);
+      }
+      return Result.success(data);
     } on Error catch (e) {
       for (final h in errorHandlers) {
         if (e.runtimeType == h.type) {

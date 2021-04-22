@@ -8,7 +8,7 @@ import '../../all.dart';
 /// a class that takes `T Function()`
 /// and returns `Result<T> Function()`
 /// on `Exception` invokes `errorHandler` if not null
-class Runner<T> extends RunnerBase
+class Runner<T> extends RunnerBase<T>
     with RunnerTestMixin<T>
     implements NullaryDelegate<Result<T>> {
   /// takes as argument `fun` and `errorHandler`
@@ -16,11 +16,13 @@ class Runner<T> extends RunnerBase
     this.fun, {
     HandleExceptionDelegate? exceptionHandler,
     Set<ErrorHandler> errorHandlers = const {},
+    List<OnSuccessCallback<T>> onSuccess = const [],
   }) :
         // coverage:ignore-line
         super(
           exceptionHandler: exceptionHandler,
           errorHandlers: errorHandlers,
+          onSuccess: onSuccess,
         );
 
   /// `fun` is `T Function()`
@@ -29,7 +31,11 @@ class Runner<T> extends RunnerBase
   /// `call` is a `Result<T> Function()`
   Result<T> call() {
     try {
-      return Result.success(fun());
+      final data = fun();
+      for (final callback in onSuccess) {
+        callback(data);
+      }
+      return Result.success(data);
     } on Error catch (e) {
       for (final h in errorHandlers) {
         if (e.runtimeType == h.type) {
