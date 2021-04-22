@@ -1,10 +1,7 @@
-# 0.2.0+3
+# 0.2.0+4
+- added `extension` on `Iterable` `emptyOnNull`
 - added `extension` on `double` `roundToPrecision`
-
-# 0.2.0+2
 - `readme` updated
-
-# 0.2.0+0
 - migrated to null safety
 - TODO implement `alignment geometry`
 

@@ -2,7 +2,7 @@ import 'package:yak_math/yak_math.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('`roundToPrecision` test', () {
+  group('`RoundToPrecisionX` test', () {
     const precision = 2;
     test(
         'GIVEN a double `d` with precision > `precision  '

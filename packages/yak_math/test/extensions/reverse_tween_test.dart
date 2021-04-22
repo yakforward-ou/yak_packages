@@ -3,7 +3,7 @@ import 'package:yak_math/yak_math.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('`ReverseYakTweenExtension` test', () {
+  group('`ReverseYakTweenX` test', () {
     test('WHEN `YakTween` `reverse` THEN `begin` and `end` are swapped', () {
       const tween = YakTween(begin: 1, end: 2);
       final reverse = tween.reverse;
