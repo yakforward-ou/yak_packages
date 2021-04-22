@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../../yak_math.dart';
 
 /// an `extension`  that reverse the value of a `YakTween`
-extension ReverseYakTweenExtension on YakTween {
+extension ReverseYakTweenX on YakTween {
   /// `reverse` return a `YakTween` with inverted `begin` and `end`
   YakTween get reverse => YakTween(begin: end, end: begin);
 }
