@@ -28,10 +28,13 @@ class RunnerAsyncTest<T> implements RunnerTestDelegate<T> {
       final errorStub = unaryStub<void, Error>()..stub = (_) {};
       final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
       final delegate = nullaryStub<Future<T>>();
+      final onSuccess = unaryStub<void, T>()..stub = (_) {};
+
       final runner = RunnerAsync<T>(
         delegate.wrap,
         exceptionHandler: mockExceptionHandler,
         errorHandlers: {errorHandler},
+        onSuccess: [onSuccess.wrap],
       );
 
       test('WHEN `void Function()` throws THEN `Result` is `Failure`',
@@ -181,6 +184,25 @@ class RunnerAsyncTest<T> implements RunnerTestDelegate<T> {
           errorStub.count,
           1,
           reason: '`errorHandler` should be called once',
+        );
+      });
+      test(
+          'GIVEN `onSuccess` is not empty '
+          'WHEN `Result` is `Success` '
+          'THEN `onSuccess` is called', () async {
+        delegate.reset;
+        mockExceptionHandler.stub.reset;
+        errorStub.reset;
+        onSuccess.reset;
+
+        delegate.stub = () async => response;
+
+        await runner();
+
+        expect(
+          onSuccess.count,
+          1,
+          reason: '`onSuccess` should be called once',
         );
       });
     });

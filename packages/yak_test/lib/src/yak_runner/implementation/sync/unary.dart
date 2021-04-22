@@ -21,17 +21,20 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
   /// `arg` and `result` are meant for `type` matching and *must not be null*
   /// `result` can be anything if `T` is void
   @override
-  void call(FutureOr<T> respose, FutureOr<S> arg) {
+  void call(FutureOr<T> response, FutureOr<S> arg) {
     group(description, () {
       final mockExceptionHandler = MockHandleExceptionDelegate()
         ..stub.stub = (_) {};
       final errorStub = unaryStub<void, Error>()..stub = (_) {};
       final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
+      final onSuccess = unaryStub<void, T>()..stub = (_) {};
       final delegate = unaryStub<T, S>();
+
       final runner = UnaryRunner<T, S>(
         delegate.wrap,
         exceptionHandler: mockExceptionHandler,
         errorHandlers: {errorHandler},
+        onSuccess: [onSuccess.wrap],
       );
 
       test('WHEN `void Function(T)` throws THEN `Result` is `Failure`',
@@ -83,7 +86,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
         mockExceptionHandler.stub.reset;
         errorStub.reset;
 
-        final res = await respose;
+        final res = await response;
         final data = await arg;
 
         delegate.stub = (_) => res;
@@ -193,6 +196,25 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           errorStub.count,
           1,
           reason: '`errorHandler` should be called once',
+        );
+      });
+      test(
+          'GIVEN `onSuccess` is not empty '
+          'WHEN `Result` is `Success` '
+          'THEN `onSuccess` is called', () async {
+        delegate.reset;
+        mockExceptionHandler.stub.reset;
+        errorStub.reset;
+        onSuccess.reset;
+        final data = await response;
+        delegate.stub = (i) => data;
+
+        await runner(await arg);
+
+        expect(
+          onSuccess.count,
+          1,
+          reason: '`onSuccess` should be called once',
         );
       });
     });

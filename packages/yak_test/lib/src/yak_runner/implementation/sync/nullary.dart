@@ -21,18 +21,20 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
   /// `result` is meant for `type` matching and ***must not be null***
   /// it can be anything if `T` is void
   @override
-  void call(FutureOr<T> res) {
+  void call(FutureOr<T> response) {
     group(description, () {
       final mockExceptionHandler = MockHandleExceptionDelegate()
         ..stub.stub = (_) {};
       final errorStub = unaryStub<void, Error>()..stub = (_) {};
       final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
+      final onSuccess = unaryStub<void, T>()..stub = (_) {};
       final delegate = nullaryStub<T>();
 
       final runner = Runner(
         delegate.wrap,
         exceptionHandler: mockExceptionHandler,
         errorHandlers: {errorHandler},
+        onSuccess: [onSuccess.wrap],
       );
 
       test('WHEN `void Function()` throws THEN `Result` is `Failure`', () {
@@ -78,7 +80,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
 
       test('WHEN `void Function()` does not fail `Result` is `Success`',
           () async {
-        final data = await res;
+        final data = await response;
         delegate.reset;
         mockExceptionHandler.stub.reset;
         errorStub.reset;
@@ -174,6 +176,25 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
           errorStub.count,
           1,
           reason: '`errorHandler` should be called once',
+        );
+      });
+      test(
+          'GIVEN `onSuccess` is not empty '
+          'WHEN `Result` is `Success` '
+          'THEN `onSuccess` is called', () async {
+        delegate.reset;
+        mockExceptionHandler.stub.reset;
+        errorStub.reset;
+        onSuccess.reset;
+        final data = await response;
+        delegate.stub = () => data;
+
+        await runner();
+
+        expect(
+          onSuccess.count,
+          1,
+          reason: '`onSuccess` should be called once',
         );
       });
     });
