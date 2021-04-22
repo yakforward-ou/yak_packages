@@ -1,12 +1,8 @@
 # 0.3.1+2
+- added `OnSuccessCallback`
 - bump `stub` version
 - updated tests
-
-# 0.3.1+1
 - `example` updated
-- fixes implementation
-
-# 0.3.1+0
 - renamed `Runner` and `NullaryDelegate`
 - added `typedef` for `Delegate`s and `Runner`s
 - added `IterableRunner`

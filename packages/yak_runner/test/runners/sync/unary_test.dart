@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
@@ -13,11 +15,13 @@ void main() {
     final errorStub = unaryStub<void, Error>()..stub = (_) {};
     final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
     final delegate = unaryStub<String, int>();
+    final onSuccess = unaryStub<void, String>()..stub = (_) {};
 
     final runner = UnaryRunner<String, int>(
       delegate.wrap,
       exceptionHandler: mockExceptionHandler,
       errorHandlers: {errorHandler},
+      onSuccess: [onSuccess.wrap],
     );
 
     test('WHEN `void Function(T)` throws THEN `Result` is `Failure`', () {
@@ -165,6 +169,25 @@ void main() {
         errorStub.count,
         1,
         reason: '`errorHandler` should be called once',
+      );
+    });
+    test(
+        'GIVEN `onSuccess` is not empty '
+        'WHEN `Result` is `Success` '
+        'THEN `onSuccess` is called', () {
+      delegate.reset;
+      mockExceptionHandler.stub.reset;
+      errorStub.reset;
+      onSuccess.reset;
+
+      delegate.stub = (i) => '$i';
+
+      runner(data);
+
+      expect(
+        onSuccess.count,
+        1,
+        reason: '`onSuccess` should be called once',
       );
     });
   });

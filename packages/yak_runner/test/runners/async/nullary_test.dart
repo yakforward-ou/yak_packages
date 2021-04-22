@@ -12,10 +12,13 @@ void main() {
     final errorStub = unaryStub<void, Error>()..stub = (_) {};
     final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
     final delegate = nullaryStub<Future<int>>();
+    final onSuccess = unaryStub<void, int>()..stub = (_) {};
+
     final runner = RunnerAsync<int>(
       delegate.wrap,
       exceptionHandler: mockExceptionHandler,
       errorHandlers: {errorHandler},
+      onSuccess: [onSuccess.wrap],
     );
 
     test('WHEN `void Function()` throws THEN `Result` is `Failure`', () async {
@@ -162,6 +165,25 @@ void main() {
         errorStub.count,
         1,
         reason: '`errorHandler` should be called once',
+      );
+    });
+    test(
+        'GIVEN `onSuccess` is not empty '
+        'WHEN `Result` is `Success` '
+        'THEN `onSuccess` is called', () async {
+      delegate.reset;
+      mockExceptionHandler.stub.reset;
+      errorStub.reset;
+      onSuccess.reset;
+
+      delegate.stub = () async => data;
+
+      await runner();
+
+      expect(
+        onSuccess.count,
+        1,
+        reason: '`onSuccess` should be called once',
       );
     });
   });
