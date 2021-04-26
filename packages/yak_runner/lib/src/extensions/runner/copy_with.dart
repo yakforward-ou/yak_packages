@@ -8,7 +8,7 @@ extension RunnerCopyWithX<T> on Runner<T> {
   /// replaces `errorHandlers` , `OnSuccessCallback`and
   /// `HandleExceptionDelegate` with a new one, if provided
   Runner<T> copyWith({
-    HandleExceptionDelegate? exceptionHandler,
+    HandleError<ErrorReport>? errorReport,
     Set<ErrorHandler>? errorHandlers,
     List<OnSuccessCallback<T>>? onSuccess,
   }) {
@@ -16,7 +16,7 @@ extension RunnerCopyWithX<T> on Runner<T> {
       fun,
       errorHandlers: errorHandlers ?? this.errorHandlers,
       onSuccess: onSuccess ?? this.onSuccess,
-      exceptionHandler: exceptionHandler ?? this.exceptionHandler,
+      errorReport: errorReport ?? this.errorReport,
     );
   }
 }
@@ -27,7 +27,7 @@ extension RunnerAsyncCopyWithX<T> on RunnerAsync<T> {
   /// replaces `errorHandlers` , `OnSuccessCallback`and
   /// `HandleExceptionDelegate` with a new one, if provided
   RunnerAsync<T> copyWith({
-    HandleExceptionDelegate? exceptionHandler,
+    HandleError<ErrorReport>? errorReport,
     Set<ErrorHandler>? errorHandlers,
     List<OnSuccessCallback<T>>? onSuccess,
   }) {
@@ -35,7 +35,7 @@ extension RunnerAsyncCopyWithX<T> on RunnerAsync<T> {
       fun,
       errorHandlers: errorHandlers ?? this.errorHandlers,
       onSuccess: onSuccess ?? this.onSuccess,
-      exceptionHandler: exceptionHandler ?? this.exceptionHandler,
+      errorReport: errorReport ?? this.errorReport,
     );
   }
 }
@@ -46,7 +46,7 @@ extension UnaryRunnerCopyWithX<T, S> on UnaryRunner<T, S> {
   /// replaces `errorHandlers` , `OnSuccessCallback`and
   /// `HandleExceptionDelegate` with a new one, if provided
   UnaryRunner<T, S> copyWith({
-    HandleExceptionDelegate? exceptionHandler,
+    HandleError<ErrorReport>? errorReport,
     Set<ErrorHandler>? errorHandlers,
     List<OnSuccessCallback<T>>? onSuccess,
   }) {
@@ -54,7 +54,7 @@ extension UnaryRunnerCopyWithX<T, S> on UnaryRunner<T, S> {
       fun,
       errorHandlers: errorHandlers ?? this.errorHandlers,
       onSuccess: onSuccess ?? this.onSuccess,
-      exceptionHandler: exceptionHandler ?? this.exceptionHandler,
+      errorReport: errorReport ?? this.errorReport,
     );
   }
 }
@@ -65,7 +65,7 @@ extension UnaryRunnerAsyncCopyWithX<T, S> on UnaryRunnerAsync<T, S> {
   /// replaces `errorHandlers` , `OnSuccessCallback`and
   /// `HandleExceptionDelegate` with a new one, if provided
   UnaryRunnerAsync<T, S> copyWith({
-    HandleExceptionDelegate? exceptionHandler,
+    HandleError<ErrorReport>? errorReport,
     Set<ErrorHandler>? errorHandlers,
     List<OnSuccessCallback<T>>? onSuccess,
   }) {
@@ -73,7 +73,7 @@ extension UnaryRunnerAsyncCopyWithX<T, S> on UnaryRunnerAsync<T, S> {
       fun,
       errorHandlers: errorHandlers ?? this.errorHandlers,
       onSuccess: onSuccess ?? this.onSuccess,
-      exceptionHandler: exceptionHandler ?? this.exceptionHandler,
+      errorReport: errorReport ?? this.errorReport,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 import 'test_app.dart';
@@ -58,7 +59,7 @@ void main() {
     testWidgets('WHEN progress is `Failure` ' 'THEN `onFailed` is VISIBLE',
         (tester) async {
       await tester.pumpWidget(app(progress));
-      progress.value = Failure<double>(Object(), null);
+      progress.value = Failure<double>(ErrorReport());
       await tester.pumpAndSettle(kThemeAnimationDuration);
 
       expect(

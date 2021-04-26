@@ -1,3 +1,6 @@
+# 0.4.0+0
+- implementing changes for `yak_runner` version `0.4.0`
+
 # 0.3.1+2
 - updated test for `onSuccess` callback
 - bump `stub` and `test` version

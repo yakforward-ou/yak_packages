@@ -1,8 +1,9 @@
 import 'package:test/test.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  const failure = Failure(Object(), null);
+  final failure = Failure(ErrorReport());
   group('`TypeAsType`', () {
     test(
       'WHEN `<S extends T> as T` S.as<T>() THEN returns `Success<T>`',

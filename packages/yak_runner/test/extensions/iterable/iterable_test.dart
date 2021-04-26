@@ -1,18 +1,17 @@
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
-
-import '../../mocks/all.dart';
 
 void main() {
   const iterable = [1, 2, 3, 4];
-  final mockExceptionHandler = MockHandleExceptionDelegate()
-    ..stub.stub = (_) {};
+  final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
   group('`IterableRunnerX`', () {
     test(
         'Given `Iterable<S>`'
         'WHEN `runner` fails even once '
         'THEN return Failure<Iterable<T>>', () {
-      mockExceptionHandler.stub.reset;
+      reportStub..reset;
 
       final runner = UnaryRunner<String, int>(
         (i) {
@@ -21,7 +20,7 @@ void main() {
           }
           return '$i';
         },
-        exceptionHandler: mockExceptionHandler,
+        errorReport: reportStub.wrap,
       );
 
       expect(
@@ -31,7 +30,7 @@ void main() {
       );
 
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
         reason: 'as runner should stop at first failure, '
             'handler should be called only once',
@@ -41,11 +40,11 @@ void main() {
         'Given `Iterable<S>`'
         'WHEN `runner` does not fail '
         'THEN return Success<Iterable<T>>', () {
-      mockExceptionHandler.stub.reset;
+      reportStub..reset;
 
       final runner = UnaryRunner<String, int>(
         (i) => '$i',
-        exceptionHandler: mockExceptionHandler,
+        errorReport: reportStub.wrap,
       );
 
       final result = runner.iterate(iterable);
@@ -65,7 +64,7 @@ void main() {
       );
 
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
         reason: 'handler should NOT be called',
       );

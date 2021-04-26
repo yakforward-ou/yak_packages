@@ -4,7 +4,6 @@ import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
-import '../../../mocks/all.dart';
 
 /// a test for `UnaryRunner`
 class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
@@ -23,8 +22,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
   @override
   void call(FutureOr<T> response, FutureOr<S> arg) {
     group(description, () {
-      final mockExceptionHandler = MockHandleExceptionDelegate()
-        ..stub.stub = (_) {};
+      final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
       final errorStub = unaryStub<void, Error>()..stub = (_) {};
       final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
       final onSuccess = unaryStub<void, T>()..stub = (_) {};
@@ -32,7 +30,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
 
       final runner = UnaryRunner<T, S>(
         delegate.wrap,
-        exceptionHandler: mockExceptionHandler,
+        errorReport: reportStub.wrap,
         errorHandlers: {errorHandler},
         onSuccess: [onSuccess.wrap],
       );
@@ -40,7 +38,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
       test('WHEN `void Function(T)` throws THEN `Result` is `Failure`',
           () async {
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
         errorStub.reset;
 
         delegate.stub = (_) => throw Exception();
@@ -69,7 +67,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`delegate` should be called once',
         );
         expect(
-          mockExceptionHandler.stub.count,
+          reportStub.count,
           1,
           reason: '`mockExceptionHandler` should be called once',
         );
@@ -83,7 +81,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
       test('WHEN `void Function()` does not fail `Result` is `Success`',
           () async {
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
         errorStub.reset;
 
         final res = await response;
@@ -114,7 +112,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`delegate` should be called once',
         );
         expect(
-          mockExceptionHandler.stub.count,
+          reportStub.count,
           0,
           reason: '`mockExceptionHandler` should NOT be called ',
         );
@@ -126,7 +124,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
       });
       test('WHEN `ERROR` is thwon THEN runner fails', () async {
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
 
         errorStub.reset;
         delegate.stub = (_) => throw Error();
@@ -159,7 +157,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`delegate` should be called once',
         );
         expect(
-          mockExceptionHandler.stub.count,
+          reportStub.count,
           0,
           reason: '`mockExceptionHandler` should NOT be called ',
         );
@@ -171,7 +169,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
       });
       test('WHEN `AvowError` is thwon THEN gets handled', () async {
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
         errorStub.reset;
         final data = await arg;
 
@@ -188,7 +186,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`delegate` should be called once',
         );
         expect(
-          mockExceptionHandler.stub.count,
+          reportStub.count,
           0,
           reason: '`mockExceptionHandler` should NOT be called ',
         );
@@ -203,7 +201,7 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           'WHEN `Result` is `Success` '
           'THEN `onSuccess` is called', () async {
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
         errorStub.reset;
         onSuccess.reset;
         final data = await response;

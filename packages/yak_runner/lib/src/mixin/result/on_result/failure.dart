@@ -1,5 +1,4 @@
-import '../../../classes/all.dart';
-import '../../../typedef/all.dart';
+import '../../../../yak_runner.dart';
 
 /// a `mixin` on `FailureBase`
 mixin OnFailure<S> on FailureBase<S> {
@@ -8,7 +7,7 @@ mixin OnFailure<S> on FailureBase<S> {
     Result<T> Function(S) runner, [
     FailureOfType<T>? failureOfType,
   ]) {
-    failureOfType ??= (e, s) => Failure<T>(e, s);
-    return failureOfType(e, s);
+    failureOfType ??= (report) => Failure<T>(report);
+    return failureOfType(report);
   }
 }

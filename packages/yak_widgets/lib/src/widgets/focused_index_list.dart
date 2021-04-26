@@ -38,7 +38,7 @@ class FocusedIndexList extends StatefulWidget {
     this.onIndexChanged,
     required this.builder,
     required this.itemCount,
-  })   : assert(
+  })  : assert(
           focusedIndex < itemCount && focusedIndex >= 0,
           '`focusedIndex` value should be between  `0` '
           'and less than `itemCount`',

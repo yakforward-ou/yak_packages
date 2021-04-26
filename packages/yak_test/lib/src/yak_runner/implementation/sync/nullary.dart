@@ -4,7 +4,6 @@ import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
-import '../../../mocks/all.dart';
 //  ignore_for_file: avoid_catching_errors
 
 /// a test for `Runner`
@@ -23,8 +22,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
   @override
   void call(FutureOr<T> response) {
     group(description, () {
-      final mockExceptionHandler = MockHandleExceptionDelegate()
-        ..stub.stub = (_) {};
+      final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
       final errorStub = unaryStub<void, Error>()..stub = (_) {};
       final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
       final onSuccess = unaryStub<void, T>()..stub = (_) {};
@@ -32,14 +30,14 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
 
       final runner = Runner(
         delegate.wrap,
-        exceptionHandler: mockExceptionHandler,
+        errorReport: reportStub.wrap,
         errorHandlers: {errorHandler},
         onSuccess: [onSuccess.wrap],
       );
 
       test('WHEN `void Function()` throws THEN `Result` is `Failure`', () {
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
         errorStub.reset;
 
         delegate.stub = () => throw Exception();
@@ -67,7 +65,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
           reason: '`delegate` should be called once',
         );
         expect(
-          mockExceptionHandler.stub.count,
+          reportStub.count,
           1,
           reason: '`mockExceptionHandler` should be called once',
         );
@@ -82,7 +80,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
           () async {
         final data = await response;
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
         errorStub.reset;
 
         delegate.stub = () => data;
@@ -110,7 +108,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
           reason: '`delegate` should be called once',
         );
         expect(
-          mockExceptionHandler.stub.count,
+          reportStub.count,
           0,
           reason: '`mockExceptionHandler` should NOT be called ',
         );
@@ -123,7 +121,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
 
       test('WHEN `ERROR` is thwon THEN runner fails', () {
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
         errorStub.reset;
 
         delegate.stub = () => throw Error();
@@ -139,7 +137,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
           reason: '`delegate` should be called once',
         );
         expect(
-          mockExceptionHandler.stub.count,
+          reportStub.count,
           0,
           reason: '`mockExceptionHandler` should NOT be called ',
         );
@@ -152,7 +150,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
       });
       test('WHEN `AvowError` is thwon THEN gets handled', () async {
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
         errorStub.reset;
 
         delegate.stub = () => throw AvowError();
@@ -168,7 +166,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
           reason: '`delegate` should be called once',
         );
         expect(
-          mockExceptionHandler.stub.count,
+          reportStub.count,
           0,
           reason: '`mockExceptionHandler` should NOT be called ',
         );
@@ -183,7 +181,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
           'WHEN `Result` is `Success` '
           'THEN `onSuccess` is called', () async {
         delegate.reset;
-        mockExceptionHandler.stub.reset;
+        reportStub.reset;
         errorStub.reset;
         onSuccess.reset;
         final data = await response;

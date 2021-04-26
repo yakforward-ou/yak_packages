@@ -2,7 +2,7 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('`YakRunnerTypeAsTypeExtension`', () {
+  group('`RunnerTypeAsTypeExtension` test', () {
     test('WHEN `S` asType<T> returns `Result<T>`', () {
       expect(
         'hello'.asType<int>(),

@@ -8,7 +8,7 @@ mixin OnFailureAsync<S> on FailureBase<S> {
   Future<Result<T>> onResultAsync<T>(
       Future<Result<T>> Function(FutureOr<S>) runner,
       [FailureOfType<T>? failureOfType]) async {
-    failureOfType ??= (e, s) => Failure<T>(e, s);
-    return failureOfType(e, s);
+    failureOfType ??= (report) => Failure<T>(report);
+    return failureOfType(report);
   }
 }

@@ -2,14 +2,13 @@ import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
-import '../../mocks/all.dart';
 
 void main() {
   const data = 1;
 
   group('`Runner`', () {
-    final mockExceptionHandler = MockHandleExceptionDelegate()
-      ..stub.stub = (_) {};
+    final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
+
     final errorStub = unaryStub<void, Error>()..stub = (_) {};
     final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
     final delegate = nullaryStub<int>()..stub = () => data;
@@ -17,16 +16,15 @@ void main() {
 
     final runner = Runner<int>(
       delegate.wrap,
-      exceptionHandler: mockExceptionHandler,
+      errorReport: reportStub.wrap,
       errorHandlers: {errorHandler},
       onSuccess: [onSuccess.wrap],
     );
 
     test('WHEN `void Function()` throws THEN `Result` is `Failure`', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       errorStub.reset;
-
       delegate.stub = () => throw Exception();
 
       final result = runner();
@@ -52,7 +50,7 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
         reason: '`mockExceptionHandler` should be called once',
       );
@@ -65,7 +63,7 @@ void main() {
 
     test('WHEN `void Function()` does not fail `Result` is `Success`', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       errorStub.reset;
 
       delegate..stub = () => data;
@@ -92,7 +90,7 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
         reason: '`mockExceptionHandler` should NOT be called ',
       );
@@ -105,9 +103,8 @@ void main() {
 
     test('WHEN `ERROR` is thwon THEN runner fails', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       errorStub.reset;
-
       delegate.stub = () => throw Error();
 
       expect(
@@ -121,7 +118,7 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
         reason: '`mockExceptionHandler` should NOT be called ',
       );
@@ -134,9 +131,8 @@ void main() {
     });
     test('WHEN `AvowError` is thwon THEN gets handled', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       errorStub.reset;
-
       delegate.stub = () {
         avow(false);
         return 0;
@@ -153,7 +149,7 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
         reason: '`mockExceptionHandler` should NOT be called ',
       );
@@ -168,7 +164,7 @@ void main() {
         'WHEN `Result` is `Success` '
         'THEN `onSuccess` is called', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       errorStub.reset;
       onSuccess.reset;
 
@@ -180,6 +176,35 @@ void main() {
         onSuccess.count,
         1,
         reason: '`onSuccess` should be called once',
+      );
+    });
+    test(
+        'GIVEN `ErrorHandler<T>` `eport: true` '
+        'WHEN Function throws `T` '
+        'THEN `errorReport` is called', () {
+      delegate.reset;
+      reportStub.reset;
+      errorStub.reset;
+      onSuccess.reset;
+
+      final errorHandler = ErrorHandler<AvowError>(
+        errorStub.wrap,
+        report: true,
+      );
+
+      final _runner = runner.copyWith(errorHandlers: {errorHandler});
+
+      delegate.stub = () {
+        avow(false);
+        return data;
+      };
+
+      _runner();
+
+      expect(
+        reportStub.count,
+        1,
+        reason: '`report` should be called once',
       );
     });
   });

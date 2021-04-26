@@ -1,7 +1,8 @@
 import 'dart:async';
+
 import 'package:yak_error_handler/yak_error_handler.dart';
 
-import '../../all.dart';
+import '../../../yak_runner.dart';
 
 /// following line added because [https://stackoverflow.com/questions/66315301/what-is-the-correct-way-to-catch-both-error-and-exception-following-effective-d]
 //  ignore_for_file: avoid_catching_errors
@@ -15,15 +16,16 @@ class UnaryRunnerAsync<T, S> extends RunnerBase<T>
   /// takes as argument `fun` and `errorHandler`
   UnaryRunnerAsync(
     this.fun, {
-    HandleExceptionDelegate? exceptionHandler,
+    HandleError<ErrorReport>? errorReport,
     Set<ErrorHandler> errorHandlers = const {},
     List<OnSuccessCallback<T>> onSuccess = const [],
   })  : assert(S != typeVoid, '`S` must not be of type `void`'),
         // coverage:ignore-line
         super(
-            exceptionHandler: exceptionHandler,
-            errorHandlers: errorHandlers,
-            onSuccess: onSuccess);
+          errorReport: errorReport,
+          errorHandlers: errorHandlers,
+          onSuccess: onSuccess,
+        );
 
   /// `fun` is ` Future<T> Function(FutureOr<S>)`
   final Future<T> Function(FutureOr<S>) fun;
@@ -37,16 +39,21 @@ class UnaryRunnerAsync<T, S> extends RunnerBase<T>
       }
       return Result.success(data);
     } on Error catch (e) {
-      for (final h in errorHandlers) {
-        if (e.runtimeType == h.type) {
-          h.handleError(e);
-          return Result.failure(e, e.stackTrace);
+      for (final handler in errorHandlers) {
+        final err = handler(e);
+        if (err != null) {
+          final report = err.report;
+          if (handler.report) {
+            errorReport?.call(report);
+          }
+          return Result.failure(report);
         }
       }
       rethrow;
     } on Exception catch (e, s) {
-      exceptionHandler?.call(e, s);
-      return Result.failure(e, s);
+      final report = ErrorReport(message: e, stackTrace: s);
+      errorReport?.call(report);
+      return Result.failure(report);
     }
   }
 }
