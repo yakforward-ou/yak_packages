@@ -2,14 +2,13 @@ import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
-import '../../mocks/all.dart';
 //  ignore_for_file: avoid_catching_errors
 
 void main() {
   group('`UnaryRunner`', () {
     const data = 1;
-    final mockExceptionHandler = MockHandleExceptionDelegate()
-      ..stub.stub = (_) {};
+    final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
+
     final errorStub = unaryStub<void, Error>()..stub = (_) {};
     final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
     final delegate = unaryStub<String, int>();
@@ -17,19 +16,18 @@ void main() {
 
     final runner = UnaryRunner<String, int>(
       delegate.wrap,
-      exceptionHandler: mockExceptionHandler,
+      errorReport: reportStub.wrap,
       errorHandlers: {errorHandler},
       onSuccess: [onSuccess.wrap],
     );
 
     test('WHEN `void Function(T)` throws THEN `Result` is `Failure`', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
-
+      reportStub.reset;
       errorStub.reset;
 
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub..reset;
       errorStub.reset;
 
       delegate.stub = (i) => throw Exception();
@@ -57,7 +55,7 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
         reason: '`exceptionStub` should be called once',
       );
@@ -70,7 +68,7 @@ void main() {
 
     test('WHEN `void Function()` does not fail `Result` is `Success`', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       errorStub.reset;
 
       delegate.stub = (i) => '$i';
@@ -98,7 +96,7 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
         reason: '`exceptionStub` should NOT be called ',
       );
@@ -110,7 +108,7 @@ void main() {
     });
     test('WHEN `ERROR` is thwon THEN runner fails', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       errorStub.reset;
 
       delegate.stub = (_) => throw Error();
@@ -126,7 +124,7 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
         reason: '`exceptionStub` should NOT be called ',
       );
@@ -138,8 +136,7 @@ void main() {
     });
     test('WHEN `AvowError` is thwon THEN gets handled', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
-
+      reportStub.reset;
       errorStub.reset;
 
       delegate.stub = (i) {
@@ -159,7 +156,7 @@ void main() {
         reason: '`delegate` should be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
         reason: '`exceptionStub` should NOT be called ',
       );
@@ -174,7 +171,7 @@ void main() {
         'WHEN `Result` is `Success` '
         'THEN `onSuccess` is called', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       errorStub.reset;
       onSuccess.reset;
 
@@ -186,6 +183,36 @@ void main() {
         onSuccess.count,
         1,
         reason: '`onSuccess` should be called once',
+      );
+    });
+
+    test(
+        'GIVEN `ErrorHandler<T>` `eport: true` '
+        'WHEN Function throws `T` '
+        'THEN `errorReport` is called', () {
+      delegate.reset;
+      reportStub.reset;
+      errorStub.reset;
+      onSuccess.reset;
+
+      final errorHandler = ErrorHandler<AvowError>(
+        errorStub.wrap,
+        report: true,
+      );
+
+      final _runner = runner.copyWith(errorHandlers: {errorHandler});
+
+      delegate.stub = (i) {
+        avow(false);
+        return '$i';
+      };
+
+      _runner(data);
+
+      expect(
+        reportStub.count,
+        1,
+        reason: '`report` should be called once',
       );
     });
   });

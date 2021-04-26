@@ -1,28 +1,27 @@
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
-
-import '../../mocks/all.dart';
 
 void main() {
   const data = 1;
-  final mockExceptionHandler = MockHandleExceptionDelegate()
-    ..stub.stub = (_) {};
+  final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
+
   group('`onResult` MIXIN', () {
     final firstDelegate = nullaryStub<int>();
 
     final secondDelegate = unaryStub<String, int>();
     final firstRunner = Runner<int>(
       firstDelegate.wrap,
-      exceptionHandler: mockExceptionHandler,
+      errorReport: reportStub.wrap,
     );
 
     final secondRunner = UnaryRunner<String, int>(
       secondDelegate.wrap,
-      exceptionHandler: mockExceptionHandler,
+      errorReport: reportStub.wrap,
     );
     test('WHEN `Delegate<S>` fails THEN  `onResult() return Failure<T>', () {
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
@@ -62,15 +61,15 @@ void main() {
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
-        reason: '`exceptionHandler` shoul be called once',
+        reason: '`errorReport` shoul be called once',
       );
     });
 
     test('WHEN `ArgDelegate<T,S>` fail THEN  `onResult() return Failure<T>',
         () {
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
@@ -110,9 +109,9 @@ void main() {
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
-        reason: '`exceptionHandler` shoul be called once',
+        reason: '`errorReport` shoul be called once',
       );
     });
   });

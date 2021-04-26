@@ -2,23 +2,22 @@ import 'dart:async';
 
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
-import '../../mocks/all.dart';
 
 void main() {
   const data = 1;
-  final mockExceptionHandler = MockHandleExceptionDelegate()
-    ..stub.stub = (_) {};
+  final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
   group('`when` MIXIN on`UnaryRunner`', () {
     final delegate = unaryStub<String, int>();
     final runner = UnaryRunner<String, int>(
       delegate.wrap,
-      exceptionHandler: mockExceptionHandler,
+      errorReport: reportStub.wrap,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
 
       delegate.stub = (i) => throw Exception();
 
@@ -27,7 +26,7 @@ void main() {
 
       runner(data).when(
         success: (data) => _success = data,
-        failure: (_, s) => _failure = s,
+        failure: (report) => _failure = report,
       );
 
       expect(_success != null, false, reason: '`success:`should not be called');
@@ -38,15 +37,15 @@ void main() {
         reason: '`delegate` houl be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
-        reason: '`mockExceptionHandler` shoul be called once',
+        reason: '`reportStub` shoul be called once',
       );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
 
       delegate.stub = (i) => '$i';
 
@@ -55,7 +54,7 @@ void main() {
 
       runner(data).when(
         success: (data) => _success = data,
-        failure: (_, s) => _failure = s,
+        failure: (report) => _failure = report,
       );
 
       expect(_success != null, true, reason: '`success:`should be called');
@@ -66,9 +65,9 @@ void main() {
         reason: '`delegate` shoul be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
-        reason: '`mockExceptionHandler` should NOT be called ',
+        reason: '`reportStub` should NOT be called ',
       );
     });
   });
@@ -77,12 +76,12 @@ void main() {
     final delegate = nullaryStub<int>();
     final runner = Runner(
       delegate.wrap,
-      exceptionHandler: mockExceptionHandler,
+      errorReport: reportStub.wrap,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
 
       delegate.stub = () => throw Exception();
 
@@ -91,7 +90,7 @@ void main() {
 
       runner().when(
         success: (data) => _success = data,
-        failure: (_, s) => _failure = s,
+        failure: (report) => _failure = report,
       );
 
       expect(_success != null, false, reason: '`success:`should not be called');
@@ -102,15 +101,15 @@ void main() {
         reason: '`delegate` houl be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
-        reason: '`mockExceptionHandler` shoul be called once',
+        reason: '`reportStub` shoul be called once',
       );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
 
       delegate.stub = () => data;
 
@@ -119,7 +118,7 @@ void main() {
 
       runner().when(
         success: (data) => _success = data,
-        failure: (_, s) => _failure = s,
+        failure: (report) => _failure = report,
       );
 
       expect(_success != null, true, reason: '`success:`should be called');
@@ -130,9 +129,9 @@ void main() {
         reason: '`delegate` shoul be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
-        reason: '`mockExceptionHandler` should NOT be called ',
+        reason: '`reportStub` should NOT be called ',
       );
     });
   });
@@ -142,12 +141,12 @@ void main() {
 
     final runner = UnaryRunnerAsync<String, int>(
       delegate.wrap,
-      exceptionHandler: mockExceptionHandler,
+      errorReport: reportStub.wrap,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
 
       delegate.stub = (i) => throw Exception();
 
@@ -156,7 +155,7 @@ void main() {
 
       (await runner(data)).when(
         success: (data) => _success = data,
-        failure: (_, s) => _failure = s,
+        failure: (report) => _failure = report,
       );
 
       expect(_success != null, false, reason: '`success:`should not be called');
@@ -167,15 +166,15 @@ void main() {
         reason: '`delegate` houl be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
-        reason: '`mockExceptionHandler` shoul be called once',
+        reason: '`reportStub` shoul be called once',
       );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () async {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
 
       delegate.stub = (i) async => '$i';
 
@@ -184,7 +183,7 @@ void main() {
 
       (await runner(data)).when(
         success: (data) => _success = data,
-        failure: (_, s) => _failure = s,
+        failure: (report) => _failure = report,
       );
 
       expect(_success != null, true, reason: '`success:`should be called');
@@ -195,9 +194,9 @@ void main() {
         reason: '`delegate` shoul be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
-        reason: '`mockExceptionHandler` should NOT be called ',
+        reason: '`reportStub` should NOT be called ',
       );
     });
   });
@@ -207,12 +206,12 @@ void main() {
 
     final runner = RunnerAsync(
       delegate.wrap,
-      exceptionHandler: mockExceptionHandler,
+      errorReport: reportStub.wrap,
     );
 
     test('WHEN `Result`is `Failure` then `when(failure:)` is called', () async {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
 
       delegate.stub = () => throw Exception();
 
@@ -221,7 +220,7 @@ void main() {
 
       (await runner()).when(
         success: (data) => _success = data,
-        failure: (_, s) => _failure = s,
+        failure: (report) => _failure = report,
       );
 
       expect(_success != null, false, reason: '`success:`should not be called');
@@ -232,15 +231,15 @@ void main() {
         reason: '`delegate` houl be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
-        reason: '`mockExceptionHandler` shoul be called once',
+        reason: '`reportStub` shoul be called once',
       );
     });
 
     test('WHEN `Result`is `Success` then `when(success:)` is called', () async {
       delegate.reset;
-      mockExceptionHandler.stub.reset;
+      reportStub.reset;
 
       delegate.stub = () async => data;
 
@@ -249,7 +248,7 @@ void main() {
 
       (await runner()).when(
         success: (data) => _success = data,
-        failure: (_, s) => _failure = s,
+        failure: (report) => _failure = report,
       );
 
       expect(_success != null, true, reason: '`success:`should be called');
@@ -260,9 +259,9 @@ void main() {
         reason: '`delegate` shoul be called once',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
-        reason: '`mockExceptionHandler` should NOT be called ',
+        reason: '`reportStub` should NOT be called ',
       );
     });
   });

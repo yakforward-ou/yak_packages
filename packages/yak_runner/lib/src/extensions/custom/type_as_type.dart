@@ -7,5 +7,8 @@ import '../../all.dart';
 ///
 extension RunnerTypeAsTypeExtension<S> on S {
   /// returns a `Result<T>`
-  Result<T> asType<T>() => AsType<T, S>().call(this);
+  Result<T> asType<T>() {
+    final runner = AsType<T, S>();
+    return runner(this);
+  }
 }

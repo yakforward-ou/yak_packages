@@ -123,10 +123,10 @@ void main() {
           avow(false);
           return 'hello';
         },
-        errorHandlers: {AvowError().handle(errorHandlerStub.wrap)},
+        errorHandlers: {errorHandlerStub.wrap.handler()},
       );
       final newRunner = runner.append(
-        errorHandlers: {AvowError().handle(alsoErrorHandlerStub.wrap)},
+        errorHandlers: {alsoErrorHandlerStub.wrap.handler()},
       );
       newRunner();
 
@@ -154,10 +154,10 @@ void main() {
           avow(false);
           return 'hello';
         },
-        errorHandlers: {AvowError().handle(errorHandlerStub.wrap)},
+        errorHandlers: {errorHandlerStub.wrap.handler()},
       );
       final newRunner = runner.append(
-        errorHandlers: {AvowError().handle(alsoErrorHandlerStub.wrap)},
+        errorHandlers: {alsoErrorHandlerStub.wrap.handler()},
       );
       await newRunner();
 
@@ -185,10 +185,10 @@ void main() {
           avow(false);
           return 'hello';
         },
-        errorHandlers: {AvowError().handle(errorHandlerStub.wrap)},
+        errorHandlers: {errorHandlerStub.wrap.handler()},
       );
       final newRunner = runner.append(
-        errorHandlers: {AvowError().handle(alsoErrorHandlerStub.wrap)},
+        errorHandlers: {alsoErrorHandlerStub.wrap.handler()},
       );
       newRunner(0);
 
@@ -216,10 +216,10 @@ void main() {
           avow(false);
           return 'hello';
         },
-        errorHandlers: {AvowError().handle(errorHandlerStub.wrap)},
+        errorHandlers: {errorHandlerStub.wrap.handler()},
       );
       final newRunner = runner.append(
-        errorHandlers: {AvowError().handle(alsoErrorHandlerStub.wrap)},
+        errorHandlers: {alsoErrorHandlerStub.wrap.handler()},
       );
       await newRunner(0);
 

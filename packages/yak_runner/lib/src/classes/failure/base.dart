@@ -1,13 +1,12 @@
+import 'package:yak_error_handler/yak_error_handler.dart';
+
 import '../all.dart';
 
 /// abstract class implementing `Result`
 abstract class FailureBase<T> implements Result<T> {
-  /// `FailureBase` has argument `Object` `e` and `StackTrace` `s`
-  const FailureBase(this.e, this.s);
+  /// `FailureBase` has argument `ErrorReport` `report`
+  const FailureBase(this.report);
 
-  /// `e` is the `Exception` or `Error` body
-  final Object e;
-
-  /// `s` a possibly `null` `Stacktrace`
-  final StackTrace? s;
+  /// holds an `ErrorReport`
+  final ErrorReport report;
 }

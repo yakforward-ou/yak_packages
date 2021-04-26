@@ -1,5 +1,3 @@
-import 'package:yak_error_handler/yak_error_handler.dart';
-
 import '../../../yak_runner.dart';
 
 /// return a `Runner<T>` that holds the same function
@@ -14,7 +12,7 @@ extension RunnerAppendX<T> on Runner<T> {
       fun,
       errorHandlers: {...errorHandlers, ...this.errorHandlers},
       onSuccess: [...onSuccess, ...this.onSuccess],
-      exceptionHandler: exceptionHandler,
+      errorReport: errorReport,
     );
   }
 }
@@ -31,7 +29,7 @@ extension RunnerAsyncAppendX<T> on RunnerAsync<T> {
       fun,
       errorHandlers: {...errorHandlers, ...this.errorHandlers},
       onSuccess: [...onSuccess, ...this.onSuccess],
-      exceptionHandler: exceptionHandler,
+      errorReport: errorReport,
     );
   }
 }
@@ -48,7 +46,7 @@ extension UnaryRunnerAppendX<T, S> on UnaryRunner<T, S> {
       fun,
       errorHandlers: {...errorHandlers, ...this.errorHandlers},
       onSuccess: [...onSuccess, ...this.onSuccess],
-      exceptionHandler: exceptionHandler,
+      errorReport: errorReport,
     );
   }
 }
@@ -65,7 +63,7 @@ extension UnaryRunnerAsyncAppendX<T, S> on UnaryRunnerAsync<T, S> {
       fun,
       errorHandlers: {...errorHandlers, ...this.errorHandlers},
       onSuccess: [...onSuccess, ...this.onSuccess],
-      exceptionHandler: exceptionHandler,
+      errorReport: errorReport,
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:yak_error_handler/yak_error_handler.dart';
+
 import '../../../classes/all.dart';
 
 /// an `mixin` on `ResultBase`
@@ -6,6 +8,6 @@ mixin WhenResult<T> on ResultBase<T> {
   /// without an implementation
   Z when<Z>({
     required Z Function(T) success,
-    required Z Function(Object, StackTrace?) failure,
+    required Z Function(ErrorReport report) failure,
   });
 }

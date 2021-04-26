@@ -3,126 +3,123 @@ import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 
-import '../../mocks/all.dart';
-
 void main() {
-  final originalExceptionDelegate = MockHandleExceptionDelegate()
-    ..stub.stub = (__) {};
-  final replacementExceptionDelegate = MockHandleExceptionDelegate()
-    ..stub.stub = (__) {};
+  final originalreportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
+  final replacementreportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
   final originaOnSuccessStub = unaryStub()..stub = (_) {};
   final replacementOnSuccessStub = unaryStub()..stub = (_) {};
-  final originaErrorHandlerStub = unaryStub()..stub = (_) {};
-  final replacementErrorHandlerStub = unaryStub()..stub = (_) {};
+  final originaErrorHandlerStub = unaryStub<void, AvowError>()..stub = (_) {};
+  final replacementErrorHandlerStub = unaryStub<void, AvowError>()
+    ..stub = (_) {};
 
-  group('RunnerCopyWithX `exceptionHandler` test', () {
+  group('RunnerCopyWithX `errorReport` test', () {
     test(
-        'GIVEN Runner `exceptionHandler` =! null'
-        'WHEN Runner().copyWith(exceptionHandler :  something)'
-        'THEN exceptionHandler is replaced', () {
-      originalExceptionDelegate.stub.reset;
-      replacementExceptionDelegate.stub.reset;
+        'GIVEN Runner `errorReport` =! null'
+        'WHEN Runner().copyWith(errorReport :  something)'
+        'THEN errorReport is replaced', () {
+      originalreportStub.reset;
+      replacementreportStub.reset;
 
       final runner = Runner(
         () => throw Exception(),
-        exceptionHandler: originalExceptionDelegate,
+        errorReport: originalreportStub.wrap,
       );
       final newRunner = runner.copyWith(
-        exceptionHandler: replacementExceptionDelegate,
+        errorReport: replacementreportStub.wrap,
       );
       newRunner();
 
       expect(
-        originalExceptionDelegate.stub.count,
+        originalreportStub.count,
         0,
-        reason: '"original" exceptionHandler  should not be called',
+        reason: '"original" errorReport  should not be called',
       );
       expect(
-        replacementExceptionDelegate.stub.count,
+        replacementreportStub.count,
         1,
-        reason: '"replaced" exceptionHandler  should be called once',
+        reason: '"replaced" errorReport  should be called once',
       );
     });
 
     test(
-        'GIVEN UnaryRunner `exceptionHandler` =! null'
-        'WHEN UnaryRunner().copyWith(exceptionHandler :  something)'
-        'THEN exceptionHandler is replaced', () {
-      originalExceptionDelegate.stub.reset;
-      replacementExceptionDelegate.stub.reset;
+        'GIVEN UnaryRunner `errorReport` =! null'
+        'WHEN UnaryRunner().copyWith(errorReport :  something)'
+        'THEN errorReport is replaced', () {
+      originalreportStub.reset;
+      replacementreportStub.reset;
 
       final runner = UnaryRunner(
         (_) => throw Exception(),
-        exceptionHandler: originalExceptionDelegate,
+        errorReport: originalreportStub.wrap,
       );
       final newRunner = runner.copyWith(
-        exceptionHandler: replacementExceptionDelegate,
+        errorReport: replacementreportStub.wrap,
       );
       newRunner(0);
 
       expect(
-        originalExceptionDelegate.stub.count,
+        originalreportStub.count,
         0,
-        reason: '"original" exceptionHandler  should not be called',
+        reason: '"original" errorReport  should not be called',
       );
       expect(
-        replacementExceptionDelegate.stub.count,
+        replacementreportStub.count,
         1,
-        reason: '"replaced" exceptionHandler  should be called once',
+        reason: '"replaced" errorReport  should be called once',
       );
     });
     test(
-        'GIVEN RunnerAsync `exceptionHandler` =! null'
-        'WHEN RunnerAsync().copyWith(exceptionHandler :  something)'
-        'THEN exceptionHandler is replaced', () async {
-      originalExceptionDelegate.stub.reset;
-      replacementExceptionDelegate.stub.reset;
+        'GIVEN RunnerAsync `errorReport` =! null'
+        'WHEN RunnerAsync().copyWith(errorReport :  something)'
+        'THEN errorReport is replaced', () async {
+      originalreportStub.reset;
+      replacementreportStub.reset;
 
       final runner = RunnerAsync(
         () async => throw Exception(),
-        exceptionHandler: originalExceptionDelegate,
+        errorReport: originalreportStub.wrap,
       );
       final newRunner = runner.copyWith(
-        exceptionHandler: replacementExceptionDelegate,
+        errorReport: replacementreportStub.wrap,
       );
       await newRunner();
 
       expect(
-        originalExceptionDelegate.stub.count,
+        originalreportStub.count,
         0,
-        reason: '"original" exceptionHandler  should not be called',
+        reason: '"original" errorReport  should not be called',
       );
       expect(
-        replacementExceptionDelegate.stub.count,
+        replacementreportStub.count,
         1,
-        reason: '"replaced" exceptionHandler  should be called once',
+        reason: '"replaced" errorReport  should be called once',
       );
     });
     test(
-        'GIVEN UnaryRunnerAsync `exceptionHandler` =! null'
-        'WHEN UnaryRunnerAsync().copyWith(exceptionHandler :  something)'
-        'THEN exceptionHandler is replaced', () async {
-      originalExceptionDelegate.stub.reset;
-      replacementExceptionDelegate.stub.reset;
+        'GIVEN UnaryRunnerAsync `errorReport` =! null'
+        'WHEN UnaryRunnerAsync().copyWith(errorReport :  something)'
+        'THEN errorReport is replaced', () async {
+      originalreportStub.reset;
+      replacementreportStub.reset;
 
       final runner = UnaryRunnerAsync(
         (_) async => throw Exception(),
-        exceptionHandler: originalExceptionDelegate,
+        errorReport: originalreportStub.wrap,
       );
       final newRunner = runner.copyWith(
-        exceptionHandler: replacementExceptionDelegate,
+        errorReport: replacementreportStub.wrap,
       );
       await newRunner(0);
 
       expect(
-        originalExceptionDelegate.stub.count,
+        originalreportStub.count,
         0,
-        reason: '"original" exceptionHandler should not be called',
+        reason: '"original" errorReport should not be called',
       );
       expect(
-        replacementExceptionDelegate.stub.count,
+        replacementreportStub.count,
         1,
-        reason: '"replaced" exceptionHandler should be called once',
+        reason: '"replaced" errorReport should be called once',
       );
     });
   });
@@ -130,8 +127,8 @@ void main() {
   group('RunnerCopyWithX `onSuccess` test', () {
     test(
         'GIVEN Runner `onSuccess` isNotEmpty'
-        'WHEN Runner().copyWith(exceptionHandler :  something)'
-        'THEN exceptionHandler is replaced', () {
+        'WHEN Runner().copyWith(errorReport :  something)'
+        'THEN errorReport is replaced', () {
       originaOnSuccessStub.reset;
       replacementOnSuccessStub.reset;
 
@@ -252,11 +249,23 @@ void main() {
           avow(false);
           return 0;
         },
-        errorHandlers: {AvowError().handle(originaErrorHandlerStub.wrap)},
+        errorHandlers: {originaErrorHandlerStub.wrap.handler()},
+      );
+      expect(
+        runner.errorHandlers.first.report,
+        false,
+        reason: 'report should be false',
       );
       final newRunner = runner.copyWith(
-        errorHandlers: {AvowError().handle(replacementErrorHandlerStub.wrap)},
+        errorHandlers: {replacementErrorHandlerStub.wrap.handler(report: true)},
       );
+
+      expect(
+        newRunner.errorHandlers.first.report,
+        true,
+        reason: 'report should be true',
+      );
+
       newRunner();
 
       expect(
@@ -283,11 +292,25 @@ void main() {
           avow(false);
           return 0;
         },
-        errorHandlers: {AvowError().handle(originaErrorHandlerStub.wrap)},
+        errorHandlers: {originaErrorHandlerStub.wrap.handler()},
       );
+
+      expect(
+        runner.errorHandlers.first.report,
+        false,
+        reason: 'report should be false',
+      );
+
       final newRunner = runner.copyWith(
-        errorHandlers: {AvowError().handle(replacementErrorHandlerStub.wrap)},
+        errorHandlers: {replacementErrorHandlerStub.wrap.handler(report: true)},
       );
+
+      expect(
+        newRunner.errorHandlers.first.report,
+        true,
+        reason: 'report should be true',
+      );
+
       newRunner(0);
 
       expect(
@@ -312,11 +335,23 @@ void main() {
           avow(false);
           return 0;
         },
-        errorHandlers: {AvowError().handle(originaErrorHandlerStub.wrap)},
+        errorHandlers: {originaErrorHandlerStub.wrap.handler()},
+      );
+      expect(
+        runner.errorHandlers.first.report,
+        false,
+        reason: 'report should be false',
       );
       final newRunner = runner.copyWith(
-        errorHandlers: {AvowError().handle(replacementErrorHandlerStub.wrap)},
+        errorHandlers: {replacementErrorHandlerStub.wrap.handler(report: true)},
       );
+
+      expect(
+        newRunner.errorHandlers.first.report,
+        true,
+        reason: 'report should be true',
+      );
+
       await newRunner();
 
       expect(
@@ -336,16 +371,29 @@ void main() {
         'THEN exceptierrorHandleronHandler is replaced', () async {
       originaErrorHandlerStub.reset;
       replacementErrorHandlerStub.reset;
+
       final runner = UnaryRunnerAsync(
         (_) async {
           avow(false);
           return 0;
         },
-        errorHandlers: {AvowError().handle(originaErrorHandlerStub.wrap)},
+        errorHandlers: {originaErrorHandlerStub.wrap.handler()},
+      );
+      expect(
+        runner.errorHandlers.first.report,
+        false,
+        reason: 'report should be false',
       );
       final newRunner = runner.copyWith(
-        errorHandlers: {AvowError().handle(replacementErrorHandlerStub.wrap)},
+        errorHandlers: {replacementErrorHandlerStub.wrap.handler(report: true)},
       );
+
+      expect(
+        newRunner.errorHandlers.first.report,
+        true,
+        reason: 'report should be true',
+      );
+
       await newRunner(0);
 
       expect(

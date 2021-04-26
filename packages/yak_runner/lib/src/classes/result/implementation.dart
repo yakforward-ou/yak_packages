@@ -1,3 +1,5 @@
+import 'package:yak_error_handler/yak_error_handler.dart';
+
 import '../../mixin/all.dart';
 import '../all.dart';
 import 'base.dart';
@@ -9,5 +11,5 @@ abstract class Result<T> extends ResultBase<T>
   const factory Result.success(T data) = Success;
 
   /// the constructor `Result.failure` returns a `Failure`
-  const factory Result.failure(Object e, StackTrace? s) = Failure;
+  const factory Result.failure(ErrorReport report) = Failure;
 }

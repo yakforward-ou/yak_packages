@@ -1,30 +1,29 @@
 import 'dart:async';
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
+import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
-import '../../mocks/all.dart';
 
 void main() async {
   const data = 1;
   const res = '$data';
-  final mockExceptionHandler = MockHandleExceptionDelegate()
-    ..stub.stub = (_) {};
+  final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
   final firstDelegate = nullaryStub<Future<int>>();
   final secondDelegate = unaryStub<Future<String>, FutureOr<int>>();
   final firstRunner = RunnerAsync<int>(
     firstDelegate.wrap,
-    exceptionHandler: mockExceptionHandler,
+    errorReport: reportStub.wrap,
   );
 
   final secondRunner = UnaryRunnerAsync<String, int>(
     secondDelegate.wrap,
-    exceptionHandler: mockExceptionHandler,
+    errorReport: reportStub.wrap,
   );
 
   group('`onFutureResult` EXTENSION', () {
     test('WHEN `Delegate<Future<S>>` fails THEN  `onResult() return Failure<T>',
         () async {
-      mockExceptionHandler.stub.reset;
+      reportStub..reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
@@ -64,16 +63,16 @@ void main() async {
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
-        reason: '`exceptionHandler` shoul be called once',
+        reason: '`errorReport` shoul be called once',
       );
     });
 
     test(
         'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` fail '
         'THEN  `onResult() return Failure<T>', () async {
-      mockExceptionHandler.stub.reset;
+      reportStub..reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
@@ -113,16 +112,16 @@ void main() async {
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         1,
-        reason: '`exceptionHandler` shoul be called once',
+        reason: '`errorReport` shoul be called once',
       );
     });
 
     test(
         'WHEN `ArgDelegate<Future<T>,FutureOr<S>>` does not fail '
         'THEN  `onResult() return Success<T>', () async {
-      mockExceptionHandler.stub.reset;
+      reportStub..reset;
       firstDelegate.reset;
       secondDelegate.reset;
 
@@ -158,9 +157,9 @@ void main() async {
         reason: '`secondDelegate` should NOT be called',
       );
       expect(
-        mockExceptionHandler.stub.count,
+        reportStub.count,
         0,
-        reason: '`exceptionHandler` shoul NOT be called',
+        reason: '`errorReport` shoul NOT be called',
       );
     });
   });

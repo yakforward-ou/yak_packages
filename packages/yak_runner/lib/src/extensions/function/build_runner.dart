@@ -8,7 +8,7 @@ extension BuildRunnerX<T, S> on Result<S> {
       return builder((this as Success).data);
     } else {
       final failure = this as Failure;
-      return () => Failure<T>(failure.e, failure.s);
+      return () => Failure<T>(failure.report);
     }
   }
 
@@ -18,7 +18,7 @@ extension BuildRunnerX<T, S> on Result<S> {
       return builder((this as Success).data);
     } else {
       final failure = this as Failure;
-      return () async => Failure<T>(failure.e, failure.s);
+      return () async => Failure<T>(failure.report);
     }
   }
 }
