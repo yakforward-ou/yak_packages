@@ -1,4 +1,4 @@
-# 0.4.0+1
+# 0.4.0+2
 - breaking change on `errorReport` and `errorHandlers`
 - roll back `test` version `yak_packages/issues/111`
 
