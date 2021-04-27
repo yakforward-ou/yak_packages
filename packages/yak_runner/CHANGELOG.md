@@ -1,5 +1,6 @@
-# 0.4.0+0
+# 0.4.0+1
 - breaking change on `errorReport` and `errorHandlers`
+- roll back `test` version `yak_packages/issues/111`
 
 # 0.3.1
 - added `extension` family `RunnerAppendX`

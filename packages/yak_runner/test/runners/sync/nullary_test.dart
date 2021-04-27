@@ -8,7 +8,6 @@ void main() {
 
   group('`Runner`', () {
     final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
-
     final errorStub = unaryStub<void, Error>()..stub = (_) {};
     final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
     final delegate = nullaryStub<int>()..stub = () => data;

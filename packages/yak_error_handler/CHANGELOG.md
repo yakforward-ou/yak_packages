@@ -1,7 +1,8 @@
-# 0.4.0+1
+# 0.4.0+2
 - added `ErrorReport`
 - major rework
 - several breaking changes
+- rollback `test` version `yak_packages/issues/111`
 
 # 0.3.0
 - bumped `stub` version
