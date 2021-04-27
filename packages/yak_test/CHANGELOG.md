@@ -1,4 +1,4 @@
-# 0.4.0+1
+# 0.4.0+2
 - implementing changes for `yak_runner` version `0.4.0`
 - rollback `test` version `yak_packages/issues/111`
 
