@@ -1,6 +1,6 @@
 name: yak_math
 description: replicas of flutter `non-null-only` with `const` constructor
-version: 0.2.0+4
+version: 0.2.0+5
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
@@ -17,5 +17,5 @@ flutter:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  effective_dart: ^1.3.0
+  effective_dart: ^1.3.1
 

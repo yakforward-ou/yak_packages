@@ -1,9 +1,10 @@
-# 0.2.0+4
+# 0.2.0+5
 - added `extension` on `Iterable` `emptyOnNull`
 - added `extension` on `double` `roundToPrecision`
 - `readme` updated
 - migrated to null safety
 - TODO implement `alignment geometry`
+- bump dependencies
 
 # 0.1.0
 - added `coverage:ignore-line to ignore one line` to `super`
