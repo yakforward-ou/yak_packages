@@ -8,9 +8,7 @@ import '../../../yak_runner.dart';
 /// a class that takes `T Function()`
 /// and returns `Result<T> Function()`
 /// on `Exception` invokes `errorHandler` if not null
-class Runner<T> extends RunnerBase<T>
-    with RunnerTestMixin<T>
-    implements NullaryDelegate<Result<T>> {
+class Runner<T> extends RunnerBase<T> implements NullaryDelegate<Result<T>> {
   /// takes as argument `fun` and `errorHandler`
   const Runner(
     this.fun, {

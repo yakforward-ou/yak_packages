@@ -11,7 +11,6 @@ import '../../../yak_runner.dart';
 /// and returns `Future<Result<T>> Function(FutureOr<S>)`
 /// on `Exception` invokes `errorHandler` if not null
 class UnaryRunnerAsync<T, S> extends RunnerBase<T>
-    with UnaryRunnerTestMixin<T, S>
     implements UnaryDelegate<Future<Result<T>>, FutureOr<S>> {
   /// takes as argument `fun` and `errorHandler`
   UnaryRunnerAsync(

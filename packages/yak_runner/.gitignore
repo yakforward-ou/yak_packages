@@ -84,4 +84,5 @@ linux/
 web/
 .metadata
 .packages
-pubspec.lock
+.lcov
+.lock
