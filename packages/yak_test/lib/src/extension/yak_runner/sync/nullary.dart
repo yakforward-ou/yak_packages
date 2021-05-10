@@ -3,6 +3,8 @@ import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 
+// coverage:ignore-file
+
 /// a `typedef` for a `Runner``tester` function
 typedef RunnerTest<T> = void Function({
   String description,
