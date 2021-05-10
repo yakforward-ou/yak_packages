@@ -1,5 +1,5 @@
 # 0.4.0+3
-- add custom json decode
+- add custom json runner
 
 # 0.4.0+2
 - breaking change on `errorReport` and `errorHandlers`
