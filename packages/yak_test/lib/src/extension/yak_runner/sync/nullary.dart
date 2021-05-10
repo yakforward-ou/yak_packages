@@ -1,26 +1,22 @@
-import 'dart:async';
-
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
-//  ignore_for_file: avoid_catching_errors
 
-/// a test for `Runner`
-class RunnerTest<T> implements RunnerTestDelegate<T> {
-  /// takes the argument `description`
-  RunnerTest({
-    required this.description,
-  });
+/// a `typedef` for a `Runner``tester` function
+typedef RunnerTest<T> = void Function({
+  String description,
+  T Function() example,
+});
 
-  /// `description` is a `String`
-  /// it will be passed to the `test` when runned
-  final String description;
-
-  /// `result` is meant for `type` matching and ***must not be null***
-  /// it can be anything if `T` is void
-  @override
-  void call(FutureOr<T> response) {
+/// an `extension` that allows to seamlessly run a comprehensive set of tests
+/// for `Runner`
+extension RunnerTesterX<T> on Runner<T> {
+  /// run `test` providing a `description` and an `example` function
+  void tester({
+    required String description,
+    required T Function() example,
+  }) {
     group(description, () {
       final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
       final errorStub = unaryStub<void, Error>()..stub = (_) {};
@@ -76,14 +72,12 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
         );
       });
 
-      test('WHEN `void Function()` does not fail `Result` is `Success`',
-          () async {
-        final data = await response;
+      test('WHEN `void Function()` does not fail `Result` is `Success`', () {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
 
-        delegate.stub = () => data;
+        delegate.stub = example;
 
         final result = runner();
 
@@ -148,7 +142,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
         );
         ;
       });
-      test('WHEN `AvowError` is thwon THEN gets handled', () async {
+      test('WHEN `AvowError` is thwon THEN gets handled', () {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
@@ -156,7 +150,7 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
         delegate.stub = () => throw AvowError();
 
         expect(
-          await runner(),
+          runner(),
           isA<Failure>(),
           reason: '`Error` should be handled',
         );
@@ -179,15 +173,14 @@ class RunnerTest<T> implements RunnerTestDelegate<T> {
       test(
           'GIVEN `onSuccess` is not empty '
           'WHEN `Result` is `Success` '
-          'THEN `onSuccess` is called', () async {
+          'THEN `onSuccess` is called', () {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
         onSuccess.reset;
-        final data = await response;
-        delegate.stub = () => data;
+        delegate.stub = example;
 
-        await runner();
+        runner();
 
         expect(
           onSuccess.count,

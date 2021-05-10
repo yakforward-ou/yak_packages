@@ -1,47 +1,45 @@
-import 'dart:async';
-
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 
-/// a test for `UnaryRunnerAsync`
-class UnaryRunnerAsyncTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
-  /// takes the argument `description`
-  UnaryRunnerAsyncTest({
-    required this.description,
-  });
+/// a `typedef` for a `RunnerAsync``tester` function
+typedef RunnerAsyncTest<T> = void Function({
+  String description,
+  Future<T> Function() example,
+});
 
-  /// `description` is a `String`
-  /// it will be passed to the `test` when runned
-  final String description;
-
-  /// `arg` and `result` are meant for `type` matching and *must not be null*
-  /// `result` can be anything if `T` is void
-  @override
-  void call(FutureOr<T> response, FutureOr<S> arg) {
+/// an `extension` that allows to seamlessly run a comprehensive set of tests
+/// for `RunnerAsync`
+extension RunnerAsyncTesterX<T> on RunnerAsync<T> {
+  /// run `test` providing a `description` and an `example` function
+  void tester({
+    required String description,
+    required Future<T> Function() example,
+  }) {
     group(description, () {
       final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
       final errorStub = unaryStub<void, Error>()..stub = (_) {};
       final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
-      final delegate = unaryStub<Future<T>, FutureOr<S>>();
       final onSuccess = unaryStub<void, T>()..stub = (_) {};
+      final delegate = nullaryStub<Future<T>>();
 
-      final runner = UnaryRunnerAsync<T, S>(
+      final runner = RunnerAsync<T>(
         delegate.wrap,
         errorReport: reportStub.wrap,
         errorHandlers: {errorHandler},
         onSuccess: [onSuccess.wrap],
       );
 
-      test('WHEN `void Function(T)` throws THEN `Result` is `Failure`',
+      test('WHEN `void Function()` throws THEN `Result` is `Failure`',
           () async {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
-        delegate.stub = (_) => throw Exception();
 
-        final result = await runner(arg);
+        delegate.stub = () => throw Exception();
+
+        final result = await runner();
 
         expect(
           result,
@@ -79,12 +77,11 @@ class UnaryRunnerAsyncTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           () async {
         delegate.reset;
         reportStub.reset;
-
         errorStub.reset;
-        final res = await response;
-        delegate.stub = (_) async => await res;
 
-        final result = await runner(arg);
+        delegate.stub = example;
+
+        final result = await runner();
 
         expect(
           result,
@@ -117,32 +114,17 @@ class UnaryRunnerAsyncTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`errorHandler` should NOT be called',
         );
       });
+
       test('WHEN `ERROR` is thwon THEN runner fails', () async {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
 
-        delegate.stub = (_) => throw Error();
-
-        /// see issue `iapicca/yak_packages/issues/89`
-        // expect(
-        //   runner.call,
-        //   throwsA(isA<Error>()),
-        //   reason: '`Error` should NOT be handled',
-        // );
-
-        Error? err;
-
-        try {
-          await runner(arg);
-          // ignore: avoid_catching_errors
-        } on Error catch (e) {
-          err = e;
-        }
+        delegate.stub = () => throw Error();
 
         expect(
-          err != null,
-          true,
+          runner.call,
+          throwsA(isA<Error>()),
           reason: '`Error` should NOT be handled',
         );
         expect(
@@ -160,19 +142,17 @@ class UnaryRunnerAsyncTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           0,
           reason: '`errorHandler` should NOT be called',
         );
+        ;
       });
-
       test('WHEN `AvowError` is thwon THEN gets handled', () async {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
 
-        final data = await arg;
-
-        delegate.stub = (_) => throw AvowError();
+        delegate.stub = () => throw AvowError();
 
         expect(
-          await runner(data),
+          await runner(),
           isA<Failure>(),
           reason: '`Error` should be handled',
         );
@@ -200,10 +180,9 @@ class UnaryRunnerAsyncTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
         reportStub.reset;
         errorStub.reset;
         onSuccess.reset;
+        delegate.stub = example;
 
-        delegate.stub = (_) async => response;
-
-        await runner(arg);
+        await runner();
 
         expect(
           onSuccess.count,

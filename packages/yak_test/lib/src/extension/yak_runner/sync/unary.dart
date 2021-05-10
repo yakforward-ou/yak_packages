@@ -1,50 +1,47 @@
-import 'dart:async';
-
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 
-/// a test for `UnaryRunner`
-class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
-  /// takes the argument `description`
+/// a `typedef` for a `UnaryRunner``tester` function
+typedef UnaryRunnerTest<T, S> = void Function({
+  String description,
+  T Function(S) example,
+  S argument,
+});
 
-  UnaryRunnerTest({
-    required this.description,
-  });
+/// an `extension` that allows to seamlessly run a comprehensive set of tests
+/// for `UnaryRunner`
+extension UnaryRunnerTesterX<T, S> on UnaryRunner<T, S> {
+  /// run `test` providing a `description`, an `example` function
+  /// and an example `argument`
+  void tester({
+    required String description,
+    required T Function(S) example,
+    required S argument,
+  }) {
+    final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
+    final errorStub = unaryStub<void, Error>()..stub = (_) {};
+    final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
+    final onSuccess = unaryStub<void, T>()..stub = (_) {};
+    final delegate = unaryStub<T, S>();
 
-  /// `description` is a `String`
-  /// it will be passed to the `test` when runned
-  final String description;
+    final runner = UnaryRunner<T, S>(
+      delegate.wrap,
+      errorReport: reportStub.wrap,
+      errorHandlers: {errorHandler},
+      onSuccess: [onSuccess.wrap],
+    );
 
-  /// `arg` and `result` are meant for `type` matching and *must not be null*
-  /// `result` can be anything if `T` is void
-  @override
-  void call(FutureOr<T> response, FutureOr<S> arg) {
     group(description, () {
-      final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
-      final errorStub = unaryStub<void, Error>()..stub = (_) {};
-      final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
-      final onSuccess = unaryStub<void, T>()..stub = (_) {};
-      final delegate = unaryStub<T, S>();
-
-      final runner = UnaryRunner<T, S>(
-        delegate.wrap,
-        errorReport: reportStub.wrap,
-        errorHandlers: {errorHandler},
-        onSuccess: [onSuccess.wrap],
-      );
-
-      test('WHEN `void Function(T)` throws THEN `Result` is `Failure`',
-          () async {
+      test('WHEN `void Function(T)` throws THEN `Result` is `Failure`', () {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
 
         delegate.stub = (_) => throw Exception();
 
-        final data = await arg;
-        final result = runner(data);
+        final result = runner(argument);
 
         expect(
           result,
@@ -78,18 +75,14 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
         );
       });
 
-      test('WHEN `void Function()` does not fail `Result` is `Success`',
-          () async {
+      test('WHEN `void Function()` does not fail `Result` is `Success`', () {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
 
-        final res = await response;
-        final data = await arg;
+        delegate.stub = example;
 
-        delegate.stub = (_) => res;
-
-        final result = runner(data);
+        final result = runner(argument);
 
         expect(
           result,
@@ -122,33 +115,16 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`errorHandler` should NOT be called',
         );
       });
-      test('WHEN `ERROR` is thwon THEN runner fails', () async {
+      test('WHEN `ERROR` is thwon THEN runner fails', () {
         delegate.reset;
         reportStub.reset;
 
         errorStub.reset;
         delegate.stub = (_) => throw Error();
-        delegate.stub = (_) => throw Error();
-
-        /// see issue `iapicca/yak_packages/issues/89`
-        // expect(
-        //   runner.call,
-        //   throwsA(isA<Error>()),
-        //   reason: '`Error` should NOT be handled',
-        // );
-
-        Error? err;
-
-        try {
-          await runner(await arg);
-          // ignore: avoid_catching_errors
-        } on Error catch (e) {
-          err = e;
-        }
 
         expect(
-          err != null,
-          true,
+          () => runner(argument),
+          throwsA(isA<Error>()),
           reason: '`Error` should NOT be handled',
         );
         expect(
@@ -167,16 +143,15 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
           reason: '`errorHandler` should NOT be called',
         );
       });
-      test('WHEN `AvowError` is thwon THEN gets handled', () async {
+      test('WHEN `AvowError` is thwon THEN gets handled', () {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
-        final data = await arg;
 
         delegate.stub = (_) => throw AvowError();
 
         expect(
-          await runner(data),
+          runner(argument),
           isA<Failure>(),
           reason: '`Error` should be handled',
         );
@@ -199,16 +174,15 @@ class UnaryRunnerTest<T, S> implements UnaryRunnerTestDelegate<T, S> {
       test(
           'GIVEN `onSuccess` is not empty '
           'WHEN `Result` is `Success` '
-          'THEN `onSuccess` is called', () async {
+          'THEN `onSuccess` is called', () {
         delegate.reset;
         reportStub.reset;
         errorStub.reset;
         onSuccess.reset;
-        final data = await response;
-        delegate.stub = (i) => data;
 
-        await runner(await arg);
+        delegate.stub = example;
 
+        runner(argument);
         expect(
           onSuccess.count,
           1,
