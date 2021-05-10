@@ -9,7 +9,6 @@ import '../../../yak_runner.dart';
 /// and returns `Future<Result<T>> Function()`
 /// on `Exception` invokes `errorHandler` if not null
 class RunnerAsync<T> extends RunnerBase<T>
-    with RunnerTestMixin<T>
     implements NullaryDelegate<Future<Result<T>>> {
   /// takes as argument `fun` and `errorHandler`
   const RunnerAsync(

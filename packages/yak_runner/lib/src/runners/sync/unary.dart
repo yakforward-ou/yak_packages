@@ -9,7 +9,6 @@ import '../../../yak_runner.dart';
 /// and returns `Result<T> Function(S)`
 /// on `Exception` invokes `errorHandler` if not null
 class UnaryRunner<T, S> extends RunnerBase<T>
-    with UnaryRunnerTestMixin<T, S>
     implements UnaryDelegate<Result<T>, S> {
   /// takes as argument `fun` and `errorHandler`
   /// unlike

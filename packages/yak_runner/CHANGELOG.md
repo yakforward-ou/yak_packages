@@ -1,7 +1,6 @@
-# 0.4.0+3
+# 0.4.0+4
+- removed `buildTest` mixin
 - add custom json runner
-
-# 0.4.0+2
 - breaking change on `errorReport` and `errorHandlers`
 - roll back `test` version `yak_packages/issues/111`
 

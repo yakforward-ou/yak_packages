@@ -1,8 +1,11 @@
-# 0.4.0+2
+# 0.5.0
+- complete rework
+
+# 0.4.0
 - implementing changes for `yak_runner` version `0.4.0`
 - rollback `test` version `yak_packages/issues/111`
 
-# 0.3.1+2
+# 0.3.1
 - updated test for `onSuccess` callback
 - bump `stub` and `test` version
 - update test
