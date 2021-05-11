@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:yak_tween/yak_tween.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:yak_tween/yak_tween.dart';
 
 void main() {
   group('`ReverseYakTweenX` test', () {

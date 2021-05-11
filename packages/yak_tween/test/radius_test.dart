@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yak_tween/yak_tween.dart';
-import 'package:yak_utils/yak_utils.dart';
 
 void main() {
   final a = Radius.circular(42);

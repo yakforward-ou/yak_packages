@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'tween.dart';
+import '../../yak_tween.dart';
 
 /// an `ConstantTween` that allows `const` constructor
 class YakConstantTween<T> extends YakTween<T> {

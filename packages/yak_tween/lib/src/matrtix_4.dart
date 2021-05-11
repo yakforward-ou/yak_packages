@@ -1,5 +1,4 @@
 import 'package:vector_math/vector_math_64.dart';
-import 'package:flutter/rendering.dart';
 import 'tween.dart';
 
 /// an `Matrix4Tween` that allows `const` constructor

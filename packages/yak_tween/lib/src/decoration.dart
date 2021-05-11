@@ -1,5 +1,5 @@
 import 'package:flutter/painting.dart';
-import 'tween.dart';
+import '../../yak_tween.dart';
 // ignore_for_file: invalid_use_of_protected_member
 
 /// an `DecorationTween` that allows `const` constructor
