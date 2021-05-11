@@ -1,16 +1,6 @@
 import 'package:test/test.dart';
 import 'package:yak_utils/yak_utils.dart';
 
-// /// see `sky_engine/lib/ui/lerp.dart`
-// int clampInt(int value, int min, int max) {
-//   assert(min <= max);
-//   return value < min
-//       ? min
-//       : value > max
-//           ? max
-//           : value;
-// }
-
 void main() {
   const min = 2;
   const max = 13;

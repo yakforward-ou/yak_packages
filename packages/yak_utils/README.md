@@ -8,6 +8,22 @@
 # yak_utils
 
 a collection of useful `functions`, `extensions` and more for your `flutter` an `dart` projects
+
+
+#### extension
+
+- on `double`
+  - `roundToPrecision`
+
+- on `Iterable`
+  - `emptyOnNull`
+
+#### functions
+
+- `clampInt`
+- `lerpInt`
+- `lerpNNDouble`
+
 ---
 
 ### Get Started

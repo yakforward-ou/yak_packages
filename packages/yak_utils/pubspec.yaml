@@ -1,6 +1,6 @@
 name: yak_utils
 description: replicas of flutter `non-null-only` with `const` constructor
-version: 0.1.0+0
+version: 0.1.0+1
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
