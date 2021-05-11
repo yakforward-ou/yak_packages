@@ -5,6 +5,17 @@ import '../../yak_widgets.dart';
 
 /// a widget that provides a `loading screen`
 class Initializer extends StatelessWidget {
+  /// allows a `const` constuctor
+  const Initializer({
+    required this.loadingScreen,
+    required this.progressState,
+    required this.onCompleted,
+    required this.onFailed,
+    Key key = const ValueKey('Initializer'),
+  }) :
+        // coverage:ignore-line
+        super(key: key);
+
   /// requires a `loadingScreen`
   final FractionalIndexItemBuilder loadingScreen;
 
@@ -16,17 +27,6 @@ class Initializer extends StatelessWidget {
 
   /// provides the screen when loading has failed
   final WidgetBuilder onFailed;
-
-  /// `Initializer`
-  Initializer({
-    required this.loadingScreen,
-    required this.progressState,
-    required this.onCompleted,
-    required this.onFailed,
-    Key key = const ValueKey('Initializer'),
-  }) :
-        // coverage:ignore-line
-        super(key: key);
 
   @override
   Widget build(BuildContext context) {

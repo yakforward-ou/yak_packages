@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:yak_widgets/yak_widgets.dart';
 
-// !! uncomment the line below to run as test app
-//void main() => runApp(app);
-
 class Keys {
   static const subject = ValueKey('subject');
   static const parent = ValueKey('parent');
