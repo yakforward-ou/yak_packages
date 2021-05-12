@@ -1,6 +1,6 @@
 import 'dart:ui' as ui show lerpDouble;
 import 'package:flutter/material.dart';
-import '../../yak_tween.dart';
+import '../yak_tween.dart';
 
 /// an `TextStyleTween` that allows `const` constructor
 class YakTextStyleTween extends YakTween<TextStyle> {

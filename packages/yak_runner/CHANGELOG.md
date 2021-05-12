@@ -1,4 +1,5 @@
 # 0.4.0+4
+- fix analysis
 - removed `buildTest` mixin
 - add custom json runner
 - breaking change on `errorReport` and `errorHandlers`

@@ -1,4 +1,4 @@
-import 'tween.dart';
+import '../yak_tween.dart';
 
 /// an `IntTween` that allows `const` constructor
 class YakIntTween extends YakTween<int> {
