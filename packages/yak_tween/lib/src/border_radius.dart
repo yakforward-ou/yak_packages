@@ -1,5 +1,5 @@
 import 'package:flutter/painting.dart';
-import '../../yak_tween.dart';
+import '../yak_tween.dart';
 
 /// an `BorderRadiusTween` that allows `const` constructor
 
