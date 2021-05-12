@@ -29,11 +29,25 @@ void main() {
       );
     });
 
-    test('WHEN `transform` THEN output `lerp', () {
+    test('GIVEN t = 0' 'WHEN `transform` THEN output `begin', () {
       expect(
-        object.lerp(lerp),
         object.transform(lerp),
-        reason: '`transform` and `lerp` should have the same output',
+        arguments[0],
+        reason: 'should return begin',
+      );
+    });
+    test('GIVEN t = 1' 'WHEN `transform` THEN output `end', () {
+      expect(
+        object.transform(lerp),
+        arguments[1],
+        reason: 'should return end',
+      );
+    });
+    test('GIVEN 0 < t < 1' 'WHEN `transform` THEN output `lerp', () {
+      expect(
+        object.transform(lerp),
+        object.lerp(lerp),
+        reason: 'should return lerp',
       );
     });
   });
