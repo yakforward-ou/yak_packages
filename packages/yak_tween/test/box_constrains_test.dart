@@ -6,7 +6,7 @@ import 'package:yak_tween/yak_tween.dart';
 
 void main() {
   group('`YakBoxConstraintsTween` test', () {
-    const lerp = 1 / 3;
+    const t = 1 / 3;
 
     const begin = BoxConstraints(
       maxHeight: 200,
@@ -27,114 +27,104 @@ void main() {
       const yakTween = YakBoxConstraintsTween(begin: begin, end: end);
       final tween = BoxConstraintsTween(begin: begin, end: end);
       expect(
-        yakTween.lerp(lerp),
-        tween.lerp(lerp),
+        yakTween.lerp(t),
+        tween.lerp(t),
         reason: '`YakBoxConstraintsTween` & `BoxConstraintsTween` '
             'lerp the same output',
       );
     });
-
     test(
         'WHEN  both `begin` || `end` `minWidth` is `double.infinity`'
         'THEN assertion is thrown', () {
-      const _end = BoxConstraints(
-        maxHeight: 400,
-        maxWidth: 400,
-        minHeight: 200,
-        minWidth: double.infinity,
+      final beginInfinity = YakBoxConstraintsTween(
+        begin: begin,
+        end: end.copyWith(minWidth: double.infinity),
       );
-      const yakTween = YakBoxConstraintsTween(begin: begin, end: _end);
-
-      late final AssertionError? err;
-
-      try {
-        yakTween.lerp(lerp);
-      } on AssertionError catch (e) {
-        err = e;
-      }
+      final endInfinity = YakBoxConstraintsTween(
+        begin: begin.copyWith(minWidth: double.infinity),
+        end: end,
+      );
 
       expect(
-        err != null,
-        true,
-        reason: '`AssertionError` should be thrown',
+        () => beginInfinity.lerp(t),
+        throwsA(isA<AssertionError>()),
+        reason: 'should thrown `AssertionError`',
+      );
+      expect(
+        () => endInfinity.lerp(t),
+        throwsA(isA<AssertionError>()),
+        reason: 'should thrown `AssertionError`',
       );
     });
 
     test(
         'WHEN  both `begin` || `end` `minHeight` is `double.infinity`'
         'THEN assertion is thrown', () {
-      const _end = BoxConstraints(
-        maxHeight: 400,
-        maxWidth: 400,
-        minHeight: double.infinity,
-        minWidth: 200,
+      final beginInfinity = YakBoxConstraintsTween(
+        begin: begin,
+        end: end.copyWith(minHeight: double.infinity),
       );
-      const yakTween = YakBoxConstraintsTween(begin: begin, end: _end);
-
-      late final AssertionError? err;
-
-      try {
-        yakTween.lerp(lerp);
-      } on AssertionError catch (e) {
-        err = e;
-      }
-
+      final endInfinity = YakBoxConstraintsTween(
+        begin: begin.copyWith(minHeight: double.infinity),
+        end: end,
+      );
       expect(
-        err != null,
-        true,
-        reason: '`AssertionError` should be thrown',
+        () => beginInfinity.lerp(t),
+        throwsA(isA<AssertionError>()),
+        reason: 'should thrown `AssertionError`',
+      );
+      expect(
+        () => endInfinity.lerp(t),
+        throwsA(isA<AssertionError>()),
+        reason: 'should thrown `AssertionError`',
       );
     });
 
     test(
         'WHEN  both `begin` || `end` `maxWidth` is `double.infinity`'
         'THEN assertion is thrown', () {
-      const _end = BoxConstraints(
-        maxHeight: 400,
-        maxWidth: double.infinity,
-        minHeight: 200,
-        minWidth: 200,
+      final beginInfinity = YakBoxConstraintsTween(
+        begin: begin,
+        end: end.copyWith(maxWidth: double.infinity),
       );
-      const yakTween = YakBoxConstraintsTween(begin: begin, end: _end);
-
-      late final AssertionError? err;
-
-      try {
-        yakTween.lerp(lerp);
-      } on AssertionError catch (e) {
-        err = e;
-      }
+      final endInfinity = YakBoxConstraintsTween(
+        begin: begin.copyWith(maxWidth: double.infinity),
+        end: end,
+      );
 
       expect(
-        err != null,
-        true,
-        reason: '`AssertionError` should be thrown',
+        () => beginInfinity.lerp(t),
+        throwsA(isA<AssertionError>()),
+        reason: 'should thrown `AssertionError`',
+      );
+      expect(
+        () => endInfinity.lerp(t),
+        throwsA(isA<AssertionError>()),
+        reason: 'should thrown `AssertionError`',
       );
     });
 
     test(
         'WHEN  both `begin` || `end` `maxHeight` is `double.infinity`'
         'THEN assertion is thrown', () {
-      const _end = BoxConstraints(
-        maxHeight: double.infinity,
-        maxWidth: 400,
-        minHeight: 200,
-        minWidth: 200,
+      final beginInfinity = YakBoxConstraintsTween(
+        begin: begin,
+        end: end.copyWith(maxHeight: double.infinity),
       );
-      const yakTween = YakBoxConstraintsTween(begin: begin, end: _end);
-
-      late final AssertionError? err;
-
-      try {
-        yakTween.lerp(lerp);
-      } on AssertionError catch (e) {
-        err = e;
-      }
+      final endInfinity = YakBoxConstraintsTween(
+        begin: begin.copyWith(maxHeight: double.infinity),
+        end: end,
+      );
 
       expect(
-        err != null,
-        true,
-        reason: '`AssertionError` should be thrown',
+        () => beginInfinity.lerp(t),
+        throwsA(isA<AssertionError>()),
+        reason: 'should thrown `AssertionError`',
+      );
+      expect(
+        () => endInfinity.lerp(t),
+        throwsA(isA<AssertionError>()),
+        reason: 'should thrown `AssertionError`',
       );
     });
   });

@@ -8,13 +8,13 @@ void main() {
   group('`YakTween` test', () {
     const arguments = [1.0, 2.0];
     final object = YakTween<double>(begin: arguments[0], end: arguments[1]);
-    const lerp = 1 / 3;
+    const t = 1 / 3;
 
     test('WHEN `YakTween` and `Tween` lerp THEN output is identical', () {
       final tween = Tween<double>(begin: arguments[0], end: arguments[1]);
       expect(
-        object.lerp(lerp),
-        tween.lerp(lerp),
+        object.lerp(t),
+        tween.lerp(t),
         reason: '`YakTween<double>` & `Tween` lerp the same output',
       );
     });
@@ -28,12 +28,25 @@ void main() {
         reason: '`toString` output must be predictable',
       );
     });
-
-    test('WHEN `transform` THEN output `lerp', () {
+    test('GIVEN t = 0' 'WHEN `transform` THEN output `begin', () {
       expect(
-        object.lerp(lerp),
-        object.transform(lerp),
-        reason: '`transform` and `lerp` should have the same output',
+        object.transform(0),
+        arguments[0],
+        reason: 'should return begin',
+      );
+    });
+    test('GIVEN t = 1' 'WHEN `transform` THEN output `end', () {
+      expect(
+        object.transform(1),
+        arguments[1],
+        reason: 'should return end',
+      );
+    });
+    test('GIVEN 0 < t < 1' 'WHEN `transform` THEN output `lerp', () {
+      expect(
+        object.transform(t),
+        object.lerp(t),
+        reason: 'should return lerp',
       );
     });
   });
