@@ -1,4 +1,5 @@
-# 0.4.0+4
+# 0.4.0+5
+- fix analysis
 - breaking change: removed 3rd party dependencies
 - added `FocusedIndexList`
 - added `initializer`
