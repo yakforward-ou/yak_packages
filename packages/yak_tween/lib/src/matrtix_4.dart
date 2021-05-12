@@ -1,5 +1,5 @@
 import 'package:vector_math/vector_math_64.dart';
-import 'tween.dart';
+import '../yak_tween.dart';
 
 /// an `Matrix4Tween` that allows `const` constructor
 class YakMatrix4Tween extends YakTween<Matrix4> {
