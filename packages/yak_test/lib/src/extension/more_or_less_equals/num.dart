@@ -7,7 +7,7 @@ extension MoreOrLessEqualsMaybeIntX on num? {
     num d, {
     double epsilon = precisionErrorTolerance,
   }) {
-    return this == null ? false : moreOrLessEquals(d, epsilon: epsilon);
+    return this == null ? false : this!.moreOrLessEquals(d, epsilon: epsilon);
   }
 }
 
