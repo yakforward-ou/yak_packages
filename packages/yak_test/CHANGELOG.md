@@ -1,4 +1,7 @@
-# 0.5.0+0
+# 0.5.1+0
+- added `moreOrLessEquals`
+
+# 0.5.0
 - complete rework
 
 # 0.4.0
