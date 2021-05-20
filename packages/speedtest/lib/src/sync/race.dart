@@ -1,5 +1,6 @@
 import 'dart:async';
 
+/// a function for `race` test targeting an `sync` function
 Future<int?> race({
   required void Function() subject,
   required Duration duration,

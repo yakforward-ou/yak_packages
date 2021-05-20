@@ -1,6 +1,6 @@
+import 'package:speedtest/speedtest.dart';
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
-import 'package:speedtest/speedtest.dart';
 
 void main() {
   final stub = nullaryStub<void>();

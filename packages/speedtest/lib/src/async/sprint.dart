@@ -1,5 +1,6 @@
 import 'dart:async';
 
+/// a function for `sprint` test targeting an `async` function
 Future<Duration?> sprintAsync({
   required Future<void> Function() subject,
   required int laps,
