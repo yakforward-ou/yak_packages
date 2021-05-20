@@ -86,3 +86,4 @@ web/
 .packages
 .lcov
 .lock
+.fvm/flutter_sdk
