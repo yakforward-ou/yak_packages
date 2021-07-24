@@ -1,4 +1,4 @@
-# 0.4.0+3
+# 0.4.0+4
 - added `ErrorReport`
 - major rework
 - several breaking changes
