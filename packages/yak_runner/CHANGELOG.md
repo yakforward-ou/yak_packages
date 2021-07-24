@@ -1,9 +1,10 @@
-# 0.4.0+4
+# 0.4.0+5
 - fix analysis
 - removed `buildTest` mixin
 - add custom json runner
 - breaking change on `errorReport` and `errorHandlers`
-- roll back `test` version `yak_packages/issues/111`
+- versions up-to-date
+
 
 # 0.3.1
 - added `extension` family `RunnerAppendX`

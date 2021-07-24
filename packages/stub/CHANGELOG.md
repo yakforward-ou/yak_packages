@@ -1,6 +1,6 @@
-# 0.3.0+2
+# 0.3.0+3
 - complete rework with breaking changes
-- bump dependencies
+- versions up-to-date
 
 # 0.2.1
 - unary stub
