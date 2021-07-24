@@ -1,5 +1,7 @@
 import 'package:yak_error_handler/yak_error_handler.dart';
 
+/// TODO replaced by yak_error_handler
+
 /// theis class circumvent the `contravariant` behavior of `HandleErrorX`
 /// incapsulating it with `covariant` behavior
 class ErrorHandler<T extends Error> {

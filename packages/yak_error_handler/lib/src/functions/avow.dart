@@ -1,4 +1,4 @@
-import '../../yak_error_handler.dart';
+import '../all.dart';
 
 /// a function that recreate the behavior of `assert` pre-nnbd
 /// the positionl `bool` is necessary to replicated `assert`

@@ -1,4 +1,4 @@
-import '../../yak_error_handler.dart';
+import '../all.dart';
 
 /// an extension on `HandleError`
 extension HandleErrorX<T extends Error> on HandleError<T> {

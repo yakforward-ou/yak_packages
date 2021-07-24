@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
+/// TODO replaced by yak_error_handler
 void main() {
   group('`ErrorHandlerX`', () {
     test(

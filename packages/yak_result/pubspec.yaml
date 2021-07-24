@@ -1,0 +1,13 @@
+name: stub
+description: a lightweight dart micro-package to help you handle functions results 
+version: 0.3.0+3
+homepage: https://github.com/iapicca/yak_packages
+environment:
+  sdk: '>=2.13.0 <3.0.0'
+
+dependencies:
+  meta: ^1.7.0
+
+dev_dependencies:
+  test: ^1.17.10
+  effective_dart: ^1.3.2
