@@ -1,5 +1,3 @@
-export 'counter.dart';
-export 'method.dart';
-export 'nullary.dart';
-export 'unary.dart';
-export 'wrap.dart';
+export 'classes/all.dart';
+export 'extensions/all.dart';
+export 'typedef/all.dart';
