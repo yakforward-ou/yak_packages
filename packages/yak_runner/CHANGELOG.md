@@ -1,3 +1,6 @@
+# 0.4.1+0
+- moved `ErrorHandler` to `yak_error_handler`
+
 # 0.4.0+5
 - fix analysis
 - removed `buildTest` mixin

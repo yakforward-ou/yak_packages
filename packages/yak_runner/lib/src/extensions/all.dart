@@ -1,5 +1,4 @@
 export 'custom/all.dart';
-export 'error/all.dart';
 export 'failure/all.dart';
 export 'function/all.dart';
 export 'iterable/all.dart';
