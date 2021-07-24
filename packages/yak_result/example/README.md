@@ -1,3 +1,3 @@
 # Example
 
-you may directly refer at the package tests for a comprehensive example
+you may directly refer at the package yak_runner for a comprehensive example
