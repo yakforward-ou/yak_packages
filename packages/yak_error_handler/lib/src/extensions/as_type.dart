@@ -1,4 +1,4 @@
-import '../../yak_error_handler.dart';
+import '../all.dart';
 
 /// extension on `Object?`
 extension AsTypeX<S extends Object?> on S {

@@ -1,4 +1,4 @@
-import '../../yak_error_handler.dart';
+import '../all.dart';
 
 /// an extension on `Error`
 extension ErrorReportX<T extends Error> on T {

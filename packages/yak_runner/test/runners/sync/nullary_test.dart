@@ -178,7 +178,7 @@ void main() {
       );
     });
     test(
-        'GIVEN `ErrorHandler<T>` `eport: true` '
+        'GIVEN `ErrorHandler<T>` `report: true` '
         'WHEN Function throws `T` '
         'THEN `errorReport` is called', () {
       delegate.reset;
