@@ -1,5 +1,7 @@
-# 0.5.1+0
+# 0.5.1+1
 - added `moreOrLessEquals`
+- versions up-to-date
+
 
 # 0.5.0
 - complete rework

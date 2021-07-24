@@ -1,8 +1,9 @@
-# 0.4.0+6
+# 0.4.0+7
 - fix analysis
 - breaking change: removed 3rd party dependencies
 - added `FocusedIndexList`
-- added `initializer`
+- added `initializer
+- versions up-to-date
 
 # 0.3.0
 - breaking change: naming scheme
