@@ -1,3 +1,5 @@
+import 'package:yak_result/yak_result.dart';
+
 import '../../all.dart';
 
 /// an extension on `Iterable` to easily access the result

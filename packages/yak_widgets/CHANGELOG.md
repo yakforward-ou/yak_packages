@@ -1,8 +1,9 @@
-# 0.4.0+7
+# 0.4.0+8
 - fix analysis
 - breaking change: removed 3rd party dependencies
 - added `FocusedIndexList`
 - added `initializer
+- removed `yak_runner` in favor of `yak_result`
 - versions up-to-date
 
 # 0.3.0

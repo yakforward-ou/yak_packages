@@ -1,10 +1,13 @@
+# 0.4.1+1
+- moved `ErrorHandler` to `yak_error_handler`
+- moved `Result` to `yak_reason`
+
 # 0.4.0+5
 - fix analysis
 - removed `buildTest` mixin
 - add custom json runner
 - breaking change on `errorReport` and `errorHandlers`
 - versions up-to-date
-
 
 # 0.3.1
 - added `extension` family `RunnerAppendX`

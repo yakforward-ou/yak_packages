@@ -1,4 +1,6 @@
-import '../../../../yak_runner.dart';
+import 'package:yak_result/yak_result.dart';
+
+import '../../../all.dart';
 
 /// tries to decode a `String`
 extension MapSafelyDecodeX on String {

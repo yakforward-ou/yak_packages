@@ -16,7 +16,7 @@ void main() {
       }
 
       expect(
-        report.message,
+        report.report,
         isA<Error>(),
         reason: 'report message should be an `Error`',
       );

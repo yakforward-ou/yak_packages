@@ -1,4 +1,6 @@
-import '../../../../yak_runner.dart';
+import 'package:yak_result/yak_result.dart';
+
+import '../../../all.dart';
 
 /// tries to encode to json a ` Map<String, Object?>`
 extension MapSafelyEncodeX on Map<String, Object?> {

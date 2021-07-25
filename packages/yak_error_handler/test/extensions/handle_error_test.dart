@@ -29,7 +29,7 @@ void main() {
       try {
         avow(false);
       } on Error catch (e) {
-        handler.stub.handle(e);
+        handler.wrap.handle(e);
       }
 
       expect(handler.count, 1, reason: 'handler should be called');
@@ -44,7 +44,7 @@ void main() {
       try {
         assert(false);
       } on Error catch (e) {
-        err = handler.stub.handle(e);
+        err = handler.wrap.handle(e);
       }
 
       expect(err != null, false, reason: 'should  be null');
@@ -58,7 +58,7 @@ void main() {
       try {
         assert(false);
       } on Error catch (e) {
-        handler.stub.handle(e);
+        handler.wrap.handle(e);
       }
 
       expect(handler.count, 0, reason: 'handler should not be called');
