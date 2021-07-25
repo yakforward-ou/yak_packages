@@ -1,6 +1,6 @@
 name: yak_widgets
 description: simply a collection of widgets nothing fancy, but well tested
-version: 0.4.0+7
+version: 0.4.0+8
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
@@ -9,8 +9,8 @@ environment:
 dependencies: 
   flutter:
     sdk: flutter
-  yak_runner: ^0.4.0
-  yak_error_handler: ^0.4.0
+  yak_result: ^0.1.0
+  yak_error_handler: ^0.4.1
 
 dev_dependencies:
   flutter_test:
