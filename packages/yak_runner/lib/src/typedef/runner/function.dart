@@ -1,6 +1,5 @@
 import 'dart:async';
-
-import '../../../yak_runner.dart';
+import 'package:yak_result/yak_result.dart';
 
 /// a typedef for a `Runner`
 typedef RunnerFunction<T> = Result<T> Function();

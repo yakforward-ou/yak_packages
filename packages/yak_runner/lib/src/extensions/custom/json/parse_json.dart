@@ -1,4 +1,6 @@
-import '../../../../yak_runner.dart';
+import 'package:yak_result/yak_result.dart';
+
+import '../../../all.dart';
 
 /// an extension that returns a `Result<T>` from a `json`
 extension ParseAsJsonX on Map<String, Object?> {

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
+import 'package:yak_result/yak_result.dart';
 
 import '../../../mocks/all.dart';
 
