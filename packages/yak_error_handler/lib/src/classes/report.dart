@@ -5,12 +5,12 @@
 class ErrorReport extends Error implements Exception {
   /// the argument are meant to mirror the output of
   /// `on Exception catch (e,s) {}`
-  final Object? message;
+  final Object? report;
   final StackTrace? stackTrace;
 
   /// the constructor cannot be constant
   ErrorReport({
-    this.message,
+    this.report,
     this.stackTrace,
   });
 }

@@ -1,5 +1,6 @@
-# 0.4.1+1
+# 0.4.1+2
 - moved `ErrorHandler` from `yak_runner`
+- breaking change in `ErrorReport`
 
 # 0.4.0+4
 - added `ErrorReport`
