@@ -1,7 +1,7 @@
-# 0.5.1+1
+# 0.5.1+2
 - added `moreOrLessEquals`
+- updates for `yak_result`
 - versions up-to-date
-
 
 # 0.5.0
 - complete rework
