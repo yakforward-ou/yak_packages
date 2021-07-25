@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:stub/stub.dart';
+import 'package:test/test.dart';
 
 import 'package:yak_error_handler/yak_error_handler.dart';
 // ignore_for_file: avoid_catching_errors
