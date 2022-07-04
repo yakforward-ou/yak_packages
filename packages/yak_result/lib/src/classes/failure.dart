@@ -1,16 +1,25 @@
 import '../all.dart';
 
 /// represent a failure of a function
-class Failure<T> implements Result<T> {
+class Failure<T> extends Error implements Result<T> {
   /// has a const constructor
-  const Failure({this.reason, this.stackTrace, this.message});
+  Failure({this.reason, this.stackTrace});
 
   /// may hold an `object`
   final Object? reason;
 
   /// may hold an `stackTrace`
+  @override
   final StackTrace? stackTrace;
 
-  /// may hold an `objmessageect`
-  final String? message;
+  @override
+  bool operator ==(Object other) => hashCode == other.hashCode;
+
+  @override
+  int get hashCode => Object.hashAll([runtimeType, reason, stackTrace]);
+
+  @override
+  String toString() => reason == null
+      ? '$runtimeType'
+      : '$runtimeType: ${Error.safeToString(reason)}';
 }

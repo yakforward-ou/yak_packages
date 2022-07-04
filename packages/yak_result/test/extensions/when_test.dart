@@ -37,11 +37,11 @@ void main() {
     });
 
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () {
-      result.reset;
       onSuccess.reset;
       onFailure.reset;
-
-      result..stub = () => const Failure();
+      result
+        ..reset
+        ..stub = () => Failure();
 
       expect(
         result.wrap().when(success: onSuccess.wrap, failure: onFailure.wrap),
@@ -71,11 +71,11 @@ void main() {
     final onFailure = unaryStub<int, Failure<String>>()..stub = (f) => fail;
 
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
-      result.reset;
       onSuccess.reset;
       onFailure.reset;
-
-      result..stub = () async => const Success(data);
+      result
+        ..reset
+        ..stub = () async => const Success(data);
 
       expect(
         await result
@@ -99,11 +99,11 @@ void main() {
     });
 
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
-      result.reset;
       onSuccess.reset;
       onFailure.reset;
-
-      result..stub = () async => const Failure();
+      result
+        ..reset
+        ..stub = () async => Failure();
 
       expect(
         await result

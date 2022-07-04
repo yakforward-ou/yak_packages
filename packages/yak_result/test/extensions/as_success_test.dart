@@ -4,7 +4,7 @@ import 'package:yak_result/yak_result.dart';
 void main() {
   group('ResultAsSuccessX', () {
     test('GIVEN Result is a Success' 'WHEN success ' 'THEN return a data', () {
-      const Result<bool> res = Success(true);
+      final res = Success(true);
 
       expect(
         res.success,
@@ -13,7 +13,7 @@ void main() {
       );
     });
     test('GIVEN Result is a Success' 'WHEN failure ' 'THEN should throw', () {
-      const Result<bool> res = Failure();
+      final res = Failure();
 
       expect(
         () => res.success,

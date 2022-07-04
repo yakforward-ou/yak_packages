@@ -7,10 +7,10 @@ void main() {
     final result = nullaryStub<Result<bool>>();
     final function = unaryStub<Result<bool>, bool>()..stub = (i) => Success(!i);
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () {
-      result.reset;
       function.reset;
-
-      result..stub = () => const Success(true);
+      result
+        ..reset
+        ..stub = () => const Success(true);
 
       expect(
         result.wrap().onResult(function.wrap),
@@ -26,11 +26,10 @@ void main() {
     });
 
     test('GIVEN ... ' 'WHEN is Failure' 'THEN function is called', () {
-      result.reset;
       function.reset;
-
-      result..stub = () => const Failure();
-
+      result
+        ..reset
+        ..stub = () => Failure();
       expect(
         result.wrap().onResult(function.wrap),
         isA<Failure<bool>>(),
@@ -49,10 +48,10 @@ void main() {
     final function = unaryStub<Future<Result<bool>>, bool>()
       ..stub = (i) async => Success(!i);
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
-      result.reset;
       function.reset;
-
-      result..stub = () => const Success(true);
+      result
+        ..reset
+        ..stub = () => const Success(true);
 
       expect(
         await result.wrap().onFutureResult(function.wrap),
@@ -68,10 +67,10 @@ void main() {
     });
 
     test('GIVEN ... ' 'WHEN is Failure' 'THEN function is called', () async {
-      result.reset;
       function.reset;
-
-      result..stub = () => const Failure();
+      result
+        ..reset
+        ..stub = () => Failure();
 
       expect(
         await result.wrap().onFutureResult(function.wrap),
