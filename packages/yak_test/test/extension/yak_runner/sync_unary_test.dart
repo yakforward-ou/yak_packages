@@ -1,39 +1,19 @@
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import 'package:yak_test/yak_test.dart';
+// ignore_for_file: prefer_function_declarations_over_variables
 
 void main() {
-  final argument = 'hello';
-  int example(String s) => s.length;
-  final runner = UnaryRunner<int, String>(example);
-  group('UnaryRunnerTesterX', () {
+  group('RunUnarySyncTestX', () {
+    final Unary<int, int> function = (i) => i * i;
     test(
+        'GIVEN RunUnarySync runner'
         'WHEN runner.tester'
-        'THEN returns `UnaryRunnerTest`', () {
+        'THEN returns `RunUnarySyncTest`', () {
       expect(
-        runner.tester,
-        isA<UnaryRunnerTest<int, String>>(),
-        reason: 'tester should output a `UnaryRunnerTest`',
-      );
-    });
-    test('WHEN runner.tester(...)' 'THEN should not throw`', () {
-      expect(
-        () => runner.tester(
-          description: 'testdrive',
-          example: example,
-          argument: argument,
-        ),
-        isNot(isA<Error>()),
-        reason: 'tester should not throw Error',
-      );
-      expect(
-        () => runner.tester(
-          description: 'testdrive',
-          example: example,
-          argument: argument,
-        ),
-        isNot(isA<Exception>()),
-        reason: 'tester should not throw Error',
+        function.run.tester,
+        isA<RunUnarySyncTest<int, int>>(),
+        reason: 'tester should output a `RunUnarySyncTest`',
       );
     });
   });
