@@ -2,9 +2,9 @@ import 'package:test/test.dart';
 import 'package:yak_utils/yak_utils.dart';
 
 void main() {
-  const _iterable = [1, 2, 3];
-  const _list = [..._iterable];
-  const _set = {..._iterable};
+  const iterable = [1, 2, 3];
+  const list = [...iterable];
+  const set = {...iterable};
 
   Iterable<int>? maybeIterable;
   List<int>? maybeList;
@@ -39,24 +39,24 @@ void main() {
         'GIVEN a Iterable<T>? '
         'WHEN the iterable is not null '
         'THEN  return a non-nullable Iterable', () {
-      maybeIterable = _iterable;
+      maybeIterable = iterable;
       expect(
         maybeIterable.emptyOnNull,
-        _iterable,
+        iterable,
         reason: 'should return an empty iterable',
       );
 
-      maybeList = _list;
+      maybeList = list;
       expect(
         maybeList.emptyOnNull,
-        _list,
+        list,
         reason: 'should return an empty list',
       );
 
-      maybeSet = _set;
+      maybeSet = set;
       expect(
         maybeSet.emptyOnNull,
-        _set,
+        set,
         reason: 'should return an empty Set',
       );
     });
