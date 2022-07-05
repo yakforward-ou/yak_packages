@@ -7,10 +7,7 @@ import '../yak_tween.dart';
 
 class YakAlignmentTween extends YakTween<Alignment> {
   /// like most `Tween`s has parameters `begin` and `end`
-  const YakAlignmentTween({
-    required Alignment begin,
-    required Alignment end,
-  }) : super(begin: begin, end: end); // coverage:ignore-line
+  const YakAlignmentTween({required super.begin, required super.end});
 
   @override
   Alignment lerp(double t) => Alignment(

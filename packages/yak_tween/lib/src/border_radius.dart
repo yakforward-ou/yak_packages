@@ -5,10 +5,7 @@ import '../yak_tween.dart';
 
 class YakBorderRadiusTween extends YakTween<BorderRadius> {
   /// like most `Tween`s has parameters `begin` and `end`
-  const YakBorderRadiusTween({
-    required BorderRadius begin,
-    required BorderRadius end,
-  }) : super(begin: begin, end: end); // coverage:ignore-line
+  const YakBorderRadiusTween({required super.begin, required super.end});
 
   @override
   BorderRadius lerp(double t) => BorderRadius.only(

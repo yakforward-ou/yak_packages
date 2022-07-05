@@ -6,10 +6,7 @@ import '../yak_tween.dart';
 /// an `EdgeInsetsTween` that allows `const` constructor
 class YakEdgeInsetsTween extends YakTween<EdgeInsets> {
   /// like most `Tween`s has parameters `begin` and `end`
-  const YakEdgeInsetsTween({
-    required EdgeInsets begin,
-    required EdgeInsets end,
-  }) : super(begin: begin, end: end); // coverage:ignore-line
+  const YakEdgeInsetsTween({required super.begin, required super.end});
 
   @override
   EdgeInsets lerp(double t) => EdgeInsets.fromLTRB(

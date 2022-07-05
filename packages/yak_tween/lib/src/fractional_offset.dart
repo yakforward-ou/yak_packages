@@ -6,10 +6,7 @@ import '../yak_tween.dart';
 /// an `FractionalOffsetTween` that allows `const` constructor
 class YakFractionalOffsetTween extends YakTween<FractionalOffset> {
   /// like most `Tween`s has parameters `begin` and `end`
-  const YakFractionalOffsetTween({
-    required FractionalOffset begin,
-    required FractionalOffset end,
-  }) : super(begin: begin, end: end); // coverage:ignore-line
+  const YakFractionalOffsetTween({required super.begin, required super.end});
 
   @override
   FractionalOffset lerp(double t) => FractionalOffset(

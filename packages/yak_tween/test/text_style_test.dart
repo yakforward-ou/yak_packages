@@ -6,16 +6,16 @@ void main() {
   group('`YakTextStyleTween` test', () {
     const begin = TextStyle(color: Color.fromRGBO(255, 0, 0, 1));
     const end = TextStyle(color: Color.fromRGBO(255, 255, 0, 1));
-    final _begin = begin.copyWith(
+    final beginStyle = begin.copyWith(
       background: Paint()..color = begin.color!,
       foreground: Paint()..color = begin.color!,
     );
-    final _end = begin.copyWith(
+    final endStyle = begin.copyWith(
       background: Paint()..color = end.color!,
       foreground: Paint()..color = end.color!,
     );
 
-    final _yakTween = YakTextStyleTween(begin: _begin, end: _end);
+    final yakTween = YakTextStyleTween(begin: beginStyle, end: endStyle);
 
     test(
         'WHEN `YakTextStyleTween` and `TextStyleTween` lerp '
@@ -59,8 +59,8 @@ void main() {
         'THEN foreground == begin color', () {
       const t = .0;
       expect(
-        _yakTween.lerp(t).foreground,
-        _begin.foreground,
+        yakTween.lerp(t).foreground,
+        beginStyle.foreground,
         reason: 'foreground should match begin.color',
       );
     });
@@ -70,8 +70,8 @@ void main() {
         'THEN background == begin color', () {
       const t = .0;
       expect(
-        _yakTween.lerp(t).background,
-        _begin.background,
+        yakTween.lerp(t).background,
+        beginStyle.background,
         reason: 'background should match begin.color',
       );
     });
@@ -81,8 +81,8 @@ void main() {
         'THEN foreground == end color', () {
       const t = 1.0;
       expect(
-        _yakTween.lerp(t).foreground,
-        _end.foreground,
+        yakTween.lerp(t).foreground,
+        endStyle.foreground,
         reason: 'foreground should match end.color',
       );
     });
@@ -92,8 +92,8 @@ void main() {
         'THEN background == end color', () {
       const t = 1.0;
       expect(
-        _yakTween.lerp(t).background,
-        _end.background,
+        yakTween.lerp(t).background,
+        endStyle.background,
         reason: 'background should match end.color',
       );
     });

@@ -8,7 +8,7 @@ class YakConstantTween<T> extends YakTween<T> {
       : super(begin: value, end: value); // coverage:ignore-line
 
   @override
-  T lerp(_) => begin;
+  T lerp(double t) => begin;
 
   @override
   String toString() =>

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:yak_tween/yak_tween.dart';
 
 void main() {
-  final a = Radius.circular(42);
+  const a = Radius.circular(42);
   const b = Radius.circular(13);
   group('lerp_int TEST', () {
     test('GIVEN `t` == 1 ' 'WHEN radiusNNLerp(a,b,t) ' 'THEN returns b', () {

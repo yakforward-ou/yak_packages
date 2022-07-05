@@ -5,10 +5,7 @@ import '../yak_tween.dart';
 /// an `DecorationTween` that allows `const` constructor
 class YakDecorationTween extends YakTween<Decoration> {
   /// like most `Tween`s has parameters `begin` and `end`
-  const YakDecorationTween({
-    required Decoration begin,
-    required Decoration end,
-  }) : super(begin: begin, end: end); // coverage:ignore-line
+  const YakDecorationTween({required super.begin, required super.end});
 
   @override
   Decoration lerp(double t) => t == 0.0

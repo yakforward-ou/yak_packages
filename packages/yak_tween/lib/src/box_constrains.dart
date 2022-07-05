@@ -6,10 +6,7 @@ import '../yak_tween.dart';
 /// an `BoxConstraintsTween` that allows `const` constructor
 class YakBoxConstraintsTween extends YakTween<BoxConstraints> {
   /// like most `Tween`s has parameters `begin` and `end`
-  const YakBoxConstraintsTween({
-    required BoxConstraints begin,
-    required BoxConstraints end,
-  }) : super(begin: begin, end: end); // coverage:ignore-line
+  const YakBoxConstraintsTween({required super.begin, required super.end});
 
   @override
   BoxConstraints lerp(double t) {
