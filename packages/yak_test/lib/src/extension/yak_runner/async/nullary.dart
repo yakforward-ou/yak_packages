@@ -1,195 +1,76 @@
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
-import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_result/yak_result.dart';
 import 'package:yak_runner/yak_runner.dart';
 // coverage:ignore-file
 
-/// a `typedef` for a `RunnerAsync``tester` function
-typedef RunnerAsyncTest<T> = void Function({
-  String description,
-  Future<T> Function() example,
+/// a `typedef` for a `RunNullarySync` test function
+typedef RunNullaryAsyncTest<T> = void Function({
+  String name,
+  NullaryAsync<T> example,
 });
 
-/// an `extension` that allows to seamlessly run a comprehensive set of tests
-/// for `RunnerAsync`
-extension RunnerAsyncTesterX<T> on RunnerAsync<T> {
+/// an `extension` that generates a basic set of tests for `RunNullaryAsync`
+extension RunNullaryAsyncTestX<T> on RunNullaryAsync<T> {
   /// run `test` providing a `description` and an `example` function
   void tester({
-    required String description,
-    required Future<T> Function() example,
+    required String name,
+    required NullaryAsync<T> example,
   }) {
-    group(description, () {
-      final reportStub = unaryStub<void, ErrorReport>()..stub = (_) {};
-      final errorStub = unaryStub<void, Error>()..stub = (_) {};
-      final errorHandler = ErrorHandler<AvowError>(errorStub.wrap);
-      final onSuccess = unaryStub<void, T>()..stub = (_) {};
-      final delegate = nullaryStub<Future<T>>();
+    group('test for $name', () {
+      final nullary = nullaryStub<Future<T>>();
+      RunNullaryAsync<T> buildTester() => runNullaryAsync(nullary.wrap);
 
-      final runner = RunnerAsync<T>(
-        delegate.wrap,
-        errorReport: reportStub.wrap,
-        errorHandlers: {errorHandler},
-        onSuccess: [onSuccess.wrap],
-      );
+      test(
+          'GIVEN $name original function does not throw '
+          'WHEN $name.call '
+          'THEN return Success', () async {
+        nullary
+          ..reset
+          ..stub = example;
 
-      test('WHEN `void Function()` throws THEN `Result` is `Failure`',
-          () async {
-        delegate.reset;
-        reportStub.reset;
-        errorStub.reset;
-
-        delegate.stub = () => throw Exception();
-
-        final result = await runner();
+        final tester = buildTester();
+        final result = await tester();
 
         expect(
           result,
-          isNotNull,
-          reason: '`result` must not be null',
-        );
-        expect(
-          result,
-          isNot(Success),
-          reason: '`result` should not be `Success`',
-        );
-        expect(
-          result,
-          isA<Failure>(),
-          reason: '`result` should be `Failure`',
-        );
-        expect(
-          delegate.count,
-          1,
-          reason: '`delegate` should be called once',
-        );
-        expect(
-          reportStub.count,
-          1,
-          reason: '`mockExceptionHandler` should be called once',
-        );
-        expect(
-          errorStub.count,
-          0,
-          reason: '`errorHandler` should NOT be called',
-        );
-      });
-
-      test('WHEN `void Function()` does not fail `Result` is `Success`',
-          () async {
-        delegate.reset;
-        reportStub.reset;
-        errorStub.reset;
-
-        delegate.stub = example;
-
-        final result = await runner();
-
-        expect(
-          result,
-          isNotNull,
-          reason: '`result` must not be null',
-        );
-        expect(
-          result,
-          isA<Success>(),
-          reason: '`result` should be `Success`',
-        );
-        expect(
-          result,
-          isNot(Failure),
-          reason: '`result` should not be `Failure`',
-        );
-        expect(
-          delegate.count,
-          1,
-          reason: '`delegate` should be called once',
-        );
-        expect(
-          reportStub.count,
-          0,
-          reason: '`mockExceptionHandler` should NOT be called ',
-        );
-        expect(
-          errorStub.count,
-          0,
-          reason: '`errorHandler` should NOT be called',
-        );
-      });
-
-      test('WHEN `ERROR` is thwon THEN runner fails', () async {
-        delegate.reset;
-        reportStub.reset;
-        errorStub.reset;
-
-        delegate.stub = () => throw Error();
-
-        expect(
-          runner.call,
-          throwsA(isA<Error>()),
-          reason: '`Error` should NOT be handled',
-        );
-        expect(
-          delegate.count,
-          1,
-          reason: '`delegate` should be called once',
-        );
-        expect(
-          reportStub.count,
-          0,
-          reason: '`mockExceptionHandler` should NOT be called ',
-        );
-        expect(
-          errorStub.count,
-          0,
-          reason: '`errorHandler` should NOT be called',
-        );
-        ;
-      });
-      test('WHEN `AvowError` is thwon THEN gets handled', () async {
-        delegate.reset;
-        reportStub.reset;
-        errorStub.reset;
-
-        delegate.stub = () => throw AvowError();
-
-        expect(
-          await runner(),
-          isA<Failure>(),
-          reason: '`Error` should be handled',
-        );
-        expect(
-          delegate.count,
-          1,
-          reason: '`delegate` should be called once',
-        );
-        expect(
-          reportStub.count,
-          0,
-          reason: '`mockExceptionHandler` should NOT be called ',
-        );
-        expect(
-          errorStub.count,
-          1,
-          reason: '`errorHandler` should be called once',
+          isA<Success<T>>(),
+          reason: 'tester should not throw',
         );
       });
       test(
-          'GIVEN `onSuccess` is not empty '
-          'WHEN `Result` is `Success` '
-          'THEN `onSuccess` is called', () async {
-        delegate.reset;
-        reportStub.reset;
-        errorStub.reset;
-        onSuccess.reset;
-        delegate.stub = example;
+          'GIVEN $name original function throws Exception '
+          'WHEN $name.call '
+          'THEN return Failure', () async {
+        nullary
+          ..reset
+          ..stub = () => throw Exception();
 
-        await runner();
+        final tester = buildTester();
+        final result = await tester();
 
         expect(
-          onSuccess.count,
-          1,
-          reason: '`onSuccess` should be called once',
+          result,
+          isA<Failure<T>>(),
+          reason: 'tester should throw',
+        );
+      });
+
+      test(
+          'GIVEN $name original function throws Error '
+          'WHEN $name.call '
+          'THEN return Failure', () async {
+        nullary
+          ..reset
+          ..stub = () => throw Error();
+
+        final tester = buildTester();
+        final result = await tester();
+
+        expect(
+          result,
+          isA<Failure<T>>(),
+          reason: 'tester should throw',
         );
       });
     });

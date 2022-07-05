@@ -1,28 +1,19 @@
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import 'package:yak_test/yak_test.dart';
+// ignore_for_file: prefer_function_declarations_over_variables
 
 void main() {
-  Future<String> example() async => 'example';
-  final runner = RunnerAsync<String>(example);
-  group('RunnerAsyncTesterX', () {
-    test('WHEN runner.tester' 'THEN returns `RunnerAsyncTest`', () {
+  group('RunNullaryAsyncTestX', () {
+    final NullaryAsync<int> function = () async => 0;
+    test(
+        'GIVEN RunNullaryAsync runner'
+        'WHEN runner.tester'
+        'THEN returns `RunNullaryAsyncTest`', () {
       expect(
-        runner.tester,
-        isA<RunnerAsyncTest<String>>(),
-        reason: 'tester should output a `RunnerAsyncTest`',
-      );
-    });
-    test('WHEN runner.tester(...)' 'THEN should not throw`', () {
-      expect(
-        () => runner.tester(description: 'testdrive', example: example),
-        isNot(isA<Error>()),
-        reason: 'tester should not throw Error',
-      );
-      expect(
-        () => runner.tester(description: 'testdrive', example: example),
-        isNot(isA<Exception>()),
-        reason: 'tester should not throw Error',
+        function.run.tester,
+        isA<RunNullaryAsyncTest<int>>(),
+        reason: 'tester should output a `RunNullaryAsyncTest`',
       );
     });
   });
