@@ -1,4 +1,4 @@
-import '../../../yak_test.dart';
+import '../../../src/all.dart';
 
 /// mirrors `flutte_test` matcher `MoreOrLessEquals` (but typesafe)
 extension MoreOrLessEqualsDurationX on Duration? {
