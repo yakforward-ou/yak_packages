@@ -1,32 +1,12 @@
 [![codecov badge][]][codecov]
-[![style badge][]][style]
 [![melos badge][]][melos]
 [![license badge][]][license]
 [![sponsor badge][]][sponsor]
-[![twitter badge][]][twitter]
 
-# yak_runner
+### yak_runner
 
-A Dart package that makes running functions safer and easier to test
+a package that automatically wraps a nullary or unary function in a `try` / `catch`
 
----
-
-### Get Started
-
-add to your `pubspec.yaml`
-
-```yaml
-dependencies: 
-  yak_runner: <latest version>
-```
-
-add to your code 
-
-```dart
-import 'package:yak_runner/yak_runner.dart';
-```
-
----
 
 [codecov]: https://codecov.io/gh/iapicca/yak_packages
 [codecov badge]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0

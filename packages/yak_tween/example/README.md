@@ -1,4 +1,4 @@
-# Example
+### Example
 
 just use the classes, function and extension in place of the original
 
