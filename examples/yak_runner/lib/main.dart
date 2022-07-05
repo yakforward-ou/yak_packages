@@ -1,14 +1,18 @@
-import 'package:yak_error_handler/yak_error_handler.dart';
 import 'package:yak_runner/yak_runner.dart';
 
-Stream<int> get stream => Stream.fromIterable([for (var i = 0; i < 10; ++i) i]);
+double oneDividedBy(int i) {
+  assert(i > 0);
+  return 1 / i;
+}
 
-final runner = UnaryRunner<void, int>(
-  (i) {
-    avow(i.isEven);
-    print(i);
-  },
-  errorHandlers: {ErrorHandler<AvowError>((_) => print('this is odd!'))},
-);
+void main() {
+  print(oneDividedBy(0)); // throws
+  print(oneDividedBy.run(0)); // print `Failure`
+  print(oneDividedBy(1)); // print `1`
+  print(oneDividedBy.run(1)); // print `Success`
 
-void main() => stream.listen(runner);
+  final result = oneDividedBy.run(1);
+  if (result is Success) {
+    print(result.success); // print `1`
+  }
+}
