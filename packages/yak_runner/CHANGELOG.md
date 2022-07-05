@@ -1,5 +1,6 @@
-# 0.5.0+0
+# 0.5.0+1
 - rework everything as pure function and extension
+- export `yak_result`
 
 # 0.4.1
 - moved `ErrorHandler` to `yak_error_handler`

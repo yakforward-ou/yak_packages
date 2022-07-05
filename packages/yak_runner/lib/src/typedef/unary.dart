@@ -1,4 +1,4 @@
-import 'package:yak_result/yak_result.dart';
+import '../all.dart';
 
 typedef Unary<T, S> = T Function(S);
 

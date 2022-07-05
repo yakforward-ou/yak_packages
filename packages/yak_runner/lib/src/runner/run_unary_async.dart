@@ -1,5 +1,3 @@
-import 'package:yak_result/yak_result.dart';
-
 import '../all.dart';
 
 /// `runUnaryAsync` takes as argument a `UnaryAsync`
