@@ -1,4 +1,7 @@
-# 0.5.1+2
+# 0.5.2+0
+- bump dependencies
+
+# 0.5.1
 - added `moreOrLessEquals`
 - updates for `yak_result`
 - versions up-to-date
