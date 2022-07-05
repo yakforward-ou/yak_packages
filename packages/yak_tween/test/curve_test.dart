@@ -4,8 +4,8 @@ import 'package:yak_tween/yak_tween.dart';
 
 void main() {
   group('`YakCurveTween` test', () {
-    final value = Curves.bounceIn;
-    final object = YakCurveTween(curve: value);
+    const value = Curves.bounceIn;
+    const object = YakCurveTween(curve: value);
     test(
         'WHEN `YakCurveTween` and `CurveTween` transform '
         'THEN output is identical', () {
@@ -18,8 +18,8 @@ void main() {
       );
     });
     test('`toString` works as intended', () {
-      final argumentName = 'curve: ';
-      final objectName = 'YakCurveTween';
+      const argumentName = 'curve: ';
+      const objectName = 'YakCurveTween';
       final match = '$objectName($argumentName$value)';
       expect(
         '$object',

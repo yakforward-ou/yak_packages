@@ -8,7 +8,10 @@ void main() {
         'WHEN `YakBorderTween` and `BorderTween` lerp '
         'THEN output is identical', () {
       final begin = Border.all();
-      final end = Border.all(width: 200, color: Color.fromRGBO(255, 0, 0, 1));
+      final end = Border.all(
+        width: 200,
+        color: const Color.fromRGBO(255, 0, 0, 1),
+      );
       const lerp = 1 / 3;
       final yakTween = YakBorderTween(begin: begin, end: end);
       final tween = BorderTween(begin: begin, end: end);

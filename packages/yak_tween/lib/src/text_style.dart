@@ -5,10 +5,7 @@ import '../yak_tween.dart';
 /// an `TextStyleTween` that allows `const` constructor
 class YakTextStyleTween extends YakTween<TextStyle> {
   /// like most `Tween`s has parameters `begin` and `end`
-  const YakTextStyleTween({
-    required TextStyle begin,
-    required TextStyle end,
-  }) : super(begin: begin, end: end); // coverage:ignore-line
+  const YakTextStyleTween({required super.begin, required super.end});
 
   @override
   TextStyle lerp(double t) => TextStyle(

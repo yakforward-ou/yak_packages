@@ -7,10 +7,7 @@ import '../yak_tween.dart';
 /// an `SizeTween` that allows `const` constructor
 class YakSizeTween extends YakTween<Size> {
   /// like most `Tween`s has parameters `begin` and `end`
-  const YakSizeTween({
-    required Size begin,
-    required Size end,
-  }) : super(begin: begin, end: end); // coverage:ignore-line
+  const YakSizeTween({required super.begin, required super.end});
 
   @override
   Size lerp(double t) => Size(
