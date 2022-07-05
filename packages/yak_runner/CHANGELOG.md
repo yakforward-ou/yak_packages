@@ -1,8 +1,11 @@
-# 0.4.1+1
+# 0.5.0
+- rework everything as pure function and extension
+
+# 0.4.1
 - moved `ErrorHandler` to `yak_error_handler`
 - moved `Result` to `yak_reason`
 
-# 0.4.0+5
+# 0.4.0
 - fix analysis
 - removed `buildTest` mixin
 - add custom json runner

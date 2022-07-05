@@ -5,7 +5,7 @@ void main() {
   group('ResultAsFailureX', () {
     test('GIVEN Result is a Failure' 'WHEN failure ' 'THEN return a Failure',
         () {
-      const Result<void> res = Failure();
+      final res = Failure();
 
       expect(
         res.failure,
@@ -14,7 +14,7 @@ void main() {
       );
     });
     test('GIVEN Result is a Success' 'WHEN failure ' 'THEN should throw', () {
-      const Result<void> res = Success(Null);
+      final res = Success(Null);
 
       expect(
         () => res.failure,
