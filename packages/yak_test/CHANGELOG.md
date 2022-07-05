@@ -1,5 +1,6 @@
-# 0.5.2+0
+# 0.5.2+1
 - bump dependencies
+- remove unnecessary imports
 
 # 0.5.1
 - added `moreOrLessEquals`
