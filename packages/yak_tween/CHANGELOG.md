@@ -1,4 +1,4 @@
-# 0.1.0+5
+# 0.1.0+6
 - fix analysis
 - updated `example`
 - created from the ashes of `yak_math`
