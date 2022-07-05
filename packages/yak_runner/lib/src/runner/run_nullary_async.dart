@@ -1,5 +1,3 @@
-import 'package:yak_result/yak_result.dart';
-
 import '../all.dart';
 
 /// `runNullaryAsync` takes as argument a `NullaryAsync`

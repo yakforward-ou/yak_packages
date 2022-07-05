@@ -1,5 +1,3 @@
-import 'package:yak_result/yak_result.dart';
-
 import '../all.dart';
 
 /// given a `Result` this extension on success runs the provided function,
