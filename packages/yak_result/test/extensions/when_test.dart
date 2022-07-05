@@ -11,11 +11,12 @@ void main() {
     final onFailure = unaryStub<int, Failure<String>>()..stub = (f) => fail;
 
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () {
-      result.reset;
       onSuccess.reset;
       onFailure.reset;
 
-      result..stub = () => const Success(data);
+      result
+        ..reset
+        ..stub = () => const Success(data);
 
       expect(
         result.wrap().when(success: onSuccess.wrap, failure: onFailure.wrap),
