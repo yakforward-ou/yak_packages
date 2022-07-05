@@ -1,4 +1,4 @@
-# 0.5.0
+# 0.5.0+0
 - rework everything as pure function and extension
 
 # 0.4.1
