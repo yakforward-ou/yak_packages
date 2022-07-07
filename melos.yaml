@@ -40,7 +40,6 @@ scripts:
       melos exec \
       -- dart test \
       --coverage="coverage" \
-      --concurrency 1 \
       --fail-fast
     description: Run Dart tests for a specific package in this project.
     select-package:
@@ -52,7 +51,6 @@ scripts:
       melos exec \
       -- flutter test \
       --coverage \
-      --concurrency 1 \
       --fail-fast 
     description: Run Flutter tests for a specific package in this project.
     select-package:
