@@ -8,13 +8,14 @@ scripts:
     run: |
       melos run analyze:dart --no-select & \
       melos run analyze:flutter --no-select
-    description: Run `dart analyze` in all packages.
+    description: analyze all packages
 
   analyze:dart:
     run: |
       melos exec \
       --concurrency 1 \ 
-      -- dart analyze .
+      -- \
+      dart analyze .
     description: Run dart analyze
     select-package:
       flutter: false
@@ -23,7 +24,8 @@ scripts:
     run: |
       melos exec \
       --concurrency 1 \ 
-      -- flutter analyze .
+      -- \
+      flutter analyze .
     description: Run flutter analyze
     select-package:
       flutter: true
@@ -38,7 +40,9 @@ scripts:
   test:dart:
     run: |
       melos exec \
-      -- dart test \
+      --concurrency 1 \ 
+      -- \
+      dart test \
       --coverage="coverage" \
       --fail-fast
     description: Run Dart tests for a specific package in this project.
@@ -49,7 +53,9 @@ scripts:
   test:flutter:
     run: |
       melos exec \
-      -- flutter test \
+      --concurrency 1 \ 
+      -- \
+      flutter test \
       --coverage \
       --fail-fast 
     description: Run Flutter tests for a specific package in this project.
@@ -60,8 +66,8 @@ scripts:
   test:format:
     run: |
       melos exec \
-      -- format_coverage \
-      --concurrency 1 \
+      -- \
+      dart pub global run coverage:format_coverage \
       --lcov \
       --check-ignore \
       --in=coverage \
