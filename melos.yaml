@@ -65,7 +65,7 @@ scripts:
     run: |
       melos exec \
       -- \
-      coverage:format_coverage \
+      format_coverage \
       --lcov \
       --check-ignore \
       --out=coverage/lcov.info \
