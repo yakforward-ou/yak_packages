@@ -6,46 +6,68 @@ packages:
 scripts:
   analyze:
     run: |
-      melos exec -c 1 -- flutter analyze .
-    description: |
-      Run `dart analyze` in all packages.
-        - Note: you can also rely on your IDEs Dart Analysis / Issues window.
+      melos run analyze:dart --no-select & \
+      melos run analyze:flutter --no-select
+    description: Run `dart analyze` in all packages.
 
+  analyze:dart:
+    run: |
+      melos exec \
+      --concurrency 1 \ 
+      -- dart analyze .
+    description: Run dart analyze
+    select-package:
+      flutter: false
+
+  analyze:flutter:
+    run: |
+      melos exec \
+      --concurrency 1 \ 
+      -- flutter analyze .
+    description: Run flutter analyze
+    select-package:
+      flutter: true
+      
   test: 
     run: |
-      melos run test:dart --no-select && \
-      melos run test:format --no-select && \
-      melos run test:flutter --no-select 
+      melos run test:dart --no-select & \
+      melos run test:flutter --no-select & \
+      melos run test:format --no-select
     description: Run all Dart & Flutter tests in this project.
 
   test:dart:
     run: |
-      melos exec -c 1 --fail-fast \
-      -- dart test --coverage="coverage"
+      melos exec \
+      -- dart test \
+      --coverage="coverage"
+      --concurrency 1 \
+      --fail-fast
     description: Run Dart tests for a specific package in this project.
-    select-package:
-      flutter: false
-      dir-exists: test
-  
-  test:format:
-    run: |
-      melos exec -c 1 \
-      -- format_coverage --lcov \
-      --check-ignore \
-      --in=coverage \
-      --out=coverage/lcov.info \
-      --packages=.packages \
-      --report-on=lib
-    description: Format Dart tests' coverage data
     select-package:
       flutter: false
       dir-exists: test
 
   test:flutter:
     run: |
-      melos exec -c 1 --fail-fast \
-      -- flutter test --coverage
+      melos exec \
+      -- flutter test \
+      --coverage \
+      --concurrency 1 \
+      --fail-fast 
     description: Run Flutter tests for a specific package in this project.
     select-package:
       flutter: true
       dir-exists: test
+
+  test:format:
+    run: |
+      melos exec
+      -- format_coverage \
+      --concurrency 1 \
+      --lcov \
+      --check-ignore \
+      --in=coverage \
+      --out=coverage/lcov.info \
+      --packages=.packages \
+      --report-on=lib
+    description: Format all tests' coverage data
