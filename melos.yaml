@@ -43,8 +43,7 @@ scripts:
       --concurrency 1 \ 
       --fail-fast \
       -- \
-      dart test \
-      --coverage="coverage"
+      dart test --coverage="coverage"
     description: Run Dart tests for a specific package in this project.
     select-package:
       flutter: false
@@ -56,8 +55,7 @@ scripts:
       --concurrency 1 \ 
       --fail-fast \
       -- \
-      flutter test \
-      --coverage
+      flutter test --coverage
     description: Run Flutter tests for a specific package in this project.
     select-package:
       flutter: true
@@ -67,11 +65,9 @@ scripts:
     run: |
       melos exec \
       -- \
-      dart pub global run coverage:format_coverage \
+      coverage:format_coverage \
       --lcov \
       --check-ignore \
-      --in=coverage \
       --out=coverage/lcov.info \
-      --packages=.packages \
       --report-on=lib
     description: Format all tests' coverage data
