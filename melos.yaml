@@ -13,7 +13,7 @@ scripts:
   analyze:dart:
     run: |
       melos exec \
-      --concurrency 1 \ 
+      --concurrency 1 \
       -- \
       dart analyze .
     description: Run dart analyze
@@ -23,7 +23,7 @@ scripts:
   analyze:flutter:
     run: |
       melos exec \
-      --concurrency 1 \ 
+      --concurrency 1 \
       -- \
       flutter analyze .
     description: Run flutter analyze
@@ -34,17 +34,17 @@ scripts:
     run: |
       melos run test:dart --no-select & \
       melos run test:flutter --no-select & \
-      melos run test:format --no-select
+      melos run test:format
     description: Run all Dart & Flutter tests in this project.
 
   test:dart:
     run: |
       melos exec \
       --concurrency 1 \ 
+      --fail-fast \
       -- \
       dart test \
-      --coverage="coverage" \
-      --fail-fast
+      --coverage="coverage"
     description: Run Dart tests for a specific package in this project.
     select-package:
       flutter: false
@@ -54,10 +54,10 @@ scripts:
     run: |
       melos exec \
       --concurrency 1 \ 
+      --fail-fast \
       -- \
       flutter test \
-      --coverage \
-      --fail-fast 
+      --coverage
     description: Run Flutter tests for a specific package in this project.
     select-package:
       flutter: true
