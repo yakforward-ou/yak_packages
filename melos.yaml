@@ -27,7 +27,7 @@ scripts:
     description: Run flutter analyze
     select-package:
       flutter: true
-      
+
   test: 
     run: |
       melos run test:dart --no-select & \
@@ -39,7 +39,7 @@ scripts:
     run: |
       melos exec \
       -- dart test \
-      --coverage="coverage"
+      --coverage="coverage" \
       --concurrency 1 \
       --fail-fast
     description: Run Dart tests for a specific package in this project.
@@ -61,7 +61,7 @@ scripts:
 
   test:format:
     run: |
-      melos exec
+      melos exec \
       -- format_coverage \
       --concurrency 1 \
       --lcov \
