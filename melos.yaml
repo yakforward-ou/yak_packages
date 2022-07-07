@@ -32,7 +32,7 @@ scripts:
       melos exec -c 1 
       -- format_coverage --lcov \
       --check-ignore \
-      -in=coverage \
+      --in=coverage \
       --out=coverage/lcov.info \
       --packages=.packages \
       --report-on=lib
