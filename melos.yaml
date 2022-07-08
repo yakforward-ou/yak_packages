@@ -5,14 +5,23 @@ packages:
 
 scripts:
 
-  test: 
+  lint:
     run: |
       melos run lint:clean --no-select & \
       melos run lint:format --no-select & \
-      melos run lint:format-check --no-select & \
+      melos run lint:format-check --no-select
+    description: analyze all packages
+
+  analyze:
+    run: |
+      melos run analyze:dart --no-select & \
+      melos run analyze:flutter --no-select
+    description: analyze all packages
+
+  test: 
+    run: |
       melos run test:dart --no-select & \
-      melos run test:flutter --no-select & \
-      melos run lint:pub --no-select
+      melos run test:flutter --no-select
     description: Run all Dart & Flutter tests in this project.
 
   lint:clean:
@@ -37,24 +46,6 @@ scripts:
       flutter format . \
       --set-exit-if-changed
     description: Run `flutter format` checks for all packages.
-
-  lint:pub: 
-    run: |
-      melos exec \
-      --concurrency 1 \ 
-      --fail-fast \
-      --no-private \
-      --ignore="*example*" \
-      -- \
-      pub publish \
-      --dry-run
-    description: Run `flutter format` checks for all packages.
-
-  analyze:
-    run: |
-      melos run analyze:dart --no-select & \
-      melos run analyze:flutter --no-select
-    description: analyze all packages
 
   analyze:dart:
     run: |
