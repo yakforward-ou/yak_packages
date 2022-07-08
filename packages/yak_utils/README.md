@@ -7,7 +7,6 @@
 
 A collection of useful `functions`, `extensions` and more for your `flutter` an `dart` projects
 
-
 #### extension
 
 - on `double`

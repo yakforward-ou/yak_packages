@@ -1,6 +1,7 @@
-# 0.5.2+1
+# 0.5.2+2
 - bump dependencies
 - remove unnecessary imports
+- update readme
 
 # 0.5.1
 - added `moreOrLessEquals`
