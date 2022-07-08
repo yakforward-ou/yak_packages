@@ -17,18 +17,19 @@ jobs:
         with:
           channel: 'stable'
       - name: Add pub cache bin to PATH
-        run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+        run: |
+          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
       - name: Add pub cache to PATH
-        run: echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV
-      - name: Activate `coverage` 
-        run: dart pub global activate coverage
+        run: |
+          echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV
       - name: Activate `melos` 
-        run: dart pub global activate melos
+        run: |
+          dart pub global activate melos
       - name: Install dependencies
         run: melos bootstrap
-      - name: Analyze
-        run: melos exec --ignore="marvel" -- "flutter analyze"
       - name: Run tests
         run: melos run test
-      - name: Upload coverage to codecov
-        run: curl -s https://codecov.io/bash | bash   
+      - uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true
+          files: packages/*/coverage/lcov.info
