@@ -4,6 +4,39 @@ packages:
   - packages/**
 
 scripts:
+
+  test: 
+    run: |
+      melos run lint:clean --no-select & \
+      melos run lint:format --no-select & \
+      melos run lint:format-check --no-select & \
+      melos run test:dart --no-select & \
+      melos run test:flutter --no-select
+    description: Run all Dart & Flutter tests in this project.
+
+  lint:clean:
+    run: |
+      git clean -x -d -f -q
+    description: Clean things very deeply, can be used to establish "pristine checkout" status.
+
+  lint:format:
+    run: |
+      melos exec \
+      --concurrency 1 \
+      -- \
+      flutter format . \
+      --fix
+    description: Run `flutter format` for all packages.
+
+  lint:format-check:
+    run: |
+      melos exec \
+      --concurrency 1 \
+      -- \
+      flutter format . \
+      --set-exit-if-changed
+    description: Run `flutter format` checks for all packages.
+
   analyze:
     run: |
       melos run analyze:dart --no-select & \
@@ -30,13 +63,6 @@ scripts:
     select-package:
       flutter: true
 
-  test: 
-    run: |
-      melos run test:dart --no-select & \
-      melos run test:flutter --no-select & \
-      melos run test:format
-    description: Run all Dart & Flutter tests in this project.
-
   test:dart:
     run: |
       melos exec \
@@ -47,7 +73,8 @@ scripts:
     description: Run Dart tests for a specific package in this project.
     select-package:
       flutter: false
-      dir-exists: test
+      dir-exists: 
+        - test
 
   test:flutter:
     run: |
@@ -59,15 +86,5 @@ scripts:
     description: Run Flutter tests for a specific package in this project.
     select-package:
       flutter: true
-      dir-exists: test
-
-  test:format:
-    run: |
-      melos exec \
-      -- \
-      format_coverage \
-      --lcov \
-      --check-ignore \
-      --out=coverage/lcov.info \
-      --report-on=lib
-    description: Format all tests' coverage data
+      dir-exists: 
+        - test
