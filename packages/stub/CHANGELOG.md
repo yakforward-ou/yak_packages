@@ -1,5 +1,6 @@
-### 1.0.0+0
+### 1.0.0+1
 - major release
+- fix export
 
 ### 0.3.0
 - complete rework with breaking changes
