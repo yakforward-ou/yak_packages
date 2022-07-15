@@ -1,5 +1,5 @@
-### 1.0.0+0
-- added a set of `typedef` and `delegates`
+### 1.0.0+1
+- update sets of `typedef` and `delegates`
 
 ### 0.1.0
 - updated `example` and `readme`
