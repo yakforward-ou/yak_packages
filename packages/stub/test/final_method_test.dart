@@ -15,8 +15,8 @@ class NullaryDelegate<T> {
 
 void main() {
   group('`Stub`final Unary method w/ wrap test', () {
-    final stub = unaryStub<String, int>();
-    final method = UnaryDelegate<String, int>(stub.wrap);
+    final unary = Stub.unary<String, int>();
+    final method = UnaryDelegate<String, int>(unary);
     const data = 1;
     test(
         'GIVEN `stub is not set` '
@@ -32,8 +32,8 @@ void main() {
         'GIVEN `stub is not set` '
         'WHEN method.stub is called '
         'THEN throw `UnimplementedError`', () {
-      stub.reset;
-      stub.stub = (_) {
+      unary.reset();
+      unary.stub = (_) {
         assert(false);
         return '';
       };
@@ -43,7 +43,7 @@ void main() {
         reason: '`method` should throw `AssertionError`',
       );
       expect(
-        stub.count,
+        unary.count,
         1,
         reason: '`stub` should be called once',
       );
@@ -52,23 +52,23 @@ void main() {
         'GIVEN `stub is not set` '
         'WHEN method.stub is called '
         'THEN throw `UnimplementedError`', () {
-      stub.reset;
-      stub.stub = (i) => '$i';
+      unary.reset();
+      unary.stub = (i) => '$i';
       expect(
         method(data),
         '$data',
         reason: '`method` return correct result`',
       );
       expect(
-        stub.count,
+        unary.count,
         1,
         reason: '`stub` should be called once',
       );
     });
   });
   group('`Stub`final Nullary method w/ wrap test', () {
-    final stub = nullaryStub<int>();
-    final method = NullaryDelegate<int>(stub.wrap);
+    final nullary = Stub.nullary<int>();
+    final method = NullaryDelegate<int>(nullary);
     const data = 1;
     test(
         'GIVEN `stub is not set` '
@@ -84,8 +84,8 @@ void main() {
         'GIVEN `stub is not set` '
         'WHEN method.stub is called '
         'THEN throw `UnimplementedError`', () {
-      stub.reset;
-      stub.stub = () {
+      nullary.reset();
+      nullary.stub = () {
         assert(false);
         return data;
       };
@@ -95,7 +95,7 @@ void main() {
         reason: '`method` should throw `AssertionError`',
       );
       expect(
-        stub.count,
+        nullary.count,
         1,
         reason: '`stub` should be called once',
       );
@@ -104,15 +104,15 @@ void main() {
         'GIVEN `stub is not set` '
         'WHEN method.stub is called '
         'THEN throw `UnimplementedError`', () {
-      stub.reset;
-      stub.stub = () => data;
+      nullary.reset();
+      nullary.stub = () => data;
       expect(
         method(),
         data,
         reason: '`method` return correct result`',
       );
       expect(
-        stub.count,
+        nullary.count,
         1,
         reason: '`stub` should be called once',
       );

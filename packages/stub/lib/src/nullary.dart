@@ -1,22 +1,12 @@
-import 'all.dart';
-// ignore_for_file: invalid_use_of_internal_member
+import 'package:yak_utils/yak_utils.dart' show Nullary, NullaryDelegate;
 
-/// returns a NULLARY `stub`
-///
-/// to be replaced with `non-function type alias`
-/// see [https://github.com/dart-lang/sdk/issues/44951]
-
-Stub<T Function()> nullaryStub<T>() => _NullaryStub<T, T Function()>();
+import 'stub.dart';
 
 /// a `NULLARY` implementation of `StubMethod`
-/// it's recommended to use  `nullaryStub<T>()`
-class _NullaryStub<T, Z extends T Function()> extends Stub<Z> with Counter<Z> {
+class NullaryStub<T, Z extends Nullary<T>> extends Stub<Z>
+    implements NullaryDelegate<T> {
   Z? _stub;
-  @override
-  Z get stub {
-    return _stub ?? _default;
-  }
-
+  Z get _call => _stub ?? _default;
   @override
   set stub(Z fun) {
     _stub = () {
@@ -31,4 +21,7 @@ class _NullaryStub<T, Z extends T Function()> extends Stub<Z> with Counter<Z> {
       throw UnimplementedError();
     }) as Z;
   }
+
+  @override
+  T call() => _call();
 }

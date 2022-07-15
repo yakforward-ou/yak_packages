@@ -1,9 +1,9 @@
 import '../all.dart';
 
-/// `runNullaryAsync` takes as argument a `NullaryAsync`
-/// and return a `RunNullaryAsync`
-/// e.g: see `RunNullaryAsyncX`
-RunNullaryAsync<T> runNullaryAsync<T>(NullaryAsync<T> function) => () async {
+/// `ResultNullaryAsync` takes as argument a `NullaryAsync`
+/// and return a `ResultNullaryAsync`
+/// e.g: see `ResultNullaryAsyncX`
+ResultNullaryAsync<T> runNullaryAsync<T>(NullaryAsync<T> function) => () async {
       try {
         return Success(await function());
       } on Error catch (e) {

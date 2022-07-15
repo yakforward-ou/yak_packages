@@ -1,9 +1,9 @@
 import '../all.dart';
 
-/// `runUnarySync` takes as argument a `Unary`
-/// and return a `RunUnarySync`
-/// e.g: see `RunUnarySyncX`
-RunUnarySync<T, S> runUnarySync<T, S>(Unary<T, S> function) => (S arg) {
+/// `ResultUnary` takes as argument a `Unary`
+/// and return a `ResultUnary`
+/// e.g: see `ResultUnaryX`
+ResultUnary<T, S> runUnary<T, S>(Unary<T, S> function) => (S arg) {
       try {
         return Success(function(arg));
       } on Error catch (e) {

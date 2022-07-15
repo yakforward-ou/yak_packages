@@ -2,54 +2,54 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('RunNullarySyncX', () {
+  group('ResultNullaryX', () {
     test(
         'GIVEN a Nullary function '
         'WHEN nullary.run '
-        'THEN returns a RunNullarySync', () {
+        'THEN returns a ResultNullary', () {
       int function() => 42;
       expect(
         function.run,
-        isA<RunNullarySync<int>>(),
+        isA<ResultNullary<int>>(),
         reason: 'return type should be predictable',
       );
     });
   });
-  group('RunNullaryAsyncX', () {
+  group('ResultNullaryAsyncX', () {
     test(
         'GIVEN a NullaryAsync function '
         'WHEN function.run '
-        'THEN returns a RunNullaryAsync', () {
+        'THEN returns a ResultNullaryAsync', () {
       Future<int> function() async => 42;
       expect(
         function.run,
-        isA<RunNullaryAsync<int>>(),
+        isA<ResultNullaryAsync<int>>(),
         reason: 'return type should be predictable',
       );
     });
   });
-  group('RunUnarySyncX', () {
+  group('ResultUnaryX', () {
     test(
         'GIVEN a Unary function '
         'WHEN function.run '
-        'THEN returns a RunUnarySync', () {
+        'THEN returns a ResultUnary', () {
       int function(i) => i * 2;
       expect(
         function.run,
-        isA<RunUnarySync<int, int>>(),
+        isA<ResultUnary<int, int>>(),
         reason: 'return type should be predictable',
       );
     });
   });
-  group('RunNullarySyncX', () {
+  group('ResultNullaryX', () {
     test(
         'GIVEN a UnaryAsync function '
         'WHEN function.run '
-        'THEN returns a RunUnaryAsync', () {
+        'THEN returns a ResultUnaryAsync', () {
       Future<int> function(i) async => i * 2;
       expect(
         function.run,
-        isA<RunUnaryAsync<int, int>>(),
+        isA<ResultUnaryAsync<int, int>>(),
         reason: 'return type should be predictable',
       );
     });

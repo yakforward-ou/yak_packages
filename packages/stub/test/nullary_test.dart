@@ -3,72 +3,75 @@ import 'package:test/test.dart';
 
 void main() {
   group('`Stub` NULLARY test', () {
-    final method = nullaryStub<int>();
+    final nullary = Stub.nullary<int>();
     const data = 1;
     const times = 42;
     test(
         'GIVEN `stub is not set` '
-        'WHEN method.stub is called '
+        'WHEN nullary.stub is called '
         'THEN throw `UnimplementedError`', () {
       expect(
-        method.stub,
+        nullary.call,
         throwsA(isA<UnimplementedError>()),
-        reason: '`method.stub` should throw `UnimplementedError`',
+        reason: '`nullary.stub` should throw `UnimplementedError`',
       );
     });
 
     test(
         'GIVEN `stub = () => data` '
-        'WHEN method.stub is called '
+        'WHEN nullary.stub is called '
         'THEN returns `data`', () {
-      method.reset;
-      method.stub = () => data;
+      nullary
+        ..reset()
+        ..stub = () => data;
 
       expect(
-        method.stub(),
+        nullary(),
         data,
-        reason: '`method.stub` should match `data`',
+        reason: '`nullary.stub` should match `data`',
       );
     });
     test(
         'GIVEN `stub != null` '
-        'WHEN method.stub is called n times '
+        'WHEN nullary.stub is called n times '
         'THEN  `count` == `times`', () {
-      method.reset;
+      nullary.reset();
 
       for (var i = 0; i < times; ++i) {
-        method.stub();
+        nullary();
       }
       expect(
-        method.count,
+        nullary.count,
         times,
-        reason: '`method.stub` should match `times`',
+        reason: '`nullary.stub` should match `times`',
       );
     });
     test(
         '...'
-        'WHEN  method.stub is not called '
+        'WHEN  nullary.stub is not called '
         'THEN  `callCount` persists', () {
-      /// method.stub;
+      /// nullary.reset();
 
       expect(
-        method.count,
+        nullary.count,
         times,
-        reason: '`method.stub` should persist across tests',
+        reason: '`nullary.stub` should persist across tests',
       );
     });
     test(
         'GIVEN _ '
         'WHEN Foo.foo is set twice '
         'THEN  only latest has effect', () {
-      method.reset;
-      method.stub = () => data * 3;
-      method.stub = () => data * times;
+      nullary
+        ..reset()
+        ..stub = () => data * 3;
+
+      nullary.stub = () => data * times;
 
       expect(
-        method.stub(),
+        nullary(),
         data * times,
-        reason: '`method.stub()` should be the latest `result` provided',
+        reason: '`nullary.stub()` should be the latest `result` provided',
       );
     });
   });

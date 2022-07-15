@@ -3,15 +3,15 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 // coverage:ignore-file
 
-/// a `typedef` for a `RunUnarySync` test function
-typedef RunUnarySyncTest<T, S> = void Function({
+/// a `typedef` for a `ResultUnary` test function
+typedef ResultUnaryTest<T, S> = void Function({
   required String name,
   required Unary<T, S> example,
   required Nullary<S> seed,
 });
 
-/// an `extension` that generates a basic set of tests for `RunUnarySync`
-extension RunUnarySyncTestX<T, S> on RunUnarySync<T, S> {
+/// an `extension` that generates a basic set of tests for `ResultUnary`
+extension ResultUnaryTestX<T, S> on ResultUnary<T, S> {
   /// run `test` providing a `description` and an `example` function
   void tester({
     required String name,
@@ -19,18 +19,16 @@ extension RunUnarySyncTestX<T, S> on RunUnarySync<T, S> {
     required Nullary<S> seed,
   }) {
     group('test for $name', () {
-      final unary = unaryStub<T, S>();
-      RunUnarySync<T, S> buildTester() => runUnarySync(unary.wrap);
+      final tester = Stub.unary<T, S>();
 
       test(
           'GIVEN $name original function does not throw '
           'WHEN $name.call '
           'THEN return Success', () {
-        unary
-          ..reset
+        tester
+          ..reset()
           ..stub = example;
 
-        final tester = buildTester();
         final result = tester(seed());
 
         expect(
@@ -43,11 +41,10 @@ extension RunUnarySyncTestX<T, S> on RunUnarySync<T, S> {
           'GIVEN $name original function throws Exception '
           'WHEN $name.call '
           'THEN return Failure', () {
-        unary
-          ..reset
+        tester
+          ..reset()
           ..stub = (_) => throw Exception();
 
-        final tester = buildTester();
         final result = tester(seed());
 
         expect(
@@ -61,11 +58,10 @@ extension RunUnarySyncTestX<T, S> on RunUnarySync<T, S> {
           'GIVEN $name original function throws Error '
           'WHEN $name.call '
           'THEN return Failure', () {
-        unary
-          ..reset
+        tester
+          ..reset()
           ..stub = (_) => throw Error();
 
-        final tester = buildTester();
         final result = tester(seed());
 
         expect(

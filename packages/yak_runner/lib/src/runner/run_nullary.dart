@@ -1,9 +1,9 @@
 import '../all.dart';
 
-/// `runNullarySync` takes as argument a `Nullary`
-/// and return a `RunNullarySync`
-/// e.g: see `RunNullarySyncX`
-RunNullarySync<T> runNullarySync<T>(Nullary<T> function) => () {
+/// `ResultNullary` takes as argument a `Nullary`
+/// and return a `ResultNullary`
+/// e.g: see `ResultNullaryX`
+ResultNullary<T> runNullary<T>(Nullary<T> function) => () {
       try {
         return Success(function());
       } on Error catch (e) {

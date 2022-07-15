@@ -8,29 +8,29 @@ class Foo {
 }
 
 class FooMock implements Foo {
-  final fooStub = nullaryStub<int>();
-  final barStub = unaryStub<String, int>();
-  final bazStub = unaryStub<String, List>();
-  final fizzStub = unaryStub<String, Map>();
+  final fooStub = Stub.nullary<int>();
+  final barStub = Stub.unary<String, int>();
+  final bazStub = Stub.unary<String, List>();
+  final fizzStub = Stub.unary<String, Map>();
 
   /// this is totally optional
-  void get reset {
-    fooStub.reset;
-    barStub.reset;
-    bazStub.reset;
-    fizzStub.reset;
+  void reset() {
+    fooStub.reset();
+    barStub.reset();
+    bazStub.reset();
+    fizzStub.reset();
   }
 
   @override
-  String bar(int i) => barStub.wrap(i);
+  String bar(int i) => barStub(i);
 
   @override
-  String baz(int i, String s) => bazStub.wrap([i, s]);
+  String baz(int i, String s) => bazStub([i, s]);
 
   @override
   String fizz({required int i, required String s}) =>
-      fizzStub.wrap({'i': i, 's': s});
+      fizzStub({'i': i, 's': s});
 
   @override
-  int foo() => fooStub.wrap();
+  int foo() => fooStub();
 }

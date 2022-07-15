@@ -3,20 +3,18 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('runUnarySync', () {
-    final unary = unaryStub<int, int>();
-    RunUnarySync<int, int> buildTester() => runUnarySync(unary.wrap);
+  group('ResultUnary', () {
+    final tester = Stub.unary<int, int>();
 
     test(
         'GIVEN Nullary does not throw '
-        'WHEN RunUnarySync.call '
+        'WHEN ResultUnary.call '
         'THEN return Success', () {
-      unary
-        ..reset
+      tester
+        ..reset()
         ..stub = (x) => x * 2;
 
-      final tester = buildTester();
-      final result = tester(1);
+      final result = tester.run(1);
 
       expect(
         result,
@@ -26,14 +24,13 @@ void main() {
     });
     test(
         'GIVEN Nullary throws Exception '
-        'WHEN RunUnarySync.call '
+        'WHEN ResultUnary.call '
         'THEN return Failure', () {
-      unary
-        ..reset
+      tester
+        ..reset()
         ..stub = (x) => throw Exception();
 
-      final tester = buildTester();
-      final result = tester(1);
+      final result = tester.run(1);
 
       expect(
         result,
@@ -44,14 +41,13 @@ void main() {
 
     test(
         'GIVEN Nullary throws Exception '
-        'WHEN RunUnarySync.call '
+        'WHEN ResultUnary.call '
         'THEN return Failure', () {
-      unary
-        ..reset
+      tester
+        ..reset()
         ..stub = (x) => throw Error();
 
-      final tester = buildTester();
-      final result = tester(1);
+      final result = tester.run(1);
 
       expect(
         result,

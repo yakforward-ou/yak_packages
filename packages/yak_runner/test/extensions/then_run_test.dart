@@ -5,24 +5,22 @@ import 'package:yak_runner/yak_runner.dart';
 void main() {
   group('ThenRunX', () {
     group('thenRun', () {
-      final seed = nullaryStub<Result<int>>();
-      final functionStub = unaryStub<bool, int>();
-      Unary<bool, int> buildTester() => functionStub.wrap;
+      final seed = Stub.nullary<Result<int>>();
+      final function = Stub.unary<bool, int>();
 
       test(
-          'GIVEN a Success seed and a RunUnarySync function '
+          'GIVEN a Success seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return Result based on function (SUCCESS)', () {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Success(1);
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => i < 1;
 
-        final function = buildTester();
-        final results = seed.wrap().thenRun(function.run);
+        final results = seed().thenRun(function.run);
 
         expect(
           results,
@@ -38,19 +36,18 @@ void main() {
       });
 
       test(
-          'GIVEN a Failure seed and a RunUnarySync function '
+          'GIVEN a Failure seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return a Failure', () {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Failure<int>();
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => i < 1;
 
-        final function = buildTester();
-        final results = seed.wrap().thenRun(function.run);
+        final results = seed().thenRun(function.run);
 
         expect(
           results,
@@ -65,19 +62,18 @@ void main() {
         );
       });
       test(
-          'GIVEN a Success seed and a RunUnarySync function '
+          'GIVEN a Success seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return Result based on function (FAILURE)', () {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Success(1);
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => throw Exception();
 
-        final function = buildTester();
-        final results = seed.wrap().thenRun(function.run);
+        final results = seed().thenRun(function.run);
 
         expect(
           results,
@@ -93,24 +89,22 @@ void main() {
       });
     });
     group('thenRunAsync', () {
-      final seed = nullaryStub<Result<int>>();
-      final functionStub = unaryStub<Future<bool>, int>();
-      UnaryAsync<bool, int> buildTester() => functionStub.wrap;
+      final seed = Stub.nullary<Result<int>>();
+      final function = Stub.unary<Future<bool>, int>();
 
       test(
-          'GIVEN a Success seed and a RunUnaryAsync function '
+          'GIVEN a Success seed and a ResultUnaryAsync function '
           'WHEN seed.thenRun(function) '
           'THEN return Result based on function (SUCCESS)', () async {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Success(1);
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => Future.sync(() => i < 1);
 
-        final function = buildTester();
-        final results = await seed.wrap().thenRunAsync(function.run);
+        final results = await seed().thenRunAsync(function.run);
 
         expect(
           results,
@@ -126,19 +120,18 @@ void main() {
       });
 
       test(
-          'GIVEN a Failure seed and a RunUnarySync function '
+          'GIVEN a Failure seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return a Failure', () async {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Failure<int>();
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => Future.sync(() => i < 1);
 
-        final function = buildTester();
-        final results = await seed.wrap().thenRunAsync(function.run);
+        final results = await seed().thenRunAsync(function.run);
 
         expect(
           results,
@@ -153,19 +146,18 @@ void main() {
         );
       });
       test(
-          'GIVEN a Success seed and a RunUnarySync function '
+          'GIVEN a Success seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return Result based on function (FAILURE)', () async {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Success(1);
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => throw Exception();
 
-        final function = buildTester();
-        final results = await seed.wrap().thenRunAsync(function.run);
+        final results = await seed().thenRunAsync(function.run);
 
         expect(
           results,
@@ -183,24 +175,22 @@ void main() {
   });
   group('ThenRunAsyncX', () {
     group('thenRun', () {
-      final seed = nullaryStub<Future<Result<int>>>();
-      final functionStub = unaryStub<bool, int>();
-      Unary<bool, int> buildTester() => functionStub.wrap;
+      final seed = Stub.nullary<Future<Result<int>>>();
+      final function = Stub.unary<bool, int>();
 
       test(
-          'GIVEN a Future<Success> seed and a RunUnarySync function '
+          'GIVEN a Future<Success> seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return Result based on function (SUCCESS)', () async {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Future.sync(() => Success(1));
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => i < 1;
 
-        final function = buildTester();
-        final results = await seed.wrap().thenRun(function.run);
+        final results = await seed().thenRun(function.run);
 
         expect(
           results,
@@ -216,19 +206,18 @@ void main() {
       });
 
       test(
-          'GIVEN a Future Failure seed and a RunUnarySync function '
+          'GIVEN a Future Failure seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return a Failure', () async {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Future.sync(() => Failure<int>());
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => i < 1;
 
-        final function = buildTester();
-        final results = await seed.wrap().thenRun(function.run);
+        final results = await seed().thenRun(function.run);
 
         expect(
           results,
@@ -243,19 +232,18 @@ void main() {
         );
       });
       test(
-          'GIVEN a Future Success seed and a RunUnarySync function '
+          'GIVEN a Future Success seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return Result based on function (FAILURE)', () async {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Future.sync(() => Success(1));
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => throw Exception();
 
-        final function = buildTester();
-        final results = await seed.wrap().thenRun(function.run);
+        final results = await seed().thenRun(function.run);
 
         expect(
           results,
@@ -271,24 +259,22 @@ void main() {
       });
     });
     group('thenRunAsync', () {
-      final seed = nullaryStub<Result<int>>();
-      final functionStub = unaryStub<Future<bool>, int>();
-      UnaryAsync<bool, int> buildTester() => functionStub.wrap;
+      final seed = Stub.nullary<Result<int>>();
+      final function = Stub.unary<Future<bool>, int>();
 
       test(
-          'GIVEN a Future Success seed and a RunUnaryAsync function '
+          'GIVEN a Future Success seed and a ResultUnaryAsync function '
           'WHEN seed.thenRun(function) '
           'THEN return Result based on function (SUCCESS)', () async {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Success(1);
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => Future.sync(() => i < 1);
 
-        final function = buildTester();
-        final results = await seed.wrap().thenRunAsync(function.run);
+        final results = await seed().thenRunAsync(function.run);
 
         expect(
           results,
@@ -304,19 +290,18 @@ void main() {
       });
 
       test(
-          'GIVEN a Future Failure seed and a RunUnarySync function '
+          'GIVEN a Future Failure seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return a Failure', () async {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Failure<int>();
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => Future.sync(() => i < 1);
 
-        final function = buildTester();
-        final results = await seed.wrap().thenRunAsync(function.run);
+        final results = await seed().thenRunAsync(function.run);
 
         expect(
           results,
@@ -331,19 +316,18 @@ void main() {
         );
       });
       test(
-          'GIVEN a Future Success seed and a RunUnarySync function '
+          'GIVEN a Future Success seed and a ResultUnary function '
           'WHEN seed.thenRun(function) '
           'THEN return Result based on function (FAILURE)', () async {
         seed
-          ..reset
+          ..reset()
           ..stub = () => Success(1);
 
-        functionStub
-          ..reset
+        function
+          ..reset()
           ..stub = (i) => throw Exception();
 
-        final function = buildTester();
-        final results = await seed.wrap().thenRunAsync(function.run);
+        final results = await seed().thenRunAsync(function.run);
 
         expect(
           results,

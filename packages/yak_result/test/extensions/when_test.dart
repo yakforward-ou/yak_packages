@@ -6,20 +6,20 @@ void main() {
   group('WhenX', () {
     const data = 'hello';
     final fail = 0;
-    final result = nullaryStub<Result<String>>();
-    final onSuccess = unaryStub<int, String>()..stub = (i) => i.length;
-    final onFailure = unaryStub<int, Failure<String>>()..stub = (f) => fail;
+    final result = Stub.nullary<Result<String>>();
+    final onSuccess = Stub.unary<int, String>()..stub = (i) => i.length;
+    final onFailure = Stub.unary<int, Failure<String>>()..stub = (f) => fail;
 
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () {
-      onSuccess.reset;
-      onFailure.reset;
+      onSuccess.reset();
+      onFailure.reset();
 
       result
         ..reset
         ..stub = () => const Success(data);
 
       expect(
-        result.wrap().when(success: onSuccess.wrap, failure: onFailure.wrap),
+        result().when(success: onSuccess, failure: onFailure),
         data.length,
         reason: 'should be correct',
       );
@@ -38,14 +38,14 @@ void main() {
     });
 
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () {
-      onSuccess.reset;
-      onFailure.reset;
+      onSuccess.reset();
+      onFailure.reset();
       result
         ..reset
         ..stub = () => Failure();
 
       expect(
-        result.wrap().when(success: onSuccess.wrap, failure: onFailure.wrap),
+        result().when(success: onSuccess, failure: onFailure),
         fail,
         reason: 'should be correct',
       );
@@ -67,21 +67,19 @@ void main() {
   group('WhenAsyncX', () {
     const data = 'hello';
     final fail = 0;
-    final result = nullaryStub<Future<Result<String>>>();
-    final onSuccess = unaryStub<int, String>()..stub = (i) => i.length;
-    final onFailure = unaryStub<int, Failure<String>>()..stub = (f) => fail;
+    final result = Stub.nullary<Future<Result<String>>>();
+    final onSuccess = Stub.unary<int, String>()..stub = (i) => i.length;
+    final onFailure = Stub.unary<int, Failure<String>>()..stub = (f) => fail;
 
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
-      onSuccess.reset;
-      onFailure.reset;
+      onSuccess.reset();
+      onFailure.reset();
       result
         ..reset
         ..stub = () async => const Success(data);
 
       expect(
-        await result
-            .wrap()
-            .when(success: onSuccess.wrap, failure: onFailure.wrap),
+        await result().when(success: onSuccess, failure: onFailure),
         data.length,
         reason: 'should be correct',
       );
@@ -100,16 +98,14 @@ void main() {
     });
 
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
-      onSuccess.reset;
-      onFailure.reset;
+      onSuccess.reset();
+      onFailure.reset();
       result
         ..reset
         ..stub = () async => Failure();
 
       expect(
-        await result
-            .wrap()
-            .when(success: onSuccess.wrap, failure: onFailure.wrap),
+        await result().when(success: onSuccess, failure: onFailure),
         fail,
         reason: 'should be correct',
       );

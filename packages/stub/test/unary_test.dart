@@ -3,72 +3,74 @@ import 'package:test/test.dart';
 
 void main() {
   group('`Stub` UNARY test', () {
-    final method = unaryStub<String, int>();
+    final unary = Stub.unary<String, int>();
     const data = 1;
     const times = 42;
     test(
         'GIVEN `stub is not set` '
-        'WHEN method.stub is called '
+        'WHEN unary.stub is called '
         'THEN throw `UnimplementedError`', () {
       expect(
-        () => method.stub(data),
+        () => unary(data),
         throwsA(isA<UnimplementedError>()),
-        reason: '`method.stub` should throw `UnimplementedError`',
+        reason: '`unary.stub` should throw `UnimplementedError`',
       );
     });
 
     test(
         'GIVEN `stub = () => data` '
-        'WHEN method.stub is called '
+        'WHEN unary.stub is called '
         'THEN returns `data`', () {
-      method.reset;
-      method.stub = (i) => '$i';
+      unary
+        ..reset()
+        ..stub = (i) => '$i';
 
       expect(
-        method.stub(data),
+        unary(data),
         '$data',
-        reason: '`method.stub` should match `"data"`',
+        reason: '`unary.stub` should match `"data"`',
       );
     });
     test(
         'GIVEN `stub != null` '
-        'WHEN method.stub is called n times '
+        'WHEN unary.stub is called n times '
         'THEN  `count` == `times`', () {
-      method.reset;
+      unary.reset();
 
       for (var i = 0; i < times; ++i) {
-        method.stub(i);
+        unary(i);
       }
       expect(
-        method.count,
+        unary.count,
         times,
-        reason: '`method.stub` should match `times`',
+        reason: '`unary.count` should match `times`',
       );
     });
     test(
         '...'
-        'WHEN  method.stub is not called '
+        'WHEN  unary.stub is not called '
         'THEN  `callCount` persists', () {
-      /// method.stub;
+      /// unary.reset();
 
       expect(
-        method.count,
+        unary.count,
         times,
-        reason: '`method.stub` should persist across tests',
+        reason: '`unary.count` should persist across tests',
       );
     });
     test(
         'GIVEN _ '
         'WHEN Foo.foo is set twice '
         'THEN  only latest has effect', () {
-      method.reset;
-      method.stub = (i) => '${i * 3}';
-      method.stub = (i) => '${i * times}';
+      unary
+        ..reset()
+        ..stub = (i) => '${i * 3}';
+      unary.stub = (i) => '${i * times}';
 
       expect(
-        method.stub(data),
+        unary(data),
         '${data * times}',
-        reason: '`method.stub()` should be the latest `result` provided',
+        reason: '`unary()` should be the latest `result` provided',
       );
     });
   });

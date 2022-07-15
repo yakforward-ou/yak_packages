@@ -3,32 +3,30 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 // coverage:ignore-file
 
-/// a `typedef` for a `RunNullarySync` test function
-typedef RunNullaryAsyncTest<T> = void Function({
+/// a `typedef` for a `ResultNullary` test function
+typedef ResultNullaryAsyncTest<T> = void Function({
   String name,
   NullaryAsync<T> example,
 });
 
-/// an `extension` that generates a basic set of tests for `RunNullaryAsync`
-extension RunNullaryAsyncTestX<T> on RunNullaryAsync<T> {
+/// an `extension` that generates a basic set of tests for `ResultNullaryAsync`
+extension ResultNullaryAsyncTestX<T> on ResultNullaryAsync<T> {
   /// run `test` providing a `description` and an `example` function
   void tester({
     required String name,
     required NullaryAsync<T> example,
   }) {
     group('test for $name', () {
-      final nullary = nullaryStub<Future<T>>();
-      RunNullaryAsync<T> buildTester() => runNullaryAsync(nullary.wrap);
+      final tester = Stub.nullary<Future<T>>();
 
       test(
           'GIVEN $name original function does not throw '
           'WHEN $name.call '
           'THEN return Success', () async {
-        nullary
-          ..reset
+        tester
+          ..reset()
           ..stub = example;
 
-        final tester = buildTester();
         final result = await tester();
 
         expect(
@@ -41,11 +39,10 @@ extension RunNullaryAsyncTestX<T> on RunNullaryAsync<T> {
           'GIVEN $name original function throws Exception '
           'WHEN $name.call '
           'THEN return Failure', () async {
-        nullary
-          ..reset
+        tester
+          ..reset()
           ..stub = () => throw Exception();
 
-        final tester = buildTester();
         final result = await tester();
 
         expect(
@@ -59,11 +56,10 @@ extension RunNullaryAsyncTestX<T> on RunNullaryAsync<T> {
           'GIVEN $name original function throws Error '
           'WHEN $name.call '
           'THEN return Failure', () async {
-        nullary
-          ..reset
+        tester
+          ..reset()
           ..stub = () => throw Error();
 
-        final tester = buildTester();
         final result = await tester();
 
         expect(

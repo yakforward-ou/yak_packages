@@ -1,9 +1,9 @@
 import '../all.dart';
 
-/// `RunNullarySyncX` turns a `Nullary` function
-/// into a `RunNullarySync` function
-extension RunNullarySyncX<T> on Nullary<T> {
-  /// turns a `Nullary` function into a `RunNullarySync` function
+/// `ResultNullaryX` turns a `Nullary` function
+/// into a `ResultNullary` function
+extension ResultNullaryX<T> on Nullary<T> {
+  /// turns a `Nullary` function into a `ResultNullary` function
   /// eg:
   //**
   // ```dart
@@ -12,13 +12,13 @@ extension RunNullarySyncX<T> on Nullary<T> {
   // print(result.success); /// "42"
   // ```
   // */
-  RunNullarySync<T> get run => runNullarySync<T>(this);
+  ResultNullary<T> get run => runNullary<T>(this);
 }
 
-/// `RunNullaryAsyncX` turns a `NullaryAsync` function
-/// into a `RunNullaryAsync` function
-extension RunNullaryAsyncX<T> on NullaryAsync<T> {
-  /// turns a `Nullary` function into a `RunNullarySync` function
+/// `ResultNullaryAsyncX` turns a `NullaryAsync` function
+/// into a `ResultNullaryAsync` function
+extension ResultNullaryAsyncX<T> on NullaryAsync<T> {
+  /// turns a `Nullary` function into a `ResultNullary` function
   /// eg:
   //**
   // ```dart
@@ -27,13 +27,13 @@ extension RunNullaryAsyncX<T> on NullaryAsync<T> {
   // print(result.success); /// "42"
   // ```
   // */
-  RunNullaryAsync<T> get run => runNullaryAsync<T>(this);
+  ResultNullaryAsync<T> get run => runNullaryAsync<T>(this);
 }
 
-/// `RunUnarySyncX` turns a `Unary` function
-/// into a `RunUnarySync` function
-extension RunUnarySyncX<T, S> on Unary<T, S> {
-  ///  turns a `Unary` function into a `RunUnarySync` function
+/// `ResultUnaryX` turns a `Unary` function
+/// into a `ResultUnary` function
+extension ResultUnaryX<T, S> on Unary<T, S> {
+  ///  turns a `Unary` function into a `ResultUnary` function
   /// eg:
   //**
   // ```dart
@@ -42,13 +42,13 @@ extension RunUnarySyncX<T, S> on Unary<T, S> {
   // print(result.success); /// "2"
   // ```
   // */
-  RunUnarySync<T, S> get run => runUnarySync(this);
+  ResultUnary<T, S> get run => runUnary(this);
 }
 
-/// `RunUnaryAsyncX` turns a `UnaryAsync` function
-/// into a `RunUnaryAsync` function
-extension RunUnaryAsyncX<T, S> on UnaryAsync<T, S> {
-  ///  turns a `UnaryAsync` function into a `RunUnaryAsync` function
+/// `ResultUnaryAsyncX` turns a `UnaryAsync` function
+/// into a `ResultUnaryAsync` function
+extension ResultUnaryAsyncX<T, S> on UnaryAsync<T, S> {
+  ///  turns a `UnaryAsync` function into a `ResultUnaryAsync` function
   /// eg:
   //**
   // ```dart
@@ -57,5 +57,5 @@ extension RunUnaryAsyncX<T, S> on UnaryAsync<T, S> {
   // print(result.success); /// "2"
   // ```
   // */
-  RunUnaryAsync<T, S> get run => runUnaryAsync(this);
+  ResultUnaryAsync<T, S> get run => runUnaryAsync(this);
 }

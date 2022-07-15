@@ -4,16 +4,16 @@ import 'package:yak_test/yak_test.dart';
 // ignore_for_file: prefer_function_declarations_over_variables
 
 void main() {
-  group('RunUnaryAsyncTestX', () {
+  group('ResultUnaryAsyncTestX', () {
     final UnaryAsync<int, int> function = (i) async => i * i;
     test(
-        'GIVEN RunUnaryAsync runner'
+        'GIVEN ResultUnaryAsync runner'
         'WHEN runner.tester'
-        'THEN returns `RunUnaryAsyncTest`', () {
+        'THEN returns `ResultUnaryAsyncTest`', () {
       expect(
         function.run.tester,
-        isA<RunUnaryAsyncTest<int, int>>(),
-        reason: 'tester should output a `RunUnaryAsyncTest`',
+        isA<ResultUnaryAsyncTest<int, int>>(),
+        reason: 'tester should output a `ResultUnaryAsyncTest`',
       );
     });
   });
