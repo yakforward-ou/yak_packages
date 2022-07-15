@@ -1,5 +1,6 @@
-### 1.0.0+1
+### 1.0.0+2
 - update sets of `typedef` and `delegates`
+- downgrade `meta` package for `flutter` compatibility
 
 ### 0.1.0
 - updated `example` and `readme`
