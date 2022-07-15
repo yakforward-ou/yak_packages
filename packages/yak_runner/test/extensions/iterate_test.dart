@@ -5,7 +5,7 @@ void main() {
   group('IterableRunX', () {
     group('iterateRun', () {
       test(
-          'GIVEN Iterable of S and  RunUnarySync<T, S> '
+          'GIVEN Iterable of S and  ResultUnary<T, S> '
           'WHEN iterateRun '
           'THEN return Iterable<Result<T>>', () {
         bool tester(int i) {
@@ -43,7 +43,7 @@ void main() {
     });
     group('iterateRunAsync', () {
       test(
-          'GIVEN Iterable of S and RunUnaryAsync<T, S> '
+          'GIVEN Iterable of S and ResultUnaryAsync<T, S> '
           'WHEN iterateRunAsync '
           'THEN return Stream<Result<T>>', () async {
         Future<bool> tester(int i) async {
@@ -83,7 +83,7 @@ void main() {
     group('StreamRunX', () {
       group('transformRun', () {
         test(
-            'GIVEN Stream of S and RunUnarySync<T, S> '
+            'GIVEN Stream of S and ResultUnary<T, S> '
             'WHEN transformRun '
             'THEN return Stream<Result<T>>', () async {
           bool tester(int i) {
@@ -126,7 +126,7 @@ void main() {
       });
       group('iterateRunAsync', () {
         test(
-            'GIVEN Iterable of S and RunUnaryAsync<T, S> '
+            'GIVEN Iterable of S and ResultUnaryAsync<T, S> '
             'WHEN iterateRunAsync '
             'THEN return Stream<Result<T>>', () async {
           Future<bool> tester(int i) async {

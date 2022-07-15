@@ -1,9 +1,9 @@
 import '../all.dart';
 
-/// `runUnaryAsync` takes as argument a `UnaryAsync`
-/// and return a `RunUnaryAsync`
-/// e.g: see `RunUnaryAsyncX`
-RunUnaryAsync<T, S> runUnaryAsync<T, S>(UnaryAsync<T, S> function) =>
+/// `ResultUnaryAsync` takes as argument a `UnaryAsync`
+/// and return a `ResultUnaryAsync`
+/// e.g: see `ResultUnaryAsyncX`
+ResultUnaryAsync<T, S> runUnaryAsync<T, S>(UnaryAsync<T, S> function) =>
     (S arg) async {
       try {
         return Success(await function(arg));

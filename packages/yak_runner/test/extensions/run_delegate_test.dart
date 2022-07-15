@@ -1,54 +1,81 @@
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
+class NullaryTester implements NullaryDelegate<int> {
+  const NullaryTester();
+  @override
+  int call() => 42;
+}
+
+class UnaryTester implements UnaryDelegate<int, int> {
+  const UnaryTester();
+  @override
+  int call(i) => i * 2;
+}
+
+class NullaryAsyncTester implements NullaryDelegateAsync<int> {
+  const NullaryAsyncTester();
+  @override
+  Future<int> call() => Future.sync(() => 42);
+}
+
+class UnaryAsyncTester implements UnaryDelegateAsync<int, int> {
+  const UnaryAsyncTester();
+  @override
+  Future<int> call(i) => Future.sync(() => i * 2);
+}
+
 void main() {
-  group('ResultNullaryX', () {
+  group('ResultNullaryDelegateX', () {
+    const tester = NullaryTester();
     test(
         'GIVEN a Nullary function '
         'WHEN nullary.run '
         'THEN returns a ResultNullary', () {
-      int function() => 42;
       expect(
-        function.run,
+        tester.run,
         isA<ResultNullary<int>>(),
         reason: 'return type should be predictable',
       );
     });
   });
   group('ResultNullaryAsyncX', () {
+    const tester = NullaryAsyncTester();
+
     test(
         'GIVEN a NullaryAsync function '
         'WHEN function.run '
         'THEN returns a ResultNullaryAsync', () {
-      Future<int> function() async => 42;
       expect(
-        function.run,
+        tester.run,
         isA<ResultNullaryAsync<int>>(),
         reason: 'return type should be predictable',
       );
     });
   });
-  group('ResultUnaryX', () {
+  group('ResultUnaryDelegateX', () {
+    const tester = UnaryTester();
+
     test(
         'GIVEN a Unary function '
         'WHEN function.run '
         'THEN returns a ResultUnary', () {
-      int function(i) => i * 2;
       expect(
-        function.run,
+        tester.run,
         isA<ResultUnary<int, int>>(),
         reason: 'return type should be predictable',
       );
     });
   });
-  group('ResultNullaryX', () {
+  group('ResultNullaryDelegateX', () {
+    const tester = UnaryAsyncTester();
+
     test(
         'GIVEN a UnaryAsync function '
         'WHEN function.run '
         'THEN returns a ResultUnaryAsync', () {
-      Future<int> function(i) async => i * 2;
       expect(
-        function.run,
+        tester.run,
         isA<ResultUnaryAsync<int, int>>(),
         reason: 'return type should be predictable',
       );

@@ -2,7 +2,7 @@ import '../all.dart';
 
 /// `ResultNullaryX` turns a `Nullary` function
 /// into a `ResultNullary` function
-extension ResultNullaryX<T> on Nullary<T> {
+extension ResultNullaryDelegateSyncX<T> on NullaryDelegate<T> {
   /// turns a `Nullary` function into a `ResultNullary` function
   /// eg:
   //**
@@ -17,7 +17,7 @@ extension ResultNullaryX<T> on Nullary<T> {
 
 /// `ResultNullaryAsyncX` turns a `NullaryAsync` function
 /// into a `ResultNullaryAsync` function
-extension ResultNullaryAsyncX<T> on NullaryAsync<T> {
+extension ResultNullaryDelegateAsyncX<T> on NullaryDelegateAsync<T> {
   /// turns a `Nullary` function into a `ResultNullary` function
   /// eg:
   //**
@@ -32,7 +32,7 @@ extension ResultNullaryAsyncX<T> on NullaryAsync<T> {
 
 /// `ResultUnaryX` turns a `Unary` function
 /// into a `ResultUnary` function
-extension ResultUnaryX<T, S> on Unary<T, S> {
+extension ResultUnaryDelegateX<T, S> on UnaryDelegate<T, S> {
   ///  turns a `Unary` function into a `ResultUnary` function
   /// eg:
   //**
@@ -47,7 +47,7 @@ extension ResultUnaryX<T, S> on Unary<T, S> {
 
 /// `ResultUnaryAsyncX` turns a `UnaryAsync` function
 /// into a `ResultUnaryAsync` function
-extension ResultUnaryAsyncX<T, S> on UnaryAsync<T, S> {
+extension ResultUnaryAsyncDelegateX<T, S> on UnaryDelegateAsync<T, S> {
   ///  turns a `UnaryAsync` function into a `ResultUnaryAsync` function
   /// eg:
   //**

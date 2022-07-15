@@ -3,20 +3,18 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('runNullaryAsync', () {
-    final nullary = nullaryStub<Future<int>>();
-    RunNullaryAsync<int> buildTester() => runNullaryAsync(nullary.wrap);
+  group('ResultNullaryAsync', () {
+    final tester = Stub.nullary<Future<int>>();
 
     test(
         'GIVEN Nullary does not throw '
-        'WHEN RunNullaryAsync.call '
+        'WHEN ResultNullaryAsync.call '
         'THEN return Success', () async {
-      nullary
-        ..reset
+      tester
+        ..reset()
         ..stub = () => Future.sync(() => 42);
 
-      final tester = buildTester();
-      final result = await tester();
+      final result = await tester.run();
 
       expect(
         result,
@@ -26,14 +24,13 @@ void main() {
     });
     test(
         'GIVEN Nullary throws Exception '
-        'WHEN RunNullaryAsync.call '
+        'WHEN ResultNullaryAsync.call '
         'THEN return Failure', () async {
-      nullary
-        ..reset
+      tester
+        ..reset()
         ..stub = () => throw Exception();
 
-      final tester = buildTester();
-      final result = await tester();
+      final result = await tester.run();
 
       expect(
         result,
@@ -44,14 +41,13 @@ void main() {
 
     test(
         'GIVEN Nullary throws Exception '
-        'WHEN RunNullaryAsync.call '
+        'WHEN ResultNullaryAsync.call '
         'THEN return Failure', () async {
-      nullary
-        ..reset
+      tester
+        ..reset()
         ..stub = () => throw Error();
 
-      final tester = buildTester();
-      final result = await tester();
+      final result = await tester.run();
 
       expect(
         result,

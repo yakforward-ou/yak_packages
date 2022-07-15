@@ -3,20 +3,18 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('runUnaryAsync', () {
-    final unary = unaryStub<Future<int>, int>();
-    RunUnaryAsync<int, int> buildTester() => runUnaryAsync(unary.wrap);
+  group('ResultUnaryAsync', () {
+    final tester = Stub.unary<Future<int>, int>();
 
     test(
         'GIVEN unary does not throw '
-        'WHEN RunUnaryAsync.call '
+        'WHEN ResultUnaryAsync.call '
         'THEN return Success', () async {
-      unary
-        ..reset
+      tester
+        ..reset()
         ..stub = (x) => Future.sync(() => x * 2);
 
-      final tester = buildTester();
-      final result = await tester(1);
+      final result = await tester.run(1);
 
       expect(
         result,
@@ -26,14 +24,13 @@ void main() {
     });
     test(
         'GIVEN unary throws Exception '
-        'WHEN RunUnaryAsync.call '
+        'WHEN ResultUnaryAsync.call '
         'THEN return Failure', () async {
-      unary
-        ..reset
+      tester
+        ..reset()
         ..stub = (x) => throw Exception();
 
-      final tester = buildTester();
-      final result = await tester(1);
+      final result = await tester.run(1);
 
       expect(
         result,
@@ -44,14 +41,13 @@ void main() {
 
     test(
         'GIVEN unary throws Exception '
-        'WHEN RunUnaryAsync.call '
+        'WHEN ResultUnaryAsync.call '
         'THEN return Failure', () async {
-      unary
-        ..reset
+      tester
+        ..reset()
         ..stub = (x) => throw Error();
 
-      final tester = buildTester();
-      final result = await tester(1);
+      final result = await tester.run(1);
 
       expect(
         result,
