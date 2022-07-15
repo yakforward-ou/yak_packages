@@ -4,16 +4,15 @@ import 'package:yak_result/yak_result.dart';
 
 void main() {
   group('OnResultX', () {
-    final result = nullaryStub<Result<bool>>();
-    final function = unaryStub<Result<bool>, bool>()..stub = (i) => Success(!i);
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () {
-      function.reset;
-      result
-        ..reset
+      final result = Stub.nullary<Result<bool>>()
         ..stub = () => const Success(true);
 
+      final function = Stub.unary<Result<bool>, bool>()
+        ..stub = (i) => Success(!i);
+
       expect(
-        result.wrap().onResult(function.wrap),
+        result().onResult(function),
         isA<Success>(),
         reason: 'should be a success',
       );
@@ -26,13 +25,15 @@ void main() {
     });
 
     test('GIVEN ... ' 'WHEN is Failure' 'THEN function is called', () {
-      function.reset;
-      result
-        ..reset
-        ..stub = () => Failure();
+      final result = Stub.nullary<Result<bool>>()..stub = () => Failure();
+
+      final function = Stub.unary<Result<bool>, bool>()
+        ..stub = (i) => Success(!i);
+
       expect(
-        result.wrap().onResult(function.wrap),
-        isA<Failure<bool>>(),
+        result().onResult(function),
+        //isA<Failure<bool>>(), /// TODO [https://github.com/iapicca/yak_packages/issues/154]
+        isA<Failure>(),
         reason: 'should be a failure',
       );
 
@@ -44,17 +45,15 @@ void main() {
     });
   });
   group('OnResultAsyncX', () {
-    final result = nullaryStub<Result<bool>>();
-    final function = unaryStub<Future<Result<bool>>, bool>()
-      ..stub = (i) async => Success(!i);
     test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
-      function.reset;
-      result
-        ..reset
+      final result = Stub.nullary<Result<bool>>()
         ..stub = () => const Success(true);
 
+      final function = Stub.unary<Future<Result<bool>>, bool>()
+        ..stub = (i) async => Success(!i);
+
       expect(
-        await result.wrap().onFutureResult(function.wrap),
+        await result().onFutureResult(function),
         isA<Success>(),
         reason: 'should be a success',
       );
@@ -67,14 +66,15 @@ void main() {
     });
 
     test('GIVEN ... ' 'WHEN is Failure' 'THEN function is called', () async {
-      function.reset;
-      result
-        ..reset
-        ..stub = () => Failure();
+      final result = Stub.nullary<Result<bool>>()..stub = () => Failure();
+
+      final function = Stub.unary<Future<Result<bool>>, bool>()
+        ..stub = (i) async => Success(!i);
 
       expect(
-        await result.wrap().onFutureResult(function.wrap),
-        isA<Failure<bool>>(),
+        await result().onFutureResult(function),
+        // isA<Failure<bool>>(), // TODO [https://github.com/iapicca/yak_packages/issues/154]
+        isA<Failure>(),
         reason: 'should be a failure',
       );
 

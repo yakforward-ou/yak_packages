@@ -11,6 +11,11 @@ void main() {
         isA<Failure<int>>(),
         reason: 'should be recaster',
       );
+      expect(
+        failure.recast<int>(),
+        isA<Result<int>>(),
+        reason: 'should be recaster',
+      );
     });
   });
 }
