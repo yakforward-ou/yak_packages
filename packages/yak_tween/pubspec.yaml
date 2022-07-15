@@ -14,7 +14,7 @@ dependencies:
   yak_utils: ^1.0.0
 
 dependency_overrides:
-  meta: ^1.8.0
+  meta: ^1.7.0
 
 dev_dependencies:
   flutter_test:
