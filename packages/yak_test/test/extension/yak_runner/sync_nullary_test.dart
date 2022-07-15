@@ -4,16 +4,16 @@ import 'package:yak_test/yak_test.dart';
 // ignore_for_file: prefer_function_declarations_over_variables
 
 void main() {
-  group('RunNullarySyncTestX', () {
+  group('ResultNullaryTestX', () {
     final Nullary<int> function = () => 0;
     test(
-        'GIVEN RunNullarySync runner'
+        'GIVEN ResultNullary runner'
         'WHEN runner.tester'
-        'THEN returns `RunNullarySyncTest`', () {
+        'THEN returns `ResultNullaryTest`', () {
       expect(
         function.run.tester,
-        isA<RunNullarySyncTest<int>>(),
-        reason: 'tester should output a `RunNullarySyncTest`',
+        isA<ResultNullaryTest<int>>(),
+        reason: 'tester should output a `ResultNullaryTest`',
       );
     });
   });
