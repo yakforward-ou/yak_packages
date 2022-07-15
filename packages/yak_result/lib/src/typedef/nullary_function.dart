@@ -1,9 +1,9 @@
-import 'package:yak_utils/yak_utils.dart' show Nullary;
+import 'package:yak_utils/yak_utils.dart' show Nullary, NullaryAsync;
 
 import '../all.dart';
 
 /// an nullary function that returns a Result
-typedef ResultNullaryFunction<T> = Nullary<Result<T>>;
+typedef ResultNullary<T> = Nullary<Result<T>>;
 
 /// an nullary async function that returns a Result
-typedef ResultNullaryFunctionAsync<T> = Nullary<Future<Result<T>>>;
+typedef ResultNullaryAsync<T> = NullaryAsync<Result<T>>;
