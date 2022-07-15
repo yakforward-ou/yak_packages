@@ -1,4 +1,4 @@
-### 1.0.0+2
+### 1.0.0+3
 - major release
 - update typedefs
 - downgrade `meta` for `flutter` compatibility
