@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:yak_tween/yak_tween.dart';
 
 // ignore_for_file: avoid_catching_errors

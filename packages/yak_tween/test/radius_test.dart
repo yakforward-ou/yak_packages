@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:yak_tween/yak_tween.dart';
 
 void main() {

@@ -13,10 +13,6 @@ dependencies:
   vector_math: ^2.1.2
   yak_utils: ^1.0.0
 
-dependency_overrides:
-  meta: ^1.7.0
-
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  test: ^1.21.4
   flutter_lints: ^2.0.1

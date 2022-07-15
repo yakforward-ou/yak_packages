@@ -4,4 +4,3 @@
 - created from the ashes of `yak_math`
 - versions up-to-date
 - updated readme
-- override flutter's `meta` dependencies
