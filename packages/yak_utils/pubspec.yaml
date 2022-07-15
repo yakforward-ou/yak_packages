@@ -1,6 +1,6 @@
 name: yak_utils
 description: a collection of useful functions and extensions` for your projects
-version: 1.0.0+2
+version: 1.0.0+3
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
