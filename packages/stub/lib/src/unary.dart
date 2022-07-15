@@ -1,20 +1,11 @@
-import 'all.dart';
-// ignore_for_file: invalid_use_of_internal_member
+import 'package:yak_utils/yak_utils.dart' show Unary, UnaryDelegate;
 
-/// retun a UNARY `Stub`
-///
-/// to be replaced with `non-function type alias`
-/// see [https://github.com/dart-lang/sdk/issues/44951]
-Stub<T Function(S)> unaryStub<T, S>() => _UnaryStub<T, S, T Function(S)>();
+import 'stub.dart';
 
-/// an `UNARY` implementation of `StubMethod`
-/// it's recommended to use  `nullaryStub<T>()`
-
-class _UnaryStub<T, S, Z extends T Function(S)> extends Stub<Z>
-    with Counter<Z> {
+class UnaryStub<T, S, Z extends Unary<T, S>> extends Stub<Z>
+    implements UnaryDelegate<T, S> {
   Z? _stub;
-  @override
-  Z get stub => _stub ?? _default;
+  Z get _call => _stub ?? _default;
   @override
   set stub(Z fun) {
     _stub = (s) {
@@ -29,4 +20,7 @@ class _UnaryStub<T, S, Z extends T Function(S)> extends Stub<Z>
       throw UnimplementedError();
     }) as Z;
   }
+
+  @override
+  T call(S p0) => _call(p0);
 }

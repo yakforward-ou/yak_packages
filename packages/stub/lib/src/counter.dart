@@ -1,16 +1,14 @@
-import 'package:meta/meta.dart';
-import 'method.dart';
+/// a class that holds a counter that can only be increased or reset
+class Counter {
+  /// store the count privately
+  var _count = 0;
 
-/// a mixin on `Stub` that implements the count method
-mixin Counter<Z> on Stub<Z> {
-  int _count = 0;
-  @override
+  /// exposes the count
   int get count => _count;
 
   /// increses the count by one, it's meant for internal use
-  @internal
   void increase() => _count++;
 
-  @override
-  void get reset => _count = 0;
+  /// set the count to `0`
+  void reset() => _count = 0;
 }

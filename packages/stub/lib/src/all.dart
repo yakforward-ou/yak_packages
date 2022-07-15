@@ -1,5 +1,4 @@
 export 'counter.dart';
-export 'method.dart';
+export 'stub.dart';
 export 'nullary.dart';
 export 'unary.dart';
-export 'wrap.dart';
