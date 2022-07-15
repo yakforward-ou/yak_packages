@@ -5,21 +5,16 @@
 
 ### yak_utils
 
-A collection of useful `functions`, `extensions` and more for your `flutter` an `dart` projects
+A collection of useful 
 
-#### extension
+- `functions`
+- `extensions`
+- `typedefs`
+- `delegates` 
 
-- on `double`
-  - `roundToPrecision`
+for your `flutter` an `dart` projects
 
-- on `Iterable`
-  - `emptyOnNull`
 
-#### functions
-
-- `clampInt`
-- `lerpInt`
-- `lerpNNDouble`
 
 
 [codecov]: https://codecov.io/gh/iapicca/yak_packages
