@@ -1,6 +1,7 @@
-### 1.0.0+3
+### 1.0.0+4
 - update sets of `typedef` and `delegates`
 - downgrade `meta` package for `flutter` compatibility
+- add `MultiDelegate` and `MultiArgFunction` 
 
 
 ### 0.1.0
