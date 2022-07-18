@@ -10,13 +10,13 @@ class _TestDelegate implements NullaryDelegate<int> {
 void main() {
   group('NullaryDelegate', () {
     test(
-        'GIVEN NullaryDelegate<T> delegate '
+        'GIVEN NullaryDelegate '
         'WHEN delegate.call '
-        'THEN returns a T Function()', () {
+        'THEN returns a Nullary', () {
       final delegate = _TestDelegate();
       expect(
         delegate.call,
-        isA<int Function()>(),
+        isA<Nullary<int>>(),
         reason: 'delegat.call should be predictable',
       );
     });

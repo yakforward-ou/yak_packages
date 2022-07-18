@@ -10,13 +10,13 @@ class _TestDelegate implements UnaryDelegate<String, int> {
 void main() {
   group('UnaryDelegate', () {
     test(
-        'GIVEN UnaryDelegate<T,S> delegate '
+        'GIVEN UnaryDelegate '
         'WHEN delegate.call '
-        'THEN returns a T Function(S)', () {
+        'THEN returns a Unary', () {
       final delegate = _TestDelegate();
       expect(
         delegate.call,
-        isA<String Function(int)>(),
+        isA<Unary<String, int>>(),
         reason: 'delegat.call should be predictable',
       );
     });
