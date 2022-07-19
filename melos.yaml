@@ -13,9 +13,9 @@ scripts:
   publish:
     run: |
       melos run lint:format --no-select & \
-      melos publish  --no-select & \
+      melos publish --no-select & \
       melos run publish:login --no-select & \
-      melos publish --no-dry-run  --no-select
+      melos publish --no-dry-run --no-select
     description: analyze all packages
     
   lint:
