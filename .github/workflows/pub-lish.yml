@@ -1,4 +1,4 @@
-name: 'pub-lish'
+name: 'update pub'
 on:
   push:
     branches:
