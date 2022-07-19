@@ -7,27 +7,29 @@ scripts:
 
   publish:
     run: |
-      melos run lint:format --no-select & \
-      melos publish & \
+      melos run lint:format && \
+      melos publish && \
       melos publish --no-dry-run
-    description: analyze all packages
+    description: publish packageson pub.dev
+    ignore:
+      - examples/**
     
   lint:
     run: |
-      melos run lint:clean --no-select & \
-      melos run lint:format --no-select & \
+      melos run lint:clean --no-select && \
+      melos run lint:format --no-select && \
       melos run lint:format-check --no-select
     description: analyze all packages
 
   analyze:
     run: |
-      melos run analyze:dart --no-select & \
+      melos run analyze:dart --no-select && \
       melos run analyze:flutter --no-select
     description: analyze all packages
 
   test: 
     run: |
-      melos run test:dart --no-select & \
+      melos run test:dart --no-select && \
       melos run test:flutter --no-select
     description: Run all Dart & Flutter tests in this project.
 
