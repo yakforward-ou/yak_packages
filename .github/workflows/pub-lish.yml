@@ -1,11 +1,11 @@
-name: 'auto-publish'
+name: 'pub-lish'
 on:
   push:
     branches:
       - master
 
   publish:
-    name: 'publish to pub.dev'
+    name: 'pub-lish to pub.dev'
     runs-on: ubuntu-latest
     steps:
       - name: 'checkout'
