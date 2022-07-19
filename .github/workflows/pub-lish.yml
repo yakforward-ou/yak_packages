@@ -22,7 +22,10 @@ jobs:
       - name: 'update PATH'
         run: |
           echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH && \
-          echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV         
+          echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV
+      - name: 'generate creadentials'
+        run: |
+          sh scripts/pub_login.sh       
       - name: 'activate melos' 
         run: |
           dart pub global activate melos
