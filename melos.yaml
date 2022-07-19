@@ -8,7 +8,6 @@ scripts:
   publish:
     run: |
       melos run lint:format && \
-      melos publish && \
       melos publish --no-dry-run
     description: publish packageson pub.dev
     ignore:
