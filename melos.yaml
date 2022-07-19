@@ -5,17 +5,11 @@ packages:
 
 scripts:
 
-  publish:login:
-    run: |
-      sh scripts/pub_login.sh
-    description: add pub credentials
-
   publish:
     run: |
       melos run lint:format --no-select & \
-      melos publish  --no-select & \
-      melos run publish:login --no-select & \
-      melos publish --no-dry-run  --no-select
+      melos publish & \
+      melos publish --no-dry-run
     description: analyze all packages
     
   lint:
