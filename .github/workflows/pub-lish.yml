@@ -25,6 +25,7 @@ jobs:
           echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV  
       - name: 'setup credentials'
         run: |
+          mkdir $HOME/.pub-cache/ && \
           touch $HOME/.pub-cache/credentials.json && \
           cat <<EOF > $HOME/.pub-cache/credentials.json
           {
