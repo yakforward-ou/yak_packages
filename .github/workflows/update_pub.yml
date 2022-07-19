@@ -5,7 +5,7 @@ on:
       - master
 
   publish:
-    name: 'pub-lish to pub.dev'
+    name: 'update pub.dev'
     runs-on: ubuntu-latest
     steps:
       - name: 'checkout'
@@ -29,6 +29,6 @@ on:
       - name: 'install dependencies'
         run: |
           melos bootstrap
-      - name: 'pub-lish'
+      - name: 'pub-lish to pub.dev'
         run: |
           melos run publish
