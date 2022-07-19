@@ -1,10 +1,10 @@
-name: 'auto-publish'
+name: 'pub-lish'
 on:
   push:
     branches:
       - master
-
-  publish:
+jobs:
+  pub-lish:
     name: 'publish to pub.dev'
     runs-on: ubuntu-latest
     steps:
@@ -29,6 +29,6 @@ on:
       - name: 'install dependencies'
         run: |
           melos bootstrap
-      - name: 'pub-lish'
+      - name: 'publishing'
         run: |
           melos run publish
