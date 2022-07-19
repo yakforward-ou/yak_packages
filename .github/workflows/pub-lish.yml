@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-
+jobs:
   pub-lish:
     name: 'publish to pub.dev'
     runs-on: ubuntu-latest
