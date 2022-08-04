@@ -4,10 +4,15 @@ import 'package:byte_token/byte_token.dart';
 import 'package:test/test.dart';
 import 'package:yak_utils/yak_utils.dart';
 
-import 'mocks.dart';
-
 void main() {
   group('ByteToken', () {
+    const oneDay = Duration(days: 1);
+    const oneYear = Duration(days: 365);
+    final aYearAgo =
+        DateTime.now().toUtc().add(-oneYear).millisecondsSinceEpoch;
+
+    final tomorrow = DateTime.now().toUtc().add(oneDay).millisecondsSinceEpoch;
+
     final secret = Secret(
       'eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAx',
     );

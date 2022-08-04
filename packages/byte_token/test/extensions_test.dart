@@ -49,4 +49,29 @@ void main() {
       );
     });
   });
+  group('IterableEqualityX', () {
+    final list = [for (var i = 0; i < 100; ++i) i];
+    final list2 = [for (var i = 1; i <= 100; ++i) i];
+
+    test(
+        'GIVEN an Iterable list '
+        'WHEN list.equals(list) '
+        'THEN returns true', () {
+      expect(
+        list.equals(list),
+        isTrue,
+        reason: 'should return "true"',
+      );
+    });
+    test(
+        'GIVEN an Iterable list '
+        'WHEN list.equals(list2) '
+        'THEN returns false', () {
+      expect(
+        list.equals(list2),
+        isFalse,
+        reason: 'should return "false"',
+      );
+    });
+  });
 }
