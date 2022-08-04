@@ -2,10 +2,29 @@ import 'package:byte_token/byte_token.dart';
 import 'package:test/test.dart';
 import 'package:yak_utils/yak_utils.dart';
 
-import 'mocks.dart';
-
 void main() {
   group('Payload', () {
+    const oneDay = Duration(days: 1);
+    const oneYear = Duration(days: 365);
+    final aYearAgo =
+        DateTime.now().toUtc().add(-oneYear).millisecondsSinceEpoch;
+
+    final tomorrow = DateTime.now().toUtc().add(oneDay).millisecondsSinceEpoch;
+
+    final validPayload = Payload(
+      email: 'yakforward@gmail.com',
+      emailVerified: true,
+      issuedAt: aYearAgo,
+      expirationTime: tomorrow,
+    );
+
+    final badPayload = Payload(
+      email: 'badactor@gmail.com',
+      emailVerified: true,
+      issuedAt: aYearAgo,
+      expirationTime: tomorrow,
+    );
+
     test(
         'GIVEN identical Payload '
         'WHEN compared for equality '
@@ -75,9 +94,9 @@ void main() {
         reason: '"sub" should match "subject"',
       );
       expect(
-        (json['at_hash'] as String?) == validPayload.accessTokenHashValue,
+        (json['athash'] as String?) == validPayload.accessTokenHashValue,
         isTrue,
-        reason: '"at_hash" should match "accessTokenHashValue"',
+        reason: '"athash" should match "accessTokenHashValue"',
       );
       expect(
         (json['email'] as String?) == validPayload.email,
@@ -88,7 +107,7 @@ void main() {
         (json['email_verified'] as String) ==
             validPayload.emailVerified.toString(),
         isTrue,
-        reason: '"email_verified" should match "emailVerified"',
+        reason: '"email_verified" should match "email_verified"',
       );
       expect(
         (json['iat'] as int?) == validPayload.issuedAt,

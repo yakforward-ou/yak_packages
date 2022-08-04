@@ -21,10 +21,7 @@ class ByteTokenValidator extends UnaryDelegate<ByteToken, ByteToken> {
   /// takes a [Payload] as argument and returns [Bytes]
   @override
   ByteToken call(ByteToken p0) {
-    print('${base64Encode(signature(p0.payload))}');
-    print('${base64Encode(p0.signature)}');
-
-    if (p0.signature.equals(signature(p0.payload))) {
+    if (!p0.signature.equals(signature(p0.payload))) {
       throw Exception('signature not valid for $p0');
     }
     if (p0.payload.expirationTime == null) {

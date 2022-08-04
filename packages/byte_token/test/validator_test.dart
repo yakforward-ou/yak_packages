@@ -1,16 +1,49 @@
 import 'package:byte_token/byte_token.dart';
 import 'package:test/test.dart';
 
-import 'mocks.dart';
-
 void main() {
   group('ByteTokenValidator', () {
+    const oneDay = Duration(days: 1);
+    const oneYear = Duration(days: 365);
+    final aYearAgo =
+        DateTime.now().toUtc().add(-oneYear).millisecondsSinceEpoch;
+    final yesterday =
+        DateTime.now().toUtc().add(-oneDay).millisecondsSinceEpoch;
+    final tomorrow = DateTime.now().toUtc().add(oneDay).millisecondsSinceEpoch;
+
+    final secret = Secret(
+      'eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAx',
+    );
+    final signature = ByteSignature(secret);
+
+    final validator = ByteTokenValidator(signature);
+    final payload = Payload(
+      email: 'yakforward@gmail.com',
+      emailVerified: true,
+      issuedAt: aYearAgo,
+      expirationTime: tomorrow,
+    );
+
+    final token = ByteToken(
+      payload: payload,
+      signature: signature(payload),
+    );
+
+    final badToken = ByteToken(
+      payload: Payload(
+        email: 'bad_actor@gmail.com',
+        emailVerified: true,
+        issuedAt: aYearAgo,
+        expirationTime: tomorrow,
+      ),
+      signature: signature(payload),
+    );
     test(
-        'GIVEN ByteSignature validSignature '
-        'WHEN ByteTokenValidator(validSignature) '
+        'GIVEN ByteSignature signature '
+        'WHEN ByteTokenValidator(signature) '
         'THEN returns ByteTokenValidator', () {
       expect(
-        ByteTokenValidator(validSignature),
+        ByteTokenValidator(signature),
         isA<ByteTokenValidator>(),
         reason: 'should return a ByteTokenValidator',
       );
@@ -18,11 +51,11 @@ void main() {
 
     test(
         'GIVEN ByteTokenValidator validator '
-        'WHEN validator(validToken) '
-        'THEN returns a validToken', () {
+        'WHEN validator(token) '
+        'THEN returns a token', () {
       expect(
-        validator(validToken),
-        validToken,
+        validator(token),
+        token,
         reason: 'should return a valid token',
       );
     });
@@ -32,7 +65,7 @@ void main() {
         'THEN should throw', () {
       expect(
         () => validator(badToken),
-        throwsA(isA<Exception>()),
+        throwsException,
         reason: 'should throw an exception',
       );
     });

@@ -8,13 +8,41 @@ import 'mocks.dart';
 
 void main() {
   group('ByteToken', () {
+    final secret = Secret(
+      'eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAx',
+    );
+    final signature = ByteSignature(secret);
+    final payload = Payload(
+      email: 'yakforward@gmail.com',
+      emailVerified: true,
+      issuedAt: aYearAgo,
+      expirationTime: tomorrow,
+    );
+
+    final token = ByteToken(
+      payload: payload,
+      signature: signature(payload),
+    );
+
+    final badPayload = Payload(
+      email: 'bad_actor@gmail.com',
+      emailVerified: true,
+      issuedAt: aYearAgo,
+      expirationTime: tomorrow,
+    );
+
+    final badToken = ByteToken(
+      payload: badPayload,
+      signature: signature(badPayload),
+    );
+
     test(
         'GIVEN identical ByteToken '
         'WHEN compared for equality '
         'THEN returns true', () {
-      final tester = validToken;
+      final tester = token;
       expect(
-        tester == validToken,
+        tester == token,
         isTrue,
         reason: 'equality should be true',
       );
@@ -24,7 +52,7 @@ void main() {
         'WHEN compared for equality '
         'THEN returns false', () {
       expect(
-        validToken == badToken,
+        token == badToken,
         isFalse,
         reason: 'equality should be false',
       );
@@ -34,9 +62,9 @@ void main() {
         'GIVEN List<int> from ByteToken toBuffer '
         'WHEN when ByteToken.fromBuffer() '
         'THEN then returns the same ByteToken', () {
-      final bytes = validToken.toBuffer();
+      final bytes = token.toBuffer();
       expect(
-        ByteToken.fromBuffer(bytes) == validToken,
+        ByteToken.fromBuffer(bytes) == token,
         isTrue,
         reason: 'Payload from token should be identical',
       );
@@ -45,7 +73,7 @@ void main() {
         'GIVEN a ByteToken  '
         'WHEN when toJson() '
         'THEN then returns a Json', () {
-      final json = validToken.toJson();
+      final json = token.toJson();
       expect(
         json,
         isA<Json>(),
@@ -57,17 +85,16 @@ void main() {
         'GIVEN a ByteToken  '
         'WHEN when toJson() '
         'THEN output is predicatable', () {
-      final json = validToken.toJson();
+      final json = token.toJson();
 
       expect(
-        json['payload'].toString() == validPayload.toString(),
+        json['payload'].toString() == payload.toString(),
         isTrue,
         reason: '"payload" should match',
       );
 
-      final signature = base64Encode(validSignature(validPayload));
       expect(
-        json['signature'] as String == signature,
+        json['signature'] as String == base64Encode(signature(payload)),
         isTrue,
         reason: '"signature" should match',
       );
@@ -78,7 +105,7 @@ void main() {
         'WHEN when toString() '
         'THEN then returns a String', () {
       expect(
-        validToken.toString(),
+        token.toString(),
         isA<String>(),
         reason: 'should return a json',
       );
@@ -89,7 +116,22 @@ void main() {
         'WHEN when toBuffer() '
         'THEN then returns identical output', () {
       expect(
-        validToken.toBuffer().equals(validToken.toBuffer()),
+        token.toBuffer().equals(token.toBuffer()),
+        isTrue,
+        reason: 'should be identical',
+      );
+    });
+
+    test(
+        'GIVEN ByteToken from Payload and signature '
+        'WHEN  ByteToken'
+        'THEN then returns identical output', () {
+      ByteToken(
+        payload: payload,
+        signature: signature(payload),
+      );
+      expect(
+        token.toBuffer().equals(token.toBuffer()),
         isTrue,
         reason: 'should be identical',
       );

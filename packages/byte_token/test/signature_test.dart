@@ -5,12 +5,29 @@ import 'mocks.dart';
 
 void main() {
   group('Signature', () {
+    final secret = Secret(
+      'eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAx',
+    );
+    final signature = ByteSignature(secret);
+    final validPayload = Payload(
+      email: 'yakforward@gmail.com',
+      emailVerified: true,
+      issuedAt: aYearAgo,
+      expirationTime: tomorrow,
+    );
+
+    final expiredPayload = Payload(
+      email: 'yakforward@gmail.com',
+      emailVerified: true,
+      issuedAt: aYearAgo,
+      expirationTime: yesterday,
+    );
     test(
         'GIVEN Bytes secret() '
         'WHEN ByteSignature(secret()) '
         'THEN returns ByteSignature', () {
       expect(
-        ByteSignature(validSecret),
+        ByteSignature(secret),
         isA<ByteSignature>(),
         reason: 'should output ByteSignature',
       );
@@ -21,7 +38,7 @@ void main() {
         'WHEN call(Payload) '
         'THEN returns Bytes', () {
       expect(
-        validSignature(validPayload),
+        signature(validPayload),
         isA<Bytes>(),
         reason: 'should output Bytes',
       );
@@ -31,7 +48,7 @@ void main() {
         'WHEN call(expired payload) '
         'THEN should throw', () {
       expect(
-        () => validSignature(expiredPayload),
+        () => signature(expiredPayload),
         throwsException,
         reason: 'should throw',
       );
@@ -42,7 +59,7 @@ void main() {
         'WHEN call(Payload) '
         'THEN returns the same data', () {
       expect(
-        validSignature(validPayload).equals(validSignature(validPayload)),
+        signature(validPayload).equals(signature(validPayload)),
         isTrue,
         reason: 'should be identical',
       );
