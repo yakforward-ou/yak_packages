@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package payload;
+
+message Payload {
+  string accessTokenHashValue = 1;
+  string audience = 2;
+  string authorizedParty = 3;
+  string email = 4;
+  bool emailVerified = 5;
+  int64 expirationTime = 6;
+  string hostedDomain = 7;
+  int64 issuedAt = 8;
+  string issuer = 9;
+  string nonce = 10;
+  string subject = 11;
+}
+
+message Token {
+  bytes payload = 1;
+  bytes signature =2;
+}
