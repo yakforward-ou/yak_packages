@@ -6,6 +6,7 @@ import 'typedefs.dart';
 /// TODO make a better version of protobuf.dart that just initialize everithing as 0 or '' as default
 /// and behaves like a dataclass
 
+/// a class that represent the industry standard for `JWT`
 class Payload {
   final String? accessTokenHashValue;
   final String? audience;
@@ -19,6 +20,7 @@ class Payload {
   final String? nonce;
   final String? subject;
 
+  /// a standard constant constructor
   const Payload({
     this.accessTokenHashValue,
     this.audience,
@@ -33,6 +35,7 @@ class Payload {
     this.subject,
   });
 
+  /// a factory constructor from  binary data
   factory Payload.fromBuffer(Bytes buffer) {
     final payload = buf.Payload.fromBuffer(buffer);
     return Payload(
@@ -53,6 +56,8 @@ class Payload {
       subject: payload.subject.isEmpty ? null : payload.subject,
     );
   }
+
+  /// converts the object to binary data
   Bytes toBuffer() {
     final payload = buf.Payload()
       ..accessTokenHashValue = accessTokenHashValue ?? ''
@@ -69,6 +74,7 @@ class Payload {
     return payload.writeToBuffer();
   }
 
+  /// outputs a map compatible with jsonEncode
   Json toJson() => {
         'iss': issuer,
         'azp': authorizedParty,

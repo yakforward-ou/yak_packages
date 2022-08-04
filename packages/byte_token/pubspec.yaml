@@ -1,6 +1,6 @@
 name: byte_token
 description: A performant and lightweight token authentication package.
-version: 0.1.0+0
+version: 1.0.0+0
 homepage: https://github.com/iapicca/yak_packages
 
 environment:

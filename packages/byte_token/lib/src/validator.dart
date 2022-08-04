@@ -1,24 +1,22 @@
-import 'dart:convert';
-
 import 'package:yak_utils/yak_utils.dart';
 
 import 'encoder.dart';
-import 'extensions.dart';
-import 'payload.dart';
 import 'signature.dart';
 import 'token.dart';
 import 'typedefs.dart';
 
+/// a callable class that validates a [ByteToken]
 class ByteTokenValidator extends UnaryDelegate<ByteToken, ByteToken> {
   final BytesEncoder encoder;
   final ByteSignature signature;
 
+  /// it requires a [ByteSignature] and defaults the encoder to [HmacEncoder]
   const ByteTokenValidator(
     this.signature, {
     this.encoder = const HmacEncoder(),
   });
 
-  /// takes a [Payload] as argument and returns [Bytes]
+  /// takes a [ByteToken] as argument and returns it if valid
   @override
   ByteToken call(ByteToken p0) {
     if (!p0.signature.equals(signature(p0.payload))) {

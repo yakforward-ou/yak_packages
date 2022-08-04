@@ -6,15 +6,18 @@ import '../../protobufs/token.pb.dart' as buf;
 import 'payload.dart';
 import 'typedefs.dart';
 
+/// a class that stores a signature as [Bytes] and a [Payload]
 class ByteToken {
   final Bytes signature;
   final Payload payload;
 
+  /// base constant constructor
   const ByteToken({
     required this.signature,
     required this.payload,
   });
 
+  /// a factory constructor from  binary data
   factory ByteToken.fromBuffer(Bytes buffer) {
     final token = buf.Token.fromBuffer(buffer);
     return ByteToken(
@@ -23,6 +26,7 @@ class ByteToken {
     );
   }
 
+  /// converts the object to binary data
   Bytes toBuffer() {
     final token = buf.Token()
       ..signature = signature
@@ -30,6 +34,7 @@ class ByteToken {
     return token.writeToBuffer();
   }
 
+  /// outputs a map compatible with jsonEncode
   Json toJson() => {
         'signature': base64Encode(signature),
         'payload': payload.toJson(),
