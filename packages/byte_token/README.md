@@ -5,11 +5,8 @@
 
 ### byte_token
 
-a `protobuf` based, performant and lightweight token authentication package
+A `protobuf` based, performant and lightweight token authentication package,
 for your `flutter` an `dart` projects
-
-
-
 
 [codecov]: https://codecov.io/gh/iapicca/yak_packages
 [codecov badge]: https://codecov.io/gh/iapicca/yak_packages/branch/master/graph/badge.svg?token=KVHDWICFU0
