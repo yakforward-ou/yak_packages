@@ -8,7 +8,9 @@ extension MateriaColorFromColorX on Color {
   MaterialColor get asMaterial {
     return MaterialColor(value, swatch);
   }
+}
 
+extension SwatchFromColorX on Color {
   Swatch get swatch => {
         for (final strength in _strengths)
           (strength * 1000).round(): () {

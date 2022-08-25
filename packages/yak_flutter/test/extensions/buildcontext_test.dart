@@ -49,7 +49,7 @@ void main() async {
     });
   });
 
-  group('SizeOfContextX', () {
+  group('PaddingOfContextX', () {
     contextTest(
         'GIVEN a BuildContext ' ' WHEN context.padding' 'THEN is a EdgeInsets',
         (context) {
