@@ -1,4 +1,5 @@
-### 1.0.0+1
+### 1.0.0+2
 
 - initial release
 - add external exports
+- update tests
