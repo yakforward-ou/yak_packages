@@ -1,3 +1,7 @@
+
+### Example
+
+```dart
 import 'package:byte_token/byte_token.dart';
 
 const aYear = Duration(days: 356);
@@ -22,3 +26,4 @@ final token = ByteToken(
 final validator = ByteTokenValidator(signature);
 
 final validTokenOrThrow = validator(token);
+```

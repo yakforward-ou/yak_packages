@@ -10,7 +10,9 @@ a collection of packages for Dart and Flutter
 
 | Package | Link |
 |--------|-----|
+| [byte_token](https://github.com/iapicca/yak_packages/tree/master/packages/byte_token) | [pub](https://pub.dev/packages/byte_token) |
 | [stub](https://github.com/iapicca/yak_packages/tree/master/packages/stub) | [pub](https://pub.dev/packages/stub) |
+| [yak_flutter](https://github.com/iapicca/yak_packages/tree/master/packages/yak_flutter) | [pub](https://pub.dev/packages/yak_flutter) |
 | [yak_result](https://github.com/iapicca/yak_packages/tree/master/packages/yak_result) | [pub](https://pub.dev/packages/yak_result) |
 | [yak_runner](https://github.com/iapicca/yak_packages/tree/master/packages/yak_runner) | [pub](https://pub.dev/packages/yak_runner) |
 | [yak_test](https://github.com/iapicca/yak_packages/tree/master/packages/yak_test) | [pub](https://pub.dev/packages/yak_test) |
