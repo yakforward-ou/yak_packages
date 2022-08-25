@@ -1,4 +1,4 @@
-import '../all.dart';
+import 'package:yak_result/yak_result.dart';
 
 /// given a `Result` this extension on success runs the provided function,
 /// on failure recasts it to the correct type

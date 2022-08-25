@@ -1,4 +1,5 @@
-import '../all.dart';
+import 'package:yak_result/yak_result.dart';
+import 'package:yak_utils/yak_utils.dart';
 
 /// `ResultUnary` takes as argument a `Unary`
 /// and return a `ResultUnary`
