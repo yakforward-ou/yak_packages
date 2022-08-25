@@ -5,13 +5,17 @@ extension ThemeOfContextX on BuildContext {
 }
 
 extension TextThemeOfContextX on BuildContext {
-  TextTheme get textTheme => Theme.of(this).textTheme;
+  TextTheme get textTheme => theme.textTheme;
 }
 
 extension SizeOfContextX on BuildContext {
-  Size get size => MediaQuery.of(this).size;
+  Size get size => mediaQuery.size;
+}
+
+extension MediaQueryOfContextX on BuildContext {
+  MediaQueryData get mediaQuery => MediaQuery.of(this);
 }
 
 extension PaddingOfContextX on BuildContext {
-  EdgeInsets get padding => MediaQuery.of(this).padding;
+  EdgeInsets get padding => mediaQuery.padding;
 }

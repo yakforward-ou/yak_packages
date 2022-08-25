@@ -27,24 +27,27 @@ void main() async {
       );
     });
   });
-  group('TextThemeOfContextX', () {
+
+  group('MediaQueryOfContextX', () {
     contextTest(
-        'GIVEN a BuildContext ' ' WHEN context.textTheme' 'THEN is a TextTheme',
-        (context) {
+        'GIVEN a BuildContext '
+        ' WHEN context.mediaQuery '
+        'THEN is a MediaQueryData', (context) {
       expect(
-        context.textTheme,
-        isA<TextTheme>(),
-        reason: 'should return TextTheme',
+        context.mediaQuery,
+        isA<MediaQueryData>(),
+        reason: 'should return MediaQueryData',
       );
     });
   });
+
   group('SizeOfContextX', () {
-    contextTest('GIVEN a BuildContext ' ' WHEN context.size' 'THEN is a Size',
+    contextTest('GIVEN a BuildContext ' ' WHEN context.size ' 'THEN is a Size',
         (context) {
       expect(
         context.size,
         isA<Size>(),
-        reason: 'should return TextTheme',
+        reason: 'should return Size',
       );
     });
   });
