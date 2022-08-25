@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../typedef/all.dart';
 
-const _strengths = [0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+@visibleForTesting
+const strengths = [.05, .1, .2, .3, .4, .5, .6, .7, .8, .9];
 
 extension MateriaColorFromColorX on Color {
   MaterialColor get asMaterial {
@@ -12,15 +13,25 @@ extension MateriaColorFromColorX on Color {
 
 extension SwatchFromColorX on Color {
   Swatch get swatch => {
-        for (final strength in _strengths)
-          (strength * 1000).round(): () {
-            final shade = 0.5 - strength;
-            return Color.fromRGBO(
-              red + ((shade < 0 ? red : (255 - red)) * shade).round(),
-              green + ((shade < 0 ? green : (255 - green)) * shade).round(),
-              blue + ((shade < 0 ? blue : (255 - blue)) * shade).round(),
-              1,
-            );
-          }()
+        for (final strength in strengths)
+          (strength * 1000).round(): applyShade(.5 - strength)
       };
+}
+
+extension ShadeOfColorX on Color {
+  Color applyShade(double shade) => Color.fromRGBO(
+        red.applyShade(shade),
+        green.applyShade(shade),
+        blue.applyShade(shade),
+        1,
+      );
+}
+
+@visibleForTesting
+extension ApplyShadeFromIntX on int {
+  int applyShade(double shade) {
+    final complement = shade < 0 ? this : 255 - this;
+    final shaded = (complement * shade).round();
+    return this + shaded;
+  }
 }
