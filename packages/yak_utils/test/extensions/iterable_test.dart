@@ -2,14 +2,14 @@ import 'package:test/test.dart';
 import 'package:yak_utils/yak_utils.dart';
 
 void main() {
-  const iterable = [1, 2, 3];
-  const list = [...iterable];
-  const set = {...iterable};
-
-  Iterable<int>? maybeIterable;
-  List<int>? maybeList;
-  Set<int>? maybeSet;
   group('`EmptyOnNullX` test', () {
+    const iterable = [1, 2, 3];
+    const list = [...iterable];
+    const set = {...iterable};
+
+    Iterable<int>? maybeIterable;
+    List<int>? maybeList;
+    Set<int>? maybeSet;
     test(
         'GIVEN a Iterable<T>? '
         'WHEN the iterable is null '
@@ -78,6 +78,32 @@ void main() {
         {...maybeList.emptyOnNull},
         <int>{},
         reason: 'should return an empty Set',
+      );
+    });
+  });
+
+  group('IterableEqualityX', () {
+    final list = [for (var i = 0; i < 100; ++i) i];
+    final list2 = [for (var i = 1; i <= 100; ++i) i];
+
+    test(
+        'GIVEN an Iterable list '
+        'WHEN list.equals(list) '
+        'THEN returns true', () {
+      expect(
+        list.equals(list),
+        isTrue,
+        reason: 'should return "true"',
+      );
+    });
+    test(
+        'GIVEN an Iterable list '
+        'WHEN list.equals(list2) '
+        'THEN returns false', () {
+      expect(
+        list.equals(list2),
+        isFalse,
+        reason: 'should return "false"',
       );
     });
   });
