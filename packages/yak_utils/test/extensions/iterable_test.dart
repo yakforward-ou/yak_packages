@@ -82,12 +82,12 @@ void main() {
     });
   });
 
-  group('IterableEqualityX', () {
+  group('ListEqualityX', () {
     final list = [for (var i = 0; i < 100; ++i) i];
     final list2 = [for (var i = 1; i <= 100; ++i) i];
 
     test(
-        'GIVEN an Iterable list '
+        'GIVEN an List list '
         'WHEN list.equals(list) '
         'THEN returns true', () {
       expect(
@@ -102,6 +102,56 @@ void main() {
         'THEN returns false', () {
       expect(
         list.equals(list2),
+        isFalse,
+        reason: 'should return "false"',
+      );
+    });
+  });
+  group('SetEqualityX', () {
+    final set = {for (var i = 0; i < 100; ++i) i};
+    final set2 = {for (var i = 1; i <= 100; ++i) i};
+
+    test(
+        'GIVEN a Set set '
+        'WHEN set.equals(set) '
+        'THEN returns true', () {
+      expect(
+        set.equals(set),
+        isTrue,
+        reason: 'should return "true"',
+      );
+    });
+    test(
+        'GIVEN a Set set '
+        'WHEN set.equals(set2) '
+        'THEN returns false', () {
+      expect(
+        set.equals(set2),
+        isFalse,
+        reason: 'should return "false"',
+      );
+    });
+  });
+  group('MapEqualityX', () {
+    final map = {for (var i = 0; i < 100; ++i) '$i': i};
+    final map2 = {for (var i = 1; i <= 100; ++i) '$i': i};
+
+    test(
+        'GIVEN an Map map '
+        'WHEN map.equals(map) '
+        'THEN returns true', () {
+      expect(
+        map.equals(map),
+        isTrue,
+        reason: 'should return "true"',
+      );
+    });
+    test(
+        'GIVEN an Map map '
+        'WHEN map.equals(map2) '
+        'THEN returns false', () {
+      expect(
+        map.equals(map2),
         isFalse,
         reason: 'should return "false"',
       );
