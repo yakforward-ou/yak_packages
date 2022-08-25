@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../all.dart';
+import 'package:yak_result/yak_result.dart';
 
 /// `IterableRunX` runs a the values of an `Iterable` through a `runner`
 extension IterableRunX<S> on Iterable<S> {
