@@ -1,0 +1,17 @@
+name: example
+description: An example app for yak_flutter package.
+pversion: 1.0.0+1
+
+environment:
+  sdk: '>=2.17.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  yak_flutter: ^1.0.0
+
+dev_dependencies:
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true
