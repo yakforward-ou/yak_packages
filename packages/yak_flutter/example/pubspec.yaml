@@ -1,0 +1,22 @@
+name: example
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.17.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  yak_flutter:
+    git:
+     url: https://github.com/iapicca/yak_packages.git
+     path: packages/yak_flutter
+     ref: 60_30_10
+  
+dev_dependencies:
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true

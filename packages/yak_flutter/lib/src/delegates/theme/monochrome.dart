@@ -61,45 +61,86 @@ class MonochromeThemeDelegate extends ThemeDataDelegate {
   @override
   ThemeData call(p0) => p0.copyWith(
         textTheme: p0.textTheme.copyWith(
-          headline1: p0.textTheme.headline1?.copyWith(
+          displayLarge: p0.textTheme.displayLarge?.copyWith(
             color: foreground,
           ),
-          headline2: p0.textTheme.headline2?.copyWith(
+          displayMedium: p0.textTheme.displayMedium?.copyWith(
             color: foreground,
           ),
-          headline3: p0.textTheme.headline3?.copyWith(
+          displaySmall: p0.textTheme.displaySmall?.copyWith(
             color: foreground,
           ),
-          headline4: p0.textTheme.headline4?.copyWith(
+          headlineMedium: p0.textTheme.headlineMedium?.copyWith(
             color: foreground,
           ),
-          headline5: p0.textTheme.headline5?.copyWith(
+          headlineSmall: p0.textTheme.headlineSmall?.copyWith(
             color: foreground,
           ),
-          headline6: p0.textTheme.headline6?.copyWith(
+          titleLarge: p0.textTheme.titleLarge?.copyWith(
             color: foreground,
           ),
-          subtitle1: p0.textTheme.subtitle1?.copyWith(
+          titleMedium: p0.textTheme.titleMedium?.copyWith(
             color: foreground,
           ),
-          subtitle2: p0.textTheme.subtitle2?.copyWith(
+          titleSmall: p0.textTheme.titleSmall?.copyWith(
             color: foreground,
           ),
-          bodyText1: p0.textTheme.bodyText1?.copyWith(
+          bodyLarge: p0.textTheme.bodyLarge?.copyWith(
             color: foreground,
           ),
-          bodyText2: p0.textTheme.bodyText2?.copyWith(
+          bodyMedium: p0.textTheme.bodyMedium?.copyWith(
             color: foreground,
           ),
-          caption: p0.textTheme.caption?.copyWith(
+          bodySmall: p0.textTheme.bodySmall?.copyWith(
             color: foreground,
           ),
-          button: p0.textTheme.button?.copyWith(
+          labelLarge: p0.textTheme.labelLarge?.copyWith(
             color: foreground,
           ),
-          overline: p0.textTheme.overline?.copyWith(
+          labelSmall: p0.textTheme.labelSmall?.copyWith(
             color: foreground,
           ),
+
+          /// //! 2018 vs 2021
+          // headline1: p0.textTheme.headline1?.copyWith(
+          //   color: foreground,
+          // ),
+          // headline2: p0.textTheme.headline2?.copyWith(
+          //   color: foreground,
+          // ),
+          // headline3: p0.textTheme.headline3?.copyWith(
+          //   color: foreground,
+          // ),
+          // headline4: p0.textTheme.headline4?.copyWith(
+          //   color: foreground,
+          // ),
+          // headline5: p0.textTheme.headline5?.copyWith(
+          //   color: foreground,
+          // ),
+          // headline6: p0.textTheme.headline6?.copyWith(
+          //   color: foreground,
+          // ),
+          // subtitle1: p0.textTheme.subtitle1?.copyWith(
+          //   color: foreground,
+          // ),
+          // subtitle2: p0.textTheme.subtitle2?.copyWith(
+          //   color: foreground,
+          // ),
+          // bodyText1: p0.textTheme.bodyText1?.copyWith(
+          //   color: foreground,
+          // ),
+          // bodyText2: p0.textTheme.bodyText2?.copyWith(
+          //   color: foreground,
+          // ),
+          // caption: p0.textTheme.caption?.copyWith(
+          //   color: foreground,
+          // ),
+          // button: p0.textTheme.button?.copyWith(
+          //   color: foreground,
+          // ),
+          // overline: p0.textTheme.overline?.copyWith(
+          //   color: foreground,
+          // ),
         ),
         colorScheme: ColorScheme(
           background: background,
