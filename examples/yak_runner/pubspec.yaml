@@ -1,4 +1,4 @@
-name: example
+name: yak_runner_example
 description: An example for `yak_runner`
 version: 1.0.0+1
 publish_to: 'none'
