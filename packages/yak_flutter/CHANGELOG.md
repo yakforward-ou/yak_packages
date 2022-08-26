@@ -1,5 +1,5 @@
-### 1.0.0+2
+### 1.0.0+3
 
 - initial release
 - add external exports
-- update tests
+- add `PreferredSizeWidgetWrapper`
