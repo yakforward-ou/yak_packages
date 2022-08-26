@@ -4,17 +4,19 @@ import 'package:yak_tween/yak_tween.dart';
 
 import 'theme_data_delegate.dart';
 
-/// a [ThemeDataDelegate] that set [ColorScheme] and [TextTheme] color
-/// to a single [background] and [foreground] color palette
+/// A [ThemeDataDelegate] sets the [ColorScheme] and [TextTheme] of [ThemeData]
+///
+/// ... to a single [background] and [foreground] color palette
 class MonochromeThemeDelegate extends ThemeDataDelegate {
   final Color background;
   final Color foreground;
   final Color shadow;
   final Color error;
   final Color? onError;
-
   final double foregroundOnBackgroundRatio;
   final double luminanceThreshold;
+
+  /// [MonochromeThemeDelegate] allows a constant constructor
   const MonochromeThemeDelegate({
     required this.background,
     required this.foreground,
@@ -25,10 +27,14 @@ class MonochromeThemeDelegate extends ThemeDataDelegate {
     this.luminanceThreshold = .5,
   });
 
+  /// calculate the luminance of the theme
+  ///
+  /// defaults a to a `90%` background color
   double get luminance => YakColorTween(begin: background, end: foreground)
       .lerp(foregroundOnBackgroundRatio)
       .computeLuminance();
 
+  /// compatible with `jsonEncode`
   Json toJson() => {
         'background': background.value,
         'foreground': foreground.value,
@@ -58,6 +64,7 @@ class MonochromeThemeDelegate extends ThemeDataDelegate {
         luminanceThreshold,
       ]);
 
+  /// applies the changes to the provided [ThemeData]
   @override
   ThemeData call(p0) => p0.copyWith(
         textTheme: p0.textTheme.copyWith(
@@ -100,47 +107,6 @@ class MonochromeThemeDelegate extends ThemeDataDelegate {
           labelSmall: p0.textTheme.labelSmall?.copyWith(
             color: foreground,
           ),
-
-          /// //! 2018 vs 2021
-          // headline1: p0.textTheme.headline1?.copyWith(
-          //   color: foreground,
-          // ),
-          // headline2: p0.textTheme.headline2?.copyWith(
-          //   color: foreground,
-          // ),
-          // headline3: p0.textTheme.headline3?.copyWith(
-          //   color: foreground,
-          // ),
-          // headline4: p0.textTheme.headline4?.copyWith(
-          //   color: foreground,
-          // ),
-          // headline5: p0.textTheme.headline5?.copyWith(
-          //   color: foreground,
-          // ),
-          // headline6: p0.textTheme.headline6?.copyWith(
-          //   color: foreground,
-          // ),
-          // subtitle1: p0.textTheme.subtitle1?.copyWith(
-          //   color: foreground,
-          // ),
-          // subtitle2: p0.textTheme.subtitle2?.copyWith(
-          //   color: foreground,
-          // ),
-          // bodyText1: p0.textTheme.bodyText1?.copyWith(
-          //   color: foreground,
-          // ),
-          // bodyText2: p0.textTheme.bodyText2?.copyWith(
-          //   color: foreground,
-          // ),
-          // caption: p0.textTheme.caption?.copyWith(
-          //   color: foreground,
-          // ),
-          // button: p0.textTheme.button?.copyWith(
-          //   color: foreground,
-          // ),
-          // overline: p0.textTheme.overline?.copyWith(
-          //   color: foreground,
-          // ),
         ),
         colorScheme: ColorScheme(
           background: background,
