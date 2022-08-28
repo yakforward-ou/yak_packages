@@ -1,7 +1,11 @@
 name: yak_packages
+
 packages:
   - examples/**
   - packages/**
+
+ignore:
+  - packages/**/example
 
 scripts:
 
