@@ -1,6 +1,7 @@
-### 1.0.0+1
+### 1.0.0+2
 - major release
 - fix export of external packages
+- update dependencies
 
 ###  0.5.0
 - rework everything as pure function and extension

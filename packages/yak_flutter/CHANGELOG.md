@@ -1,6 +1,6 @@
-### 1.0.0+4
+### 1.0.0+5
 
 - initial release
 - add external exports
-- add `PreferredSizeWidgetWrapper`
+- add `PreferredSizeWidgetThemed`
 - improve comments

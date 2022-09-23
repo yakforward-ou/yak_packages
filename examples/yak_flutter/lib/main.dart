@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:yak_flutter/yak_flutter.dart';
 
@@ -24,6 +26,10 @@ const ten = MonochromeThemeDelegate(
 
 void main() {
   runApp(const MyApp());
+  // runZonedGuarded(
+  //   () => runApp(const MyApp()),
+  //   RecordError(),
+  // );
 }
 
 class MyApp extends StatelessWidget {

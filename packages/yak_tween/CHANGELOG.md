@@ -1,7 +1,7 @@
-### 0.1.0+10
+### 0.1.0+11
 - fix analysis
 - updated `example`
 - created from the ashes of `yak_math`
-- versions up-to-date
+- update dependencies
 - updated readme
-- fix typo
+
