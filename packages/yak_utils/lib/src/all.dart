@@ -1,6 +1,6 @@
-export 'classes/all.dart';
 export 'delegates/all.dart';
 export 'extensions/all.dart';
 export 'functions/all.dart';
 export 'tools/all.dart';
 export 'types/all.dart';
+export 'mixin/all.dart';
