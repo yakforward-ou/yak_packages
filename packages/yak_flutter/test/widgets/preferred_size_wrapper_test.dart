@@ -18,7 +18,7 @@ void main() {
       final data = whiteTheme(ThemeData());
       final app = MaterialApp(
         home: Scaffold(
-          appBar: PreferredSizeWidgetWrapper(
+          appBar: PreferredSizeWidgetThemed(
             data: data,
             child: child,
           ),
@@ -41,7 +41,7 @@ void main() {
       final data = whiteTheme(ThemeData());
       final app = MaterialApp(
         home: Scaffold(
-          appBar: PreferredSizeWidgetWrapper(
+          appBar: PreferredSizeWidgetThemed(
             data: data,
             child: child,
           ),

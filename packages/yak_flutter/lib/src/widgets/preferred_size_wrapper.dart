@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 /// wraps a [PreferredSizeWidget] child in a [Theme] [Widget]
-class PreferredSizeWidgetWrapper extends StatelessWidget
+class PreferredSizeWidgetThemed extends StatelessWidget
     implements PreferredSizeWidget {
   final PreferredSizeWidget child;
   final ThemeData data;
-  const PreferredSizeWidgetWrapper({
+  const PreferredSizeWidgetThemed({
     required this.child,
     required this.data,
     super.key,
