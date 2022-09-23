@@ -12,8 +12,9 @@ scripts:
   publish:
     run: |
       melos run lint:format && \
-      melos publish --no-dry-run
-    description: publish packageson pub.dev
+      melos publish --yes && \
+      melos publish --no-dry-run --yes
+    description: publish packages to pub.dev
     ignore:
       - examples/**
     
