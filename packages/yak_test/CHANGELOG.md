@@ -1,6 +1,7 @@
-###  1.0.0+1
+###  1.0.0+2
 - major release
 - update dependencies
+- add `equalityTest`
 
 ###  0.5.2
 - bump dependencies
