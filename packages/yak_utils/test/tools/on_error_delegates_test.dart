@@ -1,6 +1,6 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:stub/stub.dart';
-import 'package:yak_flutter/yak_flutter.dart';
+import 'package:test/test.dart';
+import 'package:yak_utils/yak_utils.dart';
 
 void main() {
   group('OnErroDoNothing', () {
@@ -18,24 +18,9 @@ void main() {
       },
     );
   });
-  group('OnErrorPrint', () {
-    test(
-      'GIVEN ... '
-      ' WHEN OnErrorPrint instance '
-      'THEN is a OnErroDelegate ',
-      () {
-        const tester = OnErrorPrint();
-        expect(
-          tester,
-          isA<OnErrorDelegate>(),
-          reason: 'type should be predictable',
-        );
-      },
-    );
-  });
 
   group('RecordError', () {
-    final function = Stub.unary<void, Failure>()..stub = (_) {};
+    final function = Stub.unary<void, Union>()..stub = (_) {};
 
     setUp(function.reset);
     test(
@@ -43,10 +28,7 @@ void main() {
       'WHEN RecordError.call() '
       'THEN the onError is called ',
       () {
-        final tester = RecordError()
-          ..onError = (e, s) => function(
-                Failure(reason: e, stackTrace: s),
-              );
+        final tester = RecordError()..onError = (e, s) => function(Union(e, s));
 
         tester(null, null);
 

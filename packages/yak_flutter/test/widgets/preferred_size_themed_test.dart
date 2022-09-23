@@ -8,7 +8,7 @@ const whiteTheme = MonochromeThemeDelegate(
     shadow: Colors.white,
     error: Colors.white);
 void main() {
-  group('PreferredSizeWidgetWrapper', () {
+  group('PreferredSizeWidgetThemed', () {
     testWidgets(
         'GIVEN a PreferredSizeWidget child and ThemeData data '
         'WHEN used in PreferredSizeWidgetWrapper '

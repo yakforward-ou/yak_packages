@@ -1,1 +1,1 @@
-export 'preferred_size_wrapper.dart';
+export 'preferred_size_themed.dart';
