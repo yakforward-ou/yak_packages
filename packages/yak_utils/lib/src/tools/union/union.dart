@@ -1,8 +1,7 @@
 import 'package:meta/meta.dart';
 import 'package:yak_utils/yak_utils.dart';
 
-/// a simple ut
-
+/// a simple union class
 @immutable
 class Union<A, B> with JsonMixin {
   final A left;
