@@ -1,1 +1,0 @@
-please refer to the [example app](https://github.com/iapicca/yak_packages/blob/master/examples/yak_flutter/lib/main.dart)

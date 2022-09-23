@@ -61,3 +61,33 @@ extension MapEqualityX<T, S, M extends Map<T, S>> on M {
     return true;
   }
 }
+
+/// an extension that search an [Iterable]
+/// for any other element of a second [Iterable]
+extension IterableContainsAnyX<T, S extends Iterable<T>> on S {
+  bool containsAny(S other) {
+    for (final object in other) {
+      if (contains(object)) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+
+/// an extension that search an [Map]
+/// for any other element of a second [Map]
+extension MapContainsAnyX<T, S, R extends Map<T, S>> on R {
+  bool containsAny(R other) {
+    final common = {
+      ...keys,
+      ...other.keys,
+    }.where(other.containsKey).where(containsKey);
+    for (final key in common) {
+      if (other[key] == this[key]) {
+        return true;
+      }
+    }
+    return false;
+  }
+}

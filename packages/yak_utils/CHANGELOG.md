@@ -1,7 +1,8 @@
-### 1.0.0+7
+### 1.0.0+8
 - update sets of `typedef` and `delegates`
 - downgrade `meta` package for `flutter` compatibility
-- add `MultiDelegate`, `MultiArgFunction` and `IterableEqualityX`
+- add `MultiDelegate`, `MultiArgFunction`,`ThenSyncX`, `MapContainsAnyX`, `IterableContainsAnyX`
+  and `IterableEqualityX`
 - update readme
 - update extension for itarable equality
 
