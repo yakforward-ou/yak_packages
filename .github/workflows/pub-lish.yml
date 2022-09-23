@@ -44,4 +44,4 @@ jobs:
           melos bootstrap
       - name: 'publishing'
         run: |
-          melos run publish
+          yes | melos run publish
