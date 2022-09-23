@@ -12,8 +12,15 @@ scripts:
   publish:
     run: |
       melos run lint:format && \
-      melos publish --yes && \
       melos publish --no-dry-run --yes
+    description: publish packages to pub.dev
+    ignore:
+      - examples/**
+
+  publish:dry-run:
+    run: |
+      melos run lint:format && \
+      melos publish --yes
     description: publish packages to pub.dev
     ignore:
       - examples/**
@@ -34,7 +41,8 @@ scripts:
   test: 
     run: |
       melos run test:dart --no-select && \
-      melos run test:flutter --no-select
+      melos run test:flutter --no-select && \
+      melos run publish:dry-run --no-select
     description: Run all Dart & Flutter tests in this project.
 
   lint:clean:
