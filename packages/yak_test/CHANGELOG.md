@@ -1,5 +1,6 @@
-###  1.0.0+0
+###  1.0.0+1
 - major release
+- update dependencies
 
 ###  0.5.2
 - bump dependencies

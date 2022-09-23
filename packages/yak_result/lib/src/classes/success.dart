@@ -1,3 +1,6 @@
+import 'package:meta/meta.dart';
+import 'package:yak_utils/yak_utils.dart';
+
 import '../all.dart';
 
 /// represent a success of a function
@@ -15,5 +18,10 @@ class Success<T> implements Result<T> {
   int get hashCode => Object.hash(runtimeType, data);
 
   @override
-  String toString() => '$runtimeType: $data';
+  @nonVirtual
+  Json toJson() => {
+        '$runtimeType': {
+          'data': '$data',
+        }
+      };
 }

@@ -1,7 +1,10 @@
+import 'package:meta/meta.dart';
+import 'package:yak_utils/yak_utils.dart';
+
 import '../all.dart';
 
 /// represent a failure of a function
-class Failure<T> extends Error implements Result<T> {
+class Failure<T> extends Error implements Result<T>, Exception {
   /// has a const constructor
   Failure({this.reason, this.stackTrace});
 
@@ -19,7 +22,11 @@ class Failure<T> extends Error implements Result<T> {
   int get hashCode => Object.hashAll([runtimeType, reason, stackTrace]);
 
   @override
-  String toString() => reason == null
-      ? '$runtimeType'
-      : '$runtimeType: ${Error.safeToString(reason)}';
+  @nonVirtual
+  Json toJson() => {
+        '$runtimeType': {
+          'reason': Error.safeToString(reason),
+          'stackTrace': '$stackTrace',
+        }
+      };
 }

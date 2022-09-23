@@ -8,7 +8,7 @@ const whiteTheme = MonochromeThemeDelegate(
     shadow: Colors.white,
     error: Colors.white);
 void main() {
-  group('PreferredSizeWidgetWrapper', () {
+  group('PreferredSizeWidgetThemed', () {
     testWidgets(
         'GIVEN a PreferredSizeWidget child and ThemeData data '
         'WHEN used in PreferredSizeWidgetWrapper '
@@ -18,7 +18,7 @@ void main() {
       final data = whiteTheme(ThemeData());
       final app = MaterialApp(
         home: Scaffold(
-          appBar: PreferredSizeWidgetWrapper(
+          appBar: PreferredSizeWidgetThemed(
             data: data,
             child: child,
           ),
@@ -41,7 +41,7 @@ void main() {
       final data = whiteTheme(ThemeData());
       final app = MaterialApp(
         home: Scaffold(
-          appBar: PreferredSizeWidgetWrapper(
+          appBar: PreferredSizeWidgetThemed(
             data: data,
             child: child,
           ),

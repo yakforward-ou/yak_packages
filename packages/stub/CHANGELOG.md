@@ -1,7 +1,7 @@
-### 1.0.0+2
+### 1.0.0+3
 - major release
 - fix export
-- downgrade `meta` for compatibility with `flutter`
+- update dependencies
 
 ### 0.3.0
 - complete rework with breaking changes
