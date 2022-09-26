@@ -35,6 +35,7 @@ class _TestDelegate5
       '$p0$p1$p2$p3$p4';
 }
 
+/// TODO replace with [yak_test] delegateTest()
 void main() {
   group('MultiDelegate2', () {
     test(

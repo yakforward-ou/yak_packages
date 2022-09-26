@@ -1,13 +1,11 @@
-### 1.0.0+9
+### 1.0.0+10
 - update sets of `typedef` and `delegates`
 - add:
     - `MultiDelegate`
     - `MultiArgFunction`
-    - `ThenSyncX`
-    - `MapContainsAnyX`
-    - `IterableContainsAnyX`
-    - `IterableEqualityX`
     - `OnErrorDelegate`
+    - `Cache`
+    - plus multiple extensions
 - update readme
 
 

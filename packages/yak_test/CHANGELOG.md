@@ -1,6 +1,8 @@
-###  1.0.0+1
+###  1.0.0+3
 - major release
 - update dependencies
+- add `equalityTest`
+- downgrade `test` version due to https://github.com/iapicca/yak_packages/issues/185
 
 ###  0.5.2
 - bump dependencies
