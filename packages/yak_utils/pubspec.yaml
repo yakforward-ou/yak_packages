@@ -13,3 +13,4 @@ dev_dependencies:
   lints: ^2.0.0
   test: ^1.21.6
   stub: ^1.0.0
+  yak_test: ^1.0.0
