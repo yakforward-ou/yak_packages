@@ -1,2 +1,5 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+### an example app for `stub`
+
+see more on [pub.dev][pub]
+
+[pub]: https://pub.dev/packages/stub
