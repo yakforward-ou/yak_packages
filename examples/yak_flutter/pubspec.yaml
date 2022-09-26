@@ -11,9 +11,6 @@ dependencies:
     sdk: flutter
   yak_flutter: ^1.0.0
 
-dependency_overrides:
-  test_api: ^0.4.12
-
 dev_dependencies:
   flutter_lints: ^2.0.1
 
