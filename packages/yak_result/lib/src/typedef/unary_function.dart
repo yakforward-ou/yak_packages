@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:yak_utils/yak_utils.dart' show Unary, UnaryAsync;
 
 import '../all.dart';
@@ -6,4 +8,5 @@ import '../all.dart';
 typedef ResultUnary<T, S> = Unary<Result<T>, S>;
 
 /// an unary async function that returns a Result
-typedef ResultUnaryAsync<T, S> = UnaryAsync<Result<T>, S>;
+///! differs from  [UnaryAsync] ad it returns [FutureOr] instead of [Future]
+typedef ResultUnaryAsync<T, S> = Unary<FutureOr<Result<T>>, S>;

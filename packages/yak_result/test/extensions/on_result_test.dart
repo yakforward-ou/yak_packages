@@ -31,9 +31,8 @@ void main() {
         ..stub = (i) => Success(!i);
 
       expect(
-        result().onResult(function),
-        //isA<Failure<bool>>(), /// TODO [https://github.com/iapicca/yak_packages/issues/154]
-        isA<Failure>(),
+        result().onResult<bool>(function),
+        isA<Failure<bool>>(),
         reason: 'should be a failure',
       );
 
@@ -53,7 +52,7 @@ void main() {
         ..stub = (i) async => Success(!i);
 
       expect(
-        await result().onFutureResult(function),
+        await result().onResultAsync(function),
         isA<Success>(),
         reason: 'should be a success',
       );
@@ -72,9 +71,8 @@ void main() {
         ..stub = (i) async => Success(!i);
 
       expect(
-        await result().onFutureResult(function),
-        // isA<Failure<bool>>(), // TODO [https://github.com/iapicca/yak_packages/issues/154]
-        isA<Failure>(),
+        await result().onResultAsync<bool>(function),
+        isA<Failure<bool>>(),
         reason: 'should be a failure',
       );
 
