@@ -1,10 +1,11 @@
-### 1.0.0+10
+### 1.0.0+11
 - update sets of `typedef` and `delegates`
 - add:
     - `MultiDelegate`
     - `MultiArgFunction`
     - `OnErrorDelegate`
     - `Cache`
+    - `"Void"` functions and delegates
     - plus multiple extensions
 - update readme
 
