@@ -4,3 +4,4 @@ export 'on_result.dart';
 export 'recast_failure.dart';
 export 'when.dart';
 export 'is_something.dart';
+export 'on_x.dart';
