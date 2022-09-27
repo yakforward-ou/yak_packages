@@ -13,13 +13,13 @@ typedef UnaryVoidDelegate<T> = UnaryDelegate<void, T>;
 typedef UnaryVoidDelegateAsync<T> = UnaryDelegateAsync<void, T>;
 
 /// a typedef for an [Nullary] that returns a `void`
-typedef NullaryVoid<T> = Nullary<void>;
+typedef NullaryVoid = Nullary<void>;
 
 /// a typedef for an [Nullary] that returns a `Future<void>`
-typedef NullaryVoidAsync<T> = Nullary<void>;
+typedef NullaryVoidAsync = NullaryAsync<void>;
 
 /// a typedef for an [NullaryDelegate] that returns a `void`
-typedef NullaryVoidDelegate<T> = NullaryDelegate<void>;
+typedef NullaryVoidDelegate = NullaryDelegate<void>;
 
 /// a typedef for an [NullaryDelegateAsync] that returns a `Future<void>`
-typedef NullaryVoidDelegateAsync<T> = NullaryDelegateAsync<void>;
+typedef NullaryVoidDelegateAsync = NullaryDelegateAsync<void>;
