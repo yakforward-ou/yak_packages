@@ -1,0 +1,25 @@
+import '../../all.dart';
+
+/// a typedef for an [Unary] that returns a `void`
+typedef UnaryVoid<T> = Unary<void, T>;
+
+/// a typedef for an [UnaryAsync] that returns a `Future<void>`
+typedef UnaryVoidAsync<T> = UnaryAsync<void, T>;
+
+/// a typedef for an [UnaryDelegate] that returns a `void`
+typedef UnaryVoidDelegate<T> = UnaryDelegate<void, T>;
+
+/// a typedef for an [UnaryDelegateAsync] that returns a `Future<void>`
+typedef UnaryVoidDelegateAsync<T> = UnaryDelegateAsync<void, T>;
+
+/// a typedef for an [Nullary] that returns a `void`
+typedef NullaryVoid<T> = Nullary<void>;
+
+/// a typedef for an [Nullary] that returns a `Future<void>`
+typedef NullaryVoidAsync<T> = Nullary<void>;
+
+/// a typedef for an [NullaryDelegate] that returns a `void`
+typedef NullaryVoidDelegate<T> = NullaryDelegate<void>;
+
+/// a typedef for an [NullaryDelegateAsync] that returns a `Future<void>`
+typedef NullaryVoidDelegateAsync<T> = NullaryDelegateAsync<void>;
