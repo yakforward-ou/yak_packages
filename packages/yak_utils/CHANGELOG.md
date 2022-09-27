@@ -1,4 +1,4 @@
-### 1.0.0+11
+### 1.0.0+12
 - update sets of `typedef` and `delegates`
 - add:
     - `MultiDelegate`
