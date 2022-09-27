@@ -1,4 +1,5 @@
-import 'package:yak_utils/yak_utils.dart';
+import '../tools/all.dart';
+import '../types/all.dart';
 
 /// generates a [Cache] from a [Nullary]
 extension CacheNullaryX<T> on Nullary<T> {
