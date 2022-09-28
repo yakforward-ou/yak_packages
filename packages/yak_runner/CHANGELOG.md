@@ -1,4 +1,7 @@
-### 1.0.0+2
+### 1.0.1
+- remove `thenRun` extesion in favor of `yak_result`'s `onResult` 
+
+### 1.0.0
 - major release
 - fix export of external packages
 - update dependencies
