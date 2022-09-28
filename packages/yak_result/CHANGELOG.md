@@ -1,4 +1,4 @@
-### 1.0.0+5
+### 1.0.0+6
 - major release
 - update typedefs
 - update dependencies
