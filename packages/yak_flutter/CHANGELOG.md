@@ -1,4 +1,7 @@
-### 1.0.0+5
+### 1.0.1
+- sync version with `yak_runner`
+
+### 1.0.0
 
 - initial release
 - add external exports
