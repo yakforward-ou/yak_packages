@@ -5,60 +5,104 @@ import 'package:yak_result/yak_result.dart';
 void main() {
   group('WhenX', () {
     const data = 'hello';
-    final fail = 0;
-    final result = Stub.nullary<Result<String>>();
-    final onSuccess = Stub.unary<int, String>()..stub = (i) => i.length;
-    final onFailure = Stub.unary<int, Failure<String>>()..stub = (f) => fail;
+    final tester = Stub.nullary<Result<String>>();
+    final onSuccess = Stub.unary<int, String>()..stub = (i) => 0;
+    final onFailure = Stub.unary<int, Failure<String>>()..stub = (f) => 0;
+    final onPending = Stub.nullary()..stub = (() => 0);
 
-    test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () {
+    setUp(() {
       onSuccess.reset();
       onFailure.reset();
+      onPending.reset();
+      tester.reset();
+    });
 
-      result
-        ..reset
-        ..stub = () => const Success(data);
-
+    test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () {
+      tester.stub = () => const Success(data);
+      final result = tester();
       expect(
-        result().when(success: onSuccess, failure: onFailure),
-        data.length,
+        result.when(
+          onSuccess: onSuccess,
+          onFailure: onFailure,
+          onPending: onPending,
+        ),
+        isA<int?>(),
         reason: 'should be correct',
       );
 
       expect(
         onSuccess.count,
-        1,
+        equals(1),
         reason: 'should called once',
       );
 
       expect(
         onFailure.count,
-        0,
+        equals(0),
+        reason: 'should not called',
+      );
+
+      expect(
+        onPending.count,
+        equals(0),
         reason: 'should not called',
       );
     });
 
-    test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () {
-      onSuccess.reset();
-      onFailure.reset();
-      result
-        ..reset
-        ..stub = () => Failure();
+    test('GIVEN ... ' 'WHEN is Failure' 'THEN function is called', () {
+      tester.stub = () => Failure();
+      final result = tester();
 
       expect(
-        result().when(success: onSuccess, failure: onFailure),
-        fail,
+        result.when(onSuccess: onSuccess, onFailure: onFailure),
+        isA<int?>(),
         reason: 'should be correct',
       );
 
       expect(
         onFailure.count,
-        1,
+        equals(1),
         reason: 'should called once',
       );
 
       expect(
         onSuccess.count,
-        0,
+        equals(0),
+        reason: 'should not called',
+      );
+
+      expect(
+        onPending.count,
+        equals(0),
+        reason: 'should not called',
+      );
+    });
+
+    test('GIVEN ... ' 'WHEN is Failure' 'THEN function is called', () {
+      tester.stub = () => Failure();
+      final result = tester();
+
+      expect(
+        result.when(onSuccess: onSuccess, onFailure: onFailure),
+        isA<int?>(),
+        reason: 'should be correct',
+      );
+
+      expect(
+        onFailure.count,
+        equals(1),
+        reason: 'should called once',
+      );
+
+      expect(
+        onSuccess.count,
+        equals(0),
+        reason: 'should not called',
+      );
+
+      expect(
+        onPending.count,
+        equals(0),
         reason: 'should not called',
       );
     });
@@ -66,60 +110,229 @@ void main() {
 
   group('WhenAsyncX', () {
     const data = 'hello';
-    final fail = 0;
-    final result = Stub.nullary<Future<Result<String>>>();
-    final onSuccess = Stub.unary<int, String>()..stub = (i) => i.length;
-    final onFailure = Stub.unary<int, Failure<String>>()..stub = (f) => fail;
+    final tester = Stub.nullary<Result<String>>();
+    final onSuccess = Stub.unary<Future<int>, String>()
+      ..stub = (_) => Future.sync(() => 0);
+    final onFailure = Stub.unary<Future<int>, Failure<String>>()
+      ..stub = (_) => Future.sync(() => 0);
+    final onPending = Stub.nullary<Future<int>>()
+      ..stub = () => Future.sync(() => 0);
 
-    test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
+    setUp(() {
       onSuccess.reset();
       onFailure.reset();
-      result
-        ..reset
-        ..stub = () async => const Success(data);
+      onPending.reset();
+      tester.reset();
+    });
+    test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
+      tester.stub = () => const Success(data);
+      final result = tester();
 
       expect(
-        await result().when(success: onSuccess, failure: onFailure),
-        data.length,
+        await result.whenAsync(
+          onSuccess: onSuccess,
+          onFailure: onFailure,
+          onPending: onPending,
+        ),
+        isA<int?>(),
         reason: 'should be correct',
       );
 
       expect(
         onSuccess.count,
-        1,
+        equals(1),
         reason: 'should called once',
       );
 
       expect(
         onFailure.count,
-        0,
+        equals(0),
+        reason: 'should not called',
+      );
+
+      expect(
+        onPending.count,
+        equals(0),
         reason: 'should not called',
       );
     });
 
-    test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
-      onSuccess.reset();
-      onFailure.reset();
-      result
-        ..reset
-        ..stub = () async => Failure();
+    test('GIVEN ... ' 'WHEN is Failure' 'THEN function is called', () async {
+      tester.stub = () => Failure();
+      final result = tester();
 
       expect(
-        await result().when(success: onSuccess, failure: onFailure),
-        fail,
+        await result.whenAsync(
+          onSuccess: onSuccess,
+          onFailure: onFailure,
+          onPending: onPending,
+        ),
+        isA<int?>(),
         reason: 'should be correct',
       );
 
       expect(
+        onSuccess.count,
+        equals(0),
+        reason: 'should not called',
+      );
+
+      expect(
         onFailure.count,
-        1,
+        equals(1),
         reason: 'should called once',
       );
 
       expect(
-        onSuccess.count,
-        0,
+        onPending.count,
+        equals(0),
         reason: 'should not called',
+      );
+    });
+    test('GIVEN ... ' 'WHEN is Pending' 'THEN function is called', () async {
+      tester.stub = () => Pending();
+      final result = tester();
+
+      expect(
+        await result.whenAsync(
+          onSuccess: onSuccess,
+          onFailure: onFailure,
+          onPending: onPending,
+        ),
+        isA<int?>(),
+        reason: 'should be correct',
+      );
+
+      expect(
+        onSuccess.count,
+        equals(0),
+        reason: 'should not called',
+      );
+
+      expect(
+        onFailure.count,
+        equals(0),
+        reason: 'should not called',
+      );
+      expect(
+        onPending.count,
+        equals(1),
+        reason: 'should called once',
+      );
+    });
+  });
+
+  group('WhenAsyncFutureX', () {
+    const data = 'hello';
+    final tester = Stub.nullary<Future<Result<String>>>();
+    final onSuccess = Stub.unary<Future<int>, String>()
+      ..stub = (_) => Future.sync(() => 0);
+    final onFailure = Stub.unary<Future<int>, Failure<String>>()
+      ..stub = (_) => Future.sync(() => 0);
+    final onPending = Stub.nullary<Future<int>>()
+      ..stub = () => Future.sync(() => 0);
+
+    setUp(() {
+      onSuccess.reset();
+      onFailure.reset();
+      onPending.reset();
+      tester.reset();
+    });
+
+    test('GIVEN ... ' 'WHEN is Success' 'THEN function is called', () async {
+      tester.stub = () async => const Success(data);
+      final result = tester();
+
+      expect(
+        await result.whenAsync(
+          onSuccess: onSuccess,
+          onFailure: onFailure,
+          onPending: onPending,
+        ),
+        isA<int?>(),
+        reason: 'should be correct',
+      );
+
+      expect(
+        onSuccess.count,
+        equals(1),
+        reason: 'should called once',
+      );
+
+      expect(
+        onFailure.count,
+        equals(0),
+        reason: 'should not called',
+      );
+
+      expect(
+        onPending.count,
+        equals(0),
+        reason: 'should not called',
+      );
+    });
+
+    test('GIVEN ... ' 'WHEN is Failure' 'THEN function is called', () async {
+      tester.stub = () async => Failure();
+      final result = tester();
+
+      expect(
+        await result.whenAsync(
+          onSuccess: onSuccess,
+          onFailure: onFailure,
+          onPending: onPending,
+        ),
+        isA<int?>(),
+        reason: 'should be correct',
+      );
+
+      expect(
+        onSuccess.count,
+        equals(0),
+        reason: 'should not called',
+      );
+
+      expect(
+        onFailure.count,
+        equals(1),
+        reason: 'should called once',
+      );
+
+      expect(
+        onPending.count,
+        equals(0),
+        reason: 'should not called',
+      );
+    });
+    test('GIVEN ... ' 'WHEN is Pending' 'THEN function is called', () async {
+      tester.stub = () async => Pending();
+      final result = tester();
+
+      expect(
+        await result.whenAsync(
+          onSuccess: onSuccess,
+          onFailure: onFailure,
+          onPending: onPending,
+        ),
+        isA<int?>(),
+        reason: 'should be correct',
+      );
+
+      expect(
+        onSuccess.count,
+        equals(0),
+        reason: 'should not called',
+      );
+
+      expect(
+        onFailure.count,
+        equals(0),
+        reason: 'should not called',
+      );
+      expect(
+        onPending.count,
+        equals(1),
+        reason: 'should called once',
       );
     });
   });

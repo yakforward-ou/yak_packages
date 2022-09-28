@@ -1,5 +1,4 @@
-export 'as_failure.dart';
-export 'as_success.dart';
+export 'as_x.dart';
 export 'on_result.dart';
 export 'recast.dart';
 export 'when.dart';
