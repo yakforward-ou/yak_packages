@@ -1,7 +1,7 @@
-### 1.0.0+6
+### 1.0.0+7
 - major release
 - update typedefs
-- update dependencies
+- bump dependencies
 - add `Pending` to `Result`
 - update extensions
 

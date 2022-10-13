@@ -1,7 +1,7 @@
-### 1.0.0+3
+### 1.0.0+4
 - major release
 - fix export
-- update dependencies
+- bump dependencies
 
 ### 0.3.0
 - complete rework with breaking changes
