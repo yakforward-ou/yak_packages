@@ -1,10 +1,10 @@
 name: yak_result
 description: a lightweight dart micro-package to help you handle functions results 
-version: 1.0.0+6
+version: 1.0.0+7
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
-  sdk: '>=2.17.6 <3.0.0'
+  sdk: '>=2.18.2 <3.0.0'
 
 dependencies:
   meta: ^1.8.0
