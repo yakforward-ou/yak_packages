@@ -26,6 +26,9 @@ jobs:
       - name: 'activate melos' 
         run: |
           dart pub global activate melos
+      - name: 'activate coverage' 
+        run: |
+          dart pub global activate coverage
       - name: 'install dependencies'
         run: |
           melos bootstrap
