@@ -21,13 +21,13 @@ extension ResultUnaryTestX<T, S> on ResultUnary<T, S> {
     group('test for $name', () {
       final tester = Stub.unary<T, S>();
 
+      setUp(tester.reset);
+
       test(
           'GIVEN $name original function does not throw '
           'WHEN $name.call '
           'THEN return Success', () {
-        tester
-          ..reset()
-          ..stub = example;
+        tester.stub = example;
 
         final result = tester(seed());
 
@@ -41,9 +41,7 @@ extension ResultUnaryTestX<T, S> on ResultUnary<T, S> {
           'GIVEN $name original function throws Exception '
           'WHEN $name.call '
           'THEN return Failure', () {
-        tester
-          ..reset()
-          ..stub = (_) => throw Exception();
+        tester.stub = (_) => throw Exception();
 
         final result = tester(seed());
 
@@ -58,9 +56,7 @@ extension ResultUnaryTestX<T, S> on ResultUnary<T, S> {
           'GIVEN $name original function throws Error '
           'WHEN $name.call '
           'THEN return Failure', () {
-        tester
-          ..reset()
-          ..stub = (_) => throw Error();
+        tester.stub = (_) => throw Error();
 
         final result = tester(seed());
 

@@ -19,34 +19,29 @@ extension ResultNullaryAsyncTestX<T> on ResultNullaryAsync<T> {
     group('test for $name', () {
       final tester = Stub.nullary<Future<T>>();
 
+      setUp(tester.reset);
+
       test(
           'GIVEN $name original function does not throw '
           'WHEN $name.call '
-          'THEN return Success', () async {
-        tester
-          ..reset()
-          ..stub = example;
+          'THEN return Success', () {
+        tester.stub = example;
 
-        final result = await tester();
-
-        expect(
-          result,
+        expectLater(
+          tester(),
           isA<Success<T>>(),
           reason: 'tester should not throw',
         );
       });
+
       test(
           'GIVEN $name original function throws Exception '
           'WHEN $name.call '
-          'THEN return Failure', () async {
-        tester
-          ..reset()
-          ..stub = () => throw Exception();
-
-        final result = await tester();
+          'THEN return Failure', () {
+        tester.stub = () => throw Exception();
 
         expect(
-          result,
+          tester(),
           isA<Failure<T>>(),
           reason: 'tester should throw',
         );
@@ -55,15 +50,11 @@ extension ResultNullaryAsyncTestX<T> on ResultNullaryAsync<T> {
       test(
           'GIVEN $name original function throws Error '
           'WHEN $name.call '
-          'THEN return Failure', () async {
-        tester
-          ..reset()
-          ..stub = () => throw Error();
-
-        final result = await tester();
+          'THEN return Failure', () {
+        tester.stub = () => throw Error();
 
         expect(
-          result,
+          tester(),
           isA<Failure<T>>(),
           reason: 'tester should throw',
         );

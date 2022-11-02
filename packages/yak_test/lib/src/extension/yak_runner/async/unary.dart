@@ -17,59 +17,48 @@ extension ResultUnaryAsyncTestX<T, S> on ResultUnaryAsync<T, S> {
     required String name,
     required UnaryAsync<T, S> example,
     required Nullary<S> seed,
-  }) {
-    group('test for $name', () {
-      final tester = Stub.unary<Future<T>, S>();
+  }) =>
+      group('test for $name', () {
+        final tester = Stub.unary<Future<T>, S>();
 
-      test(
-          'GIVEN $name original function does not throw '
-          'WHEN $name.call '
-          'THEN return Success', () async {
-        tester
-          ..reset()
-          ..stub = example;
+        setUp(tester.reset);
 
-        final result = await tester(seed());
+        test(
+            'GIVEN $name original function does not throw '
+            'WHEN $name.call '
+            'THEN return Success', () {
+          tester.stub = example;
 
-        expect(
-          result,
-          isA<Success<T>>(),
-          reason: 'tester should not throw',
-        );
+          expectLater(
+            tester(seed()),
+            isA<Success<T>>(),
+            reason: 'tester should not throw',
+          );
+        });
+        test(
+            'GIVEN $name original function throws Exception '
+            'WHEN $name.call '
+            'THEN return Failure', () {
+          tester.stub = (_) => throw Exception();
+
+          expectLater(
+            tester(seed()),
+            isA<Failure<T>>(),
+            reason: 'tester should throw',
+          );
+        });
+
+        test(
+            'GIVEN $name original function throws Error '
+            'WHEN $name.call '
+            'THEN return Failure', () {
+          tester.stub = (_) => throw Error();
+
+          expectLater(
+            tester(seed()),
+            isA<Failure<T>>(),
+            reason: 'tester should throw',
+          );
+        });
       });
-      test(
-          'GIVEN $name original function throws Exception '
-          'WHEN $name.call '
-          'THEN return Failure', () async {
-        tester
-          ..reset()
-          ..stub = (_) => throw Exception();
-
-        final result = await tester(seed());
-
-        expect(
-          result,
-          isA<Failure<T>>(),
-          reason: 'tester should throw',
-        );
-      });
-
-      test(
-          'GIVEN $name original function throws Error '
-          'WHEN $name.call '
-          'THEN return Failure', () async {
-        tester
-          ..reset()
-          ..stub = (_) => throw Error();
-
-        final result = await tester(seed());
-
-        expect(
-          result,
-          isA<Failure<T>>(),
-          reason: 'tester should throw',
-        );
-      });
-    });
-  }
 }

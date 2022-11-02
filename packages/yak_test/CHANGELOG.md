@@ -1,3 +1,8 @@
+###  1.0.1+0
+- add `constructorTester`
+- update `delegate_tester`
+- make all `yak_runner` tests synchronous
+
 ###  1.0.0+4
 - major release
 - update dependencies
