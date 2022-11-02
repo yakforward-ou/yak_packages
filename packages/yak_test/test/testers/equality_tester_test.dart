@@ -1,4 +1,4 @@
-import 'package:test/scaffolding.dart';
+import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import 'package:yak_test/yak_test.dart';
 
