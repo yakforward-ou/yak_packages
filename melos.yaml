@@ -94,7 +94,7 @@ scripts:
       --concurrency 1 \
       --fail-fast \
       -- \
-      dart test --coverage="coverage"
+      dart run coverage:test_with_coverage
     description: Run Dart tests for a specific package in this project.
     select-package:
       flutter: false
