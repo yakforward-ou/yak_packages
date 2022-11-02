@@ -18,6 +18,7 @@ ignore:
   - '**/example/'
   - 'examples'
   - '**/*all.dart'
+  - '**/*.pb.dart'
 
 comment:
   layout: 'reach,diff,flags,files,footer'

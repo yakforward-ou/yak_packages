@@ -1,46 +1,68 @@
+import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 import 'package:yak_test/yak_test.dart';
 
-class NullaryTester implements NullaryDelegate<int> {
-  const NullaryTester();
-  @override
-  int call() => throw UnimplementedError();
-}
+class _NullaryTester extends Mock implements NullaryDelegate<int> {}
 
-class NullaryTesterAsync implements NullaryDelegateAsync<int> {
-  const NullaryTesterAsync();
+class _NullaryTesterAsync extends Mock implements NullaryDelegateAsync<int> {}
 
-  @override
-  Future<int> call() async => throw UnimplementedError();
-}
+class _UnaryTester extends Mock implements UnaryDelegate<int, bool> {}
 
-class UnaryTester implements UnaryDelegate<int, bool> {
-  const UnaryTester();
+class _UnaryTesterAsync extends Mock implements UnaryDelegateAsync<int, bool> {}
 
-  @override
-  int call(_) => throw UnimplementedError();
-}
+class _MultiDelegate2Tester extends Mock
+    implements MultiDelegate2<String, int, double> {}
 
-class UnaryTesterAsync implements UnaryDelegateAsync<int, bool> {
-  const UnaryTesterAsync();
+class _MultiDelegate3Tester extends Mock
+    implements MultiDelegate3<String, int, double, num> {}
 
-  @override
-  Future<int> call(_) async => throw UnimplementedError();
-}
+class _MultiDelegate4Tester extends Mock
+    implements MultiDelegate4<String, int, double, num, bool> {}
+
+class Foo {}
+
+class _MultiDelegate5Tester extends Mock
+    implements MultiDelegate5<String, int, double, num, bool, Foo> {}
 
 void main() {
-  group('nullaryDelegateTest', () {
-    nullaryDelegateTest(NullaryTester());
-  });
-  group('equalityTest String', () {
-    nullaryDelegateAsyncTest(NullaryTesterAsync());
-  });
+  group(
+    'nullaryDelegateTest',
+    () => nullaryDelegateTest(_NullaryTester.new),
+  );
 
-  group('nullaryDelegateTest', () {
-    unaryDelegateTest(UnaryTester());
-  });
-  group('equalityTest String', () {
-    unaryDelegatAsyncTest(UnaryTesterAsync());
-  });
+  group(
+    'nullaryDelegateAsyncTest',
+    () => nullaryDelegateAsyncTest(_NullaryTesterAsync.new),
+  );
+
+  group(
+    'unaryDelegateTest',
+    () => unaryDelegateTest(_UnaryTester.new),
+  );
+
+  group(
+    'unaryDelegatAsyncTest',
+    () => unaryDelegatAsyncTest(_UnaryTesterAsync.new),
+  );
+
+  group(
+    'multiDelegate2Test',
+    () => multiDelegate2Test(_MultiDelegate2Tester.new),
+  );
+
+  group(
+    'multiDelegate3Test',
+    () => multiDelegate3Test(_MultiDelegate3Tester.new),
+  );
+
+  group(
+    'multiDelegate4Test',
+    () => multiDelegate4Test(_MultiDelegate4Tester.new),
+  );
+
+  group(
+    'multiDelegate5Test',
+    () => multiDelegate5Test(_MultiDelegate5Tester.new),
+  );
 }

@@ -19,13 +19,13 @@ extension ResultNullaryTestX<T> on ResultNullary<T> {
     group('test for $name', () {
       final tester = Stub.nullary<T>();
 
+      setUp(tester.reset);
+
       test(
           'GIVEN $name original function does not throw '
           'WHEN $name.call '
           'THEN return Success', () {
-        tester
-          ..reset()
-          ..stub = example;
+        tester.stub = example;
 
         final result = tester();
 
@@ -39,9 +39,7 @@ extension ResultNullaryTestX<T> on ResultNullary<T> {
           'GIVEN $name original function throws Exception '
           'WHEN $name.call '
           'THEN return Failure', () {
-        tester
-          ..reset()
-          ..stub = () => throw Exception();
+        tester.stub = () => throw Exception();
 
         final result = tester();
 
@@ -56,9 +54,7 @@ extension ResultNullaryTestX<T> on ResultNullary<T> {
           'GIVEN $name original function throws Error '
           'WHEN $name.call '
           'THEN return Failure', () {
-        tester
-          ..reset()
-          ..stub = () => throw Error();
+        tester.stub = () => throw Error();
 
         final result = tester();
 

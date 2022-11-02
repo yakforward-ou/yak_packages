@@ -1,5 +1,6 @@
-### 1.0.0+4
+### 1.0.0+5
 - initial releases
 - update readme
 - update example
-- bump dependencies
+- update dependencies
+- remove *.pb.dart from code coverage

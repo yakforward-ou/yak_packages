@@ -6,13 +6,13 @@ void main() {
   group('ResultNullaryAsync', () {
     final tester = Stub.nullary<Future<int>>();
 
+    setUp(tester.reset);
+
     test(
         'GIVEN Nullary does not throw '
         'WHEN ResultNullaryAsync.call '
         'THEN return Success', () async {
-      tester
-        ..reset()
-        ..stub = () => Future.sync(() => 42);
+      tester.stub = () => Future.sync(() => 42);
 
       final result = await tester.run();
 
@@ -26,9 +26,7 @@ void main() {
         'GIVEN Nullary throws Exception '
         'WHEN ResultNullaryAsync.call '
         'THEN return Failure', () async {
-      tester
-        ..reset()
-        ..stub = () => throw Exception();
+      tester.stub = () => throw Exception();
 
       final result = await tester.run();
 
@@ -43,9 +41,7 @@ void main() {
         'GIVEN Nullary throws Exception '
         'WHEN ResultNullaryAsync.call '
         'THEN return Failure', () async {
-      tester
-        ..reset()
-        ..stub = () => throw Error();
+      tester.stub = () => throw Error();
 
       final result = await tester.run();
 

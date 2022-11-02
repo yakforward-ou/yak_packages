@@ -1,11 +1,17 @@
+###  1.0.1+1
+- add `constructorTester`
+- update `delegate_tester`
+- update `equality tests`
+- make all `yak_runner` tests synchronous
+
 ###  1.0.0+4
 - major release
-- bump dependencies
+- update dependencies
 - add `equalityTest`
 - downgrade `test` version due to https://github.com/iapicca/yak_packages/issues/185
 
 ###  0.5.2
-- bump dependencies
+- update dependencies
 - remove unnecessary imports
 - update readme
 

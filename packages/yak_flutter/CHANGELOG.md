@@ -1,6 +1,6 @@
 ### 1.0.1+1
 - sync version with `yak_runner`
-- bump dependencies
+- update dependencies
 
 ### 1.0.0
 

@@ -6,9 +6,8 @@ extension MoreOrLessEqualsMaybeIntX on num? {
   bool moreOrLessEquals(
     num d, {
     double epsilon = precisionErrorTolerance,
-  }) {
-    return this == null ? false : this!.moreOrLessEquals(d, epsilon: epsilon);
-  }
+  }) =>
+      this == null ? false : this!.moreOrLessEquals(d, epsilon: epsilon);
 }
 
 /// mirrors `flutte_test` matcher `MoreOrLessEquals` (but typesafe)
@@ -17,11 +16,10 @@ extension MoreOrLessEqualsNumX on num {
   bool moreOrLessEquals(
     num d, {
     double epsilon = precisionErrorTolerance,
-  }) {
-    return this == d
-        ? true
-        : (this - d).abs() <= epsilon
-            ? true
-            : false;
-  }
+  }) =>
+      this == d
+          ? true
+          : (this - d).abs() <= epsilon
+              ? true
+              : false;
 }

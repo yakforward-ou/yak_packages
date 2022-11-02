@@ -1,24 +1,26 @@
 import 'package:test/test.dart';
+import 'package:yak_test/yak_test.dart';
 import 'package:yak_utils/yak_utils.dart';
+import 'package:mocktail/mocktail.dart';
 
-class _TestDelegate implements UnaryDelegate<String, int> {
-  const _TestDelegate();
-  @override
-  String call(int p0) => '$p0';
-}
+class _UnaryTester extends Mock implements UnaryDelegate<int, bool> {}
+
+class _UnaryTesterAsync extends Mock implements UnaryDelegateAsync<int, bool> {}
 
 void main() {
-  group('UnaryDelegate', () {
-    test(
-        'GIVEN UnaryDelegate '
-        'WHEN delegate.call '
-        'THEN returns a Unary', () {
-      final delegate = _TestDelegate();
-      expect(
-        delegate.call,
-        isA<Unary<String, int>>(),
-        reason: 'delegat.call should be predictable',
-      );
-    });
-  });
+  group(
+    'UnaryDelegate Test',
+    () {
+      constructorTester(_UnaryTester.new);
+      unaryDelegateTest(_UnaryTester.new);
+    },
+  );
+
+  group(
+    'UnaryDelegateAsync Test',
+    () {
+      constructorTester(_UnaryTesterAsync.new);
+      unaryDelegatAsyncTest(_UnaryTesterAsync.new);
+    },
+  );
 }
