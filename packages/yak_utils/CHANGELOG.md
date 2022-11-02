@@ -1,4 +1,4 @@
-### 1.0.0+13
+### 1.0.0+14
 - update sets of `typedef` and `delegates`
 - add:
     - `MultiDelegate`
@@ -8,6 +8,7 @@
     - `"Void"` functions and delegates
     - plus multiple extensions
 - update readme
+- update dependencies
 
 
 ### 0.1.0
