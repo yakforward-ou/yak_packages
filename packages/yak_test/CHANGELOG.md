@@ -5,7 +5,7 @@
 - downgrade `test` version due to https://github.com/iapicca/yak_packages/issues/185
 
 ###  0.5.2
-- bump dependencies
+- update dependencies
 - remove unnecessary imports
 - update readme
 
