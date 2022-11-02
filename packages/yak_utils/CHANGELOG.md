@@ -1,4 +1,7 @@
-### 1.0.0+15
+### 1.0.1+0
+- remove `JsonMixin`
+
+### 1.0.0
 - update sets of `typedef` and `delegates`
 - add:
     - `MultiDelegate`

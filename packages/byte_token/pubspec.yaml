@@ -10,7 +10,7 @@ dependencies:
   crypto: ^3.0.2
   fixnum: ^1.0.1
   protobuf: ^2.1.0
-  yak_utils: ^1.0.0
+  yak_utils: ^1.0.1
   
 dev_dependencies:
   lints: ^2.0.1
