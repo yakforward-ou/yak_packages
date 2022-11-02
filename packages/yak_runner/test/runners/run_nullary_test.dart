@@ -6,13 +6,13 @@ void main() {
   group('ResultNullary', () {
     final tester = Stub.nullary<int>();
 
+    setUp(tester.reset);
+
     test(
         'GIVEN Nullary does not throw '
         'WHEN ResultNullary.call '
         'THEN return Success', () {
-      tester
-        ..reset()
-        ..stub = () => 42;
+      tester.stub = () => 42;
 
       final result = tester.run();
 
@@ -26,9 +26,7 @@ void main() {
         'GIVEN Nullary throws Exception '
         'WHEN ResultNullary.call '
         'THEN return Failure', () {
-      tester
-        ..reset()
-        ..stub = () => throw Exception();
+      tester.stub = () => throw Exception();
 
       final result = tester.run();
 
@@ -43,9 +41,7 @@ void main() {
         'GIVEN Nullary throws Exception '
         'WHEN ResultNullary.call '
         'THEN return Failure', () {
-      tester
-        ..reset()
-        ..stub = () => throw Error();
+      tester.stub = () => throw Error();
 
       final result = tester.run();
 

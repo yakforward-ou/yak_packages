@@ -1,95 +1,52 @@
+import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 import 'package:yak_utils/yak_utils.dart';
+import 'package:yak_test/yak_test.dart';
 
 class Foo {}
 
-class _TestDelegate2 implements MultiDelegate2<String, int, double> {
-  const _TestDelegate2();
-  @override
-  String call(p0, p1) => '$p0$p1';
-}
+class _MultiDelegate2Tester extends Mock
+    implements MultiDelegate2<String, int, double> {}
 
-class _TestDelegate3 implements MultiDelegate3<String, int, double, num> {
-  const _TestDelegate3();
-  @override
-  String call(p0, p1, p2) => '$p0$p1$p2';
-}
+class _MultiDelegate3Tester extends Mock
+    implements MultiDelegate3<String, int, double, num> {}
 
-class _TestDelegate4 implements MultiDelegate4<String, int, double, num, bool> {
-  const _TestDelegate4();
-  @override
-  String call(p0, p1, p2, p3) => '$p0$p1$p2$p3';
-}
+class _MultiDelegate4Tester extends Mock
+    implements MultiDelegate4<String, int, double, num, bool> {}
 
-class _TestDelegate5
-    implements MultiDelegate5<String, int, double, num, bool, Foo> {
-  const _TestDelegate5();
-  @override
-  String call(
-    p0,
-    p1,
-    p2,
-    p3,
-    p4,
-  ) =>
-      '$p0$p1$p2$p3$p4';
-}
+class _MultiDelegate5Tester extends Mock
+    implements MultiDelegate5<String, int, double, num, bool, Foo> {}
 
-/// TODO replace with [yak_test] delegateTest()
 void main() {
-  group('MultiDelegate2', () {
-    test(
-        'GIVEN MultiDelegate2 '
-        'WHEN delegate.call '
-        'THEN returns a MultiArgFunction2', () {
-      final delegate = _TestDelegate2();
-      expect(
-        delegate.call,
-        isA<MultiArgFunction2<String, int, double>>(),
-        reason: 'delegat.call should be predictable',
-      );
-    });
-  });
+  group(
+    'multiDelegate2Test',
+    () {
+      constructorTester(_MultiDelegate2Tester.new);
+      multiDelegate2Test(_MultiDelegate2Tester.new);
+    },
+  );
 
-  group('_TestDelegate3', () {
-    test(
-        'GIVEN _TestDelegate3 '
-        'WHEN delegate.call '
-        'THEN returns a MultiArgFunction3', () {
-      final delegate = _TestDelegate3();
-      expect(
-        delegate.call,
-        isA<MultiArgFunction3<String, int, double, num>>(),
-        reason: 'delegat.call should be predictable',
-      );
-    });
-  });
+  group(
+    'multiDelegate3Test',
+    () {
+      constructorTester(_MultiDelegate3Tester.new);
+      multiDelegate3Test(_MultiDelegate3Tester.new);
+    },
+  );
 
-  group('MultiDelegate4', () {
-    test(
-        'GIVEN MultiDelegate4 '
-        'WHEN delegate.call '
-        'THEN returns a MultiArgFunction4', () {
-      final delegate = _TestDelegate4();
-      expect(
-        delegate.call,
-        isA<MultiArgFunction4<String, int, double, num, bool>>(),
-        reason: 'delegat.call should be predictable',
-      );
-    });
-  });
+  group(
+    'multiDelegate4Test',
+    () {
+      constructorTester(_MultiDelegate4Tester.new);
+      multiDelegate4Test(_MultiDelegate4Tester.new);
+    },
+  );
 
-  group('MultiDelegate5', () {
-    test(
-        'GIVEN MultiDelegate5 '
-        'WHEN delegate.call '
-        'THEN returns a MultiArgFunction5', () {
-      final delegate = _TestDelegate5();
-      expect(
-        delegate.call,
-        isA<MultiArgFunction5<String, int, double, num, bool, Foo>>(),
-        reason: 'delegat.call should be predictable',
-      );
-    });
-  });
+  group(
+    'multiDelegate5Test',
+    () {
+      constructorTester(_MultiDelegate5Tester.new);
+      multiDelegate5Test(_MultiDelegate5Tester.new);
+    },
+  );
 }

@@ -6,13 +6,13 @@ void main() {
   group('ResultUnaryAsync', () {
     final tester = Stub.unary<Future<int>, int>();
 
+    setUp(tester.reset);
+
     test(
         'GIVEN unary does not throw '
         'WHEN ResultUnaryAsync.call '
         'THEN return Success', () async {
-      tester
-        ..reset()
-        ..stub = (x) => Future.sync(() => x * 2);
+      tester.stub = (x) => Future.sync(() => x * 2);
 
       final result = await tester.run(1);
 
@@ -26,9 +26,7 @@ void main() {
         'GIVEN unary throws Exception '
         'WHEN ResultUnaryAsync.call '
         'THEN return Failure', () async {
-      tester
-        ..reset()
-        ..stub = (x) => throw Exception();
+      tester.stub = (x) => throw Exception();
 
       final result = await tester.run(1);
 
@@ -43,9 +41,7 @@ void main() {
         'GIVEN unary throws Exception '
         'WHEN ResultUnaryAsync.call '
         'THEN return Failure', () async {
-      tester
-        ..reset()
-        ..stub = (x) => throw Error();
+      tester.stub = (x) => throw Error();
 
       final result = await tester.run(1);
 

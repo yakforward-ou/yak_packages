@@ -1,5 +1,6 @@
-### 1.0.1+0
+### 1.0.1+1
 - remove `JsonMixin`
+- update delegates tests
 
 ### 1.0.0
 - update sets of `typedef` and `delegates`
