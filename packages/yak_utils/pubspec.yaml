@@ -5,7 +5,7 @@ homepage: https://github.com/iapicca/yak_packages
 
 environment:
   sdk: '>=2.18.5 <3.0.0'
-
+  
 dependencies:
   meta: ^1.8.0
 
