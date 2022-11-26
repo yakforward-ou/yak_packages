@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  vector_math: ^2.1.4
+  vector_math: ^2.1.2
   yak_utils: ^1.0.1
 
 dev_dependencies:
