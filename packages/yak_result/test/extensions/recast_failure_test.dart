@@ -18,21 +18,4 @@ void main() {
       );
     });
   });
-
-  group('RecastPendingX', () {
-    test('GIVEN Pending<S> ' 'WHEN recast<T>() ' 'THEN return Pending<T>', () {
-      final tester = Pending<String>();
-
-      expect(
-        tester.recast<int>(),
-        isA<Pending<int>>(),
-        reason: 'should be recasted',
-      );
-      expect(
-        tester.recast<int>(),
-        isA<Result<int>>(),
-        reason: 'should be recasted',
-      );
-    });
-  });
 }

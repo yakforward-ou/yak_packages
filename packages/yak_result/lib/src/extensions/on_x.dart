@@ -13,9 +13,3 @@ extension OnFailureX<T, S> on Result<S> {
   void onFailure(UnaryVoid<Failure<S>> function) =>
       isFailure ? function(failure) : null;
 }
-
-/// an utility extension that calls a [NullaryVoid]
-/// when [Result<S>] `isPending`
-extension OnPendingX<T, S> on Result<S> {
-  void onPending(NullaryVoid function) => isPending ? function() : null;
-}

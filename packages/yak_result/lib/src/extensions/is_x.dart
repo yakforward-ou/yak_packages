@@ -9,8 +9,3 @@ extension IsSuccessX<T> on Result<T> {
 extension IsFailureX<T> on Result<T> {
   bool get isFailure => this is Failure;
 }
-
-/// an utility extension that returns boolean for [Result] is [Pending]
-extension IsPendingX<T> on Result<T> {
-  bool get isPending => this is Pending;
-}

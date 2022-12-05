@@ -4,16 +4,28 @@ import 'package:yak_utils/yak_utils.dart';
 import '../all.dart';
 
 /// represent a failure of a function
-class Failure<T> extends Error implements Result<T>, Exception {
+class Failure<T> implements Result<T> {
   /// has a const constructor
-  Failure({this.reason, this.stackTrace});
+  const Failure({
+    this.reason = const Object(),
+    this.stackTrace = StackTrace.empty,
+  });
 
-  /// may hold an `object`
-  final Object? reason;
+  factory Failure.fromError(Error e) => Failure(
+        reason: e,
+        stackTrace: e.stackTrace ?? StackTrace.empty,
+      );
 
-  /// may hold an `stackTrace`
-  @override
-  final StackTrace? stackTrace;
+  factory Failure.fromException(Exception e, StackTrace s) => Failure(
+        reason: e,
+        stackTrace: s,
+      );
+
+  ///  hold an `object`
+  final Object reason;
+
+  ///  hold an `stackTrace`
+  final StackTrace stackTrace;
 
   @override
   bool operator ==(Object other) => hashCode == other.hashCode;
