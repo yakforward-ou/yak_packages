@@ -3,7 +3,7 @@ import 'package:yak_runner/yak_runner.dart';
 import 'package:yak_test/yak_test.dart';
 
 void main() {
-  group('equalityTest VS well known types', () {
+  group('Equality Test against well known types', () {
     group('equalityTest int', () {
       const tester = 0;
       const other = 1;
@@ -22,8 +22,8 @@ void main() {
     });
 
     group('equalityTest Success', () {
-      const tester = Success(0);
-      const other = Success(1);
+      final tester = Success(0);
+      final other = Success(1);
       equalityTest(
         () => tester,
         () => other,
