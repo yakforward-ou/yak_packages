@@ -4,41 +4,33 @@ import 'package:yak_utils/yak_utils.dart';
 import '../all.dart';
 
 /// represent a failure of a function
-class Failure<T> implements Result<T> {
-  /// has a const constructor
-  const Failure({
-    this.reason = const Object(),
-    this.stackTrace = StackTrace.empty,
-  });
-
-  factory Failure.fromError(Error e) => Failure(
-        reason: e,
-        stackTrace: e.stackTrace ?? StackTrace.empty,
-      );
-
-  factory Failure.fromException(Exception e, StackTrace s) => Failure(
-        reason: e,
-        stackTrace: s,
-      );
-
-  ///  hold an `object`
+class Failure<T> extends Result<T> implements ValueResult<T>, VoidResult<T> {
   final Object reason;
-
-  ///  hold an `stackTrace`
   final StackTrace stackTrace;
 
+  const Failure([
+    this.reason = const Object(),
+    this.stackTrace = StackTrace.empty,
+  ]);
+
+  factory Failure.fromError(Error error) => Failure(
+        error,
+        error.stackTrace ?? StackTrace.empty,
+      );
+
   @override
+  @nonVirtual
   bool operator ==(Object other) => hashCode == other.hashCode;
 
   @override
+  @nonVirtual
   int get hashCode => Object.hashAll([runtimeType, reason, stackTrace]);
 
   @override
   @nonVirtual
   Json toJson() => {
-        '$runtimeType': {
-          'reason': Error.safeToString(reason),
-          'stackTrace': '$stackTrace',
-        }
+        'Result': 'Failure',
+        'reason': '${reason.runtimeType}',
+        'stackTrace': '$stackTrace',
       };
 }
