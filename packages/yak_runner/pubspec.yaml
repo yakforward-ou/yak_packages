@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   meta: ^1.8.0
-  yak_result: ^1.0.0
+  yak_result: ^1.0.1
   yak_utils: ^1.0.1
 
 dev_dependencies:

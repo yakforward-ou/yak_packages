@@ -1,5 +1,11 @@
-import 'package:yak_result/yak_result.dart';
-import 'package:yak_utils/yak_utils.dart';
+import 'package:yak_result/yak_result.dart'
+    show ResultNullaryAsync, ResultNullary, ResultUnaryAsync, ResultUnary;
+import 'package:yak_utils/yak_utils.dart'
+    show
+        NullaryDelegate,
+        NullaryDelegateAsync,
+        UnaryDelegate,
+        UnaryDelegateAsync;
 
 import '../all.dart';
 
@@ -45,7 +51,7 @@ extension ResultUnaryDelegateX<T, S> on UnaryDelegate<T, S> {
   // print(result.success); /// "2"
   // ```
   // */
-  ResultUnary<T, S> get run => runUnary(this);
+  ResultUnary<T, S> get run => runUnary<T, S>(this);
 }
 
 /// `ResultUnaryAsyncX` turns a `UnaryAsync` function
@@ -60,5 +66,5 @@ extension ResultUnaryAsyncDelegateX<T, S> on UnaryDelegateAsync<T, S> {
   // print(result.success); /// "2"
   // ```
   // */
-  ResultUnaryAsync<T, S> get run => runUnaryAsync(this);
+  ResultUnaryAsync<T, S> get run => runUnaryAsync<T, S>(this);
 }
