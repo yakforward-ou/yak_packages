@@ -1,5 +1,7 @@
-import 'package:yak_result/yak_result.dart';
-import 'package:yak_utils/yak_utils.dart';
+import 'package:yak_result/yak_result.dart'
+    show ResultNullaryAsync, ResultNullary, ResultUnaryAsync, ResultUnary;
+import 'package:yak_utils/yak_utils.dart'
+    show Nullary, NullaryAsync, Unary, UnaryAsync;
 
 import '../all.dart';
 

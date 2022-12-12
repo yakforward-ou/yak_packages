@@ -17,7 +17,7 @@ void main() {
 
         final list = [for (var i = 0; i < 10; ++i) i];
 
-        final results = list.iterateRun(tester.run);
+        final results = list.run(tester);
 
         expect(
           results,
@@ -55,7 +55,7 @@ void main() {
 
         final list = [for (var i = 0; i < 10; ++i) i];
 
-        final results = await list.iterateRunAsync(tester.run).toList();
+        final results = await list.runAsync(tester).toList();
 
         expect(
           results,
@@ -97,7 +97,7 @@ void main() {
 
           final stream = Stream.fromIterable(list);
 
-          final results = stream.transformRun(tester.run);
+          final results = stream.run(tester);
 
           expect(
             results,
@@ -140,7 +140,7 @@ void main() {
 
           final stream = Stream.fromIterable(list);
 
-          final results = stream.transformRunAsync(tester.run);
+          final results = stream.runAsync(tester);
 
           expect(
             results,

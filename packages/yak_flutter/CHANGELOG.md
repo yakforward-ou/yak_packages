@@ -1,4 +1,4 @@
-### 1.0.1+1
+### 1.0.1+2
 - sync version with `yak_runner`
 - update dependencies
 

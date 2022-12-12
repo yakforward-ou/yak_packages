@@ -1,4 +1,10 @@
-### 1.0.0+7
+### 1.0.1+0
+- intruduced `VoidResult`, `ValueResult`
+- intruduced `VoidSuccess`, `ValueSuccess`
+- breaking changes to extensions
+- removed `Pending` to `Result`
+
+### 1.0.0
 - major release
 - update typedefs
 - update dependencies

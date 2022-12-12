@@ -1,10 +1,10 @@
 name: yak_tween
 description: A replica of flutter Tween that allows `const` constructor and accepts/returns only NN.
-version: 0.1.0+12
+version: 0.1.0+13
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: '>=2.18.5 <3.0.0'
   flutter: '>=3.3.0'
 
 dependencies:

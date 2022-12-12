@@ -1,4 +1,4 @@
-### 1.0.0+4
+### 1.0.0+5
 - major release
 - fix export
 - update dependencies

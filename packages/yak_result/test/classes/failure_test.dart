@@ -1,87 +1,92 @@
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_result/yak_result.dart';
-// ignore_for_file: unrelated_type_equality_checks
 
 void main() {
   group('Failure', () {
-    group('deep equality', () {
-      test(
-          'GIVEN Failure of Type `T`'
-          'WHEN this == Failure<S> '
-          'THEN return false', () {
-        final res1 = Failure<bool>();
+    group('Failure Type maching', () {
+      final tester = Stub.nullary<Failure<bool>>();
+      final negative = Stub.nullary<Failure<int>>();
 
-        expect(
-          res1,
-          isA<Failure<bool>>(),
-          reason: 'type should be predictable',
-        );
-
-        final res2 = Failure<int>();
-
-        expect(
-          res2,
-          isA<Failure<int>>(),
-          reason: 'type should be predictable',
-        );
-
-        expect(
-          res1 == res2,
-          isFalse,
-          reason: 'equality should return false',
-        );
+      setUp(() {
+        tester.reset();
+        negative.reset();
       });
+
       test(
-          'GIVEN Failure of Type `T`'
-          'WHEN this == Failure<T> & holds the same arguments '
+          'GIVEN Failure<T> '
+          'WHEN this is Failure<T> '
           'THEN return true', () {
-        final res1 = Failure<bool>();
+        tester.stub = () => Failure();
 
         expect(
-          res1,
+          tester(),
           isA<Failure<bool>>(),
           reason: 'type should be predictable',
-        );
-
-        final res2 = Failure<bool>();
-
-        expect(
-          res2,
-          isA<Failure<bool>>(),
-          reason: 'type should be predictable',
-        );
-
-        expect(
-          res1 == res2,
-          isTrue,
-          reason: 'equality should return true',
         );
       });
 
       test(
-          'GIVEN Failure of Type `T`'
-          'WHEN this == Failure<T> & holds different arguments '
+          'GIVEN Failure<S> '
+          'WHEN this is Failure<T> '
           'THEN return false', () {
-        final res1 = Failure<bool>();
+        negative.stub = () => Failure();
 
         expect(
-          res1,
-          isA<Failure<bool>>(),
+          negative(),
+          isNot(isA<Failure<bool>>()),
           reason: 'type should be predictable',
         );
-
-        final res2 = Failure<bool>(reason: '');
+      });
+      test(
+          'GIVEN Failure '
+          'WHEN this is Result '
+          'THEN return true', () {
+        tester.stub = () => Failure();
 
         expect(
-          res2,
-          isA<Failure<bool>>(),
+          tester(),
+          isA<Result>(),
           reason: 'type should be predictable',
         );
+      });
+    });
+    group('deep equality', () {
+      final reason = Exception();
+
+      final tester = Stub.nullary<Result>();
+      final negative = Stub.nullary<Result>();
+
+      setUp(() {
+        tester.reset();
+        negative.reset();
+      });
+
+      test(
+          'GIVEN Failure '
+          'WHEN matched against different Failure '
+          'THEN return false', () {
+        tester.stub = () => Failure(reason);
+        negative.stub = () => Failure();
 
         expect(
-          res1 == res2,
-          isFalse,
-          reason: 'equality should return false',
+          tester(),
+          isNot(equals(negative())),
+          reason: 'type should be predictable',
+        );
+      });
+
+      test(
+          'GIVEN Failure'
+          'WHEN  matched against identical Failure '
+          'THEN return false', () {
+        tester.stub = () => Failure(reason);
+        negative.stub = () => Failure(reason);
+
+        expect(
+          tester(),
+          equals(negative()),
+          reason: 'type should be predictable',
         );
       });
     });
