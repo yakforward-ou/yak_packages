@@ -1,9 +1,8 @@
-### 1.0.2
+### 1.0.2+0
 - update `runNullaryAsync`, `runNullary`, `runUnaryAsync` and `runUnary`
 - add `runCallbackAsync`, `runCallback`, `runCallbackAsync` and `runUnaryCallback`
 - update extensions
 - update tests
-
 
 ### 1.0.1
 - remove `thenRun` extesion in favor of `yak_result`'s `onResult` 
