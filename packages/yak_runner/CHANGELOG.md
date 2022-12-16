@@ -1,6 +1,7 @@
-### 1.0.2+0
+### 1.0.2+1
 - update `runNullaryAsync`, `runNullary`, `runUnaryAsync` and `runUnary`
 - add `runCallbackAsync`, `runCallback`, `runCallbackAsync` and `runUnaryCallback`
+- add `callback` extensions
 - update extensions
 - update tests
 

@@ -47,7 +47,7 @@ extension ResultUnaryX<T, S> on Unary<T, S> {
   // print(result.success); /// "2"
   // ```
   // */
-  ResultUnary<T, S> get run => runUnary(this);
+  ResultUnary<T, S> get run => runUnary<T, S>(this);
 }
 
 /// `ResultUnaryAsyncX` turns a `UnaryAsync` function
@@ -62,5 +62,5 @@ extension ResultUnaryAsyncX<T, S> on UnaryAsync<T, S> {
   // print(result.success); /// "2"
   // ```
   // */
-  ResultUnaryAsync<T, S> get run => runUnaryAsync(this);
+  ResultUnaryAsync<T, S> get run => runUnaryAsync<T, S>(this);
 }
