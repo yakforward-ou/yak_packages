@@ -3,28 +3,35 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('ResultNullary', () {
+  group('runCallback<int>', () {
     final tester = Stub.nullary<int>();
 
     setUp(tester.reset);
 
     test(
         'GIVEN Nullary does not throw '
-        'WHEN ResultNullary.call '
+        'WHEN VoidVoidResultNullary.call '
         'THEN return Success', () {
       tester.stub = () => 42;
 
-      final result = tester.run();
+      final function = runCallback<int>(tester);
+      final result = function();
 
       expect(
         result,
-        isA<Success<int>>(),
+        isA<Success>(),
+        reason: 'tester should not throw',
+      );
+
+      expect(
+        result,
+        isA<VoidSuccess>(),
         reason: 'tester should not throw',
       );
     });
     test(
         'GIVEN Nullary throws Exception '
-        'WHEN ResultNullary.call '
+        'WHEN VoidResultNullary.call '
         'THEN return Failure', () {
       tester.stub = () => throw Exception();
 
@@ -32,14 +39,14 @@ void main() {
 
       expect(
         result,
-        isA<Failure<int>>(),
+        isA<Failure<void>>(),
         reason: 'tester should throw',
       );
     });
 
     test(
         'GIVEN Nullary throws Exception '
-        'WHEN ResultNullary.call '
+        'WHEN VoidResultNullary.call '
         'THEN return Failure', () {
       tester.stub = () => throw Error();
 
@@ -47,7 +54,7 @@ void main() {
 
       expect(
         result,
-        isA<Failure<int>>(),
+        isA<Failure<void>>(),
         reason: 'tester should throw',
       );
     });

@@ -2,28 +2,28 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('ResultNullaryX', () {
+  group('ResultNullaryCallbackX', () {
     test(
         'GIVEN a Nullary function '
-        'WHEN nullary.run '
-        'THEN returns a ResultNullary', () {
+        'WHEN nullary.callback '
+        'THEN returns a VoidResultNullary', () {
       int function() => 42;
       expect(
-        function.run,
-        isA<ResultNullary<int>>(),
+        function.callback,
+        isA<VoidResultNullary>(),
         reason: 'return type should be predictable',
       );
     });
   });
-  group('ResultNullaryAsyncX', () {
+  group('ResultNullaryCallbackX', () {
     test(
         'GIVEN a NullaryAsync function '
-        'WHEN function.run '
-        'THEN returns a ResultNullaryAsync', () {
+        'WHEN function.callback '
+        'THEN returns a VoidResultNullaryAsync', () {
       Future<int> function() => Future.sync(() => 42);
       expect(
-        function.run,
-        isA<ResultNullaryAsync<int>>(),
+        function.callback,
+        isA<VoidResultNullaryAsync>(),
         reason: 'return type should be predictable',
       );
     });
@@ -31,12 +31,12 @@ void main() {
   group('ResultUnaryX', () {
     test(
         'GIVEN a Unary function '
-        'WHEN function.run '
-        'THEN returns a ResultUnary', () {
+        'WHEN function.callback '
+        'THEN returns a VoidResultUnary', () {
       int function(i) => i * 2;
       expect(
-        function.run,
-        isA<ResultUnary<int, int>>(),
+        function.callback,
+        isA<VoidResultUnary<int>>(),
         reason: 'return type should be predictable',
       );
     });
@@ -44,12 +44,12 @@ void main() {
   group('ResultNullaryX', () {
     test(
         'GIVEN a UnaryAsync function '
-        'WHEN function.run '
-        'THEN returns a ResultUnaryAsync', () {
+        'WHEN function.callback '
+        'THEN returns a VoidResultUnaryAsync', () {
       Future<int> function(i) => Future.sync(() => i * 2);
       expect(
-        function.run,
-        isA<ResultUnaryAsync<int, int>>(),
+        function.callback,
+        isA<VoidResultUnaryAsync<int>>(),
         reason: 'return type should be predictable',
       );
     });
