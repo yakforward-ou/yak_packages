@@ -1,5 +1,4 @@
 import 'all.dart';
-import 'on_error_types.dart';
 
 class OnErroDoNothing implements OnErrorDelegate {
   const OnErroDoNothing();
