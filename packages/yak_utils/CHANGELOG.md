@@ -4,6 +4,7 @@
 - update delegates tests
 - update dependencies
 - update types with `FutureOr`
+- update `Cache`
 
 ### 1.0.0
 - update sets of `typedef` and `delegates`
