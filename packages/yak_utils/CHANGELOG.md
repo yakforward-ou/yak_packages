@@ -1,5 +1,6 @@
-### 1.0.1+3
+### 1.0.1+4
 - remove `JsonMixin`
+- add `Let` extension
 - update delegates tests
 - update dependencies
 - update types with `FutureOr`
