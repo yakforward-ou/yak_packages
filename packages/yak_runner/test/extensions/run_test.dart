@@ -22,7 +22,7 @@ void main() {
         'THEN returns a ResultNullaryAsync', () {
       Future<int> function() => Future.sync(() => 42);
       expect(
-        function.run,
+        function.runAsync,
         isA<ResultNullaryAsync<int>>(),
         reason: 'return type should be predictable',
       );
@@ -48,7 +48,7 @@ void main() {
         'THEN returns a ResultUnaryAsync', () {
       Future<int> function(i) => Future.sync(() => i * 2);
       expect(
-        function.run,
+        function.runAsync,
         isA<ResultUnaryAsync<int, int>>(),
         reason: 'return type should be predictable',
       );
