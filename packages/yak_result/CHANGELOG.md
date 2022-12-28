@@ -1,7 +1,8 @@
-### 1.0.1+0
-- intruduced `VoidResult`, `ValueResult`
-- intruduced `VoidSuccess`, `ValueSuccess`
+### 1.0.1+1
+- added `VoidResult`, `ValueResult`
+- added `VoidSuccess`, `ValueSuccess`
 - breaking changes to extensions
+- added `asVoid` extension
 - removed `Pending` to `Result`
 
 ### 1.0.0
