@@ -1,9 +1,9 @@
 import 'package:yak_result/yak_result.dart'
     show ResultUnaryAsync, ValueSuccess, Failure;
-import 'package:yak_utils/yak_utils.dart' show UnaryAsync;
+import 'package:yak_utils/yak_utils.dart' show UnaryFutureOr;
 
-/// takes as argument a [UnaryAsync] returns a [ResultUnaryAsync]
-ResultUnaryAsync<T, S> runUnaryAsync<T, S>(UnaryAsync<T, S> function) =>
+/// takes as argument a [UnaryFutureOr] returns a [ResultUnaryAsync]
+ResultUnaryAsync<T, S> runUnaryAsync<T, S>(UnaryFutureOr<T, S> function) =>
     (S arg) async {
       try {
         return ValueSuccess(await function(arg));

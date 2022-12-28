@@ -1,4 +1,4 @@
-import 'package:yak_utils/yak_utils.dart' show Unary, UnaryAsync;
+import 'package:yak_utils/yak_utils.dart' show Unary, UnaryFutureOr;
 import 'package:yak_result/yak_result.dart' show ValueResult;
 
 import '../all.dart';
@@ -16,9 +16,7 @@ extension IterableRunX<S> on Iterable<S> {
   /// runs the values of an iterable through a `ResultUnaryAsync`
   /// returns an `Stream`of `Result`s
   /// note: if you need a Future<List> just append `.toList()`
-  Stream<ValueResult<T>> runAsync<T>(
-    UnaryAsync<T, S> function,
-  ) async* {
+  Stream<ValueResult<T>> runAsync<T>(UnaryFutureOr<T, S> function) async* {
     for (final s in this) {
       yield await runUnaryAsync(function)(s);
     }
@@ -39,7 +37,7 @@ extension StreamRunX<S> on Stream<S> {
   /// runs the values of a stream through a `ResultUnaryAsync`
   /// returns an `Stream`of `Result`s
   /// note: if you need a Future<List> just append `.toList()`
-  Stream<ValueResult<T>> runAsync<T>(UnaryAsync<T, S> function) async* {
+  Stream<ValueResult<T>> runAsync<T>(UnaryFutureOr<T, S> function) async* {
     await for (final s in this) {
       yield await runUnaryAsync(function)(s);
     }

@@ -1,11 +1,5 @@
-import 'package:yak_result/yak_result.dart'
-    show ResultNullaryAsync, ResultNullary, ResultUnaryAsync, ResultUnary;
-import 'package:yak_utils/yak_utils.dart'
-    show
-        NullaryDelegate,
-        NullaryDelegateAsync,
-        UnaryDelegate,
-        UnaryDelegateAsync;
+import 'package:yak_result/yak_result.dart';
+import 'package:yak_utils/yak_utils.dart';
 
 import '../all.dart';
 
@@ -17,8 +11,8 @@ extension ResultNullaryDelegateSyncX<T> on NullaryDelegate<T> {
 
 /// equivalent of [ResultNullaryAsyncX]
 /// targeting [NullaryDelegateAsync] instead of [NullaryAsync]
-extension ResultNullaryDelegateAsyncX<T> on NullaryDelegateAsync<T> {
-  ResultNullaryAsync<T> get run => runNullaryAsync<T>(this);
+extension ResultNullaryDelegateAsyncX<T> on NullaryDelegateFutureOr<T> {
+  ResultNullaryAsync<T> get runAsync => runNullaryAsync<T>(this);
 }
 
 /// equivalent of [ResultUnaryX]
@@ -29,6 +23,6 @@ extension ResultUnaryDelegateX<T, S> on UnaryDelegate<T, S> {
 
 /// equivalent of [ResultUnaryAsyncX]
 /// targeting [UnaryDelegateAsync] instead of [UnaryAsync]
-extension ResultUnaryAsyncDelegateX<T, S> on UnaryDelegateAsync<T, S> {
-  ResultUnaryAsync<T, S> get run => runUnaryAsync<T, S>(this);
+extension ResultUnaryAsyncDelegateX<T, S> on UnaryDelegateFutureOr<T, S> {
+  ResultUnaryAsync<T, S> get runAsync => runUnaryAsync<T, S>(this);
 }

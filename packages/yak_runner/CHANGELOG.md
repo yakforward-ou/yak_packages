@@ -1,9 +1,9 @@
-### 1.0.2+1
-- update `runNullaryAsync`, `runNullary`, `runUnaryAsync` and `runUnary`
-- add `runCallbackAsync`, `runCallback`, `runCallbackAsync` and `runUnaryCallback`
-- add `callback` extensions
-- update extensions
-- update tests
+### 1.0.2+2
+- update `run...` functions
+- add `runCallback...` functions
+- add `callback`, `...FutureOr` extensions
+- update existing extensions
+- update existing tests
 
 ### 1.0.1
 - remove `thenRun` extesion in favor of `yak_result`'s `onResult` 
@@ -66,7 +66,7 @@
 
 ###  0.2.0
 - `yak_error_handler` friendly
-- fixed `Type` for `test tixin`
+- fixed `Type` for `test mixin`
 - added `assert` for runners and `typeVoid`
 - rewrite example
 - rewrite tests

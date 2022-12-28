@@ -47,7 +47,7 @@ void main() {
         'WHEN function.run '
         'THEN returns a ResultNullaryAsync', () {
       expect(
-        tester.run,
+        tester.runAsync,
         isA<ResultNullaryAsync<int>>(),
         reason: 'return type should be predictable',
       );
@@ -75,7 +75,7 @@ void main() {
         'WHEN function.run '
         'THEN returns a ResultUnaryAsync', () {
       expect(
-        tester.run,
+        tester.runAsync,
         isA<ResultUnaryAsync<int, int>>(),
         reason: 'return type should be predictable',
       );
