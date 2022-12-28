@@ -5,7 +5,7 @@ import '../all.dart';
 
 /// an extension that returns a [VoidResultNullaryAsync] from a [NullaryAsync]
 extension ResultNullaryAsyncCallbackX<T> on NullaryAsync<T> {
-  VoidResultNullaryAsync get callback => runCallbackAsync<T>(this);
+  VoidResultNullaryAsync get callbackAsync => runCallbackAsync<T>(this);
 }
 
 /// an extension that returns a [VoidResultNullary] from a [Nullary]
@@ -15,7 +15,8 @@ extension ResultNullaryCallbackX<T> on Nullary<T> {
 
 /// an extension that returns a [VoidResultUnaryAsync] from a [UnaryAsync]
 extension ResultUnaryAsyncCallbackX<T, S> on UnaryAsync<T, S> {
-  VoidResultUnaryAsync<S> get callback => runUnaryCallbackAsync<T, S>(this);
+  VoidResultUnaryAsync<S> get callbackAsync =>
+      runUnaryCallbackAsync<T, S>(this);
 }
 
 /// an extension that returns a [VoidResultUnary] from a [Unary]
