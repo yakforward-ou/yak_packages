@@ -10,22 +10,22 @@ int meaningOfLife() {
 
 /// you can use `yak_runner` for this purpose
 /// [https://pub.dev/packages/yak_runner]
-Result<T> safelyTry<T>(T Function() function) {
+ValueResult<T> safelyTry<T>(T Function() function) {
   try {
-    return Success(function());
+    return ValueSuccess(function());
   } on Exception catch (e, s) {
-    return Failure(reason: e, stackTrace: s);
+    return Failure(e, s);
   } on Error catch (e) {
-    return Failure(reason: e, stackTrace: e.stackTrace);
+    return Failure.fromError(e);
   }
 }
 
 void main() {
   final result = safelyTry(meaningOfLife);
-  if (result is Success) {
-    print('${result.success}');
+  if (result.isSuccess) {
+    print('${result.value}');
+    return;
   }
-  if (result is Failure) {
-    print('I do not know');
-  }
+
+  print('failed');
 }
