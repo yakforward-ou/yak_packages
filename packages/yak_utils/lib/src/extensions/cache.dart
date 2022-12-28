@@ -3,7 +3,7 @@ import '../types/all.dart';
 
 /// generates a [Cache] from a [Nullary]
 extension CacheNullaryX<T> on Nullary<T> {
-  Cache<T> get cache => Cache.sync(this);
+  Cache<T> get cache => Cache(this);
 }
 
 /// generates a [Cache] from a [NullaryAsync]
@@ -13,7 +13,7 @@ extension CacheNullaryAsyncX<T> on NullaryAsync<T> {
 
 /// given an argument generates a [Cache] from a [Unary]
 extension CacheUnaryX<T, S> on Unary<T, S> {
-  Cache<T> cache(S arg) => Cache.sync(() => call(arg));
+  Cache<T> cache(S arg) => Cache(() => call(arg));
 }
 
 /// given an argument generates a [Cache] from a [UnaryAsync]
