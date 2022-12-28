@@ -6,3 +6,4 @@ export 'result_value.dart';
 export 'failure_recast.dart';
 export 'then_run.dart';
 export 'callback.dart';
+export 'as_void.dart';
