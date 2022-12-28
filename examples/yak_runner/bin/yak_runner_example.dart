@@ -12,7 +12,7 @@ void main() {
   print(oneDividedBy.run(1)); // print `Success`
 
   final result = oneDividedBy.run(1);
-  if (result is Success) {
-    print(result.success); // print `1`
+  if (result.isSuccess) {
+    print(result.value); // print `1`
   }
 }
