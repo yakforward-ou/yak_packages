@@ -51,7 +51,7 @@ void main() {
         expect(
           tester.ready,
           isTrue,
-          reason: 'cache should not be ready',
+          reason: 'Cache should  be ready',
         );
       });
       test(
@@ -59,7 +59,6 @@ void main() {
           'WHEN is initialized '
           'THEN generator is called', () async {
         await tester.initialize();
-
         expect(
           generator.count,
           equals(1),
@@ -83,7 +82,7 @@ void main() {
           'THEN "value" should throw', () {
         expect(
           () => tester.value,
-          throwsException,
+          throwsA(isA<Error>()),
           reason: 'value should throw',
         );
       });
@@ -92,7 +91,7 @@ void main() {
           'WHEN generator throws '
           'THEN initialization throws', () {
         generator.stub = () => throw Exception();
-        expectLater(
+        expect(
           () async => await tester.initialize(),
           throwsException,
           reason: 'value should throw',

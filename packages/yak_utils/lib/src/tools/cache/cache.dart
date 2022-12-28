@@ -6,17 +6,16 @@ class Cache<T> {
 
   Cache(this.generator);
 
-  Future<void> _load() async => _data ??= await Future.sync(generator);
-
-  Future<void> initialize() =>
-      ready ? Future.sync(() {}) : _load().then((_) => ready = true);
+  Future<void> initialize() async {
+    if (ready) {
+      return;
+    }
+    value = await Future.sync(generator);
+    ready = true;
+  }
 
   /// stores data from [generator]
-  late T _data;
-
-  /// getter for the cached [value]
-  T get value =>
-      ready ? _data : throw Exception('Cache<$T> is not initialized');
+  late T value;
 
   /// getter for the status of the [data]
   var ready = false;
