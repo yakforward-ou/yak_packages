@@ -1,4 +1,5 @@
-### 1.0.1+1
+### 1.0.1+2
+- move `thenRun` to `yak_runner`
 - added `VoidResult`, `ValueResult`
 - added `VoidSuccess`, `ValueSuccess`
 - breaking changes to extensions
