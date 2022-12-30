@@ -1,4 +1,4 @@
-### 1.0.1+4
+### 1.0.1+5
 - remove `JsonMixin`
 - add `Let` extension
 - update delegates tests
