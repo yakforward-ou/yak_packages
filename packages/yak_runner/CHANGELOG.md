@@ -1,10 +1,11 @@
-### 1.0.2+4
+### 1.0.2+5
 - update `run...` functions
 - add `runCallback...` functions
 - add `callback`, `...FutureOr` extensions
-- add `letRun` and `thenRun`
+- add `letRun` and  re-add`thenRun`
+- add `ForEachRunX` and `ForEachRunStreamX`
 - update existing extensions
-- update existing tests
+- update tests
 
 ### 1.0.1
 - remove `thenRun` extesion in favor of `yak_result`'s `onResult` 
