@@ -25,8 +25,8 @@ extension VoidResultLetRunX on VoidResult {
 }
 
 /// syntactic sugar to pass a [FutureVoidResult] to a [ResultNullaryAsync]
-extension VoidResultThenRunX<T> on FutureVoidResult {
-  FutureValueResult<T> thenRun(NullaryFutureOr<T> function) =>
+extension VoidResultThenRunX on FutureVoidResult {
+  FutureValueResult<T> thenRun<T>(NullaryFutureOr<T> function) =>
       Future.sync(() => this).then((result) =>
           result.isSuccess ? function.runAsync() : result.failure.recast());
 }
