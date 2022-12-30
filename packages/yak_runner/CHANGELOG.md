@@ -1,7 +1,8 @@
-### 1.0.2+3
+### 1.0.2+4
 - update `run...` functions
 - add `runCallback...` functions
 - add `callback`, `...FutureOr` extensions
+- add `letRun` and `thenRun`
 - update existing extensions
 - update existing tests
 
