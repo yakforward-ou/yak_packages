@@ -3,7 +3,7 @@ import 'package:yak_result/yak_result.dart'
 import 'package:yak_utils/yak_utils.dart' show NullaryFutureOr;
 
 /// takes as argument a [NullaryAsync] returns a [VoidResultNullaryAsync]
-VoidResultNullaryAsync runCallbackAsync<T>(NullaryFutureOr<T> function) =>
+VoidResultNullaryAsync nullaryRunVoidAsync<T>(NullaryFutureOr<T> function) =>
     () async {
       try {
         await function();

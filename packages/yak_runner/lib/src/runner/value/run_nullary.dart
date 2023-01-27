@@ -3,7 +3,7 @@ import 'package:yak_result/yak_result.dart'
 import 'package:yak_utils/yak_utils.dart' show Nullary;
 
 /// takes as argument a [Nullary] returns a [ResultNullary]
-ResultNullary<T> runNullary<T>(Nullary<T> function) => () {
+ResultNullary<T> nullaryRun<T>(Nullary<T> function) => () {
       try {
         return ValueSuccess(function());
       } on Error catch (e) {

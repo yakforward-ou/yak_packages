@@ -1,57 +1,133 @@
+import 'package:stub/stub.dart';
 import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
   group('ResultNullaryX', () {
-    test(
-        'GIVEN a Nullary function '
-        'WHEN nullary.run '
-        'THEN returns a ResultNullary', () {
-      int function() => 42;
-      expect(
-        function.run,
-        isA<ResultNullary<int>>(),
-        reason: 'return type should be predictable',
-      );
+    final tester = Stub.nullary<int>();
+    tester.stub = () => 42;
+
+    group('run', () {
+      setUp(tester.reset);
+      test(
+          'GIVEN a Nullary function '
+          'WHEN nullary.run '
+          'THEN returns a ResultNullary', () {
+        expect(
+          tester.run,
+          isA<ResultNullary<int>>(),
+          reason: 'return type should be predictable',
+        );
+      });
+    });
+    group('runVoid', () {
+      setUp(tester.reset);
+      test(
+          'GIVEN a Nullary function '
+          'WHEN nullary.runVoid '
+          'THEN returns a VoidResultNullary', () {
+        expect(
+          tester.runVoid,
+          isA<VoidResultNullary>(),
+          reason: 'return type should be predictable',
+        );
+      });
     });
   });
-  group('ResultNullaryAsyncX', () {
-    test(
-        'GIVEN a NullaryAsync function '
-        'WHEN function.run '
-        'THEN returns a ResultNullaryAsync', () {
-      Future<int> function() => Future.sync(() => 42);
-      expect(
-        function.runAsync,
-        isA<ResultNullaryAsync<int>>(),
-        reason: 'return type should be predictable',
-      );
+
+  group('ResultNullaryFutureOrX', () {
+    final tester = Stub.nullary<Future<int>>();
+    tester.stub = () => Future.sync(() => 42);
+
+    group('run', () {
+      setUp(tester.reset);
+      test(
+          'GIVEN a NullaryAsync function '
+          'WHEN nullary.runAsync '
+          'THEN returns a ResultNullaryAsync', () {
+        expect(
+          tester.runAsync,
+          isA<ResultNullaryAsync<int>>(),
+          reason: 'return type should be predictable',
+        );
+      });
+    });
+    group('runVoid', () {
+      setUp(tester.reset);
+      test(
+          'GIVEN a NullaryAsync function '
+          'WHEN nullary.run '
+          'THEN returns a VoidResultNullaryAsync', () {
+        expect(
+          tester.runVoidAsync,
+          isA<VoidResultNullaryAsync>(),
+          reason: 'return type should be predictable',
+        );
+      });
     });
   });
+
   group('ResultUnaryX', () {
-    test(
-        'GIVEN a Unary function '
-        'WHEN function.run '
-        'THEN returns a ResultUnary', () {
-      int function(i) => i * 2;
-      expect(
-        function.run,
-        isA<ResultUnary<int, int>>(),
-        reason: 'return type should be predictable',
-      );
+    final tester = Stub.unary<int, String>();
+    tester.stub = (string) => string.length;
+
+    group('run', () {
+      setUp(tester.reset);
+      test(
+          'GIVEN a Unary function '
+          'WHEN nullary.run '
+          'THEN returns a ResultUnary', () {
+        expect(
+          tester.run,
+          isA<ResultUnary<int, String>>(),
+          reason: 'return type should be predictable',
+        );
+      });
+    });
+    group('runVoid', () {
+      setUp(tester.reset);
+      test(
+          'GIVEN a Unary function '
+          'WHEN nullary.runVoid '
+          'THEN returns a ResultNullary', () {
+        expect(
+          tester.runVoid,
+          isA<VoidResultUnary<String>>(),
+          reason: 'return type should be predictable',
+        );
+      });
     });
   });
-  group('ResultNullaryX', () {
-    test(
-        'GIVEN a UnaryAsync function '
-        'WHEN function.run '
-        'THEN returns a ResultUnaryAsync', () {
-      Future<int> function(i) => Future.sync(() => i * 2);
-      expect(
-        function.runAsync,
-        isA<ResultUnaryAsync<int, int>>(),
-        reason: 'return type should be predictable',
-      );
+
+  group('ResultNullaryFutureOrX', () {
+    final tester = Stub.unary<Future<int>, String>();
+    tester.stub = (string) => Future.sync(() => string.length);
+
+    group('run', () {
+      setUp(tester.reset);
+      test(
+          'GIVEN a UnaryAsync function '
+          'WHEN nullary.run '
+          'THEN returns a ResultNullary', () {
+        expect(
+          tester.runAsync,
+          isA<ResultUnaryAsync<int, String>>(),
+          reason: 'return type should be predictable',
+        );
+      });
+    });
+    group('runVoid', () {
+      setUp(tester.reset);
+      test(
+          'GIVEN a Nullary function '
+          'WHEN nullary.run '
+          'THEN returns a ResultNullary', () {
+        expect(
+          tester.runVoidAsync,
+          isA<VoidResultUnaryAsync<String>>(),
+          reason: 'return type should be predictable',
+        );
+      });
     });
   });
 }

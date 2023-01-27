@@ -39,6 +39,7 @@ void main() {
       );
     });
   });
+
   group('ResultNullaryAsyncX', () {
     const tester = NullaryAsyncTester();
 

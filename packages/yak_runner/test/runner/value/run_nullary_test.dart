@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('runNullary', () {
+  group('nullaryRun', () {
     final tester = Stub.nullary<int>();
 
     setUp(tester.reset);
@@ -14,7 +14,7 @@ void main() {
         'THEN return Success', () {
       tester.stub = () => 42;
 
-      final function = runNullary<int>(tester);
+      final function = nullaryRun<int>(tester);
       final result = function();
 
       expect(
@@ -29,7 +29,7 @@ void main() {
         'THEN return Failure', () {
       tester.stub = () => throw Exception();
 
-      final function = runNullary<int>(tester);
+      final function = nullaryRun<int>(tester);
       final result = function();
 
       expect(
@@ -45,7 +45,7 @@ void main() {
         'THEN return Failure', () {
       tester.stub = () => throw Error();
 
-      final function = runNullary<int>(tester);
+      final function = nullaryRun<int>(tester);
       final result = function();
 
       expect(
