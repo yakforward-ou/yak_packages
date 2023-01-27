@@ -5,16 +5,15 @@ import '../all.dart';
 
 /// represent a success of a function
 abstract class Success<T> implements Result<T> {
-  const Success._();
-
-  factory Success([T? value]) =>
-      value == null ? VoidSuccess() : ValueSuccess(value);
+  const Success();
+  static ValueSuccess<S> value<S>(S value) => ValueSuccess(value);
+  static VoidSuccess<void> get empty => const VoidSuccess();
 }
 
 /// represent a success of a function
 class ValueSuccess<T> extends Success<T> implements ValueResult<T> {
   /// has a const constructor
-  const ValueSuccess(this.value) : super._();
+  const ValueSuccess(this.value);
 
   /// hold the value from a function
   final T value;
@@ -37,7 +36,7 @@ class ValueSuccess<T> extends Success<T> implements ValueResult<T> {
 
 /// a result without returning value
 class VoidSuccess<T> extends Success<T> implements VoidResult<T> {
-  const VoidSuccess() : super._();
+  const VoidSuccess();
 
   @override
   @nonVirtual

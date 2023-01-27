@@ -17,7 +17,7 @@ void main() {
           'GIVEN Success<T> '
           'WHEN this is Success<T> '
           'THEN return true', () {
-        tester.stub = () => Success(false);
+        tester.stub = () => Success.value(false);
 
         expect(
           tester(),
@@ -30,7 +30,7 @@ void main() {
           'GIVEN Success<S> '
           'WHEN this is Success<T> '
           'THEN return false', () {
-        negative.stub = () => Success(0);
+        negative.stub = () => Success.value(0);
 
         expect(
           negative(),
@@ -43,8 +43,8 @@ void main() {
           'GIVEN Success<T> and Success<S> '
           'WHEN this is Success '
           'THEN return true', () {
-        tester.stub = () => Success(false);
-        negative.stub = () => Success(0);
+        tester.stub = () => Success.value(false);
+        negative.stub = () => Success.value(0);
 
         expect(
           tester(),
@@ -71,8 +71,8 @@ void main() {
           'GIVEN Success of Type `T`'
           'WHEN this == Success<T> '
           'THEN return true', () {
-        tester.stub = () => Success(true);
-        negative.stub = () => Success(0);
+        tester.stub = () => Success.value(true);
+        negative.stub = () => Success.value(0);
 
         expect(
           tester(),
@@ -94,8 +94,8 @@ void main() {
           'GIVEN Success of Type `T`'
           'WHEN this == Success<T> & holds the same data '
           'THEN return true', () {
-        tester.stub = () => Success(true);
-        negative.stub = () => Success(true);
+        tester.stub = () => Success.value(true);
+        negative.stub = () => Success.value(true);
 
         expect(
           tester(),
@@ -108,8 +108,8 @@ void main() {
           'GIVEN Success of Type `T`'
           'WHEN this == Success<T> & holds different data '
           'THEN return true', () {
-        tester.stub = () => Success(true);
-        negative.stub = () => Success(false);
+        tester.stub = () => Success.value(true);
+        negative.stub = () => Success.value(false);
 
         expect(
           tester(),
@@ -135,7 +135,7 @@ void main() {
           'GIVEN Success<T>() '
           'WHEN this is ValueSuccess '
           'THEN return true', () {
-        tester.stub = () => Success(0);
+        tester.stub = () => Success.value(0);
 
         expect(
           tester(),
@@ -148,7 +148,7 @@ void main() {
           'GIVEN VoidSuccess '
           'WHEN this is ValueSuccess '
           'THEN return false', () {
-        negative.stub = () => VoidSuccess();
+        negative.stub = () => Success.empty;
 
         expect(
           negative(),
@@ -161,7 +161,7 @@ void main() {
           'GIVEN ValueSuccess '
           'WHEN this is Success '
           'THEN return true', () {
-        strict.stub = () => ValueSuccess(null);
+        strict.stub = () => Success.value(null);
 
         expect(
           strict(),
@@ -173,7 +173,7 @@ void main() {
           'GIVEN ValueSuccess '
           'WHEN this is Result '
           'THEN return true', () {
-        strict.stub = () => ValueSuccess(null);
+        strict.stub = () => Success.value(null);
 
         expect(
           strict(),
@@ -199,7 +199,7 @@ void main() {
             'GIVEN VoidSuccess() '
             'WHEN this is VoidSuccess '
             'THEN return true', () {
-          tester.stub = () => VoidSuccess();
+          tester.stub = () => Success.empty;
 
           expect(
             tester(),
@@ -212,7 +212,7 @@ void main() {
             'GIVEN ValueSuccess '
             'WHEN this is VoidSuccess '
             'THEN return false', () {
-          negative.stub = () => Success(0);
+          negative.stub = () => Success.value(0);
 
           expect(
             negative(),
@@ -225,7 +225,7 @@ void main() {
             'GIVEN ValueSuccess '
             'WHEN this is Success '
             'THEN return false', () {
-          strict.stub = () => VoidSuccess();
+          strict.stub = () => Success.empty;
 
           expect(
             strict(),
@@ -237,7 +237,7 @@ void main() {
             'GIVEN ValueSuccess '
             'WHEN this is Result '
             'THEN return false', () {
-          strict.stub = () => VoidSuccess();
+          strict.stub = () => Success.empty;
 
           expect(
             strict(),

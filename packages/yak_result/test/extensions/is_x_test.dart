@@ -10,7 +10,7 @@ void main() {
       setUp(tester.reset);
       test('GIVEN Result is Success ' 'WHEN .isSuccess ' 'THEN returns true',
           () {
-        tester.stub = () => Success(true);
+        tester.stub = () => Success.value(true);
         expect(
           tester().isSuccess,
           isTrue,
@@ -34,7 +34,7 @@ void main() {
       setUp(tester.reset);
       test('GIVEN Result is Success ' 'WHEN .isSuccess ' 'THEN returns true',
           () {
-        tester.stub = () => Success(true);
+        tester.stub = () => Success.value(true);
         expect(
           tester().isSuccess,
           isTrue,
@@ -57,7 +57,7 @@ void main() {
       setUp(tester.reset);
       test('GIVEN Result is Success ' 'WHEN .isFailure ' 'THEN returns false',
           () {
-        tester.stub = () => Success(true);
+        tester.stub = () => Success.value(true);
         expect(
           tester().isFailure,
           isFalse,
