@@ -3,7 +3,7 @@ import 'package:yak_result/yak_result.dart'
 import 'package:yak_utils/yak_utils.dart' show Unary;
 
 /// takes as argument a [Unary] returns a [ResultUnary]
-ResultUnary<T, S> runUnary<T, S>(Unary<T, S> function) => (S arg) {
+ResultUnary<T, S> unaryRun<T, S>(Unary<T, S> function) => (S arg) {
       try {
         return ValueSuccess(function(arg));
       } on Error catch (e) {

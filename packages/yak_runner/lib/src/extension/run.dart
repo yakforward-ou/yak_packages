@@ -1,7 +1,7 @@
 import 'package:yak_result/yak_result.dart';
 import 'package:yak_utils/yak_utils.dart';
 
-import '../all.dart';
+import '../runner/all.dart';
 
 /// [ResultNullaryX] turns a [Nullary] function
 /// into a [ResultNullary] function
@@ -15,7 +15,9 @@ extension ResultNullaryX<T> on Nullary<T> {
   // print(result.success); /// "42"
   // ```
   // */
-  ResultNullary<T> get run => runNullary<T>(this);
+  ResultNullary<T> get run => nullaryRun<T>(this);
+
+  VoidResultNullary get runVoid => nullaryRunVoid<T>(this);
 }
 
 /// [ResultNullaryFutureOrX] turns a [NullaryFutureOr] function
@@ -30,7 +32,9 @@ extension ResultNullaryFutureOrX<T> on NullaryFutureOr<T> {
   // print(result.success); /// "42"
   // ```
   // */
-  ResultNullaryAsync<T> get runAsync => runNullaryAsync<T>(this);
+  ResultNullaryAsync<T> get runAsync => nullaryRunAsync<T>(this);
+
+  VoidResultNullaryAsync get runVoidAsync => nullaryRunVoidAsync<T>(this);
 }
 
 /// [ResultUnaryX] turns a [Unary function
@@ -45,7 +49,9 @@ extension ResultUnaryX<T, S> on Unary<T, S> {
   // print(result.success); /// "2"
   // ```
   // */
-  ResultUnary<T, S> get run => runUnary<T, S>(this);
+  ResultUnary<T, S> get run => unaryRun<T, S>(this);
+
+  VoidResultUnary<S> get runVoid => unaryRunVoid<T, S>(this);
 }
 
 /// [ResultUnaryFutureOrX] turns a [UnaryFutureOr] function
@@ -60,5 +66,7 @@ extension ResultUnaryFutureOrX<T, S> on UnaryFutureOr<T, S> {
   // print(result.success); /// "2"
   // ```
   // */
-  ResultUnaryAsync<T, S> get runAsync => runUnaryAsync<T, S>(this);
+  ResultUnaryAsync<T, S> get runAsync => unaryRunAsync<T, S>(this);
+
+  VoidResultUnaryAsync<S> get runVoidAsync => unaryRunVoidAsync<T, S>(this);
 }

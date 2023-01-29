@@ -20,7 +20,7 @@ void main() {
       });
       test('GIVEN Result is a Success ' 'WHEN failure ' 'THEN should throw',
           () {
-        tester.stub = () => Success();
+        tester.stub = () => Success.empty;
 
         expect(
           () => tester().failure,
@@ -48,7 +48,7 @@ void main() {
         });
         test('GIVEN Result is a Success ' 'WHEN failure ' 'THEN should be null',
             () {
-          tester.stub = () => Success();
+          tester.stub = () => Success.empty;
 
           expect(
             tester().failureOrNull,
@@ -75,7 +75,7 @@ void main() {
         });
         test('GIVEN Result is a Success ' 'WHEN failure ' 'THEN should be null',
             () {
-          tester.stub = () => VoidSuccess();
+          tester.stub = () => Success.empty;
 
           expect(
             tester().failureOrNull,
@@ -102,7 +102,7 @@ void main() {
         });
         test('GIVEN Result is a Success ' 'WHEN failure ' 'THEN should be null',
             () {
-          tester.stub = () => ValueSuccess(0);
+          tester.stub = () => Success.value(0);
 
           expect(
             tester().failureOrNull,

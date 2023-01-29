@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('runCallback<int>', () {
+  group('nullaryRunVoid<int>', () {
     final tester = Stub.nullary<int>();
 
     setUp(tester.reset);
@@ -14,7 +14,7 @@ void main() {
         'THEN return Success', () {
       tester.stub = () => 42;
 
-      final function = runCallback<int>(tester);
+      final function = nullaryRunVoid<int>(tester);
       final result = function();
 
       expect(

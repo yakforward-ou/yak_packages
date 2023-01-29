@@ -3,7 +3,7 @@ import 'package:yak_result/yak_result.dart'
 import 'package:yak_utils/yak_utils.dart' show Nullary;
 
 /// takes as argument a [Nullary] returns a [VoidResultNullary]
-VoidResultNullary runCallback<T>(Nullary<T> function) => () {
+VoidResultNullary nullaryRunVoid<T>(Nullary<T> function) => () {
       try {
         function();
         return const VoidSuccess<void>();

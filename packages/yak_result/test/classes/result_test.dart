@@ -17,7 +17,7 @@ void main() {
           'GIVEN Success<T> '
           'WHEN this is Result<T> '
           'THEN return true', () {
-        tester.stub = () => Success(false);
+        tester.stub = () => Success.value(false);
 
         expect(
           tester(),
@@ -30,7 +30,7 @@ void main() {
           'GIVEN Success<S> '
           'WHEN this is Result<T> '
           'THEN return false', () {
-        negative.stub = () => Success(0);
+        negative.stub = () => Success.value(0);
 
         expect(
           negative(),
@@ -43,8 +43,8 @@ void main() {
           'GIVEN Success<T> and Success<S> '
           'WHEN this is Result '
           'THEN return true', () {
-        tester.stub = () => Success(false);
-        negative.stub = () => Success(0);
+        tester.stub = () => Success.value(false);
+        negative.stub = () => Success.value(0);
 
         expect(
           tester(),
@@ -128,7 +128,7 @@ void main() {
           'GIVEN Result<T>() '
           'WHEN this is ValueResult '
           'THEN return true', () {
-        tester.stub = () => Success(0);
+        tester.stub = () => Success.value(0);
 
         expect(
           tester(),
@@ -141,7 +141,7 @@ void main() {
           'GIVEN VoidSuccess '
           'WHEN this is ValueResult '
           'THEN return false', () {
-        negative.stub = () => VoidSuccess();
+        negative.stub = () => Success.empty;
 
         expect(
           negative(),
@@ -154,7 +154,7 @@ void main() {
           'GIVEN ValueSuccess '
           'WHEN this is Result '
           'THEN return true', () {
-        strict.stub = () => ValueSuccess(0);
+        strict.stub = () => Success.value(0);
 
         expect(
           strict(),
@@ -178,10 +178,10 @@ void main() {
       });
 
       test(
-          'GIVEN VoidSuccess() '
+          'GIVEN Success.empty '
           'WHEN this is VoidResult '
           'THEN return true', () {
-        tester.stub = () => VoidSuccess();
+        tester.stub = () => Success.empty;
 
         expect(
           tester(),
@@ -194,7 +194,7 @@ void main() {
           'GIVEN ValueSuccess '
           'WHEN this is VoidResult '
           'THEN return false', () {
-        negative.stub = () => Success(0);
+        negative.stub = () => Success.value(0);
 
         expect(
           negative(),
@@ -207,7 +207,7 @@ void main() {
           'GIVEN VoidResult '
           'WHEN this is Result '
           'THEN return false', () {
-        strict.stub = () => VoidSuccess();
+        strict.stub = () => Success.empty;
 
         expect(
           strict(),

@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('runUnaryCallbackAsync<int,int>', () {
+  group('unaryRunVoidAsync<int,int>', () {
     final tester = Stub.unary<Future<int>, int>();
 
     setUp(tester.reset);
@@ -13,7 +13,7 @@ void main() {
         'WHEN VoidResultUnaryAsync.call '
         'THEN return Success', () async {
       tester.stub = (x) => Future.sync(() => x * 2);
-      final function = runUnaryCallbackAsync<int, int>(tester);
+      final function = unaryRunVoidAsync<int, int>(tester);
       final result = await function(1);
 
       expect(
@@ -34,7 +34,7 @@ void main() {
         'THEN return Failure', () async {
       tester.stub = (x) => throw Exception();
 
-      final function = runUnaryCallbackAsync<int, int>(tester);
+      final function = unaryRunVoidAsync<int, int>(tester);
       final result = await function(1);
 
       expect(
@@ -50,7 +50,7 @@ void main() {
         'THEN return Failure', () async {
       tester.stub = (x) => throw Error();
 
-      final function = runUnaryCallbackAsync<int, int>(tester);
+      final function = unaryRunVoidAsync<int, int>(tester);
       final result = await function(1);
 
       expect(

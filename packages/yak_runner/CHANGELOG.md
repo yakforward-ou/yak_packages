@@ -1,4 +1,4 @@
-### 1.0.2+6
+### 1.0.2+7
 - update `run...` functions
 - add `runCallback...` functions
 - add `callback`, `...FutureOr` extensions

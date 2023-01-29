@@ -3,7 +3,7 @@ import 'package:yak_result/yak_result.dart'
 import 'package:yak_utils/yak_utils.dart' show Unary;
 
 /// takes as argument a [Unary] returns a [VoidResultUnary]
-VoidResultUnary<S> runUnaryCallback<T, S>(Unary<T, S> function) => (S arg) {
+VoidResultUnary<S> unaryRunVoid<T, S>(Unary<T, S> function) => (S arg) {
       try {
         function(arg);
         return const VoidSuccess<void>();

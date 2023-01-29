@@ -3,7 +3,7 @@ import 'package:yak_result/yak_result.dart'
 import 'package:yak_utils/yak_utils.dart' show UnaryFutureOr;
 
 /// takes as argument a [UnaryFutureOr] returns a [ResultUnaryAsync]
-ResultUnaryAsync<T, S> runUnaryAsync<T, S>(UnaryFutureOr<T, S> function) =>
+ResultUnaryAsync<T, S> unaryRunAsync<T, S>(UnaryFutureOr<T, S> function) =>
     (S arg) async {
       try {
         return ValueSuccess(await function(arg));
