@@ -1,4 +1,4 @@
-###  1.0.1+3
+###  1.0.1+4
 - add `constructorTester`
 - update `delegate_tester`
 - update `equality tests`
