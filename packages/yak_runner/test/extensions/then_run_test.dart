@@ -7,11 +7,11 @@ import 'package:yak_runner/yak_runner.dart';
 void main() {
   group('ThenRunUnaryX', () {
     final function = Stub.unary<int, int>();
-    final tester = Stub.nullary<FutureValueResult<int>>();
+
     group('thenRun', () {
       group('Success', () {
-        tester.stub = () => Future.value(ValueSuccess(0));
-
+        final tester = Stub.nullary<FutureValueResult<int>>()
+          ..stub = () => Future.value(ValueSuccess(0));
         setUp(() {
           tester.reset();
           function.reset();
@@ -57,7 +57,8 @@ void main() {
       });
 
       group('Failure', () {
-        tester.stub = () => Future.value(Failure());
+        final tester = Stub.nullary<FutureValueResult<int>>()
+          ..stub = () => Future.value(Failure());
 
         setUp(() {
           tester.reset();
@@ -106,7 +107,8 @@ void main() {
 
     group('thenRunVoid', () {
       group('Success', () {
-        tester.stub = () => Future.value(ValueSuccess(0));
+        final tester = Stub.nullary<FutureValueResult<int>>()
+          ..stub = () => Future.value(ValueSuccess(0));
 
         setUp(() {
           tester.reset();
@@ -152,7 +154,8 @@ void main() {
         });
       });
       group('Failure', () {
-        tester.stub = () => Future.value(Failure());
+        final tester = Stub.nullary<FutureValueResult<int>>()
+          ..stub = () => Future.value(Failure());
 
         setUp(() {
           tester.reset();
@@ -201,12 +204,12 @@ void main() {
   });
 
   group('ThenRunNullaryX', () {
-    final tester = Stub.nullary<FutureVoidResult>();
-    final function = Stub.nullary<int>();
-
     group('thenRun', () {
       group('Success', () {
-        tester.stub = () => Future.value(VoidSuccess());
+        final tester = Stub.nullary<FutureVoidResult>()
+          ..stub = () => Future.value(VoidSuccess());
+
+        final function = Stub.nullary<int>();
 
         setUp(() {
           tester.reset();
@@ -253,7 +256,9 @@ void main() {
       });
 
       group('Failure', () {
-        tester.stub = () => Future.value(Failure());
+        final tester = Stub.nullary<FutureVoidResult>()
+          ..stub = () => Future.value(Failure());
+        final function = Stub.nullary<int>();
 
         setUp(() {
           tester.reset();
@@ -302,7 +307,10 @@ void main() {
 
     group('thenRunVoid', () {
       group('Success', () {
-        tester.stub = () => Future.value(VoidSuccess());
+        final tester = Stub.nullary<FutureVoidResult>()
+          ..stub = () => Future.value(VoidSuccess());
+
+        final function = Stub.nullary<int>();
 
         setUp(() {
           tester.reset();
@@ -348,7 +356,10 @@ void main() {
         });
       });
       group('Failure', () {
-        tester.stub = () => Future.value(Failure());
+        final tester = Stub.nullary<FutureVoidResult>()
+          ..stub = () => Future.value(Failure());
+
+        final function = Stub.nullary<int>();
 
         setUp(() {
           tester.reset();
