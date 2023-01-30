@@ -1,4 +1,4 @@
-### 1.0.0+6
+### 1.0.0+7
 - initial releases
 - update readme
 - update example

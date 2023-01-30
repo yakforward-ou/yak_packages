@@ -1,9 +1,11 @@
-### 1.0.1+4
-- move `thenRun` and `callback` to `yak_runner`
+### 1.0.1+6
+- removed `Pending`
+- remove `thenRun` and `callback`
 - added `VoidResult`, `ValueResult`
 - added `VoidSuccess`, `ValueSuccess`
 - breaking changes to extensions
-- removed `Pending`
+- added `combine` extension for `Iterable`
+- update dependencies
 
 ### 1.0.0
 - major release
