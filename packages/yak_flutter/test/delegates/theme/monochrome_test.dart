@@ -101,62 +101,62 @@ void main() {
       final output = tester(themeData);
       final textTheme = output.textTheme;
       expect(
-        textTheme.headline1?.color?.value == tester.foreground.value,
+        textTheme.displayLarge?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.headline2?.color?.value == tester.foreground.value,
+        textTheme.displayMedium?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.headline3?.color?.value == tester.foreground.value,
+        textTheme.displaySmall?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.headline4?.color?.value == tester.foreground.value,
+        textTheme.headlineMedium?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.headline5?.color?.value == tester.foreground.value,
+        textTheme.headlineSmall?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.headline6?.color?.value == tester.foreground.value,
+        textTheme.titleLarge?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.subtitle1?.color?.value == tester.foreground.value,
+        textTheme.titleMedium?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.bodyText1?.color?.value == tester.foreground.value,
+        textTheme.bodyLarge?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.bodyText2?.color?.value == tester.foreground.value,
+        textTheme.bodyMedium?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.caption?.color?.value == tester.foreground.value,
+        textTheme.bodySmall?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.button?.color?.value == tester.foreground.value,
+        textTheme.labelLarge?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );
       expect(
-        textTheme.overline?.color?.value == tester.foreground.value,
+        textTheme.labelSmall?.color?.value == tester.foreground.value,
         isTrue,
         reason: 'color should be predictable',
       );

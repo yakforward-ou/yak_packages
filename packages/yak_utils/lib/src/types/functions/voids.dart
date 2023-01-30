@@ -1,5 +1,3 @@
-import 'dart:async' show FutureOr;
-
 import '../../all.dart';
 
 /// a typedef for an [Unary] that returns a `void`

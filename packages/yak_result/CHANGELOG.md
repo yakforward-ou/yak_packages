@@ -1,9 +1,10 @@
-### 1.0.1+4
+### 1.0.1+5
 - move `thenRun` and `callback` to `yak_runner`
 - added `VoidResult`, `ValueResult`
 - added `VoidSuccess`, `ValueSuccess`
 - breaking changes to extensions
 - removed `Pending`
+- update dependencies
 
 ### 1.0.0
 - major release
