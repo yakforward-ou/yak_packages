@@ -23,7 +23,7 @@ ValueResult<T> safelyTry<T>(T Function() function) {
 void main() {
   final result = safelyTry(meaningOfLife);
   if (result.isSuccess) {
-    print('${result.value}');
+    print('${result.success.value}');
     return;
   }
 
