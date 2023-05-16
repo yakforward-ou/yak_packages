@@ -1,4 +1,8 @@
-### 0.1.0+14
+### 2.0.0
+- update dependency
+- update to dart 3
+
+### 0.1.0
 - fix analysis
 - updated `example`
 - created from the ashes of `yak_math`
