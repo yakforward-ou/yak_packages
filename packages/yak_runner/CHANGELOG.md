@@ -1,4 +1,8 @@
-### 1.0.2+9
+### 2.0.0
+- update dependency
+- update to dart 3
+
+### 1.0.2
 - update `run...` functions
 - add `runCallback...` functions
 - add `callback`, `...FutureOr` extensions
