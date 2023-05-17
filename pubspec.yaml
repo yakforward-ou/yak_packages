@@ -1,4 +1,5 @@
 name: yak_packages
+homepage: https://github.com/iapicca/yak_packages
 
 environment:
   sdk: ^3.0.0
