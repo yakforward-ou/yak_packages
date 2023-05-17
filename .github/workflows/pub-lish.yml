@@ -36,9 +36,6 @@ jobs:
             "expiration":${{ secrets.PUB_DEV_PUBLISH_EXPIRATION }}
           }
           EOF
-      - name: 'activate melos' 
-        run: |
-          dart pub global activate melos
       - name: 'install dependencies'
         run: |
           melos bootstrap
