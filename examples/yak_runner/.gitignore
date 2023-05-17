@@ -73,6 +73,7 @@ build/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 
+
 # [CUSTOM]
 .idea/
 android/
@@ -84,3 +85,4 @@ web/
 .packages
 pubspec.lock
 .fvm/flutter_sdk
+pubspec_overrides.yaml

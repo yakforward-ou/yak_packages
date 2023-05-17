@@ -75,7 +75,7 @@ scripts:
       -- \
       dart analyze .
     description: Run dart analyze
-    select-package:
+    packageFilters:
       flutter: false
 
   analyze:flutter:
@@ -85,7 +85,7 @@ scripts:
       -- \
       flutter analyze .
     description: Run flutter analyze
-    select-package:
+    packageFilters:
       flutter: true
 
   test:dart:
@@ -96,9 +96,9 @@ scripts:
       -- \
       dart run coverage:test_with_coverage
     description: Run Dart tests for a specific package in this project.
-    select-package:
+    packageFilters:
       flutter: false
-      dir-exists: 
+      dirExists: 
         - test
 
   test:flutter:
@@ -109,7 +109,7 @@ scripts:
       -- \
       flutter test --coverage
     description: Run Flutter tests for a specific package in this project.
-    select-package:
+    packageFilters:
       flutter: true
-      dir-exists: 
+      dirExists: 
         - test

@@ -84,3 +84,4 @@ web/
 .packages
 pubspec.lock
 .fvm/flutter_sdk
+pubspec_overrides.yaml
