@@ -1,4 +1,8 @@
-### 1.0.0+6
+### 2.0.0
+- update dependency
+- update to dart 3
+
+### 1.0.0
 - major release
 - fix export
 - update dependencies

@@ -1,4 +1,8 @@
-### 1.0.1+6
+### 2.0.0
+- update dependency
+- update to dart 3
+
+### 1.0.1
 - removed `Pending`
 - remove `thenRun` and `callback`
 - added `VoidResult`, `ValueResult`

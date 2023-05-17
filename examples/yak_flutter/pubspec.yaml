@@ -1,15 +1,15 @@
 name: yak_flutter_example
 description: An example app for yak_flutter package.
 publish_to: 'none'
-version: 1.0.0+1
+version: 2.0.0
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: ^3.0.0
 
 dependencies:
   flutter:
     sdk: flutter
-  yak_flutter: ^1.0.0
+  yak_flutter: ^2.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.1

@@ -7,13 +7,22 @@ packages:
 ignore:
   - packages/**/example
 
+command:
+  bootstrap:
+    # It seems so that running "pub get" in parallel has some issues (like
+    # https://github.com/dart-lang/pub/issues/3404). Disabling this feature
+    # makes the CI much more stable.
+    runPubGetInParallel: false
+    # TODO: https://github.com/iapicca/yak_packages/issues/225
+    usePubspecOverrides: false
+
 scripts:
 
   publish:
     run: |
       melos run lint:format && \
       melos publish --no-dry-run --yes
-    description: publish packages to pub.dev
+    description: check if packages are ready for publishing
     ignore:
       - examples/**
 
@@ -55,18 +64,18 @@ scripts:
       melos exec \
       --concurrency 1 \
       -- \
-      flutter format . \
+      dart format . \
       --fix
-    description: Run `flutter format` for all packages.
+    description: Run `dart format` for all packages.
 
   lint:format-check:
     run: |
       melos exec \
       --concurrency 1 \
       -- \
-      flutter format . \
+      dart format . \
       --set-exit-if-changed
-    description: Run `flutter format` checks for all packages.
+    description: Run `dart format` checks for all packages.
 
   analyze:dart:
     run: |
@@ -75,7 +84,7 @@ scripts:
       -- \
       dart analyze .
     description: Run dart analyze
-    select-package:
+    packageFilters:
       flutter: false
 
   analyze:flutter:
@@ -85,7 +94,7 @@ scripts:
       -- \
       flutter analyze .
     description: Run flutter analyze
-    select-package:
+    packageFilters:
       flutter: true
 
   test:dart:
@@ -96,9 +105,9 @@ scripts:
       -- \
       dart run coverage:test_with_coverage
     description: Run Dart tests for a specific package in this project.
-    select-package:
+    packageFilters:
       flutter: false
-      dir-exists: 
+      dirExists: 
         - test
 
   test:flutter:
@@ -109,7 +118,7 @@ scripts:
       -- \
       flutter test --coverage
     description: Run Flutter tests for a specific package in this project.
-    select-package:
+    packageFilters:
       flutter: true
-      dir-exists: 
+      dirExists: 
         - test

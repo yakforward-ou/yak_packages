@@ -1,4 +1,8 @@
-### 1.0.0+7
+### 2.0.0
+- update dependency
+- update to dart 3
+
+### 1.0.0
 - initial releases
 - update readme
 - update example

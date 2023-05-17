@@ -1,4 +1,8 @@
-### 1.0.1+7
+### 2.0.0
+- update dependency
+- update to dart 3
+
+### 1.0.1
 - remove `JsonMixin`
 - add `Let` extension
 - update delegates tests
