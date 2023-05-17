@@ -22,7 +22,7 @@ scripts:
     run: |
       melos run lint:format && \
       melos publish --no-dry-run --yes
-    description: publish packages to pub.dev
+    description: check if packages are ready for publishing
     ignore:
       - examples/**
 
@@ -64,18 +64,18 @@ scripts:
       melos exec \
       --concurrency 1 \
       -- \
-      flutter format . \
+      dart format . \
       --fix
-    description: Run `flutter format` for all packages.
+    description: Run `dart format` for all packages.
 
   lint:format-check:
     run: |
       melos exec \
       --concurrency 1 \
       -- \
-      flutter format . \
+      dart format . \
       --set-exit-if-changed
-    description: Run `flutter format` checks for all packages.
+    description: Run `dart format` checks for all packages.
 
   analyze:dart:
     run: |
