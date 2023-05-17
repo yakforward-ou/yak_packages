@@ -37,8 +37,9 @@ jobs:
           }
           EOF
       - name: 'install dependencies'
-        run: |
-          melos bootstrap
+        uses: bluefireteam/melos-action@v1 
+        with: 
+          melos-version: '3.0.1'
       - name: 'publishing'
         run: |
           yes | melos run publish

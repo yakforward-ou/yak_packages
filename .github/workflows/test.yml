@@ -27,8 +27,9 @@ jobs:
         run: |
           dart pub global activate coverage
       - name: 'install dependencies'
-        run: |
-          melos bootstrap
+        uses: bluefireteam/melos-action@v1 
+        with: 
+          melos-version: '3.0.1'
       - name: 'run tests'
         run: |
           melos run test
