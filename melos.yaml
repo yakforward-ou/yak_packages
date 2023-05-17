@@ -15,8 +15,6 @@ command:
     runPubGetInParallel: false
     # TODO: https://github.com/iapicca/yak_packages/issues/225
     usePubspecOverrides: false
-    hooks:
-      post: dart pub run build_runner build
 
 scripts:
 
