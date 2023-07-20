@@ -1,6 +1,7 @@
-### 2.0.0
+### 2.0.1
 - update dependency
 - update to dart 3
+- add missing exports
 
 ### 1.0.3
 - update dependencies
