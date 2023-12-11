@@ -22,8 +22,8 @@ migrate_working_dir/
 #.vscode/
 
 # Flutter/Dart/Pub related
-# Libraries should not include pubspec.lock, per https://dart.dev/guides/libraries/private-files#pubspeclock.
-/pubspec.lock
+# Libraries should not include , per https://dart.dev/guides/libraries/private-files#pubspeclock.
+/
 **/doc/api/
 .dart_tool/
 .packages
@@ -37,6 +37,6 @@ linux/
 web/
 .metadata
 .packages
-pubspec.lock
+
 .fvm/flutter_sdk
 pubspec_overrides.yaml
