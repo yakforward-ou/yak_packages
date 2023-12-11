@@ -13,8 +13,6 @@ command:
     # https://github.com/dart-lang/pub/issues/3404). Disabling this feature
     # makes the CI much more stable.
     runPubGetInParallel: false
-    # TODO: https://github.com/iapicca/yak_packages/issues/225
-    usePubspecOverrides: false
 
 scripts:
 
