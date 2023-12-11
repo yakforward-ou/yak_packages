@@ -47,3 +47,4 @@ web/
 .metadata
 .packages
 .fvm/flutter_sdk
+pubspec.lock
