@@ -10,9 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  yak_tween: ^2.0.0
-  yak_runner: ^2.0.0
-  yak_utils: ^2.0.0
+  yak_tween: ^2.0.1
+  yak_runner: ^2.0.1
+  yak_utils: ^2.0.1
 
 dev_dependencies:
   flutter_test:

@@ -9,8 +9,8 @@ environment:
 dependencies:
   crypto: ^3.0.3
   fixnum: ^1.1.0
-  protobuf: ^2.1.0
-  yak_utils: ^2.0.0
+  protobuf: ^3.1.0
+  yak_utils: ^2.0.1
   
 dev_dependencies:
   lints: ^3.0.0
