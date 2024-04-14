@@ -16,7 +16,7 @@ class NullaryDelegate<T> {
 void main() {
   group('`Stub`final Unary method w/ wrap test', () {
     final unary = Stub.unary<String, int>();
-    final method = UnaryDelegate<String, int>(unary);
+    final method = UnaryDelegate<String, int>(unary.call);
     const data = 1;
     test(
         'GIVEN `stub is not set` '
@@ -68,7 +68,7 @@ void main() {
   });
   group('`Stub`final Nullary method w/ wrap test', () {
     final nullary = Stub.nullary<int>();
-    final method = NullaryDelegate<int>(nullary);
+    final method = NullaryDelegate<int>(nullary.call);
     const data = 1;
     test(
         'GIVEN `stub is not set` '

@@ -14,7 +14,7 @@ void main() {
         ..stub = () => Future.sync(() => 1);
 
       setUp(() {
-        tester = Cache<int>(generator);
+        tester = Cache<int>(generator.call);
         generator.reset();
       });
 

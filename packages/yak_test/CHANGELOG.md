@@ -1,3 +1,6 @@
+### 2.0.2
+- update dependency
+
 ### 2.0.1
 - update dependency
 - update to dart 3
@@ -14,7 +17,7 @@
 - major release
 - update dependencies
 - add `equalityTest`
-- downgrade `test` version due to https://github.com/iapicca/yak_packages/issues/185
+- downgrade `test` version due to iapicca/yak_packages/issues/185
 
 ###  0.5.2
 - update dependencies

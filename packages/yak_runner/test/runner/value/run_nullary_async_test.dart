@@ -13,7 +13,7 @@ void main() {
         'WHEN ResultNullaryAsync.call '
         'THEN return Success', () async {
       tester.stub = () => Future.sync(() => 42);
-      final function = nullaryRunAsync<int>(tester);
+      final function = nullaryRunAsync<int>(tester.call);
       final result = await function();
 
       expect(
@@ -28,7 +28,7 @@ void main() {
         'THEN return Failure', () async {
       tester.stub = () => throw Exception();
 
-      final function = nullaryRunAsync<int>(tester);
+      final function = nullaryRunAsync<int>(tester.call);
       final result = await function();
 
       expect(
@@ -44,7 +44,7 @@ void main() {
         'THEN return Failure', () async {
       tester.stub = () => throw Error();
 
-      final function = nullaryRunAsync<int>(tester);
+      final function = nullaryRunAsync<int>(tester.call);
       final result = await function();
 
       expect(

@@ -24,7 +24,7 @@ void main() {
           function.stub = (value) => value + 1;
 
           await expectLater(
-            await tester().thenRun(function),
+            await tester().thenRun(function.call),
             isA<Success>(),
             reason: 'should return a Success',
           );
@@ -43,7 +43,7 @@ void main() {
           function.stub = (_) => throw Exception();
 
           await expectLater(
-            await tester().thenRun(function),
+            await tester().thenRun(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -72,7 +72,7 @@ void main() {
           function.stub = (value) => value + 1;
 
           await expectLater(
-            await tester().thenRun(function),
+            await tester().thenRun(function.call),
             isA<Failure>(),
             reason: 'should return a Success',
           );
@@ -91,7 +91,7 @@ void main() {
           function.stub = (_) => throw Exception();
 
           await expectLater(
-            await tester().thenRun(function),
+            await tester().thenRun(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -122,7 +122,7 @@ void main() {
           function.stub = (value) => value + 1;
 
           await expectLater(
-            await tester().thenRunVoid(function),
+            await tester().thenRunVoid(function.call),
             isA<Success>(),
             reason: 'should return a Success',
           );
@@ -141,7 +141,7 @@ void main() {
           function.stub = (_) => throw Exception();
 
           await expectLater(
-            await tester().thenRunVoid(function),
+            await tester().thenRunVoid(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -169,7 +169,7 @@ void main() {
           function.stub = (value) => value + 1;
 
           await expectLater(
-            await tester().thenRunVoid(function),
+            await tester().thenRunVoid(function.call),
             isA<Failure>(),
             reason: 'should return a Success',
           );
@@ -188,7 +188,7 @@ void main() {
           function.stub = (_) => throw Exception();
 
           await expectLater(
-            await tester().thenRunVoid(function),
+            await tester().thenRunVoid(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -223,7 +223,7 @@ void main() {
           function.stub = () => 0;
 
           await expectLater(
-            await tester().thenRun(function),
+            await tester().thenRun(function.call),
             isA<Success>(),
             reason: 'should return a Success',
           );
@@ -242,7 +242,7 @@ void main() {
           function.stub = () => throw Exception();
 
           await expectLater(
-            await tester().thenRun(function),
+            await tester().thenRun(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -272,7 +272,7 @@ void main() {
           function.stub = () => 0;
 
           await expectLater(
-            await tester().thenRun(function),
+            await tester().thenRun(function.call),
             isA<Failure>(),
             reason: 'should return a Success',
           );
@@ -291,7 +291,7 @@ void main() {
           function.stub = () => throw Exception();
 
           await expectLater(
-            await tester().thenRun(function),
+            await tester().thenRun(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -324,7 +324,7 @@ void main() {
           function.stub = () => 0;
 
           await expectLater(
-            await tester().thenRunVoid(function),
+            await tester().thenRunVoid(function.call),
             isA<Success>(),
             reason: 'should return a Success',
           );
@@ -343,7 +343,7 @@ void main() {
           function.stub = () => throw Exception();
 
           await expectLater(
-            await tester().thenRunVoid(function),
+            await tester().thenRunVoid(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -373,7 +373,7 @@ void main() {
           function.stub = () => 0;
 
           await expectLater(
-            await tester().thenRunVoid(function),
+            await tester().thenRunVoid(function.call),
             isA<Failure>(),
             reason: 'should return a Success',
           );
@@ -392,7 +392,7 @@ void main() {
           function.stub = () => throw Exception();
 
           await expectLater(
-            await tester().thenRunVoid(function),
+            await tester().thenRunVoid(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );

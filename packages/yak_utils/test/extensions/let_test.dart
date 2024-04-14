@@ -15,7 +15,7 @@ void main() {
         'THEN returns int,', () {
       const t = 'hello';
       expect(
-        t.let(tester),
+        t.let(tester.call),
         isA<int>(),
         reason: 'should return a `int`',
       );
@@ -24,7 +24,7 @@ void main() {
         'GIVEN an String T  '
         'WHEN  T.let(Unary<int,String>) '
         'THEN Unary is called once', () {
-      final _ = 'hello'.let(tester);
+      final _ = 'hello'.let(tester.call);
       expect(
         tester.count,
         equals(1),
@@ -45,7 +45,7 @@ void main() {
         'THEN returns int,', () async {
       const t = 'hello';
       await expectLater(
-        await t.let(tester),
+        await t.let(tester.call),
         isA<int>(),
         reason: 'should return a `int`',
       );
@@ -54,7 +54,7 @@ void main() {
         'GIVEN an String T  '
         'WHEN  T.letAsync(UnaryAsync<int,String>) '
         'THEN Unary is called once', () async {
-      final _ = await 'hello'.let(tester);
+      final _ = await 'hello'.let(tester.call);
       expect(
         tester.count,
         equals(1),

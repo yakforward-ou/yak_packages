@@ -14,6 +14,7 @@ void main() {
         'THEN return Success', () {
       tester.stub = () => 42;
 
+      // ignore: implicit_call_tearoffs
       final function = nullaryRunVoid<int>(tester);
       final result = function();
 

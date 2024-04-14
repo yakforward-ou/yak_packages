@@ -13,7 +13,7 @@ void main() {
         'WHEN VoidResultUnaryAsync.call '
         'THEN return Success', () async {
       tester.stub = (x) => Future.sync(() => x * 2);
-      final function = unaryRunVoidAsync<int, int>(tester);
+      final function = unaryRunVoidAsync<int, int>(tester.call);
       final result = await function(1);
 
       expect(
@@ -34,7 +34,7 @@ void main() {
         'THEN return Failure', () async {
       tester.stub = (x) => throw Exception();
 
-      final function = unaryRunVoidAsync<int, int>(tester);
+      final function = unaryRunVoidAsync<int, int>(tester.call);
       final result = await function(1);
 
       expect(
@@ -50,7 +50,7 @@ void main() {
         'THEN return Failure', () async {
       tester.stub = (x) => throw Error();
 
-      final function = unaryRunVoidAsync<int, int>(tester);
+      final function = unaryRunVoidAsync<int, int>(tester.call);
       final result = await function(1);
 
       expect(
