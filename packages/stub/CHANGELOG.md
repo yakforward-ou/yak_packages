@@ -1,3 +1,6 @@
+### 2.0.2
+- example link and readme update
+
 ### 2.0.1
 - update dependency
 - update to dart 3
