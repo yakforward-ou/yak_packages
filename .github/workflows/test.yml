@@ -24,6 +24,9 @@ jobs:
           dart pub global activate coverage
       - name: 'setup melos'
         uses: bluefireteam/melos-action@v3
-      - name: 'run tests'
+      - name: 'run melos tasks'
         run: |
-          melos run test
+          melos analyze && \
+          melos format && \
+          melos run test && \
+          melos publish --dry-run

@@ -9,111 +9,36 @@ ignore:
 
 command:
   bootstrap:
-  
+    environment:
+      sdk: '>=3.3.3 <4.0.0'
 
 scripts:
-
-  publish:
+ test:
+    description: Test ALL Applications and Packages
     run: |
-      melos run lint:format && \
-      melos publish --no-dry-run --yes
-    description: check if packages are ready for publishing
-    ignore:
-      - examples/**
-
-  publish:dry-run:
-    run: |
-      melos run lint:format && \
-      melos publish --yes
-    description: publish packages to pub.dev
-    ignore:
-      - examples/**
-    
-  lint:
-    run: |
-      melos run lint:clean --no-select && \
-      melos run lint:format --no-select && \
-      melos run lint:format-check --no-select
-    description: analyze all packages
-
-  analyze:
-    run: |
-      melos run analyze:dart --no-select && \
-      melos run analyze:flutter --no-select
-    description: analyze all packages
-
-  test: 
-    run: |
-      melos run test:dart --no-select && \
-      melos run test:flutter --no-select && \
-      melos run publish:dry-run --no-select
-    description: Run all Dart & Flutter tests in this project.
-
-  lint:clean:
-    run: |
-      git clean -x -d -f -q
-    description: Clean things very deeply, can be used to establish "pristine checkout" status.
-
-  lint:format:
-    run: |
-      melos exec \
-      --concurrency 1 \
-      -- \
-      dart format . \
-      --fix
-    description: Run `dart format` for all packages.
-
-  lint:format-check:
-    run: |
-      melos exec \
-      --concurrency 1 \
-      -- \
-      dart format . \
-      --set-exit-if-changed
-    description: Run `dart format` checks for all packages.
-
-  analyze:dart:
-    run: |
-      melos exec \
-      --concurrency 1 \
-      -- \
-      dart analyze .
-    description: Run dart analyze
-    packageFilters:
-      flutter: false
-
-  analyze:flutter:
-    run: |
-      melos exec \
-      --concurrency 1 \
-      -- \
-      flutter analyze .
-    description: Run flutter analyze
-    packageFilters:
-      flutter: true
-
-  test:dart:
-    run: |
-      melos exec \
-      --concurrency 1 \
+      melos exec -c 1 \
       --fail-fast \
       -- \
-      dart run coverage:test_with_coverage
-    description: Run Dart tests for a specific package in this project.
+      melos run test:flutter && \
+      melos run test:dart
     packageFilters:
-      flutter: false
       dirExists: 
         - test
 
   test:flutter:
+    description: Test Flutter Applications and Packages
     run: |
-      melos exec \
-      --concurrency 1 \
-      --fail-fast \
-      -- \
-      flutter test --coverage
-    description: Run Flutter tests for a specific package in this project.
+      melos exec -- flutter test
     packageFilters:
       flutter: true
+      dirExists: 
+        - test
+
+  test:dart:
+    description: Test Dart Applications and Packages
+    run: |
+      melos exec -- dart test
+    packageFilters:
+      flutter: false
       dirExists: 
         - test
