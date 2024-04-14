@@ -1,3 +1,7 @@
+### 2.0.4
+- example link and readme update
+- `BuildContext` extensions updated
+
 ### 2.0.3
 - update dependency
 
