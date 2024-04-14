@@ -5,7 +5,6 @@ homepage: https://github.com/iapicca/yak_packages
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
-  flutter: '>=3.16.0'
 
 dependencies:
   flutter:
