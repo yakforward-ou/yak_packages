@@ -22,7 +22,7 @@ void main() {
           function.stub = (value) => value + 1;
 
           expect(
-            tester().letRun(function),
+            tester().letRun(function.call),
             isA<Success>(),
             reason: 'should return a Success',
           );
@@ -41,7 +41,7 @@ void main() {
           function.stub = (_) => throw Exception();
 
           expect(
-            tester().letRun(function),
+            tester().letRun(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -70,7 +70,7 @@ void main() {
           function.stub = (value) => value + 1;
 
           expect(
-            tester().letRun(function),
+            tester().letRun(function.call),
             isA<Failure>(),
             reason: 'should return a Success',
           );
@@ -89,7 +89,7 @@ void main() {
           function.stub = (_) => throw Exception();
 
           expect(
-            tester().letRun(function),
+            tester().letRun(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -121,7 +121,7 @@ void main() {
           function.stub = (value) => value + 1;
 
           expect(
-            tester().letRunVoid(function),
+            tester().letRunVoid(function.call),
             isA<Success>(),
             reason: 'should return a Success',
           );
@@ -140,7 +140,7 @@ void main() {
           function.stub = (_) => throw Exception();
 
           expect(
-            tester().letRunVoid(function),
+            tester().letRunVoid(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -175,7 +175,7 @@ void main() {
           function.stub = () => 0;
 
           expect(
-            tester().letRun(function),
+            tester().letRun(function.call),
             isA<Success>(),
             reason: 'should return a Success',
           );
@@ -194,7 +194,7 @@ void main() {
           function.stub = () => throw Exception();
 
           expect(
-            tester().letRun(function),
+            tester().letRun(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -224,7 +224,7 @@ void main() {
           function.stub = () => 0;
 
           expect(
-            tester().letRunVoid(function),
+            tester().letRunVoid(function.call),
             isA<Success>(),
             reason: 'should return a Success',
           );
@@ -243,7 +243,7 @@ void main() {
           function.stub = () => throw Exception();
 
           expect(
-            tester().letRunVoid(function),
+            tester().letRunVoid(function.call),
             isA<Failure>(),
             reason: 'should return a Failure',
           );

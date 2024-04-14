@@ -39,7 +39,7 @@ void main() {
           'GIVEN tester contains "failure" nullary '
           'WHEN tester().combine() '
           'THEN success Failure', () {
-        tester.stub = () => [failure, success];
+        tester.stub = () => [failure.call, success.call];
 
         expect(
           tester().combine(seed),
@@ -58,7 +58,7 @@ void main() {
           'GIVEN tester contains "failure" nullary '
           'WHEN tester().combine() '
           'THEN functions after "failure" are not called', () {
-        tester.stub = () => [failure, success];
+        tester.stub = () => [failure.call, success.call];
 
         expect(
           tester().combine(seed),
@@ -82,7 +82,7 @@ void main() {
           'GIVEN tester contains only "success"s nullary '
           'WHEN tester().combine() '
           'THEN success Success', () {
-        tester.stub = () => [success, success];
+        tester.stub = () => [success.call, success.call];
 
         expect(
           tester().combine(seed),
@@ -124,7 +124,7 @@ void main() {
           'GIVEN tester contains "failure" nullary '
           'WHEN tester().combineVoid() '
           'THEN success Failure', () {
-        tester.stub = () => [failure, success];
+        tester.stub = () => [failure.call, success.call];
 
         expect(
           tester().combineVoid(seed),
@@ -143,7 +143,7 @@ void main() {
           'GIVEN tester contains "failure" nullary '
           'WHEN tester().combineVoid() '
           'THEN functions after "failure" are not called', () {
-        tester.stub = () => [failure, success];
+        tester.stub = () => [failure.call, success.call];
 
         expect(
           tester().combineVoid(seed),
@@ -167,7 +167,7 @@ void main() {
           'GIVEN tester contains only "success"s nullary '
           'WHEN tester().combineVoid() '
           'THEN success Success', () {
-        tester.stub = () => [success, success];
+        tester.stub = () => [success.call, success.call];
 
         expect(
           tester().combineVoid(seed),
@@ -210,7 +210,7 @@ void main() {
           'GIVEN tester contains "failure" nullary '
           'WHEN tester().combine() '
           'THEN success Failure', () {
-        tester.stub = () => [failure, success];
+        tester.stub = () => [failure.call, success.call];
 
         expect(
           tester().combine(seed),
@@ -229,7 +229,7 @@ void main() {
           'GIVEN tester contains "failure" nullary '
           'WHEN tester().combine() '
           'THEN functions after "failure" are not called', () {
-        tester.stub = () => [failure, success];
+        tester.stub = () => [failure.call, success.call];
 
         expect(
           tester().combine(seed),
@@ -253,7 +253,7 @@ void main() {
           'GIVEN tester contains only "success"s nullary '
           'WHEN tester().combine() '
           'THEN success Success', () {
-        tester.stub = () => [success, success];
+        tester.stub = () => [success.call, success.call];
 
         expect(
           tester().combine(seed),
