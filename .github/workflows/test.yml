@@ -11,11 +11,6 @@ jobs:
     steps:
       - name: 'checkout'
         uses: actions/checkout@v4 
-      - name: 'setup java'
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'adopt-openj9'
-          java-version: '9'
       - name: 'setup flutter'
         uses: subosito/flutter-action@v2
         with:
@@ -27,15 +22,27 @@ jobs:
       - name: 'activate coverage' 
         run: |
           dart pub global activate coverage
-      - name: 'install dependencies'
-        uses: bluefireteam/melos-action@v1 
-        with: 
-          melos-version: '3.0.1'
+      - name: 'setup melos'
+        uses: bluefireteam/melos-action@v3
       - name: 'run tests'
         run: |
           melos run test
-      - name: 'update coverage'
-        uses: codecov/codecov-action@v3
+  # https://josh-ops.com/posts/github-code-coverage/
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          fail_ci_if_error: true
-          files: packages/*/coverage/lcov.info
+          filename: coverage/**/coverage.cobertura.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: '60 80'
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md

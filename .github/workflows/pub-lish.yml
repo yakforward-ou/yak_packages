@@ -15,10 +15,6 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - name: 'update PATH'
-        run: |
-          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH && \
-          echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV  
       - name: 'setup credentials'
         run: |
           mkdir $HOME/.pub-cache/ && \
@@ -37,3 +33,4 @@ jobs:
       - name: 'publishing'
         run: |
           yes | melos run publish
+    
