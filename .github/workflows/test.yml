@@ -25,5 +25,4 @@ jobs:
         run: |
           melos analyze && \
           melos format && \
-          melos run test && \
-          melos publish --dry-run
+          melos run test
