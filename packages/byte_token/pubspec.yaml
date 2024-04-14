@@ -1,6 +1,6 @@
 name: byte_token
 description: A protobuf based, performant and lightweight token authentication package.
-version: 2.0.1
+version: 2.0.2
 homepage: https://github.com/iapicca/yak_packages
 
 environment:
@@ -10,7 +10,7 @@ dependencies:
   crypto: ^3.0.3
   fixnum: ^1.1.0
   protobuf: ^3.1.0
-  yak_utils: ^2.0.1
+  yak_utils: ^2.0.2
   
 dev_dependencies:
   lints: ^3.0.0
