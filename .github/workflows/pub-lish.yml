@@ -34,5 +34,5 @@ jobs:
         uses: bluefireteam/melos-action@v1 
       - name: 'publishing'
         run: |
-          yes | melos publish --no-dry-run --git-tag-version
+          melos publish --no-dry-run --git-tag-version
     
