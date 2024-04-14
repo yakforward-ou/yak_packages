@@ -12,7 +12,7 @@ extension TextThemeOfContextX on BuildContext {
 
 /// A conveniniece extension to reduce boilerplate.
 extension SizeOfContextX on BuildContext {
-  Size get size => mediaQuery.size;
+  Size get size => MediaQuery.sizeOf(this);
 }
 
 /// A conveniniece extension to reduce boilerplate.
@@ -22,5 +22,5 @@ extension MediaQueryOfContextX on BuildContext {
 
 /// A conveniniece extension to reduce boilerplate.
 extension PaddingOfContextX on BuildContext {
-  EdgeInsets get padding => mediaQuery.padding;
+  EdgeInsets get padding => MediaQuery.paddingOf(this);
 }
