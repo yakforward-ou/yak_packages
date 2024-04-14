@@ -14,7 +14,7 @@ void main() {
         'THEN return Success', () {
       tester.stub = () => 42;
 
-      final function = nullaryRun<int>(tester);
+      final function = nullaryRun<int>(tester.call);
       final result = function();
 
       expect(
@@ -29,7 +29,7 @@ void main() {
         'THEN return Failure', () {
       tester.stub = () => throw Exception();
 
-      final function = nullaryRun<int>(tester);
+      final function = nullaryRun<int>(tester.call);
       final result = function();
 
       expect(
@@ -45,7 +45,7 @@ void main() {
         'THEN return Failure', () {
       tester.stub = () => throw Error();
 
-      final function = nullaryRun<int>(tester);
+      final function = nullaryRun<int>(tester.call);
       final result = function();
 
       expect(
