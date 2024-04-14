@@ -13,7 +13,7 @@ command:
       sdk: '>=3.3.3 <4.0.0'
 
 scripts:
- test:
+  test:
     description: Test ALL Applications and Packages
     run: |
       melos exec -c 1 \

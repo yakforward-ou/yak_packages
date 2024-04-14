@@ -19,9 +19,6 @@ jobs:
         run: |
           echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH && \
           echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV         
-      - name: 'activate coverage' 
-        run: |
-          dart pub global activate coverage
       - name: 'setup melos'
         uses: bluefireteam/melos-action@v3
       - name: 'run melos tasks'
