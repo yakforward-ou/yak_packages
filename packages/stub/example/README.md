@@ -1,2 +1,2 @@
 
-https://github.com/iapicca/yak_packages/tree/master/examples/stub
+https://github.com/yakforward-ou/yak_packages/tree/master/examples/stub
