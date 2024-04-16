@@ -1,3 +1,6 @@
+### 2.1.0
+- fix yakforward-ou/yak_packages/issues/234
+
 ### 2.0.3
 - example link and readme update
 
