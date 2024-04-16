@@ -1,4 +1,4 @@
-import 'package:yak_utils/yak_utils.dart' show Unary, UnaryDelegate;
+import 'package:yak_utils/yak_utils.dart' show Unary;
 
 import 'stub.dart';
 
