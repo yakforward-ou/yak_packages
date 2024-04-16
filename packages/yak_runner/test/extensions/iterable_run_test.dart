@@ -11,10 +11,10 @@ void main() {
 
       test(
           'GIVEN a tester List<Nullary<int> '
-          'WHEN tester().run '
+          'WHEN tester.call.run '
           'THEN returns a Iterable<ResultNullary<int>>', () {
         expect(
-          tester().run,
+          tester.call.run,
           isA<Iterable<ResultNullary<int>>>(),
           reason: 'Type should be predictable',
         );
@@ -26,10 +26,10 @@ void main() {
       setUp(tester.reset);
       test(
           'GIVEN a tester List<Nullary<int> '
-          'WHEN tester().runVoid '
+          'WHEN tester.call.runVoid '
           'THEN returns a Iterable<VoidResultNullary>', () {
         expect(
-          tester().runVoid,
+          tester.call.runVoid,
           isA<Iterable<VoidResultNullary>>(),
           reason: 'Type should be predictable',
         );
@@ -45,10 +45,10 @@ void main() {
 
       test(
           'GIVEN a tester List<Nullary<T> '
-          'WHEN tester().run '
+          'WHEN tester.call.run '
           'THEN returns a Iterable<ResultUnary<T, S>>', () {
         expect(
-          tester().run,
+          tester.call.run,
           isA<Iterable<ResultUnary<int, int>>>(),
           reason: 'Type should be predictable',
         );
@@ -60,10 +60,10 @@ void main() {
       setUp(tester.reset);
       test(
           'GIVEN a tester List<Nullary<int> '
-          'WHEN tester().runVoid '
+          'WHEN tester.call.runVoid '
           'THEN returns a Iterable<VoidResultUnary<S>>', () {
         expect(
-          tester().runVoid,
+          tester.call.runVoid,
           isA<Iterable<VoidResultUnary<int>>>(),
           reason: 'Type should be predictable',
         );
@@ -79,10 +79,10 @@ void main() {
 
       test(
           'GIVEN a tester Iterable<NullaryAsync<T> '
-          'WHEN tester().runAsync '
+          'WHEN tester.call.runAsync '
           'THEN returns a  Iterable<ResultNullaryAsync<T>>', () {
         expect(
-          tester().runAsync,
+          tester.call.runAsync,
           isA<Iterable<ResultNullaryAsync<int>>>(),
           reason: 'Type should be predictable',
         );
@@ -94,10 +94,10 @@ void main() {
       setUp(tester.reset);
       test(
           'GIVEN a tester List<NullaryAsync<int>> '
-          'WHEN tester().runVoidAsync '
+          'WHEN tester.call.runVoidAsync '
           'THEN returns a Iterable<VoidResultNullaryAsync>', () {
         expect(
-          tester().runVoidAsync,
+          tester.call.runVoidAsync,
           isA<Iterable<VoidResultNullaryAsync>>(),
           reason: 'Type should be predictable',
         );
@@ -114,10 +114,10 @@ void main() {
 
       test(
           'GIVEN a tester Iterable<UnaryFutureOr<T, S>> '
-          'WHEN tester().runAsync '
+          'WHEN tester.call.runAsync '
           'THEN returns a Iterable<ResultUnaryAsync<T, S>>', () {
         expect(
-          tester().runAsync,
+          tester.call.runAsync,
           isA<Iterable<ResultUnaryAsync<int, int>>>(),
           reason: 'Type should be predictable',
         );
@@ -129,10 +129,10 @@ void main() {
       setUp(tester.reset);
       test(
           'GIVEN a tester List<Nullary<int> '
-          'WHEN tester().runVoid '
+          'WHEN tester.call.runVoid '
           'THEN returns aIterable<VoidResultUnaryAsync<S>>', () {
         expect(
-          tester().runVoidAsync,
+          tester.call.runVoidAsync,
           isA<Iterable<VoidResultUnaryAsync<int>>>(),
           reason: 'Type should be predictable',
         );

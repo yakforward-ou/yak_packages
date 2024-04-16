@@ -14,7 +14,7 @@ void main() {
           'WHEN nullary.run '
           'THEN returns a ResultNullary', () {
         expect(
-          tester.run,
+          tester.call.run,
           isA<ResultNullary<int>>(),
           reason: 'return type should be predictable',
         );
@@ -27,7 +27,7 @@ void main() {
           'WHEN nullary.runVoid '
           'THEN returns a VoidResultNullary', () {
         expect(
-          tester.runVoid,
+          tester.call.runVoid,
           isA<VoidResultNullary>(),
           reason: 'return type should be predictable',
         );
@@ -46,7 +46,7 @@ void main() {
           'WHEN nullary.runAsync '
           'THEN returns a ResultNullaryAsync', () {
         expect(
-          tester.runAsync,
+          tester.call.runAsync,
           isA<ResultNullaryAsync<int>>(),
           reason: 'return type should be predictable',
         );
@@ -59,7 +59,7 @@ void main() {
           'WHEN nullary.run '
           'THEN returns a VoidResultNullaryAsync', () {
         expect(
-          tester.runVoidAsync,
+          tester.call.runVoidAsync,
           isA<VoidResultNullaryAsync>(),
           reason: 'return type should be predictable',
         );
@@ -78,7 +78,7 @@ void main() {
           'WHEN nullary.run '
           'THEN returns a ResultUnary', () {
         expect(
-          tester.run,
+          tester.call.run,
           isA<ResultUnary<int, String>>(),
           reason: 'return type should be predictable',
         );
@@ -91,7 +91,7 @@ void main() {
           'WHEN nullary.runVoid '
           'THEN returns a ResultNullary', () {
         expect(
-          tester.runVoid,
+          tester.call.runVoid,
           isA<VoidResultUnary<String>>(),
           reason: 'return type should be predictable',
         );
@@ -110,7 +110,7 @@ void main() {
           'WHEN nullary.run '
           'THEN returns a ResultNullary', () {
         expect(
-          tester.runAsync,
+          tester.call.runAsync,
           isA<ResultUnaryAsync<int, String>>(),
           reason: 'return type should be predictable',
         );
@@ -123,7 +123,7 @@ void main() {
           'WHEN nullary.run '
           'THEN returns a ResultNullary', () {
         expect(
-          tester.runVoidAsync,
+          tester.call.runVoidAsync,
           isA<VoidResultUnaryAsync<String>>(),
           reason: 'return type should be predictable',
         );
