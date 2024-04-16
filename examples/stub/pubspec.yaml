@@ -7,7 +7,7 @@ environment:
   sdk: '>=3.3.3 <4.0.0'
 
 dependencies:
-  stub: ^2.0.0
+  stub: ^2.1.1
   test: ^1.24.9
   
 dev_dependencies:

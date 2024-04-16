@@ -1,3 +1,6 @@
+### 2.1.1
+- update dependency
+
 ### 2.1.0
 - remove delegates to avoid implicit_call_tearoffs
 
