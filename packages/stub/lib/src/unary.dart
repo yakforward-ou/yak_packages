@@ -2,8 +2,7 @@ import 'package:yak_utils/yak_utils.dart' show Unary, UnaryDelegate;
 
 import 'stub.dart';
 
-class UnaryStub<T, S, Z extends Unary<T, S>> extends Stub<Z>
-    implements UnaryDelegate<T, S> {
+class UnaryStub<T, S, Z extends Unary<T, S>> extends Stub<Z> {
   Z? _stub;
   Z get _call => _stub ?? _default;
   @override
@@ -21,6 +20,5 @@ class UnaryStub<T, S, Z extends Unary<T, S>> extends Stub<Z>
     }) as Z;
   }
 
-  @override
   T call(S p0) => _call(p0);
 }
