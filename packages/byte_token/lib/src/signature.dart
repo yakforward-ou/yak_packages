@@ -1,5 +1,3 @@
-import 'package:yak_utils/yak_utils.dart';
-
 import 'encoder.dart';
 import 'extensions.dart';
 import 'payload.dart';
