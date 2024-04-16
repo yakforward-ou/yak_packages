@@ -1,10 +1,9 @@
-import 'package:yak_utils/yak_utils.dart' show Nullary, NullaryDelegate;
+import 'package:yak_utils/yak_utils.dart' show Nullary;
 
 import 'stub.dart';
 
 /// a `NULLARY` implementation of `StubMethod`
-class NullaryStub<T, Z extends Nullary<T>> extends Stub<Z>
-    implements NullaryDelegate<T> {
+class NullaryStub<T, Z extends Nullary<T>> extends Stub<Z> {
   Z? _stub;
   Z get _call => _stub ?? _default;
   @override
@@ -22,6 +21,5 @@ class NullaryStub<T, Z extends Nullary<T>> extends Stub<Z>
     }) as Z;
   }
 
-  @override
   T call() => _call();
 }

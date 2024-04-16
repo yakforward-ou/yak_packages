@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:yak_utils/yak_utils.dart';
-
 /// a class the convert a string to `Bytes` when instantiated
-class Secret extends NullaryDelegate<Uint8List> {
+class Secret {
   final Uint8List _secret;
   final Base64Decoder decoder;
 
@@ -14,6 +12,5 @@ class Secret extends NullaryDelegate<Uint8List> {
     this.decoder = const Base64Decoder(),
   }) : _secret = decoder.convert(secret);
 
-  @override
   Uint8List call() => _secret;
 }

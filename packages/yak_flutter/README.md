@@ -10,7 +10,6 @@ A collection of useful
 - `functions`
 - `extensions`
 - `typedefs`
-- `delegates` 
 
 for your `flutter` projects
 

@@ -36,7 +36,7 @@ void main() {
         'THEN return Failure', () {
       tester.stub = () => throw Exception();
 
-      final result = tester.run();
+      final result = tester.call.run();
 
       expect(
         result,
@@ -51,7 +51,7 @@ void main() {
         'THEN return Failure', () {
       tester.stub = () => throw Error();
 
-      final result = tester.run();
+      final result = tester.call.run();
 
       expect(
         result,
