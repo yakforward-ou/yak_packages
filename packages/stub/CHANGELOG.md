@@ -1,3 +1,6 @@
+### 2.1.0
+- remove delegates to avoid implicit_call_tearoffs
+
 ### 2.0.2
 - example link and readme update
 

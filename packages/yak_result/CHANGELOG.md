@@ -1,5 +1,5 @@
 ### 2.1.0
-- fix yakforward-ou/yak_packages/issues/234
+- remove delegates to avoid implicit_call_tearoffs
 
 ### 2.0.3
 - example link and readme update

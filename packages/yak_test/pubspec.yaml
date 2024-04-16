@@ -1,7 +1,7 @@
 name: yak_test
 description: a Dart package that helps to testing apps made with `yak_packages`
-version: 2.0.3
-homepage: https://github.com/iapicca/yak_packages
+version: 2.1.0
+homepage: https://github.com/yakforward-ou/yak_packages
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
