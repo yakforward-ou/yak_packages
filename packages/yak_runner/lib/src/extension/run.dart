@@ -5,7 +5,7 @@ import '../runner/all.dart';
 
 /// [ResultNullaryX] turns a [Nullary] function
 /// into a [ResultNullary] function
-extension ResultNullaryX<T> on Nullary<T> {
+extension ResultNullaryX<T extends Object> on Nullary<T> {
   /// turns a [Nullary[ function into a [ResultNullary[ function
   /// eg:
   //**
@@ -22,7 +22,7 @@ extension ResultNullaryX<T> on Nullary<T> {
 
 /// [ResultNullaryFutureOrX] turns a [NullaryFutureOr] function
 /// into a [ResultNullaryAsync] function
-extension ResultNullaryFutureOrX<T> on NullaryFutureOr<T> {
+extension ResultNullaryFutureOrX<T extends Object> on NullaryFutureOr<T> {
   /// turns a [Nullary[ function into a [ResultNullary[ function
   /// eg:
   //**
@@ -33,13 +33,15 @@ extension ResultNullaryFutureOrX<T> on NullaryFutureOr<T> {
   // ```
   // */
   ResultNullaryAsync<T> get runAsync => nullaryRunAsync<T>(this);
+}
 
+extension ResultNullaryFutureOrVoidX<T> on NullaryFutureOr<T> {
   VoidResultNullaryAsync get runVoidAsync => nullaryRunVoidAsync<T>(this);
 }
 
 /// [ResultUnaryX] turns a [Unary function
 /// into a [ResultUnary] function
-extension ResultUnaryX<T, S> on Unary<T, S> {
+extension ResultUnaryX<T extends Object, S extends Object> on Unary<T, S> {
   ///  turns a [Unary[ function into a [ResultUnary[ function
   /// eg:
   //**
@@ -54,9 +56,15 @@ extension ResultUnaryX<T, S> on Unary<T, S> {
   VoidResultUnary<S> get runVoid => unaryRunVoid<T, S>(this);
 }
 
+/// [ResultUnaryX] turns a [Unary function
+/// into a [ResultUnary] function
+extension ResultUnaryVoidX<T, S> on Unary<T, S> {
+  VoidResultUnary<S> get runVoid => unaryRunVoid<T, S>(this);
+}
+
 /// [ResultUnaryFutureOrX] turns a [UnaryFutureOr] function
 /// into a [ResultUnaryAsync] function
-extension ResultUnaryFutureOrX<T, S> on UnaryFutureOr<T, S> {
+extension ResultUnaryFutureOrX<T extends Object, S> on UnaryFutureOr<T, S> {
   ///  turns a [UnaryAsync[ function into a [ResultUnaryAsync[ function
   /// eg:
   //**
@@ -67,6 +75,10 @@ extension ResultUnaryFutureOrX<T, S> on UnaryFutureOr<T, S> {
   // ```
   // */
   ResultUnaryAsync<T, S> get runAsync => unaryRunAsync<T, S>(this);
+}
 
+/// [ResultUnaryFutureOrX] turns a [UnaryFutureOr] function
+/// into a [ResultUnaryAsync] function
+extension ResultUnaryFutureOrVoidX<T, S> on UnaryFutureOr<T, S> {
   VoidResultUnaryAsync<S> get runVoidAsync => unaryRunVoidAsync<T, S>(this);
 }

@@ -10,8 +10,8 @@ void main() {
 
     group('thenRun', () {
       group('Success', () {
-        final tester = Stub.nullary<FutureValueResult<int>>()
-          ..stub = () => Future.value(ValueSuccess(0));
+        final tester = Stub.nullary<FutureResult<int>>()
+          ..stub = () => Future.value(Result.success(0));
         setUp(() {
           tester.reset();
           function.reset();
@@ -57,7 +57,7 @@ void main() {
       });
 
       group('Failure', () {
-        final tester = Stub.nullary<FutureValueResult<int>>()
+        final tester = Stub.nullary<FutureResult<int>>()
           ..stub = () => Future.value(Failure());
 
         setUp(() {
@@ -107,8 +107,8 @@ void main() {
 
     group('thenRunVoid', () {
       group('Success', () {
-        final tester = Stub.nullary<FutureValueResult<int>>()
-          ..stub = () => Future.value(ValueSuccess(0));
+        final tester = Stub.nullary<FutureResult<int>>()
+          ..stub = () => Future.value(Result.success(0));
 
         setUp(() {
           tester.reset();
@@ -154,7 +154,7 @@ void main() {
         });
       });
       group('Failure', () {
-        final tester = Stub.nullary<FutureValueResult<int>>()
+        final tester = Stub.nullary<FutureResult<int>>()
           ..stub = () => Future.value(Failure());
 
         setUp(() {

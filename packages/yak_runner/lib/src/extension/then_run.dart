@@ -1,36 +1,41 @@
 import 'dart:async';
 
 import 'package:yak_result/yak_result.dart';
+import 'package:yak_runner/src/all.dart';
 import 'package:yak_utils/yak_utils.dart';
-import '../all.dart';
 
-/// syntactic sugar to pass a [FutureValueResult] to a [UnaryFutureOr]
-extension ThenRunUnaryX<S> on FutureValueResult<S> {
-  FutureValueResult<T> thenRun<T>(UnaryFutureOr<T, S> function) =>
+/// syntactic sugar to pass a [FutureResult] to a [UnaryFutureOr]
+extension ThenRunUnaryX<S extends Object> on FutureResult<S> {
+  FutureResult<T> thenRun<T extends Object>(UnaryFutureOr<T, S> function) =>
       Future.sync(() => this).then(
         (result) => result.isSuccess
-            ? function.runAsync(result.success.value)
-            : result.failure.recast(),
+            ? function.runAsync(result.asSuccess)
+            : result.asFailure.recast(),
       );
+}
 
+/// syntactic sugar to pass a [FutureResult] to a [UnaryFutureOr]
+extension ThenRunUnaryVoidX<S extends Object> on FutureResult<S> {
   FutureVoidResult thenRunVoid<T>(UnaryFutureOr<T, S> function) =>
       Future.sync(() => this).then(
         (result) => result.isSuccess
-            ? function.runVoidAsync(result.success.value)
-            : result.failure.recast(),
+            ? function.runVoidAsync(result.asSuccess)
+            : result.asFailure.asVoid(),
       );
 }
 
 /// syntactic sugar to pass a [FutureVoidResult] to a [NullaryFutureOr]
-extension ThenRunNullaryX<S> on FutureVoidResult {
-  FutureValueResult<T> thenRun<T>(NullaryFutureOr<T> function) =>
+extension ThenRunNullaryX<S extends Object> on FutureVoidResult {
+  FutureResult<T> thenRun<T extends Object>(NullaryFutureOr<T> function) =>
       Future.sync(() => this).then(
         (result) =>
-            result.isSuccess ? function.runAsync() : result.failure.recast(),
+            result.isSuccess ? function.runAsync() : result.asFailure.recast(),
       );
 
   FutureVoidResult thenRunVoid<T>(NullaryFutureOr<T> function) =>
       Future.sync(() => this).then(
-        (result) => result.isSuccess ? function.runVoidAsync() : result.failure,
+        (result) => result.isSuccess
+            ? function.runVoidAsync()
+            : result.asFailure.asVoid(),
       );
 }

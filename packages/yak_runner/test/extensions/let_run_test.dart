@@ -3,11 +3,11 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('ValueResultLetRunX', () {
+  group('ResultLetRunX', () {
     group('letRun', () {
       group('Success', () {
-        final tester = Stub.nullary<ValueResult<int>>()
-          ..stub = () => ValueSuccess(0);
+        final tester = Stub.nullary<Result<int>>()
+          ..stub = () => Result.success(0);
         final function = Stub.unary<int, int>();
 
         setUp(() {
@@ -55,7 +55,7 @@ void main() {
       });
 
       group('Failure', () {
-        final tester = Stub.nullary<ValueResult<int>>()..stub = () => Failure();
+        final tester = Stub.nullary<Result<int>>()..stub = () => Failure();
         final function = Stub.unary<int, int>();
 
         setUp(() {
@@ -105,8 +105,8 @@ void main() {
 
     group('thenRunVoid', () {
       group('Success', () {
-        final tester = Stub.nullary<ValueResult<int>>()
-          ..stub = () => ValueSuccess(0);
+        final tester = Stub.nullary<Result<int>>()
+          ..stub = () => Result.success(0);
         final function = Stub.unary<int, int>();
 
         setUp(() {

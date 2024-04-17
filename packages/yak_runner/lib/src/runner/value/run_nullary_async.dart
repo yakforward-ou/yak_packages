@@ -1,15 +1,15 @@
-import 'package:yak_result/yak_result.dart'
-    show ResultNullaryAsync, ValueSuccess, Failure;
+import 'package:yak_result/yak_result.dart' show ResultNullaryAsync, Result;
 import 'package:yak_utils/yak_utils.dart' show NullaryFutureOr;
 
 /// takes as argument a [NullaryFutureOr] returns a [ResultNullaryAsync]
-ResultNullaryAsync<T> nullaryRunAsync<T>(NullaryFutureOr<T> function) =>
+ResultNullaryAsync<T> nullaryRunAsync<T extends Object>(
+        NullaryFutureOr<T> function) =>
     () async {
       try {
-        return ValueSuccess(await function());
+        return Result.success(await function());
       } on Error catch (e) {
-        return Failure.fromError(e);
+        return Result.failure(e, e.stackTrace ?? StackTrace.empty);
       } on Exception catch (e, s) {
-        return Failure(e, s);
+        return Result.failure(e, s);
       }
     };
