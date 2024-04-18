@@ -13,6 +13,6 @@ void main() {
 
   final result = oneDividedBy.run(1);
   if (result.isSuccess) {
-    print(result.success.value); // print `1`
+    print(result.asSuccess); // print `1`
   }
 }
