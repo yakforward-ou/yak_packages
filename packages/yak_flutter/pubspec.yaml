@@ -1,6 +1,6 @@
 name: yak_flutter
 description: A collection of tools and extensions for Flutter.
-version: 2.1.1
+version: 3.0.0
 homepage: https://github.com/yakforward-ou/yak_packages
 
 environment:
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   yak_tween: ^2.0.2
-  yak_runner: ^2.1.1
+  yak_runner: ^3.0.0
   yak_utils: ^2.1.1
 
 dev_dependencies:
