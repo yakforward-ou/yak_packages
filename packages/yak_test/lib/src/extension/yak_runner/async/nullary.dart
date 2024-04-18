@@ -10,7 +10,7 @@ typedef ResultNullaryAsyncTest<T> = void Function({
 });
 
 /// an `extension` that generates a basic set of tests for `ResultNullaryAsync`
-extension ResultNullaryAsyncTestX<T> on ResultNullaryAsync<T> {
+extension ResultNullaryAsyncTestX<T extends Object> on ResultNullaryAsync<T> {
   /// run `test` providing a `description` and an `example` function
   void tester({
     required String name,
@@ -29,7 +29,7 @@ extension ResultNullaryAsyncTestX<T> on ResultNullaryAsync<T> {
 
         expectLater(
           tester(),
-          isA<Success<T>>(),
+          isA<Result<T>>(),
           reason: 'tester should not throw',
         );
       });
