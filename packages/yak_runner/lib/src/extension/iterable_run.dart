@@ -22,7 +22,7 @@ extension IterableNullaryToResultNullaryX<T extends Object>
   }
 }
 
-extension IterableUnaryToResultUnaryX<T extends Object, S>
+extension IterableUnaryToResultUnaryX<T extends Object, S extends Object>
     on Iterable<Unary<T, S>> {
   /// returns  Iterable<ResultNullary<T>> from Iterable<Unary<T, S>>
   /// TODO REWORK ITERATOR https://github.com/yakforward-ou/yak_packages/issues/238
@@ -63,7 +63,7 @@ extension IterableNullaryToResultNullaryAsyncX<T extends Object>
   }
 }
 
-extension IterableUnaryToResultUnaryAsyncX<T extends Object, S>
+extension IterableUnaryToResultUnaryAsyncX<T extends Object, S extends Object>
     on Iterable<UnaryFutureOr<T, S>> {
   /// returns  Iterable<ResultNullary<T>> from Iterable<Unary<T, S>>
   /// TODO REWORK ITERATOR https://github.com/yakforward-ou/yak_packages/issues/238

@@ -18,7 +18,13 @@ void main() {
 
       expect(
         result,
-        isA<Success<int>>(),
+        isA<int>(),
+        reason: 'tester should not throw',
+      );
+
+      expect(
+        result.isSuccess,
+        isTrue,
         reason: 'tester should not throw',
       );
     });
@@ -36,6 +42,12 @@ void main() {
         isA<Failure<int>>(),
         reason: 'tester should throw',
       );
+
+      expect(
+        result.isFailure,
+        isTrue,
+        reason: 'tester should not throw',
+      );
     });
 
     test(
@@ -51,6 +63,11 @@ void main() {
         result,
         isA<Failure<int>>(),
         reason: 'tester should throw',
+      );
+      expect(
+        result.isFailure,
+        isTrue,
+        reason: 'tester should not throw',
       );
     });
   });

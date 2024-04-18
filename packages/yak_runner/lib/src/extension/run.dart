@@ -52,8 +52,6 @@ extension ResultUnaryX<T extends Object, S extends Object> on Unary<T, S> {
   // ```
   // */
   ResultUnary<T, S> get run => unaryRun<T, S>(this);
-
-  VoidResultUnary<S> get runVoid => unaryRunVoid<T, S>(this);
 }
 
 /// [ResultUnaryX] turns a [Unary function

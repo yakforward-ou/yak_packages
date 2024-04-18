@@ -19,7 +19,13 @@ void main() {
 
       expect(
         result,
-        isA<Success<int>>(),
+        isA<int>(),
+        reason: 'tester should not throw',
+      );
+
+      expect(
+        result.isSuccess,
+        isTrue,
         reason: 'tester should not throw',
       );
     });

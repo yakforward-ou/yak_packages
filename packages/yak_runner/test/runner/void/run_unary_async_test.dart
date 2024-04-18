@@ -17,14 +17,8 @@ void main() {
       final result = await function(1);
 
       expect(
-        result,
-        isA<Success>(),
-        reason: 'tester should not throw',
-      );
-
-      expect(
-        result,
-        isA<VoidSuccess>(),
+        result.isSuccess,
+        isTrue,
         reason: 'tester should not throw',
       );
     });
