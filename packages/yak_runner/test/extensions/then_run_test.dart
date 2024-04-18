@@ -10,8 +10,8 @@ void main() {
 
     group('thenRun', () {
       group('Success', () {
-        final tester = Stub.nullary<FutureValueResult<int>>()
-          ..stub = () => Future.value(ValueSuccess(0));
+        final tester = Stub.nullary<FutureResult<int>>()
+          ..stub = () => Future.value(const Result.success(0));
         setUp(() {
           tester.reset();
           function.reset();
@@ -22,10 +22,11 @@ void main() {
             'WHEN function does not throw '
             'THEN result is Success', () async {
           function.stub = (value) => value + 1;
+          final result = await tester().thenRun(function.call);
 
-          await expectLater(
-            await tester().thenRun(function.call),
-            isA<Success>(),
+          expect(
+            result.isSuccess,
+            isTrue,
             reason: 'should return a Success',
           );
 
@@ -42,8 +43,9 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = (_) => throw Exception();
 
-          await expectLater(
-            await tester().thenRun(function.call),
+          final result = await tester().thenRun(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -57,8 +59,8 @@ void main() {
       });
 
       group('Failure', () {
-        final tester = Stub.nullary<FutureValueResult<int>>()
-          ..stub = () => Future.value(Failure());
+        final tester = Stub.nullary<FutureResult<int>>()
+          ..stub = () => Future.value(Result.failure());
 
         setUp(() {
           tester.reset();
@@ -71,12 +73,18 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = (value) => value + 1;
 
-          await expectLater(
-            await tester().thenRun(function.call),
+          final result = await tester().thenRun(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Success',
           );
 
+          expect(
+            result.isFailure,
+            isTrue,
+            reason: 'should return a Success',
+          );
           expect(
             function.count,
             equals(0),
@@ -90,8 +98,9 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = (_) => throw Exception();
 
-          await expectLater(
-            await tester().thenRun(function.call),
+          final result = await tester().thenRun(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -107,8 +116,8 @@ void main() {
 
     group('thenRunVoid', () {
       group('Success', () {
-        final tester = Stub.nullary<FutureValueResult<int>>()
-          ..stub = () => Future.value(ValueSuccess(0));
+        final tester = Stub.nullary<FutureResult<int>>()
+          ..stub = () => Future.value(const Result.success(0));
 
         setUp(() {
           tester.reset();
@@ -121,9 +130,11 @@ void main() {
             'THEN result is Success', () async {
           function.stub = (value) => value + 1;
 
-          await expectLater(
-            await tester().thenRunVoid(function.call),
-            isA<Success>(),
+          final result = await tester().thenRunVoid(function.call);
+
+          expect(
+            result.isSuccess,
+            isTrue,
             reason: 'should return a Success',
           );
 
@@ -140,8 +151,9 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = (_) => throw Exception();
 
-          await expectLater(
-            await tester().thenRunVoid(function.call),
+          final result = await tester().thenRunVoid(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -154,8 +166,8 @@ void main() {
         });
       });
       group('Failure', () {
-        final tester = Stub.nullary<FutureValueResult<int>>()
-          ..stub = () => Future.value(Failure());
+        final tester = Stub.nullary<FutureResult<int>>()
+          ..stub = () => Future.value(Result.failure());
 
         setUp(() {
           tester.reset();
@@ -168,8 +180,9 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = (value) => value + 1;
 
-          await expectLater(
-            await tester().thenRunVoid(function.call),
+          final result = await tester().thenRunVoid(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Success',
           );
@@ -187,8 +200,9 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = (_) => throw Exception();
 
-          await expectLater(
-            await tester().thenRunVoid(function.call),
+          final result = await tester().thenRunVoid(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -207,7 +221,7 @@ void main() {
     group('thenRun', () {
       group('Success', () {
         final tester = Stub.nullary<FutureVoidResult>()
-          ..stub = () => Future.value(VoidSuccess());
+          ..stub = () => Future.value(VoidResult.success());
 
         final function = Stub.nullary<int>();
 
@@ -222,9 +236,11 @@ void main() {
             'THEN result is Success', () async {
           function.stub = () => 0;
 
-          await expectLater(
-            await tester().thenRun(function.call),
-            isA<Success>(),
+          final result = await tester().thenRun(function.call);
+
+          expect(
+            result.isSuccess,
+            isTrue,
             reason: 'should return a Success',
           );
 
@@ -241,8 +257,9 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = () => throw Exception();
 
-          await expectLater(
-            await tester().thenRun(function.call),
+          final result = await tester().thenRun(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -257,7 +274,7 @@ void main() {
 
       group('Failure', () {
         final tester = Stub.nullary<FutureVoidResult>()
-          ..stub = () => Future.value(Failure());
+          ..stub = () => Future.value(const VoidResult.failure());
         final function = Stub.nullary<int>();
 
         setUp(() {
@@ -271,9 +288,16 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = () => 0;
 
-          await expectLater(
-            await tester().thenRun(function.call),
+          final result = await tester().thenRun(function.call);
+          expect(
+            result,
             isA<Failure>(),
+            reason: 'should return a Success',
+          );
+
+          expect(
+            result.isFailure,
+            isTrue,
             reason: 'should return a Success',
           );
 
@@ -290,10 +314,17 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = () => throw Exception();
 
-          await expectLater(
-            await tester().thenRun(function.call),
+          final result = await tester().thenRun(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Failure',
+          );
+
+          expect(
+            result.isFailure,
+            isTrue,
+            reason: 'should return a Success',
           );
 
           expect(
@@ -308,7 +339,7 @@ void main() {
     group('thenRunVoid', () {
       group('Success', () {
         final tester = Stub.nullary<FutureVoidResult>()
-          ..stub = () => Future.value(VoidSuccess());
+          ..stub = () => Future.value(VoidResult.success());
 
         final function = Stub.nullary<int>();
 
@@ -322,10 +353,11 @@ void main() {
             'WHEN function does not throw '
             'THEN result is Success', () async {
           function.stub = () => 0;
+          final result = await tester().thenRunVoid(function.call);
 
-          await expectLater(
-            await tester().thenRunVoid(function.call),
-            isA<Success>(),
+          expect(
+            result.isSuccess,
+            isTrue,
             reason: 'should return a Success',
           );
 
@@ -342,8 +374,9 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = () => throw Exception();
 
-          await expectLater(
-            await tester().thenRunVoid(function.call),
+          final result = await tester().thenRunVoid(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -357,7 +390,7 @@ void main() {
       });
       group('Failure', () {
         final tester = Stub.nullary<FutureVoidResult>()
-          ..stub = () => Future.value(Failure());
+          ..stub = () => Future.value(const VoidResult.failure());
 
         final function = Stub.nullary<int>();
 
@@ -372,8 +405,9 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = () => 0;
 
-          await expectLater(
-            await tester().thenRunVoid(function.call),
+          final result = await tester().thenRunVoid(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Success',
           );
@@ -391,8 +425,9 @@ void main() {
             'THEN result is Failure', () async {
           function.stub = () => throw Exception();
 
-          await expectLater(
-            await tester().thenRunVoid(function.call),
+          final result = await tester().thenRunVoid(function.call);
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Failure',
           );

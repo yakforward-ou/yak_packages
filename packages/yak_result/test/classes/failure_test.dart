@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 import 'package:yak_result/yak_result.dart';
 
 void main() {
-  group('Failure', () {
+  group('Failure Test', () {
     group('Failure Type maching', () {
       final tester = Stub.nullary<Failure<bool>>();
       final negative = Stub.nullary<Failure<int>>();
@@ -17,7 +17,7 @@ void main() {
           'GIVEN Failure<T> '
           'WHEN this is Failure<T> '
           'THEN return true', () {
-        tester.stub = () => Failure();
+        tester.stub = () => const Failure.empty();
 
         expect(
           tester(),
@@ -30,7 +30,7 @@ void main() {
           'GIVEN Failure<S> '
           'WHEN this is Failure<T> '
           'THEN return false', () {
-        negative.stub = () => Failure();
+        negative.stub = () => const Failure.empty();
 
         expect(
           negative(),
@@ -42,7 +42,7 @@ void main() {
           'GIVEN Failure '
           'WHEN this is Result '
           'THEN return true', () {
-        tester.stub = () => Failure();
+        tester.stub = () => const Failure.empty();
 
         expect(
           tester(),
@@ -66,8 +66,8 @@ void main() {
           'GIVEN Failure '
           'WHEN matched against different Failure '
           'THEN return false', () {
-        tester.stub = () => Failure(reason);
-        negative.stub = () => Failure();
+        tester.stub = () => Result.failure(reason);
+        negative.stub = () => Result.failure();
 
         expect(
           tester(),
@@ -80,8 +80,8 @@ void main() {
           'GIVEN Failure'
           'WHEN  matched against identical Failure '
           'THEN return false', () {
-        tester.stub = () => Failure(reason);
-        negative.stub = () => Failure(reason);
+        tester.stub = () => Result.failure(reason);
+        negative.stub = () => Result.failure(reason);
 
         expect(
           tester(),

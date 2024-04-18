@@ -1,3 +1,6 @@
+### 3.0.0
+- rework due to yak_result v3
+
 ### 2.1.1
 - update dependency
 

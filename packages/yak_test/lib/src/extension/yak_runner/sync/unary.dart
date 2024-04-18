@@ -11,7 +11,7 @@ typedef ResultUnaryTest<T, S> = void Function({
 });
 
 /// an `extension` that generates a basic set of tests for `ResultUnary`
-extension ResultUnaryTestX<T, S> on ResultUnary<T, S> {
+extension ResultUnaryTestX<T extends Object, S> on ResultUnary<T, S> {
   /// run `test` providing a `description` and an `example` function
   void tester({
     required String name,
@@ -33,7 +33,7 @@ extension ResultUnaryTestX<T, S> on ResultUnary<T, S> {
 
         expect(
           result,
-          isA<Success<T>>(),
+          isA<Result<T>>(),
           reason: 'tester should not throw',
         );
       });

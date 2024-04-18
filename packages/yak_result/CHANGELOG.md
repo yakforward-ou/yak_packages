@@ -1,3 +1,7 @@
+### 3.0.0
+- rework using "extension type"
+- BREAKING CHANGES
+
 ### 2.1.1
 - update dependency
 

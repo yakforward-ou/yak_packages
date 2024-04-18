@@ -22,8 +22,8 @@ void main() {
     });
 
     group('equalityTest Success', () {
-      final tester = Success.value(0);
-      final other = Success.value(1);
+      final tester = Result.success(0);
+      final other = Result.success(1);
       equalityTest(
         () => tester,
         () => other,

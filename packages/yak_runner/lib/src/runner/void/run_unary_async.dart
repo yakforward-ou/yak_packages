@@ -1,5 +1,5 @@
 import 'package:yak_result/yak_result.dart'
-    show VoidResultUnaryAsync, VoidSuccess, Failure;
+    show VoidResultUnaryAsync, VoidResult;
 import 'package:yak_utils/yak_utils.dart' show UnaryFutureOr;
 
 /// takes as argument a [UnaryAsync] returns a [VoidResultUnaryAsync]
@@ -9,10 +9,10 @@ VoidResultUnaryAsync<S> unaryRunVoidAsync<T, S>(
     (S arg) async {
       try {
         await function(arg);
-        return const VoidSuccess<void>();
+        return const VoidResult.success();
       } on Error catch (e) {
-        return Failure.fromError(e);
+        return VoidResult.failure(e, e.stackTrace ?? StackTrace.empty);
       } on Exception catch (e, s) {
-        return Failure(e, s);
+        return VoidResult.failure(e, s);
       }
     };

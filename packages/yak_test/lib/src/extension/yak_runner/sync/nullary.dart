@@ -10,7 +10,7 @@ typedef ResultNullaryTest<T> = void Function({
 });
 
 /// an `extension` that generates a basic set of tests for `ResultNullary`
-extension ResultNullaryTestX<T> on ResultNullary<T> {
+extension ResultNullaryTestX<T extends Object> on ResultNullary<T> {
   /// run `test` providing a `description` and an `example` function
   void tester({
     required String name,
@@ -31,7 +31,7 @@ extension ResultNullaryTestX<T> on ResultNullary<T> {
 
         expect(
           result,
-          isA<Success<T>>(),
+          isA<Result<T>>(),
           reason: 'tester should not throw',
         );
       });

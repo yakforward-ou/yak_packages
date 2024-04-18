@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 import 'package:yak_result/yak_result.dart';
 
 void main() {
-  group('Result', () {
+  group('Result Test', () {
     group('Success Type maching', () {
       final tester = Stub.nullary<Result<bool>>();
       final negative = Stub.nullary<Result<int>>();
@@ -14,10 +14,10 @@ void main() {
       });
 
       test(
-          'GIVEN Success<T> '
+          'GIVEN Result<T> '
           'WHEN this is Result<T> '
           'THEN return true', () {
-        tester.stub = () => Success.value(false);
+        tester.stub = () => const Result.success(false);
 
         expect(
           tester(),
@@ -27,37 +27,33 @@ void main() {
       });
 
       test(
-          'GIVEN Success<S> '
+          'GIVEN Result<S> '
           'WHEN this is Result<T> '
           'THEN return false', () {
-        negative.stub = () => Success.value(0);
+        tester.stub = () => const Result.success(false);
+        negative.stub = () => const Result.success(1);
 
         expect(
-          negative(),
-          isNot(isA<Result<bool>>()),
+          tester(),
+          isNot(equals(negative())),
           reason: 'type should be predictable',
         );
       });
 
       test(
-          'GIVEN Success<T> and Success<S> '
-          'WHEN this is Result '
-          'THEN return true', () {
-        tester.stub = () => Success.value(false);
-        negative.stub = () => Success.value(0);
+          'GIVEN Results<T> and Results<S> '
+          'WHEN results are equals'
+          'THEN equality return true', () {
+        tester.stub = () => const Result.success(false);
 
         expect(
           tester(),
-          isA<Result>(),
-          reason: 'type should be predictable',
-        );
-        expect(
-          negative(),
-          isA<Result>(),
+          equals(const Result.success(false)),
           reason: 'type should be predictable',
         );
       });
     });
+
     group('Failure Type maching', () {
       final tester = Stub.nullary<Result<bool>>();
       final negative = Stub.nullary<Result<int>>();
@@ -68,10 +64,10 @@ void main() {
       });
 
       test(
-          'GIVEN Failure<T> '
-          'WHEN this is Result<T> '
+          'GIVEN Result.failure<T> '
+          'WHEN this is Result.failure<T> '
           'THEN return true', () {
-        tester.stub = () => Failure();
+        tester.stub = () => Result.failure();
 
         expect(
           tester(),
@@ -84,135 +80,125 @@ void main() {
           'GIVEN Success<S> '
           'WHEN this is Result<T> '
           'THEN return false', () {
-        negative.stub = () => Failure();
-
-        expect(
-          negative(),
-          isNot(isA<Result<bool>>()),
-          reason: 'type should be predictable',
-        );
-      });
-      test(
-          'GIVEN Success<T> and Success<S> '
-          'WHEN this is Result '
-          'THEN return true', () {
-        tester.stub = () => Failure();
-        negative.stub = () => Failure();
+        tester.stub = () => Result.failure();
+        negative.stub = () => Result.failure();
 
         expect(
           tester(),
-          isA<Result>(),
-          reason: 'type should be predictable',
-        );
-        expect(
-          negative(),
-          isA<Result>(),
+          isNot(equals(negative())),
           reason: 'type should be predictable',
         );
       });
     });
-  });
-  group('ValueResult', () {
-    group('ValueResult Type maching', () {
-      final tester = Stub.nullary<Result>();
-      final negative = Stub.nullary<Result>();
-      final strict = Stub.nullary<ValueResult>();
+    group('Result isSuccess/isFailure test', () {
+      final tester = Stub.nullary<Result<bool>>();
 
-      setUp(() {
-        tester.reset();
-        negative.reset();
-        strict.reset();
-      });
+      setUp(tester.reset);
 
       test(
-          'GIVEN Result<T>() '
-          'WHEN this is ValueResult '
+          'GIVEN Result.success '
+          'WHEN isSuccess '
           'THEN return true', () {
-        tester.stub = () => Success.value(0);
+        tester.stub = () => const Result.success(false);
 
         expect(
-          tester(),
-          isA<ValueResult>(),
-          reason: 'type should be predictable',
+          tester().isSuccess,
+          isTrue,
+          reason: 'result should be predictable',
         );
       });
 
       test(
-          'GIVEN VoidSuccess '
-          'WHEN this is ValueResult '
+          'GIVEN Result.success '
+          'WHEN isFailure '
           'THEN return false', () {
-        negative.stub = () => Success.empty;
+        tester.stub = () => const Result.success(false);
 
         expect(
-          negative(),
-          isNot(isA<ValueResult>()),
-          reason: 'type should be predictable',
+          tester().isFailure,
+          isFalse,
+          reason: 'result should be predictable',
+        );
+      });
+      test(
+          'GIVEN Result.failure '
+          'WHEN isSuccess '
+          'THEN return false', () {
+        tester.stub = () => Result.failure();
+
+        expect(
+          tester().isSuccess,
+          isFalse,
+          reason: 'result should be predictable',
         );
       });
 
       test(
-          'GIVEN ValueSuccess '
-          'WHEN this is Result '
+          'GIVEN Result.failure '
+          'WHEN isFailure '
           'THEN return true', () {
-        strict.stub = () => Success.value(0);
+        tester.stub = () => Result.failure();
 
         expect(
-          strict(),
-          isA<Result>(),
-          reason: 'type should be predictable',
+          tester().isFailure,
+          isTrue,
+          reason: 'result should be predictable',
         );
       });
     });
-  });
+    group('Result asSuccess/asFailure test', () {
+      final tester = Stub.nullary<Result<bool>>();
 
-  group('VoidResult', () {
-    group('VoidResult Type maching', () {
-      final tester = Stub.nullary<Result>();
-      final negative = Stub.nullary<Result>();
-      final strict = Stub.nullary<VoidResult>();
+      setUp(tester.reset);
 
-      setUp(() {
-        tester.reset();
-        negative.reset();
-        strict.reset();
+      test(
+          'GIVEN Result<T>.success '
+          'WHEN asSuccess '
+          'THEN return T', () {
+        tester.stub = () => const Result.success(false);
+
+        expect(
+          tester().asSuccess,
+          isA<bool>(),
+          reason: 'result should be predictable',
+        );
       });
 
       test(
-          'GIVEN Success.empty '
-          'WHEN this is VoidResult '
+          'GIVEN Result.success '
+          'WHEN isFailure '
+          'THEN throws Exception', () {
+        tester.stub = () => const Result.success(false);
+
+        expect(
+          () => tester().asFailure,
+          throwsException,
+          reason: 'result should be predictable',
+        );
+      });
+      test(
+          'GIVEN Result.failure '
+          'WHEN asSuccess '
+          'THEN throws Exception', () {
+        tester.stub = () => Result.failure();
+
+        expect(
+          () => tester().asSuccess,
+          throwsException,
+          reason: 'result should be predictable',
+        );
+      });
+
+      test(
+          'GIVEN Result.failure '
+          'WHEN isFailure '
           'THEN return true', () {
-        tester.stub = () => Success.empty;
+        tester.stub = () => Result.failure();
 
         expect(
-          tester(),
-          isA<VoidSuccess>(),
-          reason: 'type should be predictable',
-        );
-      });
-
-      test(
-          'GIVEN ValueSuccess '
-          'WHEN this is VoidResult '
-          'THEN return false', () {
-        negative.stub = () => Success.value(0);
-
-        expect(
-          negative(),
-          isNot(isA<VoidResult>()),
-          reason: 'type should be predictable',
-        );
-      });
-
-      test(
-          'GIVEN VoidResult '
-          'WHEN this is Result '
-          'THEN return false', () {
-        strict.stub = () => Success.empty;
-
-        expect(
-          strict(),
-          isA<Result>(),
-          reason: 'type should be predictable',
+          tester().asFailure,
+          isA<Failure>(),
+          reason: 'result should be predictable',
         );
       });
     });

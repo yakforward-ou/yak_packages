@@ -1,21 +1,21 @@
 import 'package:yak_result/yak_result.dart';
 import 'package:yak_utils/yak_utils.dart';
-import '../all.dart';
+import 'run.dart';
 
-/// syntactic sugar to pass a [ValueResult] to a [ResultUnary]
-extension ValueResultLetRunX<S> on ValueResult<S> {
-  ValueResult<T> letRun<T>(Unary<T, S> function) =>
-      isSuccess ? function.run(success.value) : failure.recast<T>();
+/// syntactic sugar to pass a [Result] to a [ResultUnary]
+extension ResultLetRunX<S extends Object> on Result<S> {
+  Result<T> letRun<T extends Object>(Unary<T, S> function) =>
+      isSuccess ? function.run(asSuccess) : asFailure.recast<T>();
 
-  VoidResult<void> letRunVoid(Unary<void, S> function) =>
-      isSuccess ? function.runVoid(success.value) : failure.recast();
+  VoidResult letRunVoid<T>(Unary<T, S> function) =>
+      isSuccess ? function.runVoid(asSuccess) : asFailure.asVoid();
 }
 
 /// syntactic sugar to pass a [VoidResult] to a [ResultNullary]
 extension VoidResultLetRunX on VoidResult {
-  ValueResult<T> letRun<T>(Nullary<T> function) =>
-      isSuccess ? function.run() : failure.recast<T>();
+  Result<T> letRun<T extends Object>(Nullary<T> function) =>
+      isSuccess ? function.run() : asFailure.recast<T>();
 
-  VoidResult<void> letRunVoid<T>(Nullary<T> function) =>
-      isSuccess ? function.runVoid() : failure.recast();
+  VoidResult letRunVoid<T extends Object>(Nullary<T> function) =>
+      isSuccess ? function.runVoid() : asFailure.asVoid();
 }

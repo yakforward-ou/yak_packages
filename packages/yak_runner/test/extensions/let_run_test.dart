@@ -3,11 +3,11 @@ import 'package:test/test.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
-  group('ValueResultLetRunX', () {
+  group('ResultLetRunX', () {
     group('letRun', () {
       group('Success', () {
-        final tester = Stub.nullary<ValueResult<int>>()
-          ..stub = () => ValueSuccess(0);
+        final tester = Stub.nullary<Result<int>>()
+          ..stub = () => Result.success(0);
         final function = Stub.unary<int, int>();
 
         setUp(() {
@@ -20,10 +20,17 @@ void main() {
             'WHEN function does not throw '
             'THEN result is Success', () {
           function.stub = (value) => value + 1;
+          final result = tester().letRun(function.call);
 
           expect(
-            tester().letRun(function.call),
-            isA<Success>(),
+            result,
+            isA<Result<int>>(),
+            reason: 'should return a Success',
+          );
+
+          expect(
+            result.isSuccess,
+            isTrue,
             reason: 'should return a Success',
           );
 
@@ -39,10 +46,23 @@ void main() {
             'WHEN function throws '
             'THEN result is Failure', () {
           function.stub = (_) => throw Exception();
+          final result = tester().letRun(function.call);
 
           expect(
-            tester().letRun(function.call),
+            result.isFailure,
+            isTrue,
+            reason: 'should return a Failure',
+          );
+
+          expect(
+            result,
             isA<Failure>(),
+            reason: 'should return a Failure',
+          );
+
+          expect(
+            result,
+            isA<Result>(),
             reason: 'should return a Failure',
           );
 
@@ -55,7 +75,8 @@ void main() {
       });
 
       group('Failure', () {
-        final tester = Stub.nullary<ValueResult<int>>()..stub = () => Failure();
+        final tester = Stub.nullary<Result<int>>()
+          ..stub = () => Result.failure();
         final function = Stub.unary<int, int>();
 
         setUp(() {
@@ -84,13 +105,57 @@ void main() {
 
         test(
             'GIVEN Result is Failure '
-            'WHEN function throws '
-            'THEN result is Failure', () {
-          function.stub = (_) => throw Exception();
+            'WHEN function does not throw '
+            'THEN result is Result', () {
+          function.stub = (value) => value + 1;
 
           expect(
             tester().letRun(function.call),
             isA<Failure>(),
+            reason: 'should return a Success',
+          );
+
+          expect(
+            function.count,
+            equals(0),
+            reason: 'function should be not be called',
+          );
+        });
+
+        test(
+            'GIVEN Result is Failure '
+            'WHEN function does not throw '
+            'THEN result is Result', () {
+          function.stub = (value) => value + 1;
+
+          expect(
+            tester().letRun(function.call),
+            isA<Failure>(),
+            reason: 'should return a Success',
+          );
+
+          expect(
+            function.count,
+            equals(0),
+            reason: 'function should be not be called',
+          );
+        });
+
+        test(
+            'GIVEN Result is Failure '
+            'WHEN function throws '
+            'THEN result is Failure', () {
+          function.stub = (_) => throw Exception();
+          final result = tester().letRun(function.call);
+          expect(
+            result,
+            isA<Failure>(),
+            reason: 'should return a Failure',
+          );
+
+          expect(
+            result.isFailure,
+            isTrue,
             reason: 'should return a Failure',
           );
 
@@ -105,8 +170,8 @@ void main() {
 
     group('thenRunVoid', () {
       group('Success', () {
-        final tester = Stub.nullary<ValueResult<int>>()
-          ..stub = () => ValueSuccess(0);
+        final tester = Stub.nullary<Result<int>>()
+          ..stub = () => Result.success(0);
         final function = Stub.unary<int, int>();
 
         setUp(() {
@@ -119,10 +184,16 @@ void main() {
             'WHEN function does not throw '
             'THEN result is Success', () {
           function.stub = (value) => value + 1;
+          final result = tester().letRunVoid(function.call);
+          expect(
+            result.isSuccess,
+            isTrue,
+            reason: 'should return a Success',
+          );
 
           expect(
-            tester().letRunVoid(function.call),
-            isA<Success>(),
+            result,
+            isA<VoidResult>(),
             reason: 'should return a Success',
           );
 
@@ -139,8 +210,15 @@ void main() {
             'THEN result is Failure', () {
           function.stub = (_) => throw Exception();
 
+          final result = tester().letRunVoid(function.call);
           expect(
-            tester().letRunVoid(function.call),
+            result.isFailure,
+            isTrue,
+            reason: 'should return a Failure',
+          );
+
+          expect(
+            result,
             isA<Failure>(),
             reason: 'should return a Failure',
           );
@@ -161,7 +239,7 @@ void main() {
 
     group('thenRun', () {
       group('Success', () {
-        tester.stub = () => VoidSuccess();
+        tester.stub = () => VoidResult.success();
 
         setUp(() {
           tester.reset();
@@ -173,10 +251,16 @@ void main() {
             'WHEN function does not throw '
             'THEN result is Success', () {
           function.stub = () => 0;
+          final result = tester().letRun(function.call);
+          expect(
+            result.isSuccess,
+            isTrue,
+            reason: 'should return a Success',
+          );
 
           expect(
-            tester().letRun(function.call),
-            isA<Success>(),
+            result,
+            isA<int>(),
             reason: 'should return a Success',
           );
 
@@ -210,7 +294,7 @@ void main() {
 
     group('thenRunVoid', () {
       group('Success', () {
-        tester.stub = () => VoidSuccess();
+        tester.stub = () => const VoidResult.success();
 
         setUp(() {
           tester.reset();
@@ -224,8 +308,8 @@ void main() {
           function.stub = () => 0;
 
           expect(
-            tester().letRunVoid(function.call),
-            isA<Success>(),
+            tester().letRunVoid(function.call).isSuccess,
+            isTrue,
             reason: 'should return a Success',
           );
 
@@ -241,10 +325,16 @@ void main() {
             'WHEN function throws '
             'THEN result is Failure', () {
           function.stub = () => throw Exception();
+          final result = tester().letRunVoid(function.call);
+          expect(
+            result,
+            isA<Failure>(),
+            reason: 'should return a Failure',
+          );
 
           expect(
-            tester().letRunVoid(function.call),
-            isA<Failure>(),
+            result.isFailure,
+            isTrue,
             reason: 'should return a Failure',
           );
 

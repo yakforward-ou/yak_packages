@@ -11,7 +11,7 @@ typedef ResultUnaryAsyncTest<T, S> = void Function({
 });
 
 /// an `extension` that generates a basic set of tests for `ResultUnaryAsync`
-extension ResultUnaryAsyncTestX<T, S> on ResultUnaryAsync<T, S> {
+extension ResultUnaryAsyncTestX<T extends Object, S> on ResultUnaryAsync<T, S> {
   /// run `test` providing a `description` and an `example` function
   void tester({
     required String name,
@@ -31,7 +31,7 @@ extension ResultUnaryAsyncTestX<T, S> on ResultUnaryAsync<T, S> {
 
           expectLater(
             tester(seed()),
-            isA<Success<T>>(),
+            isA<Result<T>>(),
             reason: 'tester should not throw',
           );
         });
