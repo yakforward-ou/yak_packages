@@ -30,9 +30,9 @@ jobs:
             "expiration":${{ secrets.PUB_DEV_PUBLISH_EXPIRATION }}
           }
           EOF
-      - name: 'install dependencies'
+      - name: 'install melos'
         uses: bluefireteam/melos-action@v1 
       - name: 'publishing'
         run: |
-          melos publish --no-dry-run --git-tag-version
+          yes | melos publish --no-dry-run --git-tag-version
     
