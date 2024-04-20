@@ -1,6 +1,6 @@
 name: yak_flutter
 description: A collection of tools and extensions for Flutter.
-version: 3.0.0
+version: 3.0.1
 homepage: https://github.com/yakforward-ou/yak_packages
 
 environment:
