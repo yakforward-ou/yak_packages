@@ -1,0 +1,1 @@
+library adaptive_style;
