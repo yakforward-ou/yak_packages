@@ -11,7 +11,7 @@ class PreferredSizeWidgetThemed extends StatelessWidget
     super.key,
   });
   @override
-  Widget build(BuildContext context) => Theme(data: data, child: child);
+  Widget build(context) => Theme(data: data, child: child);
 
   @override
   Size get preferredSize => child.preferredSize;
