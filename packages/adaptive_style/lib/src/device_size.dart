@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:ui' show Size;
 
 /// a collection of well known screen dimesions
 /// as offered by [chrome device toolbar]
