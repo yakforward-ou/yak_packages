@@ -7,7 +7,8 @@ class MyApplication extends StatelessWidget {
   const MyApplication({super.key});
 
   @override
-  Widget build(context) => const AdaptiveSizeProvider(
+  Widget build(context) => const SizeRefProvider(
+        deviceSizes: [DeviceSize.iphoneSE],
         child: MaterialApp(
           home: MyHomePage(),
         ),
@@ -18,37 +19,26 @@ class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
-  Widget build(context) => Scaffold(
-        body: AdaptiveSizeBuilder(builder: (context, adaptiveSize) {
-          final deviceSize = adaptiveSize.mostSimilarDeviceSize;
-          return switch (deviceSize) {
-            (DeviceSize.iphoneSE) => const Stack(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Center(
-                      child: ColoredBox(
-                        color: Colors.blue,
-                        child: SizedBox.expand(),
-                      ),
+  Widget build(context) => SizeRefBuilder(builder: (context, sizeRef) {
+        return switch (sizeRef.size) {
+          (DeviceSize.iphoneSE) => Center(
+              child: SizedBox.fromSize(
+                size: sizeRef.size * sizeRef.scale.min,
+                child: Scaffold(
+                  backgroundColor: Colors.black,
+                  body: Center(
+                    child: FlutterLogo(
+                      size: 100 * sizeRef.scale.min,
                     ),
                   ),
-                ],
+                ),
               ),
-            _ => const Stack(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Center(
-                      child: ColoredBox(
-                        color: Colors.red,
-                        child: SizedBox.expand(),
-                      ),
-                    ),
-                  ),
-                ],
+            ),
+          _ => const Scaffold(
+              body: Center(
+                child: FlutterLogo(size: 100),
               ),
-          };
-        }),
-      );
+            ),
+        };
+      });
 }

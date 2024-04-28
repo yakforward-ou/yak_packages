@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   adaptive_style: ^0.0.1
+  yak_flutter: ^3.0.2
+
 
 dev_dependencies:
   flutter_test:

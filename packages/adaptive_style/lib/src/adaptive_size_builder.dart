@@ -1,26 +1,26 @@
 import 'package:flutter/widgets.dart';
 
-import 'adaptive_size.dart';
 import 'inherited_adaptive_size.dart';
+import 'size_ref.dart';
 
-typedef AdaptiveSizeBuild = Widget Function(BuildContext, AdaptiveSizeData);
+typedef SizeRefBuild = Widget Function(BuildContext, SizeRef);
 
-class AdaptiveSizeBuilder extends StatelessWidget {
-  final AdaptiveSizeBuild builder;
-  const AdaptiveSizeBuilder({
+class SizeRefBuilder extends StatelessWidget {
+  final SizeRefBuild builder;
+  const SizeRefBuilder({
     super.key,
     required this.builder,
   });
 
   @override
   Widget build(context) {
-    final adaptiveSize = InheritedAdaptiveSize.maybeOf(context);
-    if (adaptiveSize == null) {
-      throw Exception('InheritedAdaptiveSize not found in BuildContext');
+    final sizeRefNotifier = InheritedSizeRef.maybeOf(context);
+    if (sizeRefNotifier == null) {
+      throw Exception('InheritedSizeRef not found in BuildContext');
     }
 
     return ValueListenableBuilder(
-      valueListenable: adaptiveSize as ValueNotifier<AdaptiveSizeData>,
+      valueListenable: sizeRefNotifier as ValueNotifier<SizeRef>,
       builder: (context, value, _) => builder(context, value),
     );
   }

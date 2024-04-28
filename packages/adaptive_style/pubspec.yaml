@@ -10,7 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   yak_flutter: ^3.0.2
-  
+  meta: ^1.11.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

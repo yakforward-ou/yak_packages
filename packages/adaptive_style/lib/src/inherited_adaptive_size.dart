@@ -1,11 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:yak_flutter/yak_flutter.dart';
 
-import 'adaptive_size.dart';
+import 'size_ref.dart';
 
-class InheritedAdaptiveSize
-    extends InheritedRestrictedNotifier<AdaptiveSizeData> {
-  const InheritedAdaptiveSize({
+typedef AdaptiveSizeNotifier = RestrictedNotifier<SizeRef>;
+
+class InheritedSizeRef extends InheritedRestrictedNotifier<SizeRef> {
+  const InheritedSizeRef({
     super.key,
     required super.notifier,
     required super.child,
@@ -13,7 +14,7 @@ class InheritedAdaptiveSize
 
   static AdaptiveSizeNotifier? maybeOf(BuildContext context) {
     final inherited =
-        context.dependOnInheritedWidgetOfExactType<InheritedAdaptiveSize>();
+        context.dependOnInheritedWidgetOfExactType<InheritedSizeRef>();
 
     if (inherited == null) {
       return null;

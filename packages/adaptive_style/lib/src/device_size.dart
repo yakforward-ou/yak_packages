@@ -1,27 +1,36 @@
 import 'dart:ui' show Size;
+import 'package:flutter/widgets.dart' show Orientation;
 
 /// a collection of well known screen dimesions
 /// as offered by [chrome device toolbar]
-enum DeviceSize {
-  iphoneSE(Size(375, 667)),
-  iphoneXR(Size(414, 896)),
-  iphone12PRO(Size(390, 844)),
-  iphone14PRO(Size(430, 932)),
-  pixel7(Size(412, 915)),
-  galaxyS8Plus(Size(360, 740)),
-  galaxyS20Ultra(Size(412, 915)),
-  iPadMini(Size(768, 1024)),
-  iPadAir(Size(820, 1180)),
-  iPadPro(Size(1024, 1366)),
-  surfacePro7(Size(912, 1368)),
-  surfaceDuo(Size(540, 720)),
-  galaxyFold(Size(280, 653)),
-  galaxyA51(Size(412, 914)),
-  galaxyA71(Size(412, 914)),
-  nestHub(Size(1024, 600)),
-  nestHubMax(Size(1280, 800));
 
-  const DeviceSize(this.size);
+// enum Orientation {
+//   landscape,
+//   portrait,
+// }
 
-  final Size size;
+extension type const DeviceSize._(Size value) implements Size {
+  const DeviceSize(Size value) : this._(value);
+  static const iphoneSE = DeviceSize(Size(375, 667));
+  static const iphoneXR = DeviceSize(Size(414, 896));
+  static const iphone12PRO = DeviceSize(Size(390, 844));
+  static const iphone14PRO = DeviceSize(Size(430, 932));
+  static const pixel7 = DeviceSize(Size(412, 915));
+  static const galaxyS8Plus = DeviceSize(Size(360, 740));
+  static const galaxyS20Ultra = DeviceSize(Size(412, 915));
+  static const iPadMini = DeviceSize(Size(768, 1024));
+  static const iPadAir = DeviceSize(Size(820, 1180));
+  static const iPadPro = DeviceSize(Size(1024, 1366));
+  static const surfacePro7 = DeviceSize(Size(912, 1368));
+  static const surfaceDuo = DeviceSize(Size(540, 720));
+  static const galaxyFold = DeviceSize(Size(280, 653));
+  static const galaxyA51 = DeviceSize(Size(412, 914));
+  static const galaxyA71 = DeviceSize(Size(412, 914));
+  static const nestHub = DeviceSize(Size(1024, 600));
+  static const nestHubMax = DeviceSize(Size(1280, 800));
+
+  Orientation get orientation =>
+      aspectRatio <= 1 ? Orientation.portrait : Orientation.landscape;
+
+  DeviceSize flip() => DeviceSize(Size(height, width));
 }

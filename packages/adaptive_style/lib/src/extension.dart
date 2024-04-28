@@ -3,15 +3,9 @@ import 'dart:ui' show Size;
 
 import 'device_size.dart';
 
-extension DeviceSizeSizesX on List<DeviceSize> {
-  List<Size> get sizes => [for (final value in this) value.size];
-}
-
 extension ClosestDimentionScaleX<T extends Size> on T {
-  double closestDimentionScale(T size) => math.min(
-        width / size.width,
-        height / size.height,
-      );
+  double closestDimentionScale(T size) =>
+      math.min(size.width / width, size.height / height);
 }
 
 extension ReverseScaleX<T extends double> on T {
@@ -30,8 +24,8 @@ extension MostSimilarSizeX<T extends Size> on Iterable<DeviceSize> {
           deviceSize,
 
           /// this is arbitrary but seems to work
-          (size.aspectRatio - deviceSize.size.aspectRatio).abs() *
-              math.sqrt((size.area - deviceSize.size.area).abs())
+          (size.aspectRatio - deviceSize.aspectRatio).abs() *
+              math.sqrt((size.area - deviceSize.area).abs())
         )
     ]..sort(
         (a, b) => a.$2.compareTo(b.$2),
@@ -41,11 +35,11 @@ extension MostSimilarSizeX<T extends Size> on Iterable<DeviceSize> {
   }
 }
 
-extension DeviceSizeAverageSizeX on List<DeviceSize> {
+extension DeviceSizeAverageSizeX on Iterable<DeviceSize> {
   Size get averagePortrait {
     final portraits = [
       for (final device in this)
-        if (device.size.aspectRatio < 1) device.size,
+        if (device.aspectRatio < 1) device,
     ];
     var height = .0;
     var width = .0;
@@ -63,7 +57,7 @@ extension DeviceSizeAverageSizeX on List<DeviceSize> {
   Size get averageLandscape {
     final landscapes = [
       for (final device in this)
-        if (device.size.aspectRatio > 1) device.size,
+        if (device.aspectRatio > 1) device,
     ];
     var height = .0;
     var width = .0;

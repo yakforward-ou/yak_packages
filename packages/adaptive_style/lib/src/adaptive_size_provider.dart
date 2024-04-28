@@ -1,33 +1,33 @@
 import 'dart:async';
 
+import 'package:adaptive_style/adaptive_style.dart';
 import 'package:flutter/widgets.dart';
 import 'package:yak_flutter/yak_flutter.dart';
+import 'size_ref.dart';
+import 'size_scale.dart';
 
-import 'adaptive_size.dart';
-import 'device_size.dart';
-import 'inherited_adaptive_size.dart';
-
-class AdaptiveSizeProvider extends StatefulWidget {
+class SizeRefProvider extends StatefulWidget {
   final Widget child;
   final List<DeviceSize> deviceSizes;
-  const AdaptiveSizeProvider({
+  const SizeRefProvider({
     super.key,
     required this.child,
-    this.deviceSizes = DeviceSize.values,
+    this.deviceSizes = const [],
   });
 
   @override
-  State<AdaptiveSizeProvider> createState() => _AdaptiveSizeProvidertState();
+  State<SizeRefProvider> createState() => _SizeRefProvidertState();
 }
 
-class _AdaptiveSizeProvidertState extends State<AdaptiveSizeProvider> {
+class _SizeRefProvidertState extends State<SizeRefProvider> {
   final _initialized = Completer<bool>();
-  late final ValueNotifier<AdaptiveSizeData> _notifier;
+  late final ValueNotifier<SizeRef> _notifier;
 
   @override
   void didChangeDependencies() {
     if (!_initialized.isCompleted) {
       _initialize(context);
+      _initialized.complete(true);
       return;
     }
     _update(context);
@@ -42,28 +42,25 @@ class _AdaptiveSizeProvidertState extends State<AdaptiveSizeProvider> {
 
   void _update(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    if (size == _notifier.value.realScreenSize &&
-        widget.deviceSizes == _notifier.value.deviceSizes) {
+    final mostSimilarSize = widget.deviceSizes.mostSimilarTo(size);
+    final scale = SizeScale(size, mostSimilarSize);
+    final SizeRef sizeRef = (scale: scale, size: mostSimilarSize);
+    if (sizeRef == _notifier.value) {
       return;
     }
-
-    _notifier.value = AdaptiveSizeData.fromSize(
-      size,
-      deviceSizes: widget.deviceSizes,
-    );
+    _notifier.value = sizeRef;
   }
 
-  void _initialize(BuildContext size) {
-    final adaptiveSize = AdaptiveSizeData.fromSize(
-      MediaQuery.sizeOf(context),
-      deviceSizes: widget.deviceSizes,
-    );
-    _notifier = ValueNotifier<AdaptiveSizeData>(adaptiveSize);
-    _initialized.complete(true);
+  void _initialize(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    final mostSimilarSize = widget.deviceSizes.mostSimilarTo(size);
+    final scale = SizeScale(size, mostSimilarSize);
+    final SizeRef sizeRef = (scale: scale, size: mostSimilarSize);
+    _notifier = ValueNotifier<SizeRef>(sizeRef);
   }
 
   @override
-  Widget build(context) => InheritedAdaptiveSize(
+  Widget build(context) => InheritedSizeRef(
         notifier: RestrictedNotifier(_notifier),
         child: widget.child,
       );
