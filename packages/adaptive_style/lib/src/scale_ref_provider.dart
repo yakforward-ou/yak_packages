@@ -2,26 +2,25 @@ import 'dart:async';
 
 import 'package:adaptive_style/adaptive_style.dart';
 import 'package:flutter/widgets.dart';
-import 'package:yak_flutter/yak_flutter.dart';
-import 'size_ref.dart';
-import 'size_scale.dart';
 
-class SizeRefProvider extends StatefulWidget {
-  final Widget child;
+import 'inherited_scale_ref.dart';
+
+class ScaleRefProvider extends StatefulWidget {
+  final WidgetBuilder builder;
   final List<DeviceSize> deviceSizes;
-  const SizeRefProvider({
+  const ScaleRefProvider({
     super.key,
-    required this.child,
+    required this.builder,
     this.deviceSizes = const [],
   });
 
   @override
-  State<SizeRefProvider> createState() => _SizeRefProvidertState();
+  State<ScaleRefProvider> createState() => _ScaleRefProvidertState();
 }
 
-class _SizeRefProvidertState extends State<SizeRefProvider> {
+class _ScaleRefProvidertState extends State<ScaleRefProvider> {
   final _initialized = Completer<bool>();
-  late final ValueNotifier<SizeRef> _notifier;
+  late final ValueNotifier<ScaleRef> _notifier;
 
   @override
   void didChangeDependencies() {
@@ -44,24 +43,30 @@ class _SizeRefProvidertState extends State<SizeRefProvider> {
     final size = MediaQuery.sizeOf(context);
     final mostSimilarSize = widget.deviceSizes.mostSimilarTo(size);
     final scale = SizeScale(size, mostSimilarSize);
-    final SizeRef sizeRef = (scale: scale, size: mostSimilarSize);
-    if (sizeRef == _notifier.value) {
+    final ScaleRef scaleRef = (scale: scale, idealSize: mostSimilarSize);
+    if (scaleRef == _notifier.value) {
       return;
     }
-    _notifier.value = sizeRef;
+    _notifier.value = scaleRef;
   }
 
   void _initialize(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final mostSimilarSize = widget.deviceSizes.mostSimilarTo(size);
     final scale = SizeScale(size, mostSimilarSize);
-    final SizeRef sizeRef = (scale: scale, size: mostSimilarSize);
-    _notifier = ValueNotifier<SizeRef>(sizeRef);
+    final ScaleRef scaleRef = (scale: scale, idealSize: mostSimilarSize);
+    _notifier = ValueNotifier<ScaleRef>(scaleRef);
   }
 
   @override
-  Widget build(context) => InheritedSizeRef(
-        notifier: RestrictedNotifier(_notifier),
-        child: widget.child,
+  Widget build(context) => ValueListenableBuilder(
+        valueListenable: _notifier,
+        builder: (context, scaleRef, _) => InheritedScaleRef(
+          scaleRef: scaleRef,
+          child: AdaptiveMediaQueryWidget(
+            builder: widget.builder,
+            scale: _notifier.value.scale.min,
+          ),
+        ),
       );
 }

@@ -1,61 +1,54 @@
 import 'package:flutter/widgets.dart';
 
-import 'scalable_widget.dart';
-
 @immutable
 abstract class ScalableEdgePositioned extends Positioned {
   final EdgeInsets padding;
   final double dimension;
   final double scale;
-  ScalableEdgePositioned({
-    required child,
+  const ScalableEdgePositioned({
+    required super.child,
     required this.dimension,
     required this.padding,
     required this.scale,
     super.key,
-  }) : super(
-          child: ScalebleWidget(
-            scale: scale,
-            child: child,
-          ),
-        );
+  });
 
-  factory ScalableEdgePositioned.top({
+  const factory ScalableEdgePositioned.top({
     required Widget child,
     double dimension,
     double scale,
     EdgeInsets padding,
     Key key,
-  }) = _EdgePositioneTop;
+  }) = _EdgePositionedTop;
 
-  factory ScalableEdgePositioned.bottom({
+  const factory ScalableEdgePositioned.bottom({
     required Widget child,
     double dimension,
     double scale,
     EdgeInsets padding,
     Key key,
-  }) = _EdgePositioneBottom;
+  }) = _EdgePositionedBottom;
 
-  factory ScalableEdgePositioned.left({
+  const factory ScalableEdgePositioned.left({
     required Widget child,
     double dimension,
     double scale,
     EdgeInsets padding,
     Key key,
-  }) = _EdgePositioneLeft;
+  }) = _EdgePositionedLeft;
 
-  factory ScalableEdgePositioned.right({
+  const factory ScalableEdgePositioned.right({
     required Widget child,
     double dimension,
     double scale,
     EdgeInsets padding,
     Key key,
-  }) = _EdgePositioneRight;
+  }) = _EdgePositionedRight;
 }
 
 @immutable
-class _EdgePositioneBottom extends ScalableEdgePositioned {
-  _EdgePositioneBottom({
+class _EdgePositionedBottom extends ScalableEdgePositioned {
+  const _EdgePositionedBottom({
     required super.child,
     super.dimension = 0,
     super.scale = 1,
@@ -74,8 +67,8 @@ class _EdgePositioneBottom extends ScalableEdgePositioned {
 }
 
 @immutable
-class _EdgePositioneTop extends ScalableEdgePositioned {
-  _EdgePositioneTop({
+class _EdgePositionedTop extends ScalableEdgePositioned {
+  const _EdgePositionedTop({
     required super.child,
     super.dimension = 0,
     super.scale = 1,
@@ -94,8 +87,8 @@ class _EdgePositioneTop extends ScalableEdgePositioned {
 }
 
 @immutable
-class _EdgePositioneLeft extends ScalableEdgePositioned {
-  _EdgePositioneLeft({
+class _EdgePositionedLeft extends ScalableEdgePositioned {
+  const _EdgePositionedLeft({
     required super.child,
     super.dimension = 0,
     super.scale = 1,
@@ -114,8 +107,8 @@ class _EdgePositioneLeft extends ScalableEdgePositioned {
 }
 
 @immutable
-class _EdgePositioneRight extends ScalableEdgePositioned {
-  _EdgePositioneRight({
+class _EdgePositionedRight extends ScalableEdgePositioned {
+  const _EdgePositionedRight({
     required super.child,
     super.dimension = 0,
     super.scale = 1,

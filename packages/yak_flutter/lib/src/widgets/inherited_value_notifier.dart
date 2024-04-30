@@ -10,6 +10,8 @@ extension type RestrictedNotifier<T extends Object>(ValueNotifier<T> notifier) {
   HandleListener get removeListener => notifier.removeListener;
   T get value => notifier.value;
   set value(T value) => notifier.value = value;
+
+  ValueNotifier<T> unrestricted() => this as ValueNotifier<T>;
 }
 
 class InheritedRestrictedNotifier<T extends Object> extends InheritedWidget {

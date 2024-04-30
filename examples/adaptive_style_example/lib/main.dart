@@ -7,9 +7,9 @@ class MyApplication extends StatelessWidget {
   const MyApplication({super.key});
 
   @override
-  Widget build(context) => const SizeRefProvider(
-        deviceSizes: [DeviceSize.iphoneSE],
-        child: MaterialApp(
+  Widget build(context) => ScaleRefProvider(
+        deviceSizes: const [DeviceSize.iphoneSE],
+        builder: (context) => const MaterialApp(
           home: MyHomePage(),
         ),
       );
@@ -19,21 +19,27 @@ class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
-  Widget build(context) => SizeRefBuilder(builder: (context, sizeRef) {
-        return switch (sizeRef.size) {
-          (DeviceSize.iphoneSE) => Scaffold(
-              backgroundColor: Colors.black,
-              body: Center(
-                child: FlutterLogo(
-                  size: 100 * sizeRef.scale.min,
-                ),
+  Widget build(context) => Material(
+        child: AdaptiveStackBuilder(
+          builder: (context, scaleRef, parentSize) => [
+            AdaptiveEdgePositioned(
+              parentSize: parentSize,
+              padding: const EdgeInsets.all(10),
+              dimension: 100,
+              edge: Edge.bottom,
+              builder: (context, scaleRef, parentSize) => const ColoredBox(
+                color: Colors.red,
               ),
             ),
-          _ => const Scaffold(
-              body: Center(
-                child: FlutterLogo(size: 100),
-              ),
-            ),
-        };
-      });
+          ],
+        ),
+        // child: AdaptiveEdgePositioned(
+        //   padding: const EdgeInsets.all(10),
+        //   dimension: 100,
+        //   edge: Edge.bottom,
+        //   builder: (context, scaleRef, _) => const ColoredBox(
+        //     color: Colors.red,
+        //   ),
+        // ),
+      );
 }
