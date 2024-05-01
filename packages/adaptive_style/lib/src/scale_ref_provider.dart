@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'adaptive_mediaquery_widget.dart';
+import 'scale_mediaquery_widget.dart';
 import 'device_size.dart';
 import 'inherited_scale_ref.dart';
 import 'scale_ref.dart';

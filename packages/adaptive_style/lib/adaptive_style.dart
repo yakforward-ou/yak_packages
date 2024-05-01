@@ -1,7 +1,7 @@
 library adaptive_style;
 
 export 'src/adaptive_edge_positioned.dart';
-export 'src/adaptive_mediaquery_widget.dart';
+export 'src/scale_mediaquery_widget.dart';
 export 'src/adaptive_stack.dart';
 export 'src/adaptive_widget_builder.dart';
 export 'src/adaptive_widget.dart';
