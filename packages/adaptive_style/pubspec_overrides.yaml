@@ -1,0 +1,12 @@
+# melos_managed_dependency_overrides: yak_flutter,yak_result,yak_runner,yak_tween,yak_utils
+dependency_overrides:
+  yak_flutter:
+    path: ../yak_flutter
+  yak_result:
+    path: ../yak_result
+  yak_runner:
+    path: ../yak_runner
+  yak_tween:
+    path: ../yak_tween
+  yak_utils:
+    path: ../yak_utils

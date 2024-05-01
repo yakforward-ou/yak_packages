@@ -1,0 +1,14 @@
+# melos_managed_dependency_overrides: adaptive_style,yak_flutter,yak_result,yak_runner,yak_tween,yak_utils
+dependency_overrides:
+  adaptive_style:
+    path: ../../packages/adaptive_style
+  yak_flutter:
+    path: ../../packages/yak_flutter
+  yak_result:
+    path: ../../packages/yak_result
+  yak_runner:
+    path: ../../packages/yak_runner
+  yak_tween:
+    path: ../../packages/yak_tween
+  yak_utils:
+    path: ../../packages/yak_utils
