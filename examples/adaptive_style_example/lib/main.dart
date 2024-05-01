@@ -22,24 +22,26 @@ class MyHomePage extends StatelessWidget {
   Widget build(context) => Material(
         child: AdaptiveStackBuilder(
           builder: (context, scaleRef, parentSize) => [
-            AdaptiveEdgePositioned(
+            AdaptiveAnchorPositioned(
               parentSize: parentSize,
-              padding: const EdgeInsets.all(10),
-              dimension: 100,
-              edge: Edge.bottom,
-              builder: (context, scaleRef, parentSize) => const ColoredBox(
-                color: Colors.red,
+              data: const AdaptiveAnchorData(
+                dimension: 100,
+                edges: AnchorEdges.bottom(),
               ),
-            ),
+              builder: (context, scaleRef, parentSize) => AdaptiveStack(
+                parentSize: parentSize,
+                builder: (context, scaleRef, parentSize) => [
+                  const SizedBox.expand(child: ColoredBox(color: Colors.red)),
+                  Center(
+                    child: SizedBox.square(
+                      dimension: 50 * scaleRef.scale.min,
+                      child: const FlutterLogo(),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
-        // child: AdaptiveEdgePositioned(
-        //   padding: const EdgeInsets.all(10),
-        //   dimension: 100,
-        //   edge: Edge.bottom,
-        //   builder: (context, scaleRef, _) => const ColoredBox(
-        //     color: Colors.red,
-        //   ),
-        // ),
       );
 }

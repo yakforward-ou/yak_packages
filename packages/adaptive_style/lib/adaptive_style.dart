@@ -11,3 +11,5 @@ export 'src/inherited_scale_ref.dart';
 export 'src/scale_ref_provider.dart';
 export 'src/scale_ref.dart';
 export 'src/size_scale.dart';
+export 'src/anchor_edges.dart';
+export 'src/positioned_data.dart';
