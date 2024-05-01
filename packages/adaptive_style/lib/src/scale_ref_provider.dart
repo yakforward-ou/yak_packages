@@ -1,9 +1,12 @@
 import 'dart:async';
 
-import 'package:adaptive_style/adaptive_style.dart';
 import 'package:flutter/widgets.dart';
-
+import 'adaptive_mediaquery_widget.dart';
+import 'device_size.dart';
 import 'inherited_scale_ref.dart';
+import 'scale_ref.dart';
+import 'extension.dart';
+import 'size_scale.dart';
 
 class ScaleRefProvider extends StatefulWidget {
   final WidgetBuilder builder;
@@ -63,7 +66,7 @@ class _ScaleRefProvidertState extends State<ScaleRefProvider> {
         valueListenable: _notifier,
         builder: (context, scaleRef, _) => InheritedScaleRef(
           scaleRef: scaleRef,
-          child: AdaptiveMediaQueryWidget(
+          child: ScaleMediaQueryWidget(
             builder: widget.builder,
             scale: _notifier.value.scale.min,
           ),
