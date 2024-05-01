@@ -1,39 +1,39 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+[![melos badge][]][melos]
+[![license badge][]][license]
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+### adaptive_style
 
-## Features
+a collection of widgets to build scalable UI
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+# WARNING
+this package is an early release and under development
+breaking changes are most likely to occur
 
-## Getting started
+### how does it work?
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+- wrap your app in a `ScaleRefProvider`
+- provide a list of supported sizes
+``` dart
+ScaleRefProvider(
+    deviceSizes: const [DeviceSize.iphoneSE],
+///...
 ```
+- use `SizeRef` to get 
+  - the closest supported size
+  - the scale between the device size and the supported size
 
-## Additional information
+### what's included?
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+- `AdaptiveWidget` the base to build your own custom adaptive widget
+- `AdaptiveStack` just like a `Stack` but builds it's children as an `AdaptiveWidget`
+- `AdaptiveAnchorPositioned` a `Positioned` that place itself at one of the parent's edges
+
+
+
+[melos badge]: https://img.shields.io/badge/maintained%20with-melos-f700ff.svg
+[melos]: https://github.com/invertase/melos
+[license]: https://opensource.org/licenses/MIT
+[license badge]: https://img.shields.io/badge/license-MIT-blue.svg
+
