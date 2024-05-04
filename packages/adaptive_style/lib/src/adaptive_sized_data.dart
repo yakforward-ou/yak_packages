@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 
-import '../adaptive_style.dart';
+import 'adaptive_data.dart';
 import 'origin.dart';
+import 'positioned_data.dart';
 
-final class AdaptiveSizedData {
+final class AdaptiveSizedData implements AdaptiveData {
   final Origin origin;
   final Size size;
 
@@ -12,6 +14,8 @@ final class AdaptiveSizedData {
     required this.size,
   });
 
+  @override
+  @nonVirtual
   PositionedData positioned({
     double scale = 0,
     required Size parentSize,
@@ -123,6 +127,21 @@ final class AdaptiveSizedData {
               bottom: crossAxisLeftovers,
               right: leftovers.dx - scaledOriginPadding,
               left: scaledOriginPadding,
+            ),
+            scaledSize,
+          );
+        }
+      case (OriginCenter origin):
+        {
+          final verticalLeftovers = leftovers.dy / 2;
+
+          final horizontalsLeftovers = leftovers.dx / 2;
+          return PositionedData(
+            EdgeInsets.only(
+              top: verticalLeftovers,
+              bottom: verticalLeftovers,
+              right: horizontalsLeftovers,
+              left: horizontalsLeftovers,
             ),
             scaledSize,
           );

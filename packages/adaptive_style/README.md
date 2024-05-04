@@ -26,9 +26,9 @@ ScaleRefProvider(
 
 ### what's included?
 
-- `AdaptiveWidget` the base to build your own custom adaptive widget
-- `AdaptiveStack` just like a `Stack` but builds it's children as an `AdaptiveWidget`
-- `AdaptiveAnchorPositioned` a `Positioned` that place itself at one of the parent's edges
+- `AdaptiveWidget`: the base to build your own custom adaptive widget
+- `AdaptiveStack`: just like a `Stack` but builds it's children as an `AdaptiveWidget`
+- `AdaptivePositioned`: a `Positioned` that place itself at one of the parent's edges
 
 
 

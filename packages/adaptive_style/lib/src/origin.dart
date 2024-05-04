@@ -3,18 +3,19 @@ import 'dart:ui';
 import 'package:meta/meta.dart';
 
 abstract class Origin {
-  const factory Origin.topLeft(Offset padding) = OriginTopLeft;
-  const factory Origin.topRight(Offset padding) = OriginTopRight;
-  const factory Origin.bottomLeft(Offset padding) = OriginBottomLeft;
-  const factory Origin.bottomRight(Offset padding) = OriginBottomRight;
-  const factory Origin.centerLeft(double padding) = OriginCenterLeft;
-  const factory Origin.centerRight(double padding) = OriginCenterRight;
-  const factory Origin.topCenter(double padding) = OriginTopCenter;
-  const factory Origin.bottomCenter(double padding) = OriginBottomCenter;
+  const factory Origin.topLeft({Offset padding}) = OriginTopLeft;
+  const factory Origin.topRight({Offset padding}) = OriginTopRight;
+  const factory Origin.bottomLeft({Offset padding}) = OriginBottomLeft;
+  const factory Origin.bottomRight({Offset padding}) = OriginBottomRight;
+  const factory Origin.centerLeft({double padding}) = OriginCenterLeft;
+  const factory Origin.centerRight({double padding}) = OriginCenterRight;
+  const factory Origin.topCenter({double padding}) = OriginTopCenter;
+  const factory Origin.bottomCenter({double padding}) = OriginBottomCenter;
+  const factory Origin.center() = OriginCenter;
 }
 
 class OriginTopLeft implements Origin {
-  const OriginTopLeft(this.padding);
+  const OriginTopLeft({this.padding = Offset.zero});
 
   final Offset padding;
 
@@ -28,7 +29,7 @@ class OriginTopLeft implements Origin {
 }
 
 class OriginTopRight implements Origin {
-  const OriginTopRight(this.padding);
+  const OriginTopRight({this.padding = Offset.zero});
 
   final Offset padding;
 
@@ -42,7 +43,7 @@ class OriginTopRight implements Origin {
 }
 
 class OriginBottomLeft implements Origin {
-  const OriginBottomLeft(this.padding);
+  const OriginBottomLeft({this.padding = Offset.zero});
 
   final Offset padding;
 
@@ -56,7 +57,7 @@ class OriginBottomLeft implements Origin {
 }
 
 class OriginBottomRight implements Origin {
-  const OriginBottomRight(this.padding);
+  const OriginBottomRight({this.padding = Offset.zero});
 
   final Offset padding;
 
@@ -70,7 +71,7 @@ class OriginBottomRight implements Origin {
 }
 
 class OriginTopCenter implements Origin {
-  const OriginTopCenter(this.padding);
+  const OriginTopCenter({this.padding = 0});
 
   final double padding;
 
@@ -84,7 +85,7 @@ class OriginTopCenter implements Origin {
 }
 
 class OriginBottomCenter implements Origin {
-  const OriginBottomCenter(this.padding);
+  const OriginBottomCenter({this.padding = 0});
 
   final double padding;
 
@@ -98,7 +99,7 @@ class OriginBottomCenter implements Origin {
 }
 
 class OriginCenterLeft implements Origin {
-  const OriginCenterLeft(this.padding);
+  const OriginCenterLeft({this.padding = 0});
 
   final double padding;
 
@@ -112,7 +113,7 @@ class OriginCenterLeft implements Origin {
 }
 
 class OriginCenterRight implements Origin {
-  const OriginCenterRight(this.padding);
+  const OriginCenterRight({this.padding = 0});
 
   final double padding;
 
@@ -123,4 +124,16 @@ class OriginCenterRight implements Origin {
   @override
   @nonVirtual
   int get hashCode => Object.hash(runtimeType, padding);
+}
+
+class OriginCenter implements Origin {
+  const OriginCenter();
+
+  @override
+  @nonVirtual
+  bool operator ==(other) => other.hashCode == hashCode;
+
+  @override
+  @nonVirtual
+  int get hashCode => runtimeType.hashCode;
 }

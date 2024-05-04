@@ -5,7 +5,7 @@ import 'scale_mediaquery_widget.dart';
 import 'device_size.dart';
 import 'inherited_scale_ref.dart';
 import 'scale_ref.dart';
-import 'extension.dart';
+import 'extensions.dart';
 import 'size_scale.dart';
 
 class ScaleRefProvider extends StatefulWidget {

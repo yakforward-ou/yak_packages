@@ -1,21 +1,26 @@
 import 'package:flutter/rendering.dart';
+import 'package:meta/meta.dart';
 
-import '../adaptive_style.dart';
+import 'adaptive_data.dart';
+import 'anchor_edges.dart';
+import 'positioned_data.dart';
 
-final class AdaptiveAnchorData {
-  final AnchorEdges edges;
+final class AdaptiveAnchorData implements AdaptiveData {
+  final AnchorEdges anchor;
   final double dimension;
 
   const AdaptiveAnchorData({
-    required this.edges,
+    required this.anchor,
     required this.dimension,
   });
 
+  @override
+  @nonVirtual
   PositionedData positioned({
     double scale = 0,
     required Size parentSize,
   }) {
-    final scaledEdges = edges.scale(scale);
+    final scaledEdges = anchor.scale(scale);
     final scaledDimension = dimension * scale;
     switch (scaledEdges) {
       case (AnchorEdgesTop topEdge):
@@ -82,5 +87,5 @@ final class AdaptiveAnchorData {
       other is AdaptiveAnchorData && other.hashCode == hashCode;
 
   @override
-  int get hashCode => Object.hashAll([edges, dimension]);
+  int get hashCode => Object.hashAll([anchor, dimension]);
 }
