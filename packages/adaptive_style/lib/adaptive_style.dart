@@ -1,6 +1,6 @@
 library adaptive_style;
 
-export 'src/adaptive_achor_positioned.dart';
+export 'src/adaptive_anchor_positioned.dart';
 export 'src/scale_mediaquery_widget.dart';
 export 'src/adaptive_stack.dart';
 export 'src/adaptive_widget_builder.dart';
