@@ -135,10 +135,9 @@ final class AdaptiveAlignmentData implements AdaptiveData {
             scaledSize,
           );
         }
-      case (AdaptiveAlignmentCenter alignment):
+      case (AdaptiveAlignmentCenter _):
         {
           final verticalLeftovers = leftovers.dy / 2;
-
           final horizontalsLeftovers = leftovers.dx / 2;
           return PositionedData(
             EdgeInsets.only(
@@ -160,5 +159,5 @@ final class AdaptiveAlignmentData implements AdaptiveData {
       other is AdaptiveAlignmentData && other.hashCode == hashCode;
 
   @override
-  int get hashCode => Object.hash(AdaptiveAlignment, size);
+  int get hashCode => Object.hash(alignment, size);
 }
