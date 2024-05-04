@@ -1,15 +1,19 @@
 library adaptive_style;
 
-export 'src/adaptive_achor_positioned.dart';
-export 'src/scale_mediaquery_widget.dart';
+export 'src/adaptive_alignment.dart';
+export 'src/adaptive_alignment_data.dart';
+export 'src/adaptive_anchor_data.dart';
+export 'src/adaptive_data.dart';
+export 'src/adaptive_positioned.dart';
 export 'src/adaptive_stack.dart';
 export 'src/adaptive_widget_builder.dart';
 export 'src/adaptive_widget.dart';
+export 'src/anchor_edges.dart';
 export 'src/device_size.dart';
-export 'src/extension.dart';
+export 'src/extensions.dart';
 export 'src/inherited_scale_ref.dart';
+export 'src/positioned_data.dart';
+export 'src/scale_mediaquery_widget.dart';
 export 'src/scale_ref_provider.dart';
 export 'src/scale_ref.dart';
 export 'src/size_scale.dart';
-export 'src/anchor_edges.dart';
-export 'src/positioned_data.dart';

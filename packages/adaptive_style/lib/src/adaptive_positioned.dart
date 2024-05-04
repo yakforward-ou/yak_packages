@@ -1,14 +1,14 @@
 import 'package:flutter/widgets.dart';
 
+import 'adaptive_data.dart';
 import 'adaptive_widget.dart';
 import 'adaptive_widget_builder.dart';
-import 'positioned_data.dart';
 
-class AdaptiveAnchorPositioned extends AdaptiveWidget {
-  final AdaptiveAnchorData data;
+class AdaptivePositioned extends AdaptiveWidget {
+  final AdaptiveData data;
   final AdaptiveWidgetBuilder _builder;
 
-  const AdaptiveAnchorPositioned({
+  const AdaptivePositioned({
     super.key,
     required AdaptiveWidgetBuilder builder,
     required this.data,
