@@ -1,6 +1,6 @@
 name: adaptive_style
 description: a Flutter package for a scalable, adaptive and responsive UI
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/yakforward-ou/yak_packages
 
 environment:
