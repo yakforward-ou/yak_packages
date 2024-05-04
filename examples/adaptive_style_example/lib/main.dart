@@ -36,7 +36,7 @@ class MyHomePage extends StatelessWidget {
                     builder: (context, scaleRef, parentSize) =>
                         const FlutterLogo(),
                     data: const AdaptiveSizedData(
-                      origin: Origin.center(),
+                      alignment: AdaptiveAlignment.center(),
                       size: Size.square(54),
                     ),
                     parentSize: parentSize,
