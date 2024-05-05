@@ -20,56 +20,68 @@ final class EmailPayload {
   final String ehlo, data, subject, from, to, body;
 }
 
-Future<Socket> _socket(SocketConfig config) =>
-    Socket.connect(config.host, config.port);
+FutureResult sendEmail(EmailData data) =>
+    // Connect to the SMTP server
+    Result.success(data.config)
+        .thenRun(
+          (config) => Socket.connect(config.host, config.port),
+        )
+        // Wait for the server's greeting message
+        .runBypassAsync((socket) => socket.first)
 
-Future<void> sendEmail(EmailData data) async {
-  // Connect to the SMTP server
-  _socket
-      .runAsync(data.config)
-      // Wait for the server's greeting message
-      .runBypassAsync((socket) => socket.first)
+        // Send EHLO command to initiate the conversation
+        .runBypassAsync(
+          (socket) => socket.writeln('EHLO ${data.payload.ehlo}'),
+        )
+        //   Read and discard server response
+        .runBypassAsync((socket) => socket.flush())
+        .runBypassAsync((socket) => socket.first)
 
-// Send EHLO command to initiate the conversation
-   .runBypassAsync((socket)  {Future.sync(() => socket.writeln('EHLO ${data.payload.ehlo}'));})
-//   //socket.writeln('EHLO ${data.payload.ehlo}');
+        //   Send MAIL FROM command
+        .runBypassAsync(
+          (socket) => socket.writeln('MAIL FROM:<${data.payload.from}>'),
+        )
+        //   Read and discard server response
+        .runBypassAsync((socket) => socket.flush())
+        .runBypassAsync((socket) => socket.first)
+//   Send RCPT TO command
+        .runBypassAsync(
+          (socket) => socket.writeln('RCPT TO:<${data.payload.to}>'),
+        )
+        //   Read and discard server response
+        .runBypassAsync((socket) => socket.flush())
+        .runBypassAsync((socket) => socket.first)
 
-//   await socket.flush();
+        //   Send DATA command to start email data
+        .runBypassAsync(
+          (socket) => socket.writeln(data.payload.data),
+        )
+        //   Read and discard server response
+        .runBypassAsync((socket) => socket.flush())
+        .runBypassAsync((socket) => socket.first)
 
-//   // Read and discard server response
-//   await socket.first;
+        //   Send email content
+        .runBypassAsync(
+          (socket) => socket.writeln('Subject: ${data.payload.subject}'),
+        )
+        .runBypassAsync(
+          (socket) => socket.writeln('From: <${data.payload.from}>'),
+        )
+        .runBypassAsync(
+          (socket) => socket.writeln('To: <${data.payload.to}>'),
+        )
+        .runBypassAsync((socket) => socket.writeln(''))
+        .runBypassAsync((socket) => socket.writeln(data.payload.body))
+        .runBypassAsync((socket) => socket.writeln(''))
+        //   Read and discard server response
+        .runBypassAsync((socket) => socket.flush())
+        .runBypassAsync((socket) => socket.first)
 
-//   // Send MAIL FROM command
-//   socket.writeln('MAIL FROM:<${data.payload.from}>');
-//   await socket.flush();
-//   await socket.first;
+        //   Send QUIT command to close the connection
+        .runBypassAsync(
+          (socket) => socket.writeln('QUIT'),
+        )
+        .runBypassAsync((socket) => socket.flush())
+        //   Close the socket
 
-//   // Send RCPT TO command
-//   socket.writeln('RCPT TO:<${data.payload.to}>');
-//   await socket.flush();
-//   await socket.first;
-
-//   // Send DATA command to start email data
-//   socket.writeln(data.payload.data);
-//   await socket.flush();
-//   await socket.first;
-
-//   // Send email content
-//   socket.writeln('Subject: ${data.payload.subject}');
-//   socket.writeln('From: <${data.payload.from}');
-//   socket.writeln('To: <${data.payload.to}');
-//   socket.writeln('');
-//   socket.writeln(data.payload.body);
-//   socket.writeln('.');
-
-//   // Flush the socket and read server response
-//   await socket.flush();
-//   await socket.first;
-
-//   // Send QUIT command to close the connection
-//   socket.writeln('QUIT');
-//   await socket.flush();
-
-//   // Close the socket
-//   await socket.close();
-}
+        .runBypassAsync((socket) => socket.close());

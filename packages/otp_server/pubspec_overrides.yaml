@@ -1,0 +1,8 @@
+# melos_managed_dependency_overrides: yak_result,yak_runner,yak_utils
+dependency_overrides:
+  yak_result:
+    path: ../yak_result
+  yak_runner:
+    path: ../yak_runner
+  yak_utils:
+    path: ../yak_utils
