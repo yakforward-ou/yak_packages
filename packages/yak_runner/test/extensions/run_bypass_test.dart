@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:stub/stub.dart';
 import 'package:test/test.dart';
-import 'package:yak_runner/src/extension/run_bypass.dart';
 import 'package:yak_runner/yak_runner.dart';
 
 void main() {
