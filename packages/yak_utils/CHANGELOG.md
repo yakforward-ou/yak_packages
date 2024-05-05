@@ -1,16 +1,9 @@
 ### 2.1.1
 - update dependency
-
-### 2.1.0
 - remove delegates to avoid implicit_call_tearoffs
 
 ### 2.0.3
 - example link and readme update
-
-### 2.0.2
-- update dependency
-
-### 2.0.1
 - update dependency
 - update to dart 3
 
@@ -21,8 +14,6 @@
 - update dependencies
 - update types with `FutureOr`
 - update `Cache`
-
-### 1.0.0
 - update sets of `typedef` and `delegates`
 - add:
     - `MultiDelegate`

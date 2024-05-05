@@ -1,19 +1,13 @@
-### 3.0.0
+### 3.0.1
 - rework due to yak_result v3
+- add "run bypass"
 
 ### 2.1.1
 - update dependency
-
-### 2.1.0
 - remove delegates to avoid implicit_call_tearoffs
 
 ### 2.0.3
 - example link and readme update
-
-### 2.0.2
-- update dependency
-
-### 2.0.1
 - update dependency
 - update to dart 3
 
@@ -26,13 +20,9 @@
 - update existing extensions
 - update tests
 - update dependencies
-
-### 1.0.1
 - remove `thenRun` extesion in favor of `yak_result`'s `onResult` 
 - update dependencies
 - clean up tests
-
-### 1.0.0
 - major release
 - fix export of external packages
 - update dependencies
@@ -41,8 +31,6 @@
 - rework everything as pure function and extension
 - export `yak_result`
 - update readme
-
-###  0.4.1
 - moved `ErrorHandler` to `yak_error_handler`
 - moved `Result` to `yak_reason`
 
@@ -62,8 +50,6 @@
 - renamed `Runner` and `NullaryDelegate`
 - added `typedef` for `Delegate`s and `Runner`s
 - added `IterableRunner`
-
-###  0.3.0
 - `readme` updated
 - updated `stub` to 0.2.0
 - removed redundancies with `yak_error_handler`
@@ -78,15 +64,11 @@
   - `HandleError` has optional constructor argument
 - `HandleError` has new factory constructor and extensions
 - updated `readme` and `pubspec` description
-
-###  0.2.1
 - added `melos` and `coverage`
 - added `effective_dart` to `dev_dependencies`
 - updated `readme`
 - updated `example`
 - updated `tests`
-
-###  0.2.0
 - `yak_error_handler` friendly
 - fixed `Type` for `test mixin`
 - added `assert` for runners and `typeVoid`
@@ -103,10 +85,6 @@
 ###  0.0.3
 - breaking changes in the validation
 - added `mockito` for testing
-
-###  0.0.2
 - full re-design with mixin based classes
 - test passing
-
-###  0.0.1
 - `alpha` release
