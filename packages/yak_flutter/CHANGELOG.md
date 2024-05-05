@@ -1,4 +1,4 @@
-### 3.0.3
+### 3.0.4
 - add `EdgePositioned`, `ScalebleWidget`, `MediaQueryWidget` , 
 - `InheritedRestrictedNotifier` and `ScalableEdgePositioned`
 - update dependencies

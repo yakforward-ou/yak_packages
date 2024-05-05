@@ -1,4 +1,4 @@
-### 3.0.1
+### 3.0.2
 - rework due to yak_result v3
 - add "run bypass"
 
