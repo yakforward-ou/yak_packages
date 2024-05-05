@@ -1,13 +1,9 @@
 ### 2.1.1
 - update dependency
-
-### 2.1.0
 - remove delegates to avoid implicit_call_tearoffs
 
 ### 2.0.2
 - example link and readme update
-
-### 2.0.1
 - update dependency
 - update to dart 3
 
@@ -23,8 +19,6 @@
 
 ### 0.2.1
 - unary stub
-
-### 0.2.0
 - `readme` updated
 - added `MultiStub`
 - breaking changes in api
