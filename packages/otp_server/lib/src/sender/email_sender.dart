@@ -28,13 +28,12 @@ Future<void> sendEmail(EmailData data) async {
   _socket
       .runAsync(data.config)
       // Wait for the server's greeting message
-      .thenRunVoid((socket) => socket.first);
-}
-  // Send EHLO command to initiate the conversation
-//    .thenRunVoid((socket) => socket.first)
+      .runBypassAsync((socket) => socket.first)
+
+// Send EHLO command to initiate the conversation
+   .runBypassAsync((socket)  {Future.sync(() => socket.writeln('EHLO ${data.payload.ehlo}'));})
 //   //socket.writeln('EHLO ${data.payload.ehlo}');
-  
-  
+
 //   await socket.flush();
 
 //   // Read and discard server response
@@ -73,4 +72,4 @@ Future<void> sendEmail(EmailData data) async {
 
 //   // Close the socket
 //   await socket.close();
-// }
+}
