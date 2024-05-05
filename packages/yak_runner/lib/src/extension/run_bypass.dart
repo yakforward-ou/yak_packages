@@ -17,7 +17,7 @@ extension RunBypassX<S extends Object> on Result<S> {
 
 extension RunBypassAsyncX<S extends Object> on FutureResult<S> {
   FutureResult<S> runBypassAsync(
-    UnaryAsync<void, S> function,
+    UnaryFutureOr<void, S> function,
   ) async {
     final result = await this;
     if (result.isSuccess) {
