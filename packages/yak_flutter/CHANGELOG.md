@@ -1,7 +1,7 @@
-### 3.0.4
+### 3.0.5
+- update dependencies
 - add `EdgePositioned`, `ScalebleWidget`, `MediaQueryWidget` , 
 - `InheritedRestrictedNotifier` and `ScalableEdgePositioned`
-- update dependencies
 - rework due to yak_result v3
 
 ### 2.1.1

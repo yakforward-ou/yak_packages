@@ -4,15 +4,15 @@ publish_to: 'none'
 version: 2.0.0
 
 environment:
-  sdk: '>=3.3.3 <4.0.0'
+  sdk: '>=3.5.1 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  yak_tween: ^2.0.3
+  yak_tween: ^2.0.4
 
 dev_dependencies:
-  flutter_lints: ^3.0.2
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
