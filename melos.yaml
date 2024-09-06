@@ -10,7 +10,7 @@ ignore:
 command:
   bootstrap:
     environment:
-      sdk: '>=3.3.3 <4.0.0'
+      sdk: '>=3.5.1 <4.0.0'
 
 scripts:
   test:

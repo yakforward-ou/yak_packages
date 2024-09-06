@@ -5,8 +5,8 @@ import 'package:yak_runner/yak_runner.dart';
 
 /// a `typedef` for a `ResultNullary` test function
 typedef ResultNullaryAsyncTest<T> = void Function({
-  String name,
-  NullaryAsync<T> example,
+  required String name,
+  required NullaryAsync<T> example,
 });
 
 /// an `extension` that generates a basic set of tests for `ResultNullaryAsync`

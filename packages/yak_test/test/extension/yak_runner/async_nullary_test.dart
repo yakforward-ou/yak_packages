@@ -11,7 +11,7 @@ void main() {
         'WHEN runner.tester'
         'THEN returns `ResultNullaryAsyncTest`', () {
       expect(
-        function.run.tester,
+        function.runAsync.tester,
         isA<ResultNullaryAsyncTest<int>>(),
         reason: 'tester should output a `ResultNullaryAsyncTest`',
       );

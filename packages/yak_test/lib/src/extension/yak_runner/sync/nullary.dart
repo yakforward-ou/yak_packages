@@ -5,8 +5,8 @@ import 'package:yak_runner/yak_runner.dart';
 
 /// a `typedef` for a `ResultNullary` test function
 typedef ResultNullaryTest<T> = void Function({
-  String name,
-  Nullary<T> example,
+  required String name,
+  required Nullary<T> example,
 });
 
 /// an `extension` that generates a basic set of tests for `ResultNullary`

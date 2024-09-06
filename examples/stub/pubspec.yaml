@@ -4,12 +4,12 @@ publish_to: 'none'
 version: 2.0.0
 
 environment:
-  sdk: '>=3.3.3 <4.0.0'
+  sdk: '>=3.5.1 <4.0.0'
 
 dependencies:
-  stub: ^2.1.1
-  test: ^1.24.9
+  stub: ^2.1.2
+  test: ^1.25.8
   
 dev_dependencies:
-  lints: ^3.0.0
+  lints: ^4.0.0
 
