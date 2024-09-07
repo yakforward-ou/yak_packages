@@ -1,6 +1,5 @@
 import 'package:yak_result/yak_result.dart';
 import 'package:yak_utils/yak_utils.dart';
-
 import 'run.dart';
 
 extension IterableNullaryToResultNullaryX<T extends Object>
