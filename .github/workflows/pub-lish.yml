@@ -1,8 +1,7 @@
 name: pub-lish
 on:
-  push:
-    tags: ['v[0-9]+.[0-9]+.[0-9]+*']
-    branches: [main]
+  workflow_dispatch:
+    
 jobs:
   publish-packages:
     name: publish to pub.dev
