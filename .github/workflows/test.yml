@@ -1,28 +1,17 @@
-name: 'test'
+name: test
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
 jobs:
   test:
-    name: 'run flutter_test and analyze'
-    runs-on: ubuntu-latest
+    name: run tests and analyze
+    runs-on: [ubuntu-latest]
     timeout-minutes: 10
     steps:
-      - name: 'checkout'
-        uses: actions/checkout@v4 
-      - name: 'setup flutter'
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-      - name: 'update PATH'
-        run: |
-          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH && \
-          echo "PUB_CACHE="$HOME/.pub-cache"" >> $GITHUB_ENV         
-      - name: 'setup melos'
-        uses: bluefireteam/melos-action@v3
-      - name: 'run melos tasks'
-        run: |
+      - uses: actions/checkout@v4 
+      - uses: subosito/flutter-action@v2
+      - uses: bluefireteam/melos-action@v3
+      - run: |
           melos analyze && \
           melos format && \
           melos run test
