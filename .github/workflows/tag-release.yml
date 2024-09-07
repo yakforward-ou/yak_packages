@@ -8,7 +8,9 @@ jobs:
     permissions:
       contents: write
     runs-on: [ ubuntu-latest ]
-    if: contains(github.event.head_commit.message, 'chore(release)')
+    # see https://github.com/bluefireteam/melos-action/issues/13
+    # https://github.com/yakforward-ou/yak_packages/issues/254
+    # if: contains(github.event.head_commit.message, 'chore(release)')
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
